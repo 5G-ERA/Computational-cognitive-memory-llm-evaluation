@@ -1,0 +1,17 @@
+{
+  "release": "v0.5.1-qa1 terminology and execution patch",
+  "terminology_alignment": "PASS",
+  "free_reasoning_end_of_think_parser": "PASS",
+  "draft_json_rejection": "PASS",
+  "truncation_classification": "PASS",
+  "revised_grounding_semantics": "PASS",
+  "two_sided_chance_gate": "PASS",
+  "minimum_32_memory_groups": "PASS",
+  "transient_fault_recovery_72_of_360": "PASS",
+  "restart_no_duplicate_terminal_records": "PASS",
+  "portable_relative_checksum_generation": "PASS",
+  "structured_output_for_kimi": "DISABLED_BY_POLICY",
+  "pre_llm_decision": "PASS",
+  "external_development_status": "ALREADY_COMPLETED",
+  "reserved_execution": "CONDITIONAL_ON_APPLYING_PATCH_AND_FREEZE"
+}

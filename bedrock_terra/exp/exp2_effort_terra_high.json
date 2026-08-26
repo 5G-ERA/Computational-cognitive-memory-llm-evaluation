@@ -1,0 +1,62 @@
+{
+ "dev_terra": {
+  "B0_LLM_ALONE": {
+   "n": 120,
+   "acc": 0.9833,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.2167,
+   "invalid": 0,
+   "out_tokens": 96.0,
+   "reasoning_tokens": 22.7
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+   "n": 120,
+   "acc": 0.95,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.25,
+   "invalid": 0,
+   "out_tokens": 118.3,
+   "reasoning_tokens": 43.4
+  },
+  "B1_VERIFIED_MEMORY": {
+   "n": 120,
+   "acc": 0.9833,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.2167,
+   "invalid": 0,
+   "out_tokens": 99.6,
+   "reasoning_tokens": 24.7
+  },
+  "B1_minus_B0_pp": 0.0
+ },
+ "dev_terra_effort_high": {
+  "B0_LLM_ALONE": {
+   "n": 120,
+   "acc": 0.9833,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.2167,
+   "invalid": 0,
+   "out_tokens": 111.5,
+   "reasoning_tokens": 38.7
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+   "n": 120,
+   "acc": 0.9833,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.2167,
+   "invalid": 0,
+   "out_tokens": 131.7,
+   "reasoning_tokens": 58.3
+  },
+  "B1_VERIFIED_MEMORY": {
+   "n": 120,
+   "acc": 0.9833,
+   "top_answer": "WAIT_FOR_EVIDENCE",
+   "top_share": 0.2167,
+   "invalid": 0,
+   "out_tokens": 128.3,
+   "reasoning_tokens": 55.4
+  },
+  "B1_minus_B0_pp": 0.0
+ }
+}

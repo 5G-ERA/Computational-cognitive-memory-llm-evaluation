@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "checks": {
+    "memories_40": true,
+    "canonical_200": true,
+    "reaction_balance": true,
+    "template_balance": true,
+    "template_reaction_matrix": true,
+    "rendered_600": true,
+    "three_renderings": true,
+    "calls_1800": true,
+    "three_conditions": true,
+    "split_8_32": true,
+    "refs_600": true,
+    "condition_parity": true,
+    "condition_hierarchy": true,
+    "rendering_oracle_equivalence": true,
+    "no_episode_reaction_leak": true,
+    "deterministic_b1_solvable": true,
+    "current_only_gate": true,
+    "assumption_only_gate": true,
+    "memory_only_gate": true,
+    "b0_bow_gate": true,
+    "nontext_near_prior": true
+  },
+  "baselines": {
+    "B0_LLM_ALONE_full": {
+      "macro_f1": 0.0,
+      "accuracy": 0.0
+    },
+    "M0_OPEN_LOOP_MEMORY_full": {
+      "macro_f1": 0.0,
+      "accuracy": 0.0
+    },
+    "B1_VERIFIED_MEMORY_full": {
+      "macro_f1": 0.0,
+      "accuracy": 0.0
+    },
+    "current_only": {
+      "macro_f1": 0.0,
+      "accuracy": 0.0
+    },
+    "assumption_only": {
+      "macro_f1": 0.06666666666666667,
+      "accuracy": 0.2
+    },
+    "memory_only": {
+      "macro_f1": 0.06666666666666667,
+      "accuracy": 0.2
+    },
+    "event_count_accuracy": 0.2,
+    "structure_accuracy": 0.2,
+    "identifier_accuracy": 0.2
+  },
+  "reaction_distribution": {
+    "CONTINUE_SUPPORT": 40,
+    "TAILOR_SUPPORT": 40,
+    "ESCALATE_REVIEW": 40,
+    "WITHHOLD_ASSUMPTION": 40,
+    "WAIT_FOR_EVIDENCE": 40
+  },
+  "template_distribution": {
+    "RECURRENCE": 40,
+    "ADDITIONAL_OBSERVATION": 40,
+    "NEW_EXPERIENCE": 40,
+    "SOURCE_CHANGE": 40,
+    "TEMPORAL_GAP": 40
+  },
+  "release_decision": "GO_FOR_EXTERNAL_API_QA"
+}

@@ -1,0 +1,10 @@
+{
+  "requirement": "Protocol section 16: blinded human review with two coders, at least 95 percent agreement on critical violations and Cohen kappa >= 0.80.",
+  "status": "REMOVED_BY_DECISION",
+  "decision": "E1-H1, Renxi Qiu, 22 August 2026: the human review layer is removed. The entire audit is independent from human input. This supersedes D1 (bounded sample) and D2 (two named coders) of the same day.",
+  "consequence": "No human review was performed and none will be. Four codes are permanently out of scope and E2_SCOPE_OVERREACH is narrowed to its frozen automated detector.",
+  "empirical_note": "After decision D3 no case on either development split was flagged for human review, so the removed layer had nothing pending against it.",
+  "must_be_stated_in_the_paper": true,
+  "blocks_gate_condition": null,
+  "previous_status": "NOT_SATISFIED"
+}

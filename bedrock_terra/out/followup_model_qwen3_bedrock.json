@@ -1,0 +1,20 @@
+{
+  "P2b": {
+    "verdict": "ACCEPTED_AND_JSON",
+    "call": {
+      "ok": true,
+      "content": "{\n  \"reaction\": \"TAILOR_SUPPORT\",\n  \"rule_id\": \"R08_PARTIALLY_CONFIRMED\",\n  \"decisive_event_ids\": [\"EVT-0000365\", \"EVT-0000006\"],\n  \"reason\": \"Current evidence shows terminology consistency with prior records (EVT-0000365), and comparison marker relation-gamma (EVT-0000006) confirms the relation is comparable but with an active secondary barrier. This qualifies as a partially confirmed historical relation, warranting tailored support that accounts for the lingering barrier while leveraging confirmed comparability.\"\n}",
+      "finish": "stop",
+      "out_tokens": 139
+    }
+  },
+  "P9": {
+    "hashes": [
+      "9ddfa2decd93",
+      "406d7240799b",
+      "8f9867246ca8"
+    ],
+    "distinct": 3,
+    "verdict": "SEED_ACCEPTED_BUT_NOT_REPRODUCIBLE"
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "freeze_record_id": "FREEZE-v0.5.1-qa1c",
+  "benchmark_version": "0.5.1-qa1c",
+  "prepared_utc": "2026-08-16T20:04:53Z",
+  "signature_status": "AUTHORISATION RECORDED, OWNER COUNTERSIGNATURE OUTSTANDING",
+  "authority": "Official Response to the External QA Review v0.5.1-qa1b, 14 August 2026",
+  "reserved_run_status": "NOT AUTHORISED \u2014 reserved 1,440-call evaluation remains on hold",
+  "reserved_calls_consumed_during_preparation": 0,
+  "frozen_execution_parameters": {
+    "decoding_mode": "free_reasoning_end_of_think",
+    "structured_output": false,
+    "grammar_constrained_decoding": false,
+    "output_token_ceiling": 4096,
+    "endpoint": "https://REDACTED-PRIVATE-ENDPOINT/v1/chat/completions",
+    "endpoint_requires_api_key": false,
+    "model_snapshot": "moonshotai_Kimi-Dev-72B-Q4_0.gguf",
+    "temperature": 0,
+    "top_p": 1,
+    "sampling_seed": 13082642,
+    "timeout_seconds": 900,
+    "parser": "scripts/qa_core.py:parse_final_answer",
+    "parser_version": "qa1c \u2014 tolerant reasoning end marker, defect 001",
+    "parser_sha256": "2ee2671e158ffd86df2b8593bb2c07fc23f4a1c969c14b13e728c968b655c3ed",
+    "end_of_think_markers_include_malformed_form": true,
+    "scorer": "scripts/api_runner_qa1.py:record + qa_core.revised_grounding",
+    "call_order_seed": 13082652,
+    "retry_jitter_seed": 13082653,
+    "bootstrap_seed": 13082654,
+    "permutation_seed": 13082653,
+    "relabelling_partition_seed": 13082655,
+    "retry_policy": {
+      "max_attempts": 3,
+      "retry_http_status": [
+        429,
+        500,
+        502,
+        503,
+        504
+      ],
+      "non_retryable_http_status": [
+        400,
+        401,
+        403,
+        404,
+        405,
+        413,
+        422
+      ],
+      "retry_exceptions": [
+        "TimeoutError",
+        "ConnectionError",
+        "URLError"
+      ],
+      "backoff_seconds": [
+        0,
+        2,
+        8
+      ],
+      "jitter_seed": 13082653,
+      "retry_model_output": false,
+      "failed_retryable_calls_are_restartable": true
+    },
+    "end_of_think_markers": [
+      "</think>",
+      "<|end_of_thought|>",
+      "<|end_of_think|>",
+      "\u25c1/think\u25b7",
+      "\u25c1/think"
+    ],
+    "start_of_think_markers": [
+      "<think>",
+      "<|begin_of_thought|>",
+      "\u25c1think\u25b7"
+    ]
+  },
+  "frozen_executables": {
+    "scripts/qa_core.py": "2ee2671e158ffd86df2b8593bb2c07fc23f4a1c969c14b13e728c968b655c3ed",
+    "scripts/qa_runner.py": "9913598dc7f0a5cafab637762f8e8f2ef8b10a824a53d771c4f372d89fff691b",
+    "scripts/api_runner_qa1.py": "2a8878abb084605f3f5bf575f0569da7f2342db721cffcc75344aa8f59ca046e",
+    "scripts/adapters/openai_compatible_adapter_qa1.py": "ecba36fbcee067a78c0b140fa5768dcbc346aa287328a67e503a85bc06bdc9df",
+    "scripts/design_audit_qa1b.py": "2510f1946f76d81c991606204915241ff6458a9f128b5e3aca0ef120c62ef7f7",
+    "scripts/parser_diff_report.py": "998c55a094ddd3ec50229e7a64ac536e84a9bb4553b93febaa7ebc46c044c708",
+    "scripts/verify_manifest.py": "42a82a49d0fd1068854a2145963c61f8ef25b80f7bb98ebe9b8d43618e3ae2a5",
+    "scripts/build_manifest.py": "c250e52e58a2d67c224fb0b53236e8326182cfcb3a16d90221a26ba7fd45cdc8",
+    "scripts/build_freeze_record.py": "a0424cf9706188a49d02c42f06053dd7ccb8971d9b12e3265eb86180b3ebef8e",
+    "scripts/release_checks_qa1b.py": "cd418f1ab8692493cee97f5a97635ea46d751d6d1583bc0e1088345bd402024a",
+    "config/requirements_frozen.txt": "05560eca0f98a33e998983871220e82b1c82e8878aaca96fc453e2db09cc7565",
+    "config/extraction_policy.json": "c0ae6e8af5ac022b45d05de74417f2b7a011d1d3110cc8acba5f9ac1bf762f1c",
+    "config/retry_policy.json": "d8591b1fd0ee6edced007f5fec01d42852701f841b9b5d7762e6d8e3870d44f0",
+    "config/model_kimi_gpuedge.json": "380c709bdddf22b9822361dcdca1aa12cdd6f9806fd35399eb798dc6f0874112",
+    "config/reporting_config.json": "911e266cbfe1207699ece4d1c33ef78c3f3d498b08999fb908bb10b96f3b5376",
+    "config/python_support.json": "a260ba37f18c13035a3587c41d9b78dfdc7f3563492bd60ae4f06f3416965b08",
+    "public/terminology_v0_5_1.json": "218f49ebd80abf8a56c259e9b2b967abb2050edb7bae5c7804214a980836f4d0"
+  },
+  "dataset_identity": {
+    "data_v0_5_1/canonical_contexts.csv": "2cb160879c4c6642bc80289a36b661ad7adfc099597ec08eb4fdf3b29dddf375",
+    "data_v0_5_1/contexts.csv": "23905084b66368bc80b7a216a7948e0e788207a530838b1ac3db338d6be34906",
+    "data_v0_5_1/current_events.jsonl": "e1dc3d9c3772e352d50efe464e2e0580e849c077545ee215dfd752844a4194f8",
+    "data_v0_5_1/historical_events.jsonl": "c3957dcdd408375aa24cacf4b3300c12056355472c79abebb4060cbb5c340411",
+    "data_v0_5_1/memories.csv": "dc04757e40f3d6cb32f2dbb2aaa528645346e1c57ee2fcdd9281a5c3e7bfc3a8",
+    "data_v0_5_1/rendering_map.csv": "98d29398eaffe2c6e82b72d55df3cee34cc4a01b85b678f5f59d5f7b0301452a",
+    "data_v0_5_1/split_manifest.csv": "65b5574e62b62d460ffc4bf5e4f1523eb5f0d82bd76c192b4a9cf044c0d8f8f9",
+    "prompts/model_calls_v0_5_1.jsonl": "04fae16312226dee2badbc342717ae3cc0688e7742122072420b30a4f9a48597",
+    "hidden/oracle_references_v0_5_1.jsonl": "0cd64168450931f04c6ea1ae620c39dc650bf4b410d1d12c0ca5cc676e0907e3",
+    "public/response_schema.json": "df3bd109d4c148b58b9b605ac2eb8b16f24c994e721947d05ccffc671a5a7416",
+    "public/verification_rules.json": "d4bcbe66d3523a15a29f2df82a4351569a7a19562c0f66da8495cc5eeea08081",
+    "public/reaction_policy.json": "8317cccf7d1b4ddaa90a55b52776028b1c89a20d62ec091db4e20e049337115d",
+    "public/world_specification.json": "8f9c27efbc870b47d2593cce7976291858900ffa3ff15bf56b1f1f994b311518",
+    "public/rule_vocabulary.json": "8e8caab5bc29d285d5f5e02a8a2c9483331a2f00a58286d87c7ac52929ea3ee9",
+    "public/assumption_catalogue.csv": "496aa3a838bf60b108b5677e72ca9307271943528b4fad8f017c835aa0508d63",
+    "public/observation_dictionary.json": "03ac2a2bec2a655d8dea2a7f50e41ffe3ea500eb3c16eb02e3e8185a973475db"
+  },
+  "validation_summary": {
+    "structural_validator": "PASS",
+    "design_audit": "PASS",
+    "design_audit_nominal_gate": false,
+    "design_audit_uncorrected_verdict": "FAIL",
+    "production_fault_tests": "PASS",
+    "live_marker_extraction": "PASS"
+  },
+  "authorisation_gates": [
+    {
+      "gate": "Dataset, oracle, split and prompt identity unchanged and checksum verified",
+      "status": "PASS",
+      "evidence": "validation/freeze_record_v0_5_1_qa1b.json#dataset_identity",
+      "note": "Digests recomputed from a clean extraction of the v0.5.1 release archive; public/world_specification.json deliberately left byte-identical, with the paper-aligned terminology carried in public/terminology_v0_5_1.json instead."
+    },
+    {
+      "gate": "Paper-aligned terminology applied",
+      "status": "PASS",
+      "evidence": "public/terminology_v0_5_1.json, config/reporting_config.json",
+      "note": ""
+    },
+    {
+      "gate": "Python 3.8.10 compatibility",
+      "status": "PASS",
+      "evidence": "tests/*, config/python_support.json",
+      "note": "All qa1b suites pass on CPython 3.8.10 with the pinned dependency stack."
+    },
+    {
+      "gate": "Python 3.11+ compatibility",
+      "status": "PASS",
+      "evidence": "validation/interpreter_evidence/, config/python_support.json",
+      "note": "All qa1b suites pass on CPython 3.11.16 in a clean container. With the pinned stack the design audit reproduces the 3.8 output exactly."
+    },
+    {
+      "gate": "Expected call matrix (32 x 5 x 3 x 3 = 1,440)",
+      "status": "PASS",
+      "evidence": "validation/release_checks_qa1b.json",
+      "note": ""
+    },
+    {
+      "gate": "Split isolation and no pre-existing reserved response",
+      "status": "PASS",
+      "evidence": "validation/release_checks_qa1b.json",
+      "note": ""
+    },
+    {
+      "gate": "Archive hygiene",
+      "status": "PASS",
+      "evidence": "validation/release_checks_qa1b.json",
+      "note": "No __pycache__, .pyc, credential-shaped literals or absolute local paths."
+    },
+    {
+      "gate": "qa1b regression suite passes",
+      "status": "PASS",
+      "evidence": "tests/test_pre_llm_qa1b.py, tests/test_core.py",
+      "note": ""
+    },
+    {
+      "gate": "At least 32-memory chance-relative current-only audit",
+      "status": "PASS",
+      "evidence": "validation/design_audit_qa1b.json",
+      "note": "Runs over all 40 memories. The literal Decision 3 band is unattainable in a closed balanced design and is reported separately as nominal_gate; see the accompanying review note. One residual is flagged uncorrected."
+    },
+    {
+      "gate": "Production retry and full-outage restart tests",
+      "status": "PASS",
+      "evidence": "validation/production_fault_tests_qa1b.json",
+      "note": ""
+    },
+    {
+      "gate": "Final-answer extraction with actual model markers",
+      "status": "PASS",
+      "evidence": "validation/live_marker_extraction_qa1b.json",
+      "note": "Verified against 12 genuine endpoint captures held in the package; the full 360-call development run artefacts are not in this package."
+    },
+    {
+      "gate": "Revised per-group provenance scoring",
+      "status": "PASS",
+      "evidence": "results/qa1b_mock_dev/scoring_records.jsonl",
+      "note": "End-to-end mock run through the production entry point emits per_group_decisive_hits, required_groups_hit, all_required_groups_covered and certified_meta_decision on every scorable record."
+    },
+    {
+      "gate": "Portable release manifest",
+      "status": "OPEN",
+      "evidence": "validation/SHA256SUMS.txt",
+      "note": "Generated as the final filesystem operation after this record; verify with scripts/verify_manifest.py."
+    },
+    {
+      "gate": "Marker code points confirmed (Decision 1 and 2 condition)",
+      "status": "PASS",
+      "evidence": "validation/marker_code_point_confirmation.json",
+      "note": "Exhaustive scan of all 1,440 reserved responses. The malformed form is exactly U+25C1 U+002F \"think\" with the trailing U+25B7 absent; no other variant exists."
+    },
+    {
+      "gate": "qa1c corrective release applied",
+      "status": "PASS",
+      "evidence": "scripts/qa_core.py, config/extraction_policy.json, tests/test_qa1c_marker_tolerance.py",
+      "note": "Approved by the project decision owner on 16 August 2026, Decision 1."
+    },
+    {
+      "gate": "Restart decision 001 ratified",
+      "status": "PASS",
+      "evidence": "validation/RESTART_DECISION_001_ratified.md",
+      "note": "Ratified 16 August 2026 with the frozen minimum-denominator clarification, Decision 3."
+    },
+    {
+      "gate": "Governance signature",
+      "status": "OPEN",
+      "evidence": "validation/authorisation_record.json",
+      "note": "A relayed authorisation from the project decision owner dated 2026-08-15 is recorded. It is NOT a countersignature and was not entered by the owner. The owner must countersign with the archive digest to close this gate."
+    }
+  ],
+  "dependency_freeze": {
+    "requirements": "config/requirements_frozen.txt",
+    "reason": "The authoritative shortcut audit is not version-stable across scikit-learn major releases.",
+    "evidence": "validation/interpreter_evidence/"
+  },
+  "open_items": [
+    "Governance signature: the decision owner must sign the date and the final archive hash. This is the only remaining Annex B gate.",
+    "On signature, re-score the complete reserved set from the preserved raw capture under this parser and apply the frozen section 6 analysis. No model call is required; the reserved results have not been inspected.",
+    "The frozen shortcut verdict holds only under the pinned dependency stack in config/requirements_frozen.txt. Under scikit-learn 1.9.0 the current-only view is flagged after Holm adjustment and the audit returns FAIL. The pins are therefore part of the freeze and any re-run must record them."
+  ],
+  "authorisation_record": {
+    "record_id": "AUTH-v0.5.1-qa1b-001",
+    "record_type": "relayed_message_authorisation",
+    "is_countersigned_document": false,
+    "authority_referenced": "Official Release and Assessment Decision, Cognitive Memory Benchmark v0.5.1-qa1b, 15 August 2026, section 13 and Annex B",
+    "authorisation": {
+      "granted_by": "Renxi Qiu",
+      "role": "Project decision owner",
+      "date": "2026-08-15",
+      "medium": "message relayed to the external QA operator",
+      "verbatim": "go ahead",
+      "scope_as_understood": "Proceed past the freeze checklist. Section 13 makes the reserved 1,440-call evaluation openable once the remaining runtime, call-matrix, clean-archive, checksum and signature checks pass."
+    },
+    "what_this_record_is_not": [
+      "It is not a cryptographic signature.",
+      "It is not a countersigned freeze document bearing the decision owner's own hand.",
+      "It was not authored by the decision owner directly into this package; it is a faithful record of a relayed instruction, entered by the external QA operator."
+    ],
+    "why_recorded_this_way": "Annex B assigns the governance signature to the project decision owner. The external QA operator does not hold that authority and has not signed on the owner's behalf. This record preserves the authorisation and its provenance so the owner can either countersign it or replace it with a formally signed block.",
+    "hash_binding_note": "Annex B requires the owner to sign the date and the ARCHIVE hash. An archive hash cannot be stored inside the archive it describes, so the in-package binding is the manifest digest, which covers every other file. The archive digest is reported alongside the delivered archive and must be entered by the owner when countersigning.",
+    "operator_confirmation": {
+      "operator": "external QA",
+      "statement": "Every Annex B gate other than the governance signature is evidenced in this package and reproducible from it. The reserved split was untouched at the time of this record.",
+      "reserved_model_responses_existing_at_record_time": 0
+    },
+    "owner_countersignature": {
+      "signed_by": null,
+      "role": null,
+      "date": null,
+      "archive_sha256": null,
+      "statement": "I authorise the reserved 1,440-call evaluation against the package whose archive digest is recorded above."
+    }
+  },
+  "signature_block": {
+    "status": "AWAITING OWNER COUNTERSIGNATURE",
+    "relayed_authorisation_on_record": "go ahead",
+    "relayed_authorisation_date": "2026-08-15",
+    "signed_by": null,
+    "role": null,
+    "date": null,
+    "archive_sha256_at_signing": null,
+    "statement": "I authorise the reserved 1,440-call evaluation against the package whose archive digest is recorded above."
+  }
+}

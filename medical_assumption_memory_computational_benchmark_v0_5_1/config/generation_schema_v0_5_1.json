@@ -1,0 +1,19 @@
+{
+  "version": "0.5.1",
+  "seed": 13082651,
+  "memories": 40,
+  "contexts_per_memory": 5,
+  "canonical_contexts": 200,
+  "reaction_balance": 40,
+  "template_reaction_matrix": "8 per cell",
+  "render_families": [
+    "STRUCTURED",
+    "CHRONOLOGICAL",
+    "CONCISE"
+  ],
+  "rendered_contexts": 600,
+  "calls": 1800,
+  "split_unit": "memory",
+  "development_memories": 8,
+  "reserved_memories": 32
+}

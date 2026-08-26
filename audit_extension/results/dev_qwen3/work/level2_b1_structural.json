@@ -1,0 +1,602 @@
+{
+ "CALL51-0000003": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000006": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000009": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000012": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000015": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000018": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000021": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000024": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000027": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000030": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000033": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000036": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000039": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000042": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000045": {
+  "memory_id": "MEM51-0001",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000048": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000051": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000054": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000057": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000060": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000063": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000066": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000069": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000072": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000075": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000078": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000081": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000084": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000087": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000090": {
+  "memory_id": "MEM51-0002",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000093": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000096": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000099": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000102": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000105": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000108": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000111": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000114": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000117": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000120": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000123": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000126": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000129": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000132": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000135": {
+  "memory_id": "MEM51-0003",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000138": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000141": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000144": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000147": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000150": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000153": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000156": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000159": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000162": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000165": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000168": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000171": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000174": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000177": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000180": {
+  "memory_id": "MEM51-0004",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000183": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000186": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000189": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000192": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000195": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000198": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000201": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000204": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000207": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000210": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000213": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000216": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000219": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000222": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000225": {
+  "memory_id": "MEM51-0005",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000228": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000231": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000234": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000237": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000240": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000243": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000246": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000249": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000252": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000255": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000258": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000261": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000264": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000267": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000270": {
+  "memory_id": "MEM51-0006",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000273": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000276": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000279": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000282": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000285": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000288": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000291": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000294": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000297": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000300": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000303": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000306": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000309": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000312": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000315": {
+  "memory_id": "MEM51-0007",
+  "prospective_hash_equal": true,
+  "structural_status": null
+ },
+ "CALL51-0000318": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000321": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000324": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000327": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000330": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000333": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000336": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000339": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000342": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000345": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000348": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000351": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000354": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000357": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ },
+ "CALL51-0000360": {
+  "memory_id": "MEM51-0008",
+  "prospective_hash_equal": true,
+  "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN"
+ }
+}

@@ -1,0 +1,118 @@
+{
+  "label": "dev_qwen3",
+  "ontology_version": "AUDIT-ONT-1.2",
+  "terminology": "AUDIT-TERM-1.0",
+  "normative_reading": "SCOPED",
+  "memories": 8,
+  "expected_calls": 360,
+  "endpoint_roles": {
+    "delta_IO_B1_minus_B0": {
+      "role": "INSTRUMENT_INTEGRITY",
+      "confirmatory": false,
+      "canonical_name": "Trace-reconstructibility difference, cognitive memory minus raw longitudinal evidence"
+    },
+    "delta_IO_M0_minus_B0": {
+      "role": "INSTRUMENT_INTEGRITY",
+      "confirmatory": false,
+      "canonical_name": "Trace-reconstructibility difference, pre-specified consequence mapping minus raw longitudinal evidence"
+    },
+    "delta_Trace_B1_minus_M0": {
+      "role": "WITHDRAWN",
+      "confirmatory": false,
+      "canonical_name": "Cognitive-trace coherence difference"
+    },
+    "delta_Critical_B1_minus_M0": {
+      "role": "DESCRIPTIVE",
+      "confirmatory": false,
+      "canonical_name": "Critical-violation rate difference"
+    }
+  },
+  "mandatory_caveats": [
+    "Memory-clustered bootstrap intervals under-cover at these cluster counts. The parent release's own coverage study puts 8-cluster coverage near 89.6 percent and 32-cluster coverage near 92.5 percent against a nominal 95 percent. Every audit interval carries the same disclosure the decision results carry.",
+    "Level 1 sits at a ceiling by construction on this parent release and is reported as an instrument-integrity endpoint.",
+    "No independent reimplementation of the audit was produced. Protocol section 17 was removed for Experiment 1 by decision E1-G1 of 22 August 2026, so every figure reported here rests on a single implementation. Fixture agreement, canonicalisation tests and the oracle-independence clean-room test constrain that implementation, but none of them establishes independence from one implementer's reading of the contracts.",
+    "The audit is deterministic by design and takes no human input at any stage. It therefore does not assess substantive citation relevance, material scope overreach beyond its frozen pattern, omitted limitations, or the adequacy of free-text explanation. Those properties are out of scope, not unmeasured pending work. What is reported is exactly what a frozen contract can decide from the retained artefacts."
+  ],
+  "contrasts": {
+    "SCOPED": {
+      "delta_IO_B1_minus_B0": {
+        "point": 0.0,
+        "lo": -2.500000000000002,
+        "hi": 2.500000000000002,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_IO_B1_minus_B0_permutation": {
+        "p": 1.0,
+        "observed": 0.0,
+        "clusters": 8
+      },
+      "delta_IO_M0_minus_B0": {
+        "point": 0.8333333333333304,
+        "lo": -1.6666666666666718,
+        "hi": 3.3333333333333326,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_Trace_B1_minus_M0": {
+        "point": -0.8333333333333304,
+        "lo": -2.500000000000002,
+        "hi": 0.0,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_Trace_B1_minus_M0_permutation": {
+        "p": 1.0,
+        "observed": 0.8333333333333304,
+        "clusters": 8
+      },
+      "delta_Critical_B1_minus_M0": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "clusters": 8,
+        "resamples": 10000
+      }
+    },
+    "LITERAL": {
+      "delta_IO_B1_minus_B0": {
+        "point": 0.0,
+        "lo": -2.500000000000002,
+        "hi": 2.500000000000002,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_IO_B1_minus_B0_permutation": {
+        "p": 1.0,
+        "observed": 0.0,
+        "clusters": 8
+      },
+      "delta_IO_M0_minus_B0": {
+        "point": 0.8333333333333304,
+        "lo": -1.6666666666666718,
+        "hi": 3.3333333333333326,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_Trace_B1_minus_M0": {
+        "point": 0.0,
+        "lo": 0.0,
+        "hi": 0.0,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "delta_Trace_B1_minus_M0_permutation": {
+        "p": 1.0,
+        "observed": 0.0,
+        "clusters": 8
+      },
+      "delta_Critical_B1_minus_M0": {
+        "point": 100.0,
+        "lo": 100.0,
+        "hi": 100.0,
+        "clusters": 8,
+        "resamples": 10000
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "audit_case_summary",
+  "type": "object",
+  "required": ["call_id","memory_id","context_id","condition","rendering","audit_level","case_status","evaluable","reconstructible","critical","codes","reading"],
+  "additionalProperties": false,
+  "properties": {
+    "call_id": {"type": "string"},
+    "memory_id": {"type": "string"},
+    "context_id": {"type": "string"},
+    "canonical_id": {"type": "string"},
+    "condition": {"type": "string"},
+    "rendering": {"type": "string"},
+    "audit_level": {"type": "string", "enum": ["L1_IO","L2_M0","L2_B1"]},
+    "case_status": {"type": "string", "enum": ["NOT_APPLICABLE","NOT_EVALUABLE","NONCONFORMANT_CRITICAL","NONCONFORMANT","INCOMPLETE","CONFORMANT"]},
+    "structural_status": {"type": ["string","null"]},
+    "evaluable": {"type": "boolean"},
+    "reconstructible": {"type": "boolean"},
+    "critical": {"type": "boolean"},
+    "trace_completeness": {"type": ["number","null"]},
+    "codes": {"type": "array", "items": {"type": "string"}},
+    "root_cause_id": {"type": ["string","null"]},
+    "primary_error_code": {"type": ["string","null"]},
+    "secondary_error_codes": {"type": "array", "items": {"type": "string"}},
+    "human_review_required": {"type": "boolean"},
+    "reading": {"type": "string", "enum": ["LITERAL","SCOPED"]}
+  }
+}

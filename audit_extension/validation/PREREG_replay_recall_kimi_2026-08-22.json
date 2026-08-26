@@ -1,0 +1,75 @@
+{
+  "record_id": "PREREG_replay_recall_kimi_2026-08-22",
+  "purpose": "Pre-specification of a confirmatory test of replay recall on an arm that has not been opened for audit or replay analysis. Written after the hypothesis was formed on Terra and Qwen3 and BEFORE any replay quantity is computed on Kimi.",
+  "hypothesis_origin": {
+    "formed_on": [
+      "reserved_terra",
+      "reserved_qwen3"
+    ],
+    "date": "2026-08-22",
+    "status": "EXPLORATORY_POST_HOC",
+    "observed": "Qwen3 invariant-replay recall B1 minus B0 = +29.82 pp, 95% CI [+17.14, +42.23], paired permutation p = 0.0002, 32 memory clusters."
+  },
+  "confirmatory_sample": {
+    "arm": "Kimi-Dev-72B reserved split",
+    "run": "reserved_run_2026-08-15/medical_assumption_memory_computational_benchmark_v0_5_1_qa1b/results/reserved_2026-08-15",
+    "authorisation_for_decision_oracle": "already unsealed (FASE 17, 16 August 2026)",
+    "authorisation_for_audit": "validation/AUTHORISATION_reserved_audit_002.json (UNSIGNED as of this record)",
+    "replay_or_audit_quantities_computed_on_this_arm_before_this_record": "NONE",
+    "verified_inputs": "1,440 records; 1,382 COMPLETED_VALID (B0 462 / M0 456 / B1 464); 58 truncated; rule_correct present on all valid",
+    "input_file": "results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl",
+    "input_sha256": "6b7e07313547162746306551108df889220c82657a834b5c3b1e129ba171ab62",
+    "input_parser": "qa1c (frozen), re-parsed from responses_raw.jsonl by scripts/rescore_kimi_qa1c.py",
+    "why_not_the_qa1b_scoring_records": "The run directory scoring_records.jsonl predates the qa1c parser fix and marks 93 responses truncated instead of 58. The frozen Kimi decision result (+9.79 pp, 16 August 2026) was computed on the qa1c parse. A confirmatory test must use the same valid set as the frozen decision result, and that choice is fixed here, before signature, so it cannot be made after seeing anything."
+  },
+  "primary_endpoint": {
+    "name": "invariant-replay recall difference, B1 minus B0",
+    "unit": "canonical context with all three renderings valid",
+    "detector": "the three renderings return different rule_id values (oracle-free)",
+    "recall": "among contexts containing at least one rule error (oracle), the fraction flagged by the detector",
+    "aggregation": "per memory: (flagged erroneous contexts, erroneous contexts); pooled ratio within each bootstrap resample",
+    "contrast": "B1_VERIFIED_MEMORY minus B0_LLM_ALONE, paired on memory",
+    "inference": "paired memory-clustered bootstrap, 10,000 resamples, seed 13082652, two-sided 95% percentile interval; paired permutation test as robustness",
+    "direction_predicted": "positive",
+    "success_criterion": "95% interval excludes zero with a positive point estimate",
+    "implementation": "scripts/calculate_clustered_intervals.py, sha256 3ed736319ae75dab69def65120c831fc4e919d99d0b544b814f87c2ed9cc0122"
+  },
+  "secondary_endpoints": [
+    {
+      "name": "oracle-free rule-consistency difference, B1 minus B0",
+      "direction_predicted": "negative",
+      "role": "descriptive; shows the aggregate falls while recall rises"
+    },
+    {
+      "name": "citation stability among all-correct minus among with-error contexts, B1 vs B0",
+      "direction_predicted": "flips from negative to positive",
+      "role": "mechanism"
+    }
+  ],
+  "exclusions": "contexts with fewer than three valid renderings are dropped and their count reported by condition; no other exclusion",
+  "multiplicity": "one primary endpoint; secondaries descriptive; no adjustment required",
+  "what_would_disconfirm": "an interval including zero, or a negative point estimate",
+  "limits": "no identical-replay axis for Kimi (no repeat run); single arm; 32 memory clusters, coverage near 92.5% against nominal 95%",
+  "signature_status": "NOT_SIGNED",
+  "signature_required_from": "Renxi Qiu",
+  "signature_mode_required": "DIRECT",
+  "created_at": "2026-08-22T17:29:11+01:00",
+  "amendments": [
+    {
+      "date": "2026-08-22",
+      "before_signature": true,
+      "change": "input pinned to the qa1c re-parse by sha256; qa1b scoring_records.jsonl replaced",
+      "reason": "consistency with the frozen decision result; pre-signature, pre-inspection"
+    }
+  ],
+  "runner": {
+    "script": "scripts/run_confirmatory_replay.py",
+    "refuses_to_run_unless": [
+      "this record is SIGNED",
+      "AUTHORISATION_reserved_audit_002 is SIGNED",
+      "input file sha256 matches input_sha256",
+      "no prior confirmatory result file exists"
+    ],
+    "dry_run": "--dry-run-on reserved_qwen3 reproduces the exploratory +29.82 without touching Kimi"
+  }
+}

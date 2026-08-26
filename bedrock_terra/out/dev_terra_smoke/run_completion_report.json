@@ -1,0 +1,7 @@
+{
+  "expected": 3,
+  "terminal": 3,
+  "all_expected_terminal": true,
+  "no_duplicate_terminal": true,
+  "pass": true
+}

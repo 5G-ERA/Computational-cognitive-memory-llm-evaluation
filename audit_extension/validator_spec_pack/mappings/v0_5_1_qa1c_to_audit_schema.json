@@ -1,0 +1,111 @@
+{
+  "mapping_id": "MAP-v0_5_1_qa1c-1.0",
+  "parent_release": "v0.5.1-qa1c",
+  "release_root": "release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c",
+  "principle": "Rename and normalise only. No mapping entry may add semantic content that the release does not record.",
+
+  "expected_call_source": "prompts/model_calls_v0_5_1.jsonl",
+  "expected_call_count": {"total": 1800, "development": 360, "reserved": 1440},
+  "design": {"memories": 40, "canonical_contexts_per_memory": 5, "renderings": 3, "conditions": 3},
+
+  "identifiers": {
+    "call_id": "call.call_id",
+    "memory_id": "call.memory_id",
+    "context_id": "call.context_id",
+    "canonical_id": "call.canonical_id",
+    "condition": "call.condition",
+    "rendering": {
+      "derivation": "suffix of context_id after the final hyphen",
+      "vocabulary": {"STR": "STRUCTURED", "CHR": "CHRONOLOGICAL", "CON": "CONCISE"},
+      "note": "The release records no explicit rendering field on the call envelope. The protocol section 5 manifest requires one; it is derived here and the derivation is declared."
+    }
+  },
+
+  "artefacts": {
+    "payload": {"file": "prompts/model_calls_v0_5_1.jsonl", "key": "payload", "immutable": true},
+    "raw_response": {"file": "<run>/responses_raw.jsonl", "immutable": true},
+    "terminal_record": {"file": "<run>/call_registry.jsonl", "immutable": true},
+    "parsed_response": {"file": "<run>/responses_parsed.jsonl", "immutable": true},
+    "run_manifest": {"file": "<run>/run_manifest.json", "immutable": true},
+    "release_hashes": {"file": "validation/SHA256SUMS.txt", "immutable": true}
+  },
+
+  "event_registry": {
+    "longitudinal": {
+      "file": "data_v0_5_1/historical_events.jsonl",
+      "fields": {"event_id": "id", "event_time": "time", "source": "source", "content": "fact", "memory_id": "memory_id"},
+      "scope": "MEMORY"
+    },
+    "current": {
+      "file": "data_v0_5_1/current_events.jsonl",
+      "fields": {"event_id": "id", "event_time": "time", "source": "source", "content": "fact", "canonical_id": "canonical_id"},
+      "scope": "CANONICAL_CONTEXT",
+      "note": "Current events are keyed to the canonical context, not to the memory. The memory link therefore runs event -> canonical_id -> memory_id."
+    }
+  },
+
+  "ORACLE_QUARANTINE": {
+    "finding": "The canonical-context to memory mapping required by protocol section 6.1 lives in files that also carry the decision oracle.",
+    "oracle_bearing_files_outside_hidden": [
+      {"file": "data_v0_5_1/canonical_contexts.csv", "oracle_columns": ["oracle_reaction", "oracle_rule_id"]},
+      {"file": "data_v0_5_1/contexts.csv", "oracle_columns": ["oracle_reaction"]},
+      {"file": "data/contexts_v0_5.csv", "oracle_columns": ["oracle_reaction"]}
+    ],
+    "consequence": "A section 4 clean-room built by excluding only hidden/ would import the oracle with the context map and silently break oracle independence.",
+    "oracle_free_alternative_in_release": {
+      "file": "data_v0_5_1/rendering_map.csv",
+      "columns": ["context_id", "canonical_id", "memory_id", "render_family"],
+      "note": "The release already ships an oracle-free context map. It is not the obviously named one, which is why the quarantine list is explicit rather than implicit."
+    },
+    "verified": {
+      "prompts/model_calls_v0_5_1.jsonl": "0 occurrences of the token 'oracle'; the delivered payloads are oracle free",
+      "data_v0_5_1/rendering_map.csv": "no oracle column"
+    },
+    "remedy": "scripts/build_audit_manifest.py reads the context map from data_v0_5_1/rendering_map.csv only, and emits mappings/context_map.oracle_free.json carrying context_id, canonical_id, memory_id and rendering. The clean room receives that projection; the oracle-bearing CSVs are on the prohibited list.",
+    "prohibited_in_clean_room": [
+      "hidden/",
+      "data_v0_5_1/canonical_contexts.csv",
+      "data_v0_5_1/contexts.csv",
+      "data/contexts_v0_5.csv",
+      "data/current_contexts.csv",
+      "<run>/scoring_records.jsonl",
+      "results/"
+    ],
+    "prohibited_fields": [
+      "oracle_reaction", "oracle_rule_id", "oracle_decision", "acceptable_evidence",
+      "reaction_correct", "rule_correct", "grounded_correct", "certified_meta_decision",
+      "certified_meta_decision_non_confirmatory", "decisive_evidence_hit",
+      "historical_evidence_covered", "current_evidence_covered",
+      "per_group_decisive_hits", "required_groups_hit", "all_required_groups_covered",
+      "decisive_citation_validity", "historical_provenance_hit", "current_provenance_hit",
+      "dual_source_provenance_completeness"
+    ]
+  },
+
+  "public_artefacts": {
+    "response_schema": "public/response_schema.json",
+    "rule_vocabulary": "public/rule_vocabulary.json",
+    "reaction_policy": "public/reaction_policy.json",
+    "terminology": "public/terminology_v0_5_1.json",
+    "assumption_catalogue": "public/assumption_catalogue.csv"
+  },
+
+  "trace_objects": {
+    "M0": {"payload_key": "open_loop_memory", "contract": "L2-M0-1.0"},
+    "B1": {"payload_key": "verified_cognitive_memory", "contract": "L2-B1-1.0"},
+    "B0": {"payload_key": null, "level2_status": "NOT_APPLICABLE_BY_CONDITION_DESIGN"}
+  },
+
+  "unmapped_release_fields": [
+    {"path": "open_loop_memory.alternative", "reason": "no slot in the canonical prospective schema; retained verbatim as assessed_alternative"},
+    {"path": "verified_cognitive_memory.comparison_guide", "reason": "no slot in the canonical resolved schema; it is the interface that exposes candidate current relations"},
+    {"path": "payload.shared_world_rules.comparison_marker_note", "reason": "world rule, not trace content"}
+  ],
+
+  "unfilled_canonical_fields": [
+    "attributed_capability_id", "evidence_contract_id", "verification_window",
+    "represented_function_id", "included_conditions", "excluded_conditions",
+    "resolved_consequence_status", "semantic_scope_status", "current_relation",
+    "predecessor_id", "semantic_version", "prospective_hash_recorded_in_release"
+  ]
+}

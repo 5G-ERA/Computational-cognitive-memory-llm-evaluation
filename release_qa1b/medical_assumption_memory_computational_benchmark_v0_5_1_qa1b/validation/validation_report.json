@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "checks": {
+    "counts": true,
+    "assumption_balance": true,
+    "verification_balance": true,
+    "condition_balance": true,
+    "five_contexts_each": true,
+    "split_7_21": true,
+    "oracle_replay": true,
+    "oracle_576_all_rules": true,
+    "raw_parity": true,
+    "hierarchy": true,
+    "public_equality": true,
+    "no_episode_reaction_leak": true,
+    "primary_flags": true
+  },
+  "reaction_distribution": {
+    "CONTINUE_SUPPORT": 7,
+    "TAILOR_SUPPORT": 29,
+    "WITHHOLD_ASSUMPTION": 34,
+    "WAIT_FOR_EVIDENCE": 42,
+    "ESCALATE_REVIEW": 28
+  },
+  "primary_reactions": {
+    "CONTINUE_SUPPORT": 7,
+    "TAILOR_SUPPORT": 29,
+    "WAIT_FOR_EVIDENCE": 14,
+    "WITHHOLD_ASSUMPTION": 6
+  },
+  "model_execution_authorised": true
+}

@@ -1,0 +1,10 @@
+{
+  "mode": "free_reasoning_end_of_think",
+  "structured_output_default": false,
+  "end_of_think_markers": ["</think>", "<|end_of_thought|>", "<|end_of_think|>", "◁/think▷"],
+  "start_of_think_markers": ["<think>", "<|begin_of_thought|>", "◁think▷"],
+  "verified_endpoint_marker": "◁/think▷ (Kimi-Dev-72B Q4_0, llama.cpp server, verified 14 August 2026)",
+  "acceptance_rule": "Parse exactly one JSON object from the segment after the first configured end-of-think marker. If no marker is present and the provider reports finish_reason='stop' with no opened reasoning block, parse the whole message.",
+  "truncated_rule": "Classify COMPLETED_OUTPUT_TRUNCATED when finish_reason='length', or when a start-of-think marker is present without its end marker.",
+  "grammar_gate": "Do not use grammar-constrained decoding unless paired QA shows no material accuracy loss, enumeration-order collapse, or condition-specific distortion."
+}

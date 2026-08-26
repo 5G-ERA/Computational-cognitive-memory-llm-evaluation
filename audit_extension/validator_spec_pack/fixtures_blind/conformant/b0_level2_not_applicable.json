@@ -1,0 +1,185 @@
+{
+ "audit_level": "L2_B0",
+ "call": {
+  "call_id": "CALL-FIX-B0-LEVEL2-NOT-APPLICABLE",
+  "canonical_id": "CAN-FIX-01",
+  "condition": "B0_LLM_ALONE",
+  "context_id": "CAN-FIX-01-STR",
+  "memory_id": "MEM-FIX-01",
+  "payload": {
+   "condition": "B0_LLM_ALONE",
+   "current_records": [
+    {
+     "content": "A previously represented difficulty is mentioned currently.",
+     "event_id": "EVT-9000101",
+     "event_time": "2026-09-10",
+     "source": "patient_report"
+    },
+    {
+     "content": "A current observation from another support source.",
+     "event_id": "EVT-9000102",
+     "event_time": "2026-09-11",
+     "source": "support_record"
+    }
+   ],
+   "longitudinal_records": [
+    {
+     "content": "Formation record for the represented support relation.",
+     "event_id": "EVT-9000001",
+     "event_time": "2026-08-01",
+     "source": "patient_report"
+    },
+    {
+     "content": "The planned support action was implemented.",
+     "event_id": "EVT-9000002",
+     "event_time": "2026-08-08",
+     "source": "support_record"
+    },
+    {
+     "content": "The later account improved after support.",
+     "event_id": "EVT-9000003",
+     "event_time": "2026-08-15",
+     "source": "patient_report"
+    },
+    {
+     "content": "Attendance was recorded but medicine use was not established.",
+     "event_id": "EVT-9000004",
+     "event_time": "2026-08-20",
+     "source": "administrative_record"
+    },
+    {
+     "content": "A later alternative relation was observed.",
+     "event_id": "EVT-9000005",
+     "event_time": "2026-08-22",
+     "source": "support_record"
+    },
+    {
+     "content": "Registered but never delivered in any condition payload.",
+     "event_id": "EVT-9000999",
+     "event_time": "2026-09-01",
+     "source": "support_record"
+    }
+   ],
+   "reaction_vocabulary": [
+    "CONTINUE_SUPPORT",
+    "TAILOR_SUPPORT",
+    "ESCALATE_REVIEW",
+    "WITHHOLD_ASSUMPTION",
+    "WAIT_FOR_EVIDENCE"
+   ],
+   "shared_world_rules": {
+    "world_specification_id": "MSW-0.5.1"
+   }
+  }
+ },
+ "context_map": {
+  "CAN-FIX-01-STR": {
+   "canonical_id": "CAN-FIX-01",
+   "memory_id": "MEM-FIX-01",
+   "rendering": "STRUCTURED"
+  }
+ },
+ "events": {
+  "EVT-9000001": {
+   "content": "Formation record for the represented support relation.",
+   "event_id": "EVT-9000001",
+   "event_time": "2026-08-01",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "patient_report"
+  },
+  "EVT-9000002": {
+   "content": "The planned support action was implemented.",
+   "event_id": "EVT-9000002",
+   "event_time": "2026-08-08",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  },
+  "EVT-9000003": {
+   "content": "The later account improved after support.",
+   "event_id": "EVT-9000003",
+   "event_time": "2026-08-15",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "patient_report"
+  },
+  "EVT-9000004": {
+   "content": "Attendance was recorded but medicine use was not established.",
+   "event_id": "EVT-9000004",
+   "event_time": "2026-08-20",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "administrative_record"
+  },
+  "EVT-9000005": {
+   "content": "A later alternative relation was observed.",
+   "event_id": "EVT-9000005",
+   "event_time": "2026-08-22",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  },
+  "EVT-9000101": {
+   "content": "A previously represented difficulty is mentioned currently.",
+   "event_id": "EVT-9000101",
+   "event_time": "2026-09-10",
+   "owner": "CAN-FIX-01",
+   "scope": "CANONICAL_CONTEXT",
+   "source": "patient_report"
+  },
+  "EVT-9000102": {
+   "content": "A current observation from another support source.",
+   "event_id": "EVT-9000102",
+   "event_time": "2026-09-11",
+   "owner": "CAN-FIX-01",
+   "scope": "CANONICAL_CONTEXT",
+   "source": "support_record"
+  },
+  "EVT-9000999": {
+   "content": "Registered but never delivered in any condition payload.",
+   "event_id": "EVT-9000999",
+   "event_time": "2026-09-01",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  }
+ },
+ "fixture": "b0_level2_not_applicable",
+ "manifest_row": {
+  "call_id": "CALL-FIX-B0-LEVEL2-NOT-APPLICABLE",
+  "canonical_id": "CAN-FIX-01",
+  "condition": "B0_LLM_ALONE",
+  "context_id": "CAN-FIX-01-STR",
+  "level1_contract": "L1-IO-1.2",
+  "level2_contract": null,
+  "memory_id": "MEM-FIX-01",
+  "payload_sha256": "d161fb08271d1758dbd1b4cf7f3c8d53edf19a7f9ece7ebfbe9a667297061900",
+  "rendering": "STRUCTURED"
+ },
+ "parsed": {
+  "call_id": "CALL-FIX-B0-LEVEL2-NOT-APPLICABLE",
+  "parsed": {
+   "decisive_event_ids": [
+    "EVT-9000102"
+   ],
+   "reaction": "WAIT_FOR_EVIDENCE",
+   "reason": "EVT-9000102 leaves a comparison-critical current field absent.",
+   "rule_id": "R02_EVIDENCE_INCOMPLETE"
+  },
+  "status": "COMPLETED_VALID"
+ },
+ "raw": {
+  "call_id": "CALL-FIX-B0-LEVEL2-NOT-APPLICABLE",
+  "finish_reason": "stop"
+ },
+ "run_manifest": {
+  "benchmark_version": "0.5.1-qa1b"
+ },
+ "terminal": {
+  "call_id": "CALL-FIX-B0-LEVEL2-NOT-APPLICABLE",
+  "condition": "B0_LLM_ALONE",
+  "memory_id": "MEM-FIX-01",
+  "terminal_status": "COMPLETED_VALID"
+ }
+}

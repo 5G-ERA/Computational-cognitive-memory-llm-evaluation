@@ -1,0 +1,698 @@
+{
+  "audit_id": "DESIGN-AUDIT-v0.5.1-qa1b",
+  "authority": "Official Response v0.5.1-qa1b, section 4, Decision 3",
+  "audit_type": "non_llm_design_audit",
+  "reserved_llm_evaluation_opened": false,
+  "n_memory_groups": 40,
+  "memory_split_composition": {
+    "DEVELOPMENT": 8,
+    "RESERVED": 32
+  },
+  "contexts_per_memory": {
+    "15": 40
+  },
+  "label_prior": {
+    "CONTINUE_SUPPORT": 0.2,
+    "ESCALATE_REVIEW": 0.2,
+    "TAILOR_SUPPORT": 0.2,
+    "WAIT_FOR_EVIDENCE": 0.2,
+    "WITHHOLD_ASSUMPTION": 0.2
+  },
+  "chance": 0.2,
+  "tolerance": 0.1,
+  "minimum_groups": 32,
+  "alpha": 0.05,
+  "cross_validation": "GroupKFold(5) over memory_id; every prediction is on a held-out memory",
+  "null_model": "within-memory label permutation under the same grouped cross-validation",
+  "closed_design_complementarity": {
+    "design": "closed balanced template-to-reaction square",
+    "distinct_template_to_reaction_permutations": 5,
+    "memories_per_permutation": [
+      8,
+      8,
+      8,
+      8,
+      8
+    ],
+    "global_cell_counts_uniform": true,
+    "global_cell_count": 8,
+    "leave_one_memory_out_argmax_accuracy": 0.0,
+    "training_memories_per_fold": 39,
+    "interpretation": "The held-out memory's true cell is always the one cell the training set is short of, so an argmax learner is wrong on every item. A zero-information probe therefore lands near 0.00, not near 0.20. The nominal +-0.10 band around chance is unattainable by construction and does not become attainable with more memories."
+  },
+  "nominal_gate": {
+    "pass": false,
+    "accuracy": 0.025,
+    "chance": 0.2,
+    "absolute_deviation": 0.17500000000000002,
+    "n_groups": 40,
+    "tolerance": 0.1,
+    "minimum_groups": 32,
+    "expected_false_fail_rate": 0.0,
+    "specification": "n_memory_groups >= 32 and |accuracy - 0.20| <= 0.10"
+  },
+  "gate_false_fail_rate_at_32_items": 0.182925,
+  "gate_false_fail_rate_at_n_items": 0.0,
+  "chance_relative_gate": {
+    "pass": true,
+    "specification": "n_memory_groups >= 32 and no view exceeds its within-memory permutation null at alpha=0.05, on either raw accuracy or TRANSFERABLE relabelling accuracy (assignment fitted on one set of memories and applied to disjoint memories)",
+    "n_memory_groups": 40,
+    "multiplicity": "Holm-Bonferroni over 12 one-sided tests (6 views x 2 statistics)",
+    "views_flagged_holm": [],
+    "views_flagged_uncorrected": [
+      "current_only"
+    ],
+    "uncorrected_verdict": "FAIL"
+  },
+  "views": [
+    {
+      "view": "current_only",
+      "accuracy": 0.025,
+      "macro_f1": 0.023699,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.175,
+      "within_nominal_band": false,
+      "exact_binomial_two_sided_p_items": 0.0,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.025,
+        "null_mean": 0.199203,
+        "null_sd": 0.022425,
+        "null_p2_5": 0.156667,
+        "null_p97_5": 0.247542,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 0.001996,
+        "above_null_at_alpha": false,
+        "z_vs_null": -7.7682,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.318333,
+      "best_label_permutation_map": {
+        "TAILOR_SUPPORT": "CONTINUE_SUPPORT",
+        "WITHHOLD_ASSUMPTION": "ESCALATE_REVIEW",
+        "WAIT_FOR_EVIDENCE": "TAILOR_SUPPORT",
+        "ESCALATE_REVIEW": "WAIT_FOR_EVIDENCE",
+        "CONTINUE_SUPPORT": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.318333,
+        "null_mean": 0.242913,
+        "null_sd": 0.010506,
+        "null_p2_5": 0.226667,
+        "null_p97_5": 0.266667,
+        "p_above_null": 0.001996,
+        "p_two_sided_vs_null": 0.001996,
+        "above_null_at_alpha": true,
+        "z_vs_null": 7.1787
+      },
+      "transferable_relabelling_accuracy": 0.256,
+      "transferable_relabelling_sd_over_partitions": 0.022074,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.256,
+        "null_mean": 0.206274,
+        "null_sd": 0.02217,
+        "null_p2_5": 0.168825,
+        "null_p97_5": 0.254242,
+        "p_above_null": 0.025948,
+        "p_two_sided_vs_null": 0.025948,
+        "above_null_at_alpha": true,
+        "z_vs_null": 2.243,
+        "p_above_null_holm": 0.311376,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 500,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          10,
+          44,
+          24,
+          42
+        ],
+        [
+          36,
+          0,
+          22,
+          21,
+          41
+        ],
+        [
+          21,
+          24,
+          3,
+          39,
+          33
+        ],
+        [
+          33,
+          37,
+          32,
+          3,
+          15
+        ],
+        [
+          30,
+          21,
+          33,
+          27,
+          9
+        ]
+      ],
+      "shortcut_detected": false,
+      "cluster_bootstrap_ci_95": [
+        0.0,
+        0.06
+      ],
+      "shortcut_detected_uncorrected": true
+    },
+    {
+      "view": "marker_only",
+      "accuracy": 0.175,
+      "macro_f1": 0.15435,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.025,
+      "within_nominal_band": true,
+      "exact_binomial_two_sided_p_items": 0.138679,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.175,
+        "null_mean": 0.201717,
+        "null_sd": 0.020358,
+        "null_p2_5": 0.161667,
+        "null_p97_5": 0.238375,
+        "p_above_null": 0.905473,
+        "p_two_sided_vs_null": 0.21393,
+        "above_null_at_alpha": false,
+        "z_vs_null": -1.3124,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.285,
+      "best_label_permutation_map": {
+        "TAILOR_SUPPORT": "CONTINUE_SUPPORT",
+        "WAIT_FOR_EVIDENCE": "ESCALATE_REVIEW",
+        "ESCALATE_REVIEW": "TAILOR_SUPPORT",
+        "CONTINUE_SUPPORT": "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.285,
+        "null_mean": 0.244417,
+        "null_sd": 0.010226,
+        "null_p2_5": 0.22825,
+        "null_p97_5": 0.263375,
+        "p_above_null": 0.00995,
+        "p_two_sided_vs_null": 0.00995,
+        "above_null_at_alpha": true,
+        "z_vs_null": 3.9686
+      },
+      "transferable_relabelling_accuracy": 0.21425,
+      "transferable_relabelling_sd_over_partitions": 0.029481,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.21425,
+        "null_mean": 0.212448,
+        "null_sd": 0.022063,
+        "null_p2_5": 0.175317,
+        "null_p97_5": 0.26,
+        "p_above_null": 0.39801,
+        "p_two_sided_vs_null": 0.905473,
+        "above_null_at_alpha": false,
+        "z_vs_null": 0.0817,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 200,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          9,
+          18,
+          45,
+          15,
+          33
+        ],
+        [
+          12,
+          9,
+          42,
+          12,
+          45
+        ],
+        [
+          33,
+          24,
+          27,
+          12,
+          24
+        ],
+        [
+          36,
+          18,
+          24,
+          6,
+          36
+        ],
+        [
+          6,
+          27,
+          30,
+          3,
+          54
+        ]
+      ],
+      "shortcut_detected": false,
+      "shortcut_detected_uncorrected": false
+    },
+    {
+      "view": "template_only",
+      "accuracy": 0.0,
+      "macro_f1": 0.0,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.2,
+      "within_nominal_band": false,
+      "exact_binomial_two_sided_p_items": 0.0,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.0,
+        "null_mean": 0.198758,
+        "null_sd": 0.024897,
+        "null_p2_5": 0.158292,
+        "null_p97_5": 0.2535,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 0.004975,
+        "above_null_at_alpha": false,
+        "z_vs_null": -7.9831,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.29,
+      "best_label_permutation_map": {
+        "TAILOR_SUPPORT": "CONTINUE_SUPPORT",
+        "WITHHOLD_ASSUMPTION": "ESCALATE_REVIEW",
+        "ESCALATE_REVIEW": "TAILOR_SUPPORT",
+        "CONTINUE_SUPPORT": "WAIT_FOR_EVIDENCE",
+        "WAIT_FOR_EVIDENCE": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.29,
+        "null_mean": 0.244267,
+        "null_sd": 0.012201,
+        "null_p2_5": 0.223333,
+        "null_p97_5": 0.271708,
+        "p_above_null": 0.014925,
+        "p_two_sided_vs_null": 0.014925,
+        "above_null_at_alpha": true,
+        "z_vs_null": 3.7482
+      },
+      "transferable_relabelling_accuracy": 0.20375,
+      "transferable_relabelling_sd_over_partitions": 0.021757,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.20375,
+        "null_mean": 0.212667,
+        "null_sd": 0.024497,
+        "null_p2_5": 0.170667,
+        "null_p97_5": 0.263408,
+        "p_above_null": 0.61194,
+        "p_two_sided_vs_null": 0.706468,
+        "above_null_at_alpha": false,
+        "z_vs_null": -0.364,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 200,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          18,
+          30,
+          39,
+          33
+        ],
+        [
+          51,
+          0,
+          9,
+          24,
+          36
+        ],
+        [
+          39,
+          12,
+          0,
+          39,
+          30
+        ],
+        [
+          54,
+          15,
+          30,
+          0,
+          21
+        ],
+        [
+          48,
+          3,
+          27,
+          42,
+          0
+        ]
+      ],
+      "shortcut_detected": false,
+      "shortcut_detected_uncorrected": false
+    },
+    {
+      "view": "identifier_only",
+      "accuracy": 0.2,
+      "macro_f1": 0.066667,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.0,
+      "within_nominal_band": true,
+      "exact_binomial_two_sided_p_items": 1.0,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.2,
+      "best_label_permutation_map": {
+        "WAIT_FOR_EVIDENCE": "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW": "ESCALATE_REVIEW",
+        "CONTINUE_SUPPORT": "TAILOR_SUPPORT",
+        "TAILOR_SUPPORT": "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null
+      },
+      "transferable_relabelling_accuracy": 0.2,
+      "transferable_relabelling_sd_over_partitions": 0.0,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 200,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          120,
+          0
+        ]
+      ],
+      "shortcut_detected": false,
+      "shortcut_detected_uncorrected": false
+    },
+    {
+      "view": "structure_only",
+      "accuracy": 0.116667,
+      "macro_f1": 0.11412,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.083333,
+      "within_nominal_band": true,
+      "exact_binomial_two_sided_p_items": 1e-06,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.116667,
+        "null_mean": 0.201967,
+        "null_sd": 0.018695,
+        "null_p2_5": 0.164958,
+        "null_p97_5": 0.236667,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 0.004975,
+        "above_null_at_alpha": false,
+        "z_vs_null": -4.5626,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.256667,
+      "best_label_permutation_map": {
+        "TAILOR_SUPPORT": "CONTINUE_SUPPORT",
+        "WAIT_FOR_EVIDENCE": "ESCALATE_REVIEW",
+        "ESCALATE_REVIEW": "TAILOR_SUPPORT",
+        "WITHHOLD_ASSUMPTION": "WAIT_FOR_EVIDENCE",
+        "CONTINUE_SUPPORT": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.256667,
+        "null_mean": 0.23665,
+        "null_sd": 0.009009,
+        "null_p2_5": 0.221625,
+        "null_p97_5": 0.255042,
+        "p_above_null": 0.029851,
+        "p_two_sided_vs_null": 0.029851,
+        "above_null_at_alpha": true,
+        "z_vs_null": 2.2219
+      },
+      "transferable_relabelling_accuracy": 0.213,
+      "transferable_relabelling_sd_over_partitions": 0.017519,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.213,
+        "null_mean": 0.206212,
+        "null_sd": 0.019925,
+        "null_p2_5": 0.170242,
+        "null_p97_5": 0.244,
+        "p_above_null": 0.348259,
+        "p_two_sided_vs_null": 0.751244,
+        "above_null_at_alpha": false,
+        "z_vs_null": 0.3407,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 200,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          21,
+          19,
+          32,
+          31,
+          17
+        ],
+        [
+          36,
+          8,
+          28,
+          31,
+          17
+        ],
+        [
+          42,
+          30,
+          17,
+          20,
+          11
+        ],
+        [
+          34,
+          29,
+          26,
+          15,
+          16
+        ],
+        [
+          45,
+          24,
+          22,
+          20,
+          9
+        ]
+      ],
+      "shortcut_detected": false,
+      "shortcut_detected_uncorrected": false
+    },
+    {
+      "view": "event_count_only",
+      "accuracy": 0.2,
+      "macro_f1": 0.066667,
+      "n_items": 600,
+      "n_memory_groups": 40,
+      "absolute_deviation_from_chance": 0.0,
+      "within_nominal_band": true,
+      "exact_binomial_two_sided_p_items": 1.0,
+      "accuracy_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "best_label_permutation_accuracy": 0.2,
+      "best_label_permutation_map": {
+        "CONTINUE_SUPPORT": "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW": "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT": "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE": "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION": "WITHHOLD_ASSUMPTION"
+      },
+      "in_sample_relabelling_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null
+      },
+      "transferable_relabelling_accuracy": 0.2,
+      "transferable_relabelling_sd_over_partitions": 0.0,
+      "transferable_relabelling_vs_permutation_null": {
+        "observed": 0.2,
+        "null_mean": 0.2,
+        "null_sd": 0.0,
+        "null_p2_5": 0.2,
+        "null_p97_5": 0.2,
+        "p_above_null": 1.0,
+        "p_two_sided_vs_null": 1.0,
+        "above_null_at_alpha": false,
+        "z_vs_null": null,
+        "p_above_null_holm": 1.0,
+        "above_null_holm_at_alpha": false
+      },
+      "n_permutations": 200,
+      "confusion_matrix_labels": [
+        "CONTINUE_SUPPORT",
+        "ESCALATE_REVIEW",
+        "TAILOR_SUPPORT",
+        "WAIT_FOR_EVIDENCE",
+        "WITHHOLD_ASSUMPTION"
+      ],
+      "confusion_matrix": [
+        [
+          120,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          120,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          120,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          120,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          120,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "shortcut_detected": false,
+      "shortcut_detected_uncorrected": false
+    }
+  ],
+  "status": "PASS"
+}

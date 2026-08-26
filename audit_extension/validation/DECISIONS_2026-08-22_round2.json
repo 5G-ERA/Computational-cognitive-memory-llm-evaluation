@@ -1,0 +1,103 @@
+{
+  "record_id": "AUDIT-DECISIONS-2026-08-22-ROUND2",
+  "subject": "Experiment 1 Audit Extension, parent release v0.5.1-qa1c",
+  "scope_note": "Experiment 1 ONLY. An earlier exchange crossed with Experiment 2 material (robot telemetry, QoS evidence contracts, E-DCA meta-observations). That material is out of scope here and changed none of the decisions below. Question IDs are namespaced from now on to prevent recurrence.",
+  "decided_by": "Renxi Qiu",
+  "relayed_by": "Adrian Lendinez Ibanez",
+  "channel": "message, 22 August 2026, 16:35 to 16:47 and follow-up confirmation",
+  "signature_status": "NOT_SIGNED",
+  "decisions": [
+    {
+      "id": "E1-D1",
+      "question": "Is the human review layer in scope?",
+      "answer": "BOUNDED SAMPLE",
+      "status": "SUPERSEDED BY E1-H1",
+      "note": "Stands. The Experiment 2 paragraph about removing a manually scored stage did not apply here, confirmed by the decider on 22 August at 16:47.",
+      "operational_consequence": "After E1-D3 no case is flagged for human review, so the bounded sample cannot be drawn from flagged cases. It must be drawn directly from the 1,210 individual citations in the development splits.",
+      "superseded_note": "Withdrawn by the decision of 22 August 2026: the entire audit is independent from human input."
+    },
+    {
+      "id": "E1-D2",
+      "question": "Who are the two coders?",
+      "answer": "RENXI QIU and TBD INDEPENDENT CODER NOT INVOLVED IN VALIDATOR IMPLEMENTATION",
+      "status": "SUPERSEDED BY E1-H1",
+      "superseded_note": "Withdrawn by the decision of 22 August 2026: the entire audit is independent from human input."
+    },
+    {
+      "id": "E1-D3",
+      "question": "Should INFO codes flag human review?",
+      "answer": "NO",
+      "status": "APPLIED",
+      "applied_in": [
+        "scripts/aggregate_audit_results.py"
+      ],
+      "effect": "Flagged caseload falls from 414 to 0 of 720 per development split."
+    },
+    {
+      "id": "E1-E1",
+      "question": "When to sign the protocol freeze?",
+      "answer": "AFTER THE VALIDATOR AGREES",
+      "status": "SUPERSEDED BY E1-G1",
+      "note": "There is no validator. A replacement trigger is required and has not been given."
+    },
+    {
+      "id": "E1-E2",
+      "question": "Signature mode",
+      "answer": "RENXI SIGNS, two separate signed records",
+      "status": "RECORDS PREPARED, UNSIGNED",
+      "effect": "Delegated signing is not used. All records require signature_mode DIRECT."
+    },
+    {
+      "id": "E1-E3",
+      "question": "Which reserved runs?",
+      "answer": "TERRA and QWEN3; KIMI separately",
+      "status": "RECORDS PREPARED, UNSIGNED",
+      "applied_in": [
+        "validation/AUTHORISATION_reserved_audit_001.json",
+        "validation/AUTHORISATION_reserved_audit_002.json"
+      ]
+    },
+    {
+      "id": "E1-F1",
+      "question": "Audit claim and placement",
+      "answer": "AS DRAFTED, WITH EXPLICIT QUALIFICATION THAT THE RESULT ESTABLISHES DETERMINISTIC TRACE RECONSTRUCTIBILITY AND REPRESENTATION INTEGRITY, NOT SUPERIOR MODEL-LEVEL AUDITABILITY FOR B1. Placement: SUPPLEMENT with a short main-paper methods or results statement.",
+      "status": "APPLIED TO TERMINOLOGY CONTRACT"
+    },
+    {
+      "id": "E1-F2",
+      "question": "V4.7 terminology patch",
+      "answer": "DRAFT AND APPLY IT",
+      "status": "DRAFTED, NOT APPLIED",
+      "deliverable": "V4_7_TERMINOLOGY_PATCH.md",
+      "blocked_by": "The LaTeX source of V4.7 is not available on this machine, only the PDF. The four patches are drafted with exact locations and replacement text; applying them needs the .tex.",
+      "finding": "No existing use of \"audit conformity\" in V4.7 is incorrect. All four occurrences refer correctly to the Experiment 2 lifecycle certificate test. The patch is preventive and must land before the Experiment 1 audit text, not after."
+    },
+    {
+      "id": "E1-G1",
+      "question": "For Experiment 1 only: is the protocol section 17 independent-validator requirement removed?",
+      "answer": "YES",
+      "status": "APPLIED",
+      "effect": "The INDEPENDENT-REIMPLEMENTATION requirement of protocol section 17 is removed for Experiment 1. No second implementation will be produced and the gate condition independent_validator_agreement_100pc is retired as REMOVED_BY_DECISION. The REST of section 17 is untouched and still in force: the deterministic validation fixtures and the canonicalisation tests. Both still run and both still pass, 15 of 15 and 10 of 10.",
+      "declared_cost": "Every audit figure now rests on a single implementation. Nothing establishes that the results are independent of the choices one implementer made when resolving contract language. This must be stated in the paper, not omitted.",
+      "what_still_supports_the_numbers": [
+        "15 of 15 deterministic fixtures agree on case status and error codes",
+        "10 canonicalisation tests pass",
+        "the section 4 clean-room test reproduces all 8 outputs byte-identically with no oracle artefact present",
+        "every check carries an identifier, definition, severity, detection mode and status effect in a frozen contract"
+      ],
+      "scope_precision": "The question asked was specifically about a second implementation written from the frozen contracts. It was not a question about section 17 as a whole, and this record must not be read as removing the fixture requirement."
+    },
+    {
+      "id": "E1-H1",
+      "question": "Who is the second coder?",
+      "answer": "NO SECOND CODER. The human review layer is removed. The entire audit must be independent from human input.",
+      "status": "APPLIED",
+      "effect": "Protocol section 16 is REMOVED for Experiment 1. Four human-detected codes are permanently out of scope; E2_SCOPE_OVERREACH keeps only its frozen automated detector; no code in the ontology requires human judgement. The gate condition human_review_rubric_and_blinding_frozen is retired as REMOVED_BY_DECISION.",
+      "declared_scope_cost": "The audit does not assess substantive citation relevance or material scope overreach beyond its frozen pattern. These are out of scope by design and must be stated as such, not reported as limitations pending work.",
+      "supersedes": [
+        "E1-D1",
+        "E1-D2"
+      ]
+    }
+  ]
+}

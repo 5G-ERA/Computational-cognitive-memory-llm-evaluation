@@ -1,0 +1,210 @@
+{
+  "contract_id": "L2-M0-1.2",
+  "parent_release": "v0.5.1-qa1c",
+  "trace_type": "PROSPECTIVE_OPEN_LOOP",
+  "applies_to_conditions": [
+    "M0_OPEN_LOOP_MEMORY"
+  ],
+  "source_object": "payload.open_loop_memory",
+  "closure_status": "OPEN_LOOP_BY_CONDITION_DESIGN",
+  "never_raise": [
+    "E3_CONSEQUENCE_CLOSURE_ABSENT"
+  ],
+  "_reading_note": "Protocol section 8.1 requires fields absent from the parent release to be marked NOT_RECORDED_IN_SOURCE_RELEASE and never inferred; protocol section 7.2 requires several of those same fields as mandatory components. The two instructions conflict on this parent release. The implementation therefore computes conformity under both readings and reports both. `presence` declares which reading each field enters.",
+  "fields": [
+    {
+      "canonical": "memory_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "recoverable_from": "call.memory_id",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "note": "Recoverable from the call envelope, not from the delivered memory object. The model is never shown a memory identity in M0."
+    },
+    {
+      "canonical": "trace_type",
+      "source_path": "CONSTANT:PROSPECTIVE_OPEN_LOOP",
+      "presence": "DERIVED",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "formation_assumption_id",
+      "source_path": "open_loop_memory.assumption",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "attributed_capability_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "source_ids",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "expected_consequence_id",
+      "source_path": "open_loop_memory.expected_consequence",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "evidence_contract_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "verification_window",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E1_WINDOW_INVALID"
+    },
+    {
+      "canonical": "represented_function_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "note": "The release carries `alternative` (an assessed alternative capability label) which is adjacent but not the same construct; it is NOT mapped, per the section 7.1 prohibition on inferring semantic content."
+    },
+    {
+      "canonical": "included_conditions",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "excluded_conditions",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "limitations",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "note": "B1 records resolved_relation.limitations. M0 records none: by condition design the open loop carries no limitation set."
+    },
+    {
+      "canonical": "semantic_version",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E5_VERSION_AMBIGUOUS"
+    },
+    {
+      "canonical": "assessed_alternative",
+      "source_path": "open_loop_memory.alternative",
+      "presence": "PRESENT_NOT_IN_CANONICAL_SCHEMA",
+      "mandatory_literal": false,
+      "note": "Recorded by the release, has no slot in the protocol's canonical prospective schema. Retained verbatim so the audit record is complete."
+    }
+  ],
+  "deterministic_checks": [
+    {
+      "id": "M0.1",
+      "check": "stable_memory_identity",
+      "scope_note": "evaluated on the call envelope; see memory_id field note"
+    },
+    {
+      "id": "M0.2",
+      "check": "formation_assumption_present",
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "evaluable": true
+    },
+    {
+      "id": "M0.3",
+      "check": "valid_capability_and_source_identifiers",
+      "code": "E2_CAPABILITY_MISATTRIBUTION",
+      "evaluable": false
+    },
+    {
+      "id": "M0.4",
+      "check": "expected_consequence_present_and_distinct_from_observations",
+      "code": "E2_EXPECTED_AS_REALISED",
+      "evaluable": true,
+      "definition": "The canonicalised expected_consequence must not be a near-duplicate of the content of any record delivered in this payload, longitudinal or current. Near-duplicate means token-set Jaccard >= 0.85, where the token set is the set of maximal runs matching [a-z0-9] in the lower-cased canonicalised string, and Jaccard of two empty sets is 1.0."
+    },
+    {
+      "id": "M0.5",
+      "check": "evidence_contract_present",
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "evaluable": false
+    },
+    {
+      "id": "M0.6",
+      "check": "verification_window_well_ordered",
+      "code": "E1_WINDOW_INVALID",
+      "evaluable": false
+    },
+    {
+      "id": "M0.7",
+      "check": "represented_function_and_envelope_present",
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "evaluable": false
+    },
+    {
+      "id": "M0.8",
+      "check": "limitations_field_present_may_be_empty",
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+      "evaluable": false
+    },
+    {
+      "id": "M0.9",
+      "check": "semantic_version_present",
+      "code": "E5_VERSION_AMBIGUOUS",
+      "evaluable": false
+    },
+    {
+      "id": "M0.10",
+      "check": "no_evidence_resolved_consequence_falsely_recorded",
+      "code": "E2_EXPECTED_AS_REALISED",
+      "evaluable": true,
+      "definition": "The M0 object must carry no resolved_relation, constitutive_event_ids or comparison_guide key."
+    },
+    {
+      "id": "M0.11",
+      "check": "trace_reaches_output",
+      "code": "E3_TRACE_OUTPUT_DISCONNECTED",
+      "evaluable": true,
+      "definition": "The canonical cited set must share at least one member with the set of event identifiers delivered in this payload. Not evaluated when the response is unparseable."
+    }
+  ],
+  "prospective_integrity_hash": {
+    "equation": "h_pre = Hash(H, r, K, Gamma, V)",
+    "protocol_fields": [
+      "formation_assumption",
+      "represented_relation",
+      "attributed_capability",
+      "evidence_contract",
+      "verification_window"
+    ],
+    "fields_available_in_this_release": [
+      "formation_assumption",
+      "expected_consequence",
+      "assessed_alternative"
+    ],
+    "implemented_over": [
+      "formation_assumption",
+      "expected_consequence",
+      "assessed_alternative"
+    ],
+    "algorithm": "sha256 of canonical JSON, sorted keys, separators (',',':'), NFC-normalised, whitespace-trimmed",
+    "degradation_declared": true,
+    "degradation_note": "Three of the five protocol operands are not recorded by this release. The hash therefore certifies a weaker invariant than equation (1) specifies, and the section 8.2 non-rewrite test inherits that weakening.",
+    "reported_as": "PARTIAL_PROSPECTIVE_FIELD_STABILITY",
+    "decision": "B6, Renxi Qiu, 22 August 2026: reported as partial field stability. The full non-rewrite claim is withdrawn on this parent release."
+  }
+}

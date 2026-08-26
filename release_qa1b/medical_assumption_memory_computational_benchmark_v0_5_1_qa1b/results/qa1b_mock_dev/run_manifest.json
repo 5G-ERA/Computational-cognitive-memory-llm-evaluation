@@ -1,0 +1,57 @@
+{
+  "benchmark_version": "0.5.1-qa1b",
+  "split": "development",
+  "calls_expected": 360,
+  "model_config": {
+    "provider": "mock",
+    "model": "mock-oracle-v1",
+    "api_url": "",
+    "temperature": 0,
+    "top_p": 1,
+    "max_output_tokens": 300,
+    "timeout_seconds": 120,
+    "seed": 13082642
+  },
+  "call_order_seed": 13082652,
+  "retry_policy": {
+    "max_attempts": 3,
+    "retry_http_status": [
+      429,
+      500,
+      502,
+      503,
+      504
+    ],
+    "non_retryable_http_status": [
+      400,
+      401,
+      403,
+      404,
+      405,
+      413,
+      422
+    ],
+    "retry_exceptions": [
+      "TimeoutError",
+      "ConnectionError",
+      "URLError"
+    ],
+    "backoff_seconds": [
+      0,
+      2,
+      8
+    ],
+    "jitter_seed": 13082653,
+    "retry_model_output": false,
+    "failed_retryable_calls_are_restartable": true
+  },
+  "terminology": "public/terminology_v0_5_1.json",
+  "reporting_config": "config/reporting_config.json",
+  "completion": {
+    "expected": 360,
+    "terminal": 360,
+    "all_expected_terminal": true,
+    "no_duplicate_terminal": true,
+    "pass": true
+  }
+}

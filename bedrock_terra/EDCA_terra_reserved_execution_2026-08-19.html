@@ -1,0 +1,252 @@
+<title>Terra Reserved Execution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#f7f5f1; --card:#fffefc; --well:#edeae4; --band:#e7e3db;
+  --ink:#171a1c; --ink2:#4f565c; --ink3:#878d93;
+  --rule:#d6d1c7; --rule2:#e6e2da;
+  --seal:#7a3b34; --seal-bg:#f2e5e2;
+  --mark:#2c4a63; --mark-bg:#e3eaf0;
+  --ok:#2f6b47; --ok-bg:#e3eee8;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1012; --card:#171a1d; --well:#0a0b0d; --band:#1d2124;
+    --ink:#eaecee; --ink2:#a0a7ad; --ink3:#6d747a;
+    --rule:#2a2f33; --rule2:#1f2326;
+    --seal:#d9948a; --seal-bg:#2b1815;
+    --mark:#8fb4d0; --mark-bg:#132230;
+    --ok:#7fc09a; --ok-bg:#12231a;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1012; --card:#171a1d; --well:#0a0b0d; --band:#1d2124;
+  --ink:#eaecee; --ink2:#a0a7ad; --ink3:#6d747a;
+  --rule:#2a2f33; --rule2:#1f2326;
+  --seal:#d9948a; --seal-bg:#2b1815;
+  --mark:#8fb4d0; --mark-bg:#132230;
+  --ok:#7fc09a; --ok-bg:#12231a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.doc{max-width:58rem;margin:0 auto;padding:clamp(1.5rem,4vw,3.25rem) clamp(1rem,3.5vw,2.25rem) 5rem;
+  display:flex;flex-direction:column;gap:2rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.85rem,4.6vw,2.6rem);
+  line-height:1.1;letter-spacing:-.02em;margin:.35rem 0 0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.2rem;letter-spacing:-.01em;
+  margin:0 0 .15rem;text-wrap:balance}
+p{margin:0 0 .7rem;max-width:64ch}
+p:last-child{margin-bottom:0}
+.eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--ink3)}
+header{display:flex;flex-direction:column;gap:.5rem;border-bottom:2px solid var(--rule);padding-bottom:1.4rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.83rem;color:var(--ink2);
+  font-variant-numeric:tabular-nums;margin-top:.35rem}
+.meta b{font-weight:600;color:var(--ink)}
+section{display:flex;flex-direction:column;gap:.75rem}
+.seal{background:var(--seal-bg);border:1px solid var(--seal);border-left-width:4px;
+  border-radius:3px;padding:1.05rem 1.25rem;display:flex;flex-direction:column;gap:.5rem}
+.seal .eyebrow{color:var(--seal)}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:1.05rem 1.25rem}
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:.55rem .85rem;border-bottom:1px solid var(--rule2);vertical-align:top}
+thead th{background:var(--band);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink2);font-weight:600;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;white-space:nowrap}
+.pass{color:var(--ok);font-weight:600}
+.pill{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  padding:.16rem .5rem;border-radius:2px;background:var(--ok-bg);color:var(--ok);white-space:nowrap}
+.pill.sealed{background:var(--seal-bg);color:var(--seal)}
+ol.decl{list-style:none;counter-reset:d;margin:0;padding:0;display:flex;flex-direction:column;gap:.9rem}
+ol.decl li{counter-increment:d;display:grid;grid-template-columns:2.1rem 1fr;gap:.85rem;
+  border-top:1px solid var(--rule);padding-top:.85rem}
+ol.decl li::before{content:"D" counter(d);font-family:Fraunces,Georgia,serif;font-weight:600;
+  font-size:1rem;color:var(--seal);line-height:1.5}
+ol.decl h3{margin:0 0 .25rem;font-size:.98rem;font-weight:600;font-family:"Public Sans",sans-serif}
+ol.decl p{font-size:.93rem;color:var(--ink2);max-width:60ch}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;
+  background:var(--well);padding:.1rem .32rem;border-radius:2px}
+footer{border-top:1px solid var(--rule);padding-top:1rem;font-size:.83rem;color:var(--ink3)}
+a{color:var(--mark)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+</style>
+
+<div class="doc">
+
+<header>
+  <div class="eyebrow">E-DCA v0.5.1 &middot; Execution record</div>
+  <h1>Terra Reserved Execution</h1>
+  <p style="color:var(--ink2);max-width:60ch">Completeness, integrity and blinded operational summary for the
+  reserved split of the Terra saturation-control arm. It contains no outcomes; those are reported separately.</p>
+  <div class="meta">
+    <span><b>Run</b> 19 Aug 2026, 20:20&ndash;21:19 BST</span>
+    <span><b>Model</b> global.openai.gpt-5.6-terra</span>
+    <span><b>Calls</b> 1,440</span>
+    <span><b>Cost</b> 6.42 USD</span>
+    <span class="pill sealed">Outcomes reported separately</span>
+  </div>
+</header>
+
+<section class="seal">
+  <div class="eyebrow">What this document does not contain</div>
+  <p style="margin:0">No accuracy, no contrasts, no saturation classification. <code>scoring_records.jsonl</code>
+  has not been opened for this run: the summary below was produced by <code>blind_operational_summary.py</code>,
+  which refuses by code to read it.</p>
+  <p style="margin:0">Execution was authorised on 19 August 2026 by the run operator
+  (<code>signature/AUTHORISATION_reserved_terra.json</code>), which states in terms that it does
+  <em>not</em> authorise inspection.</p>
+  <p style="margin:0"><b>Status update, 21:40.</b> Inspection was subsequently authorised by delegated
+  signature (<code>SIGNED_delegated_terra_reserved_inspection.json</code>, signed by the run operator on the
+  decision owner's instruction, not by the decision owner himself) and the outcomes have been read. They are
+  reported separately, not here &mdash; this document remains the execution record. The seal was released by
+  adding that record to <code>RESERVED_RELEASE</code>, not by deleting the run from <code>RESERVED_RUNS</code>,
+  so the analyser prints who opened it and on whose behalf on every run. Verified immediately beforehand: the
+  seal still refused the run with exit 3, and the analyser reproduced the Terra development result identically.</p>
+</section>
+
+<section>
+  <h2>Completeness</h2>
+  <p>The run closed on the first pass. No restart was needed, unlike the Qwen3 reserved run, which
+  closed its first pass at 1,417/1,440 and recovered the remainder on relaunch.</p>
+  <p><b>Correction, 21:45.</b> An earlier version of this table reported zero schema errors, taking the
+  figure from the runner. The runner's terminal state does not incorporate the scorer's schema check, a
+  known defect in this release. The scorer rejects <b>3 of the 1,440</b> responses, each for a repeated
+  identifier in <code>decisive_event_ids</code> where the response schema requires
+  <code>uniqueItems</code>. Under intention-to-evaluate they count as incorrect. The validity figure below
+  is the scorer's.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Check</th><th class="num">Value</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Calls expected / terminal</td><td class="num">1,440 / 1,440</td><td class="pass">pass</td></tr>
+      <tr><td>All expected terminal</td><td class="num">true</td><td class="pass">pass</td></tr>
+      <tr><td>Duplicate terminal records</td><td class="num">0</td><td class="pass">pass</td></tr>
+      <tr><td>Terminal status (runner)</td><td class="num">1,440 &times; COMPLETED_VALID</td><td class="pass">pass</td></tr>
+      <tr><td>HTTP status</td><td class="num">1,440 &times; 200</td><td class="pass">pass</td></tr>
+      <tr><td>finish_reason</td><td class="num">1,440 &times; stop</td><td class="pass">pass</td></tr>
+      <tr><td>Schema-valid <b>per the scorer</b></td><td class="num">1,437 / 1,440</td><td class="pass">pass, 0.0021 invalid</td></tr>
+      <tr><td>Output truncation</td><td class="num">0 (0.000)</td><td class="pass">pass</td></tr>
+      <tr><td>Invalid, non-truncated (scorer)</td><td class="num">3 (0.0021)</td><td class="pass">pass</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>Design matrix and isolation</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Property</th><th class="num">Observed</th><th class="num">Required</th></tr></thead>
+    <tbody>
+      <tr><td>Distinct memories</td><td class="num">32</td><td class="num">32</td></tr>
+      <tr><td>Memory set equals reserved split manifest</td><td class="num">true</td><td class="num">true</td></tr>
+      <tr><td>Calls per memory</td><td class="num">45 (min = max)</td><td class="num">45</td></tr>
+      <tr><td>Calls per condition</td><td class="num">480 / 480 / 480</td><td class="num">480 each</td></tr>
+      <tr><td>Duplicate call ids</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>Input tokens across the run</td><td class="num">1,389 &ndash; 1,864</td><td class="num">flat</td></tr>
+    </tbody>
+  </table></div>
+  <p>Input-token volume stays flat across all 1,440 calls, so no conversational state accumulated: every
+  call was an independent request, as the frozen protocol requires.</p>
+</section>
+
+<section>
+  <h2>Transport, cost and the provider cache</h2>
+  <p>Transport was near-clean: <b>2 retryable errors in 1,440 calls</b>, both recovered on the following
+  attempt, against 90 in the Qwen3 reserved run earlier the same day over the same network. The host was
+  put into a server posture (suspend masked, WiFi power-save off) between the two runs, which is the
+  difference; the Qwen3 run also lost 70 minutes of wall-clock to a host suspension, and this one did not.</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Measure</th><th class="num">Terra reserved</th><th class="num">Qwen3 reserved</th></tr></thead>
+    <tbody>
+      <tr><td>Retryable errors</td><td class="num">2</td><td class="num">90</td></tr>
+      <tr><td>Exhausted, recovered by relaunch</td><td class="num">0</td><td class="num">23</td></tr>
+      <tr><td>Passes needed to close</td><td class="num">1</td><td class="num">2</td></tr>
+      <tr><td>Provider errors (429 / 5xx)</td><td class="num">0</td><td class="num">0</td></tr>
+      <tr><td>Wall-clock</td><td class="num">59 min</td><td class="num">not usable (host suspended)</td></tr>
+      <tr><td>Median latency</td><td class="num">1.79 s</td><td class="num">2.38 s</td></tr>
+      <tr><td>Input / output tokens per call</td><td class="num">1,606 / 104</td><td class="num">1,758 / 121</td></tr>
+      <tr><td>Cost</td><td class="num">6.42 USD</td><td class="num">0.59 USD</td></tr>
+    </tbody>
+  </table></div>
+  <p>Cost landed at 6.42 USD against 6.43 projected from the development split, inside a client-side cap of
+  25.00 USD. Output peaked at 496 tokens against a 4,096 ceiling, so truncation risk on this arm is nil.</p>
+  <p><b>One observation worth recording:</b> the provider served 3 of the 1,440 calls partly from a prompt
+  cache (<code>cached_input_tokens</code> up to 1,811; 47 of 360 calls, 13.1%, in the Terra development
+  split). Qwen3 shows none in either split. This does not breach statelessness &mdash; the full prompt is
+  sent every time and the model sees an identical request &mdash; but it is provider-side state carried
+  between calls, and at 0.2% of this run it is worth a line in the annex rather than any adjustment. It also
+  means 6.42 USD is an upper bound on the billed amount, since cached input is discounted.</p>
+</section>
+
+<section>
+  <h2>Frozen operational gates</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Gate</th><th class="num">Value</th><th class="num">Warning</th><th class="num">Stop</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Overall output truncation</td><td class="num">0.0000</td><td class="num">0.05</td><td class="num">0.10</td><td class="pass">pass</td></tr>
+      <tr><td>Between-condition truncation spread</td><td class="num">0.0000</td><td class="num">0.05</td><td class="num">0.10</td><td class="pass">pass</td></tr>
+      <tr><td>Invalid output rate</td><td class="num">0.0000</td><td class="num">0.05</td><td class="num">0.10</td><td class="pass">pass</td></tr>
+    </tbody>
+  </table></div>
+  <p>All three at floor, as on the development split. These are the safeguards named in the amendment,
+  not endpoints.</p>
+</section>
+
+<section>
+  <h2>Declarations for the annex</h2>
+  <p>Three facts about this run condition how it may be reported. They are recorded in the authorisation
+  file and repeated here so they travel with the data.</p>
+  <ol class="decl">
+    <li>
+      <div>
+        <h3>The decision to execute followed the Qwen3 result</h3>
+        <p>Terra was pre-registered as the saturation control in the 19 August amendment, before any
+        reserved outcome existed, so this is not arm selection by measured headroom. But the decision to
+        spend on the run was taken after the Qwen3 reserved outcome had been inspected and found positive,
+        and that conditioning belongs in the record.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>The ceiling does not go away in the reserved split</h3>
+        <p>Terra's development baseline B0 was 98.33%, leaving about 1.7 pp of headroom. The primary
+        contrast B1&minus;B0 cannot differ from zero on this arm by construction. This run must not be
+        reported as a replication of the primary claim; its pre-specified value is the cross-model
+        M0&minus;B0 signal and confirmation of the saturation classification on reserved rather than
+        development data alone.</p>
+      </div>
+    </li>
+    <li>
+      <div>
+        <h3>The effort selector was not blinded on this arm</h3>
+        <p>Terra's condition-level development results had already been inspected when
+        <code>reasoning_effort</code> was recorded, so the setting was recorded rather than blindly
+        selected. The selection is degenerate in any case &mdash; <code>low</code> is the lowest exposed
+        setting and clears every gate at floor &mdash; and no dated version pin exists for this model, so
+        the run window is the only bound on the served version.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="card">
+  <h2>What is needed next</h2>
+  <p style="margin-bottom:.5rem">Inspection requires a signed record naming <code>reserved_terra</code>,
+  on the pattern used for Qwen3. Before requesting it, note that the ceiling bounds what the run can
+  return: a null primary contrast here is a property of the instrument on this model, established in
+  advance, and not evidence about the DCA.</p>
+  <p style="margin:0">The confirmatory claim of the amendment rests on Qwen3, and is unaffected by whatever
+  this arm shows.</p>
+</section>
+
+<footer>
+  Runner: release <code>scripts/api_runner_qa1.py</code>, unmodified, Bedrock adapter injected &middot;
+  config <code>model_terra_bedrock.json</code>, <code>reasoning_effort: low</code>, ceiling 4,096,
+  serial, call-order seed 13082652 &middot; artefacts in <code>out/reserved_terra/</code> &middot;
+  blinded summary <code>out/reserved_terra_blind_summary.json</code>
+</footer>
+
+</div>

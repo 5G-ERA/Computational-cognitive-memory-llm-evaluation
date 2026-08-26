@@ -1,0 +1,54 @@
+{
+  "confirmation_id": "MARKER-CODEPOINTS-v0.5.1-qa1c",
+  "authority": "Project decision owner, 16 August 2026, Decision 1 and Decision 2 — approval and signature conditional on confirming the exact raw marker code points",
+  "corpus": "1,440 reserved responses, responses_raw.jsonl, SHA-256 2fbe975edc88cdf91022c399269743751be86da7e776a45b403574117cc078e2",
+  "method": "Exhaustive scan for every sequence beginning U+25C1 across the full corpus. No form other than the three below occurs.",
+
+  "forms_observed": [
+    {
+      "form": "◁think▷",
+      "role": "reasoning start marker",
+      "count": 1440,
+      "code_points": ["U+25C1", "U+0074", "U+0068", "U+0069", "U+006E", "U+006B", "U+25B7"],
+      "utf8_bytes": "E2 97 81 74 68 69 6E 6B E2 96 B7"
+    },
+    {
+      "form": "◁/think▷",
+      "role": "well-formed reasoning end marker",
+      "count": 1352,
+      "code_points": ["U+25C1", "U+002F", "U+0074", "U+0068", "U+0069", "U+006E", "U+006B", "U+25B7"],
+      "utf8_bytes": "E2 97 81 2F 74 68 69 6E 6B E2 96 B7"
+    },
+    {
+      "form": "◁/think",
+      "role": "MALFORMED reasoning end marker — defect 001",
+      "count": 35,
+      "code_points": ["U+25C1", "U+002F", "U+0074", "U+0068", "U+0069", "U+006E", "U+006B"],
+      "utf8_bytes": "E2 97 81 2F 74 68 69 6E 6B",
+      "difference_from_well_formed": "the trailing U+25B7 WHITE RIGHT-POINTING TRIANGLE is absent; nothing is substituted for it"
+    }
+  ],
+
+  "safety_properties_verified": {
+    "no_other_marker_variant_exists_in_the_corpus": true,
+    "malformed_form_never_occurs_more_than_once_in_a_response": true,
+    "no_well_formed_close_ever_follows_a_malformed_one": true,
+    "character_following_the_malformed_marker": "U+000A U+000A U+0060 in all 35 cases — the model opens a fenced code block immediately after",
+    "all_malformed_cases_have_finish_reason_stop": true,
+    "all_malformed_cases_yield_one_complete_valid_final_object": "35 of 35, each carrying reaction, rule_id and decisive_event_ids",
+    "responses_with_no_end_marker_at_all": "53, all finish_reason=length"
+  },
+
+  "post_correction_classification": {
+    "COMPLETED_VALID": 1382,
+    "COMPLETED_OUTPUT_TRUNCATED": 58,
+    "truncated_breakdown": {
+      "no_end_marker_and_finish_reason_length": 53,
+      "well_formed_marker_but_finish_reason_length": 5
+    },
+    "every_remaining_truncation_has_finish_reason_length": true,
+    "significance": "After the correction no truncation classification rests on the absence of a marker. Every one is a provider-signalled output-budget exhaustion, which is what the frozen extraction policy intends truncation to mean."
+  },
+
+  "conclusion": "The malformed form is a single, exactly characterised omission of one code point. The qa1c tolerant marker matches it precisely and matches nothing else."
+}

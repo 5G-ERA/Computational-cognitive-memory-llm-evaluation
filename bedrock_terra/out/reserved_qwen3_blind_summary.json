@@ -1,0 +1,94 @@
+{
+  "blinding": "Decision 3 permitted fields only. scoring_records.jsonl was not opened. No accuracy, no contrasts.",
+  "run_dir": "out/reserved_qwen3",
+  "model": "qwen.qwen3-next-80b-a3b",
+  "reasoning_effort": "low",
+  "completion": {
+    "expected": 1440,
+    "terminal": 1440,
+    "all_expected_terminal": true,
+    "no_duplicate_terminal": true,
+    "pass": true,
+    "calls": 1440,
+    "status_distribution": {
+      "COMPLETED_VALID": 1440
+    },
+    "finish_reason": {
+      "stop": 1440
+    },
+    "http_status": {
+      "200": 1440
+    },
+    "calls_needing_retry": 36
+  },
+  "validity": {
+    "completed_valid": 1440,
+    "valid_rate": 1.0,
+    "schema_or_json_errors": 0,
+    "invalid_non_truncated": 0
+  },
+  "truncation": {
+    "output_truncated": 0,
+    "rate": 0.0,
+    "by_condition": {
+      "B0_LLM_ALONE": 0.0,
+      "B1_VERIFIED_MEMORY": 0.0,
+      "M0_OPEN_LOOP_MEMORY": 0.0
+    },
+    "input_truncation_detected": false
+  },
+  "operational_gates": [
+    {
+      "metric": "overall output truncation",
+      "value": 0.0,
+      "warning": 0.05,
+      "stop": 0.1,
+      "verdict": "PASS"
+    },
+    {
+      "metric": "between-condition truncation spread",
+      "value": 0.0,
+      "warning": 0.05,
+      "stop": 0.1,
+      "verdict": "PASS"
+    },
+    {
+      "metric": "invalid output rate",
+      "value": 0.0,
+      "warning": 0.05,
+      "stop": 0.1,
+      "verdict": "PASS"
+    }
+  ],
+  "tokens": {
+    "input_mean": 1758.4,
+    "output_mean": 121.4,
+    "output_median": 116.0,
+    "output_max": 294,
+    "ceiling": 4096
+  },
+  "latency_ms": {
+    "median": 2380.0,
+    "p95": 4631,
+    "max": 543689
+  },
+  "cost_usd": {
+    "this_run": 0.5896,
+    "per_call": 0.000409,
+    "projected_reserved": 0.59,
+    "cap_per_run": 5.0
+  },
+  "reserved_feasibility": {
+    "calls": 1440,
+    "projected_wall_clock_hours": 0.47,
+    "note": "serial estimate from measured per-call latency"
+  },
+  "eligibility": {
+    "payload_fits": true,
+    "all_conditions_transmitted": true,
+    "parsing_viable": true,
+    "operational_gates": "PASS",
+    "reserved_matrix_feasible": null,
+    "note": "Scientific accuracy is NOT an eligibility criterion (Decision 1)."
+  }
+}

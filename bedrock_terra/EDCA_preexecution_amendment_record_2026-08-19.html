@@ -1,0 +1,463 @@
+<title>Pre-Execution Amendment Record</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --paper:#f4f4f1; --raised:#fbfbf9; --sunk:#eceae3;
+  --ink:#1a1d1f; --ink-soft:#5c6060; --ink-faint:#878a86;
+  --rule:#d9d7cf; --rule-soft:#e8e6df;
+  --seal:#3f5d4e; --seal-soft:#e3ebe4; --seal-ink:#2c4438;
+  --alarm:#8f3222; --alarm-soft:#f4e4e0;
+  --pending:#8a6212; --pending-soft:#f4ecda;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#15181a; --raised:#1c2023; --sunk:#101315;
+    --ink:#e8e7e0; --ink-soft:#9ba09b; --ink-faint:#6f7570;
+    --rule:#2e3336; --rule-soft:#23282b;
+    --seal:#7fb094; --seal-soft:#1a2b22; --seal-ink:#a5cbb4;
+    --alarm:#d9877a; --alarm-soft:#2f1c18;
+    --pending:#d3aa55; --pending-soft:#2b2311;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15181a; --raised:#1c2023; --sunk:#101315;
+  --ink:#e8e7e0; --ink-soft:#9ba09b; --ink-faint:#6f7570;
+  --rule:#2e3336; --rule-soft:#23282b;
+  --seal:#7fb094; --seal-soft:#1a2b22; --seal-ink:#a5cbb4;
+  --alarm:#d9877a; --alarm-soft:#2f1c18;
+  --pending:#d3aa55; --pending-soft:#2b2311;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.sheet{max-width:60rem;margin:0 auto;padding:clamp(1.8rem,4vw,3.5rem) clamp(1rem,3.5vw,2.25rem) 6rem;
+  display:flex;flex-direction:column;gap:2rem}
+.plex{font-family:"IBM Plex Sans",-apple-system,"Helvetica Neue",Arial,sans-serif}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+h1{font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-weight:600;
+  font-size:clamp(1.6rem,4.2vw,2.15rem);line-height:1.15;letter-spacing:-.02em;
+  margin:.35rem 0 0;text-wrap:balance}
+h2{font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-weight:600;
+  font-size:1.05rem;letter-spacing:-.005em;margin:0 0 .35rem;text-wrap:balance}
+h3{font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-weight:600;
+  font-size:.85rem;margin:0 0 .2rem;letter-spacing:.01em}
+p{margin:0 0 .75rem}
+p:last-child{margin-bottom:0}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.eyebrow{font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-size:.66rem;
+  font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.docmeta{display:flex;flex-wrap:wrap;gap:.3rem 1.5rem;margin-top:.9rem;
+  font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-size:.8rem;color:var(--ink-soft)}
+
+.banner{border:1px solid var(--rule);border-left:4px solid var(--pending);
+  background:var(--pending-soft);padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.3rem}
+.banner .eyebrow{color:var(--pending)}
+.banner p{font-size:.95rem}
+
+.item{display:grid;grid-template-columns:7.5rem 1fr;gap:0 1.75rem;align-items:start}
+@media (max-width:44rem){.item{grid-template-columns:1fr;gap:.55rem}}
+.rail{display:flex;flex-direction:column;gap:.15rem;padding-top:.15rem;
+  border-top:2px solid var(--seal)}
+@media (max-width:44rem){.rail{border-top:0;border-left:2px solid var(--seal);padding:0 0 0 .6rem}}
+.rail .num{font-family:"IBM Plex Mono",monospace;font-size:1.3rem;font-weight:600;
+  color:var(--seal);line-height:1}
+.rail .lbl{font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;font-size:.68rem;
+  font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+.body{display:flex;flex-direction:column;gap:.7rem;min-width:0}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--raised)}
+table{border-collapse:collapse;width:100%;font-family:"IBM Plex Sans",-apple-system,Arial,sans-serif;
+  font-size:.83rem}
+th,td{padding:.5rem .75rem;text-align:left;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);
+  font-weight:600;background:var(--sunk);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+td.k{white-space:nowrap;font-weight:500}
+code,.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:.85em}
+code{background:var(--sunk);padding:.05rem .3rem;border-radius:2px;word-break:break-word}
+
+.tag{display:inline-block;font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.66rem;
+  font-weight:600;letter-spacing:.05em;padding:.08rem .42rem;border-radius:2px;white-space:nowrap}
+.tag.pass{background:var(--seal-soft);color:var(--seal-ink)}
+.tag.no{background:var(--alarm-soft);color:var(--alarm)}
+.tag.hold{background:var(--pending-soft);color:var(--pending)}
+
+.callout{border:1px solid var(--rule);border-left:3px solid var(--seal);background:var(--raised);
+  padding:.8rem 1rem;font-size:.93rem}
+.callout.warn{border-left-color:var(--alarm);background:var(--alarm-soft)}
+.callout h3{color:var(--seal);margin-bottom:.25rem}
+.callout.warn h3{color:var(--alarm)}
+.quote{font-size:.93rem;color:var(--ink-soft);border-left:2px solid var(--rule);
+  padding-left:.9rem;font-style:italic}
+ol,ul{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.35rem;font-size:.95rem}
+ol.hier{counter-reset:h;list-style:none;padding-left:0;gap:.3rem}
+ol.hier li{position:relative;padding-left:2.1rem;font-size:.92rem}
+ol.hier li::before{counter-increment:h;content:counter(h);position:absolute;left:0;top:.05rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.75rem;font-weight:600;color:var(--seal);
+  border:1px solid var(--rule);background:var(--raised);width:1.4rem;height:1.4rem;
+  display:grid;place-items:center;border-radius:2px}
+
+.sig{border:1px solid var(--rule);background:var(--raised);padding:1.25rem 1.35rem;
+  display:flex;flex-direction:column;gap:1rem}
+.sigrow{display:grid;grid-template-columns:10rem 1fr;gap:.6rem 1rem;align-items:end}
+@media (max-width:34rem){.sigrow{grid-template-columns:1fr;gap:.2rem}}
+.sigrow .f{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.7rem;font-weight:600;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint)}
+.sigrow .v{border-bottom:1px solid var(--rule);min-height:1.5rem;
+  font-family:"IBM Plex Mono",monospace;font-size:.85rem;color:var(--ink-soft);padding-bottom:.15rem}
+footer{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.76rem;color:var(--ink-faint);line-height:1.55}
+.act{border:1px solid var(--seal);background:var(--raised);display:flex;flex-direction:column}
+.act .head{background:var(--seal-soft);padding:.9rem 1.15rem;border-bottom:1px solid var(--seal)}
+.act .head h2{color:var(--seal-ink);margin:0}
+.act .head p{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.87rem;color:var(--ink-soft);margin:.25rem 0 0}
+.act .rows{display:flex;flex-direction:column}
+.ask{display:grid;grid-template-columns:2.2rem 1fr;gap:0 .9rem;padding:.95rem 1.15rem;
+  border-bottom:1px solid var(--rule-soft);align-items:start}
+.ask:last-child{border-bottom:0}
+.ask .n{font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:.95rem;color:var(--seal);
+  border:1px solid var(--rule);border-radius:2px;display:grid;place-items:center;height:1.7rem}
+.ask h3{margin:.15rem 0 .25rem}
+.ask p{font-size:.91rem;margin:0 0 .35rem}
+.ask .rec{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.83rem;color:var(--seal-ink);
+  background:var(--seal-soft);padding:.3rem .55rem;border-radius:2px;display:inline-block}
+.chip{font-family:"IBM Plex Sans",Arial,sans-serif;font-size:.6rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;padding:.1rem .35rem;border-radius:2px;
+  align-self:flex-start;margin-top:.25rem}
+.chip.decide{background:var(--seal-soft);color:var(--seal-ink)}
+.chip.sign{background:var(--pending-soft);color:var(--pending)}
+.chip.rec{background:var(--sunk);color:var(--ink-faint)}
+:focus-visible{outline:2px solid var(--seal);outline-offset:2px}
+</style>
+
+<div class="sheet">
+
+<header>
+  <div class="eyebrow">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Cross-model replication</div>
+  <h1>Pre-execution amendment record</h1>
+  <p class="docmeta"><span>19 August 2026</span><span>Prepared by: external QA operator</span><span>For signature: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<div class="banner" style="border-left-color:var(--seal);background:var(--seal-soft)">
+  <span class="eyebrow" style="color:var(--seal-ink)">Status &middot; signed by delegation, 19 August 2026</span>
+  <p class="plex">All three decisions were ruled by the project decision owner on 19 August 2026 and are recorded in items 03, 06 and 07. The record was then signed <strong>by delegation</strong> &mdash; by the run operator, on the decision owner&rsquo;s instruction, never under the owner&rsquo;s own name. The signature released the <strong>Qwen3 development contrasts only</strong>. <strong>The reserved split of every arm remains sealed</strong> and needs a separate authorisation.</p>
+</div>
+
+<div class="act">
+  <div class="head">
+    <h2>Outstanding: the signature only</h2>
+    <p>The three decisions below were ruled on 19 August 2026 and need nothing further. Item 4 is the single open action.</p>
+  </div>
+  <div class="rows">
+    <div class="ask">
+      <span class="n">&#10003;</span>
+      <div>
+        <h3>Saturation threshold &mdash; <span style="color:var(--seal)">ruled</span></h3>
+        <p><strong>ACCEPT 5.00 pp.</strong> Post-signature analyst classification <strong>RATIFIED</strong>. Use of saturation for inclusion or selection <strong>PROHIBITED</strong>. Qwen3 <strong>retained regardless of baseline</strong>.</p>
+        <span class="rec">Recorded in item 03. The prohibition is stricter than what was proposed and is carried as a hard rule, not a convention.</span>
+      </div>
+    </div>
+    <div class="ask">
+      <span class="n">&#10003;</span>
+      <div>
+        <h3>Claim structure &mdash; <span style="color:var(--seal)">ruled</span></h3>
+        <p>Primary confirmatory claim: <strong>Qwen3 B1&minus;B0</strong>. Terra: <strong>descriptive, fully reported</strong>.</p>
+        <span class="rec">Recorded in item 06.</span>
+      </div>
+    </div>
+    <div class="ask">
+      <span class="n">&#10003;</span>
+      <div>
+        <h3>Multiplicity &mdash; <span style="color:var(--seal)">ruled</span></h3>
+        <p>Umbrella success claim: <strong>NONE</strong>. Adjustment: <strong>none, for the single confirmatory hypothesis</strong>.</p>
+        <span class="rec">Recorded in item 07.</span>
+      </div>
+    </div>
+    <div class="ask">
+      <span class="n">&#10003;</span>
+      <div>
+        <h3>Signature &mdash; <span style="color:var(--seal)">delegated, 19 August 2026</span></h3>
+        <p>Signed by the run operator on the decision owner&rsquo;s instruction and recorded as a delegation, not as the owner&rsquo;s own signature. Covers record digest <code>c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2</code>.</p>
+        <span class="rec">Scope: Qwen3 development contrasts only. A reserved run on any arm requires a further, separate authorisation.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="callout" style="margin-top:0">
+  <h3>Everything else needs nothing from you</h3>
+  <p class="plex" style="font-size:.89rem">Items 01, 02, 04, 05, 06, 08 and 09 record decisions you already made or measurements we already took. They are in the document so the archive is complete and so a reviewer can audit the sequence &mdash; not because they are open questions. Two are worth a glance: <strong>item 02</strong>, because the operational limits your amendment needs turned out to already be frozen in the release, so nothing new was invented; and <strong>item 04</strong>, because the reasoning-effort choice turns out to be forced rather than chosen, which removes the tuning hazard you were guarding against.</p>
+</div>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">00</span><span class="chip rec">noted</span><span class="lbl">Disclosures</span></div>
+  <div class="body">
+    <h2>Prior inspection, declared before anything else</h2>
+    <p>Three facts about sequence that the record must carry rather than assume. None is a departure from the amendment, which post-dates all three, but each would look like concealment if a reader found it later.</p>
+    <div class="callout warn">
+      <h3>1 &middot; Terra&rsquo;s development contrasts were inspected before the amendment existed</h3>
+      <p>On 19 August the operator computed and reported Terra&rsquo;s per-condition accuracy, B1&minus;B0, B1&minus;M0 and a per-template-family breakdown on the development split. The amendment was issued later the same day, and its designation of Terra as a saturation control rests on that inspection. The order was: measure, report, then rule.</p>
+    </div>
+    <div class="callout warn">
+      <h3>2 &middot; The saturation threshold is being set with Terra&rsquo;s baseline already known</h3>
+      <p>Item 03 proposes a threshold in full knowledge that Terra&rsquo;s development B0 is 98.33%. The mitigation is not to pretend otherwise but to show the classification is insensitive to the value chosen across any defensible range.</p>
+    </div>
+    <div class="callout warn">
+      <h3>3 &middot; The primary designation moved after one arm&rsquo;s outcome was observed</h3>
+      <p>Terra was a candidate primary arm; it became a saturation control after its baseline was seen, and the primary replication claim now rests on Qwen3, whose outcome is unobserved. The residual risk is bounded &mdash; no arm is dropped, both are reported whatever they show, and there is no third arm to move to &mdash; but the reassignment is data-conditioned and is recorded here with its date and cause rather than presented as the original plan.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">01</span><span class="chip rec">record</span><span class="lbl">Identifiers</span></div>
+  <div class="body">
+    <h2>Exact model and endpoint identifiers</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Field</th><th>Terra &mdash; saturation control</th><th>Qwen3 &mdash; primary replication</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Model id</td><td><code>global.openai.gpt-5.6-terra</code></td><td><code>qwen.qwen3-next-80b-a3b</code></td></tr>
+        <tr><td class="k">Base model id</td><td><code>openai.gpt-5.6-terra</code></td><td><code>qwen.qwen3-next-80b-a3b</code></td></tr>
+        <tr><td class="k">Invocation</td><td>Cross-region inference profile</td><td>Base model id, in-region direct</td></tr>
+        <tr><td class="k">Profile ARN</td><td><code>arn:aws:bedrock:us-east-1:REDACTED-AWS-ACCOUNT:inference-profile/global.openai.gpt-5.6-terra</code></td><td>none &mdash; <code>list-inference-profiles</code> returned 69 profiles, none for Qwen</td></tr>
+        <tr><td class="k">Provider / region</td><td>Amazon Bedrock, us-east-1</td><td>Amazon Bedrock, us-east-1</td></tr>
+        <tr><td class="k">Endpoint</td><td colspan="2"><code>https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1/chat/completions</code></td></tr>
+        <tr><td class="k">Account</td><td colspan="2"><code>REDACTED-AWS-ACCOUNT</code>, scoped long-term Bedrock API key</td></tr>
+        <tr><td class="k">Version pin</td><td><span class="tag no">NOT AVAILABLE</span> no dated variant; response echoes the alias; <code>system_fingerprint</code> null</td><td><span class="tag hold">snapshot not exposed</span> open weights serve as the reproducible anchor</td></tr>
+      </tbody>
+    </table></div>
+    <p class="plex" style="font-size:.88rem;color:var(--ink-soft)">The two arms use <strong>different invocation mechanisms</strong>. That asymmetry is stated here and belongs in the protocol annex; it is not glossed.</p>
+
+    <h3 style="margin-top:.5rem">Frozen request parameters, reported as required by Decision 2</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>Parameter</th><th>Frozen value</th><th>Exposure</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Max output tokens</td><td class="mono">4096</td><td>field <code>max_completion_tokens</code>; <code>max_tokens</code> rejected HTTP 400</td></tr>
+        <tr><td class="k">Structured output</td><td class="mono">false</td><td>frozen decoding mode <code>free_reasoning_end_of_think</code> retained</td></tr>
+        <tr><td class="k">Reasoning effort</td><td class="mono">low</td><td>selected by the blinded hierarchy in item 04</td></tr>
+        <tr><td class="k">Sampling params sent</td><td class="mono">false</td><td>temperature / top_p / seed are not transmitted</td></tr>
+        <tr><td class="k">Temperature</td><td class="mono">not set</td><td>Terra: <strong>rejected</strong>, HTTP 400 &ldquo;Only the default (1) value is supported&rdquo;. Qwen3: accepted, <strong>not honoured</strong></td></tr>
+        <tr><td class="k">Seed</td><td class="mono">not set</td><td>both arms: accepted and <strong>not honoured</strong> &mdash; three identical calls, three distinct outputs</td></tr>
+        <tr><td class="k">Timeout</td><td class="mono">900 s</td><td>client-side</td></tr>
+        <tr><td class="k">Concurrency</td><td class="mono">1 (serial)</td><td>frozen runner is single-threaded</td></tr>
+        <tr><td class="k">Call-order seed</td><td class="mono">13082652</td><td><code>api_runner_qa1.py</code>, unchanged</td></tr>
+        <tr><td class="k">Retry policy</td><td class="mono">3 attempts, backoff 0/2/8 s</td><td>retry on 429, 500, 502, 503, 504; terminal on 400, 401, 403, 404, 405, 413, 422; jitter seed <code>13082653</code></td></tr>
+        <tr><td class="k">System instruction</td><td colspan="2">unchanged frozen scientific payload; A1 verified respected on both arms</td></tr>
+        <tr><td class="k">Execution dates</td><td colspan="2">Terra development 19 Aug 2026; Qwen3 development 19 Aug 2026; run windows recorded per run to bound the served version in time</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">02</span><span class="chip rec">record</span><span class="lbl">Eligibility</span></div>
+  <div class="body">
+    <h2>Operational eligibility thresholds</h2>
+    <p>No new limits are introduced. The three the amendment invokes are <strong>already frozen</strong> in <code>config/reporting_config.json</code> under <code>operational_monitoring</code>, whose own note states that they are safeguards rather than scientific endpoints and that a crossing pauses execution before condition accuracy is inspected.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Frozen monitor</th><th>Warning</th><th>Stop</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Overall output truncation</td><td class="n">0.05</td><td class="n">0.10</td></tr>
+        <tr><td class="k">Between-condition truncation difference</td><td class="n">0.05</td><td class="n">0.10</td></tr>
+        <tr><td class="k">Invalid output rate</td><td class="n">0.05</td><td class="n">0.10</td></tr>
+      </tbody>
+    </table></div>
+    <p>The five eligibility checks of Decision 1 map onto measurable quantities: the unchanged payload fits, all three conditions transmit without content loss, output parsing is technically viable, reliability sits inside the frozen limits, and the complete 1,440-call reserved matrix is operationally feasible in time and cost. <strong>Scientific accuracy is not among them.</strong></p>
+    <div class="scroll"><table>
+      <thead><tr><th>Eligibility check &mdash; Qwen3, 360-call development split</th><th>Measured</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="k">Unchanged payload fits</td><td class="n">1,759 input tokens mean</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">All three conditions transmitted</td><td class="n">3 / 3</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Parsing viable</td><td class="n">0 JSON or schema errors</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Output truncation</td><td class="n">0.000</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Between-condition truncation spread</td><td class="n">0.000</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Invalid output rate</td><td class="n">0.000</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Reliability</td><td class="n">360/360 terminal, 3 calls recovered by retry</td><td><span class="tag pass">PASS</span></td></tr>
+        <tr><td class="k">Reserved matrix feasible</td><td class="n">1,440 calls &asymp; 1.6 h serial, &asymp; US$0.59</td><td><span class="tag pass">PASS</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="plex" style="font-size:.88rem;color:var(--ink-soft)"><strong>Qwen3 is eligible.</strong> Every frozen monitor sits at its floor. Scientific accuracy was not consulted and remains sealed.</p>
+    <div class="callout">
+      <h3>Blinding in practice</h3>
+      <p>Qwen3 eligibility is read through <code>blind_operational_summary.py</code>, which emits only the fields Decision 3 permits &mdash; completion, truncation, JSON and schema validity, latency, token use, cost &mdash; and <strong>refuses to open <code>scoring_records.jsonl</code> at all</strong>, so the selector cannot be contaminated by running it. Per-condition truncation is reported because it is itself a frozen operational monitor.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">03</span><span class="chip rec">ruled</span><span class="lbl">Saturation</span></div>
+  <div class="body">
+    <h2>Saturation threshold and interpretation</h2>
+    <p>Proposed rule, stated so that it does not depend on having seen any particular baseline:</p>
+    <div class="callout">
+      <h3>Rule</h3>
+      <p>A model-endpoint arm is <strong>saturated</strong> when its attainable improvement, <code>100 &minus; B0</code>, is smaller than the smallest effect the programme has claimed &mdash; <strong>5.00 pp</strong>, the lower bound of the sealed KIMI2 primary interval. For a saturated arm a null B1&minus;B0 is reported but is not treated as an informative test of the representation effect.</p>
+    </div>
+    <div class="scroll"><table>
+      <thead><tr><th>Arm</th><th>Development B0</th><th>Attainable headroom</th><th>Classification</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Terra</td><td class="n">98.33%</td><td class="n">1.67 pp</td><td><span class="tag no">SATURATED</span></td></tr>
+        <tr><td class="k">Qwen3</td><td class="n">sealed</td><td class="n">sealed</td><td><span class="tag hold">after signature</span></td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>The classification is insensitive to the number.</strong> Any threshold between 2 pp and 10 pp classifies Terra identically. The choice therefore cannot be doing the work, which is the answer to the objection that it was made with the baseline in view.</p>
+    <div class="callout">
+      <h3>Ruled, 19 August 2026</h3>
+      <p><strong>Threshold 5.00 pp: ACCEPTED.</strong> <strong>Post-signature analyst classification: RATIFIED</strong> &mdash; saturation is judged after signature, by the analyst, never during eligibility or effort selection. <strong>Use of saturation for inclusion or selection: PROHIBITED.</strong> <strong>Qwen3 retained regardless of baseline: CONFIRMED.</strong></p>
+      <p>The prohibition is stricter than what was proposed here and is carried as a hard rule: saturation may inform how a result is read and may never influence which arm is kept or which setting is chosen.</p>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">04</span><span class="chip rec">record</span><span class="lbl">Effort</span></div>
+  <div class="body">
+    <h2>Candidate reasoning-effort settings and blinded selection algorithm</h2>
+    <p>Candidates exposed by each endpoint: Terra <code>low</code> / <code>medium</code> / <code>high</code>; Qwen3 <code>low</code> / <code>medium</code>, with <code>high</code> exceeding the 180-second probe timeout. The selection algorithm is the amendment&rsquo;s, unmodified:</p>
+    <ol class="hier">
+      <li>Exclude any setting that truncates or omits scientific input.</li>
+      <li>Exclude any setting whose output-truncation rate exceeds the frozen operational limit.</li>
+      <li>Exclude any setting whose JSON or schema-validity rate falls below the frozen operational limit.</li>
+      <li>Among the survivors, select the <strong>lowest</strong> reasoning effort.</li>
+      <li>If tied: lower median output tokens, then lower latency, then a frozen lexical ordering of setting names.</li>
+    </ol>
+    <div class="callout">
+      <h3>The outcome is forced, not chosen</h3>
+      <p><code>low</code> is the lowest setting either endpoint exposes. If it clears steps 1&ndash;3 the algorithm selects it and no sweep is required, because no higher setting can outrank it. On Terra&rsquo;s completed 360-call development split at <code>low</code>: output truncation <span class="mono">0/360 = 0.000</span>, invalid output <span class="mono">0/360 = 0.000</span>, between-condition spread <span class="mono">0.000</span> &mdash; all at floor against stop limits of 0.10. The selection involves no discretion and therefore nothing for an unblinded selector to bias.</p>
+    </div>
+    <p>On Qwen3&rsquo;s completed 360-call development split at <code>low</code>: output truncation <span class="mono">0/360 = 0.000</span>, invalid output <span class="mono">0/360 = 0.000</span>, spread <span class="mono">0.000</span>. Steps 1&ndash;3 are cleared, so step 4 selects <code>low</code> and <strong>no higher setting was run or needed to be run</strong>. Reasoning effort is frozen at <code>low</code> on both arms.</p>
+    <p class="quote">Disclosure: for Terra the operator was <em>not</em> blinded, having already inspected that arm&rsquo;s accuracy. The degeneracy above is what makes the selection defensible, not the operator&rsquo;s blinding. For Qwen3 the selector is blinded as required.</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">05</span><span class="chip rec">record</span><span class="lbl">Estimand</span></div>
+  <div class="body">
+    <h2>Non-deterministic estimand wording</h2>
+    <p>Proposed annex text, to replace the deterministic-call assumption:</p>
+    <div class="callout">
+      <p>For model <em>m</em> and condition <em>c</em>, the target of estimation is the probability of a correct response under the frozen benchmark, the frozen request configuration, and the named endpoint, taken over the model&rsquo;s response distribution. The model-specific representation effect is the difference between the Cognitive-memory and Raw-longitudinal-evidence response probabilities. Provider randomness that is not exposed as a request parameter is treated as a property of the evaluated model-endpoint system rather than as a nuisance to be eliminated. Every exposed request parameter is frozen and reported. The replication estimates expected response accuracy under a frozen endpoint configuration; <strong>it does not claim that one prompt returns identical text on repeated calls.</strong></p>
+    </div>
+    <p>Consequences are narrower than the wording suggests. Generation noise is variance, not bias; the memory-clustered bootstrap already propagates it. What is lost is exact numerical replication, which no Bedrock arm can offer in any configuration.</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">06</span><span class="chip rec">ruled</span><span class="lbl">Hypotheses</span></div>
+  <div class="body">
+    <h2>Model-specific hypotheses and umbrella claim</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Claim</th><th>Arm</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="k">B1 &minus; B0 &gt; 0</td><td>Qwen3</td><td><span class="tag pass">PRIMARY</span> one prespecified confirmatory claim; frozen contrast, memory-clustered bootstrap, 10,000 replicates, 95% percentile interval, criterion = lower bound above zero</td></tr>
+        <tr><td class="k">B1 &minus; M0</td><td>Qwen3</td><td>key secondary, tested only if the primary passes</td></tr>
+        <tr><td class="k">Condition estimates and intervals</td><td>Terra</td><td><span class="tag hold">DESCRIPTIVE</span> saturation control; reported in full, interpreted under item 03; never a required positive component</td></tr>
+        <tr><td class="k">B1 &minus; M0</td><td>Terra</td><td>supporting, descriptive</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout"><h3>Ruled, 19 August 2026</h3><p>Primary confirmatory claim: <strong>Qwen3 B1&minus;B0</strong>. Terra: <strong>descriptive, fully reported</strong>.</p></div>
+    <p>The sealed KIMI2 estimates remain a completed model-specific result. Additional models are replications on the unchanged benchmark, analysed separately, with <strong>no call-level pooling across models</strong>.</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">07</span><span class="chip rec">ruled</span><span class="lbl">Multiplicity</span></div>
+  <div class="body">
+    <h2>Multiplicity rule</h2>
+    <div class="callout"><h3>Ruled, 19 August 2026</h3><p>Umbrella success claim: <strong>NONE</strong>. Multiplicity adjustment: <strong>none, for the single confirmatory hypothesis</strong>.</p></div>
+    <p><strong>No umbrella claim is declared.</strong> There is one prespecified primary replication claim, in Qwen3, and therefore one confirmatory family and no alpha adjustment. Terra cannot substitute for a Qwen3 failure.</p>
+    <p>Declining the union claim is the deliberate choice: a &ldquo;success in either arm&rdquo; claim would require Holm or Bonferroni control and, with one arm expected to be saturated, would amount to an undeclared whichever-model-succeeds criterion. Should a broader cross-model claim be wanted later, it must be defined before any further result is seen, which after signature it will not be.</p>
+    <p class="plex" style="font-size:.88rem;color:var(--ink-soft)">Defensible broad conclusion: <em>Qwen3 replicated, or did not replicate, the KIMI2 effect on the unchanged benchmark, while Terra supplied a ceiling-control result.</em></p>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">08</span><span class="chip rec">record</span><span class="lbl">Adapter</span></div>
+  <div class="body">
+    <h2>Adapter-conformance evidence</h2>
+    <p><code>BedrockOpenAIAdapter</code> satisfies the same <code>Cls(cfg)</code> / <code>invoke(call)</code> contract as the frozen <code>OpenAICompatibleAdapterQA1</code> and is injected through <code>sys.modules</code> into the release&rsquo;s own <code>api_runner_qa1.py</code>. <strong>Nothing in the release is modified and no scoring logic is reimplemented</strong>, so any numbers produced come from exactly the code that produced the sealed KIMI2 results.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Evidence</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Release integrity</td><td><span class="tag pass">PASS</span> <code>release_qa1c</code> 128 files, 0 changed, 0 unlisted, no <code>__pycache__</code></td></tr>
+        <tr><td class="k">Terra, full development split</td><td><span class="tag pass">360/360 terminal</span> <code>pass: true</code>, 0 schema errors</td></tr>
+        <tr><td class="k">Qwen3, full development split</td><td><span class="tag pass">360/360 terminal</span> <code>pass: true</code>, 0 schema errors, all HTTP 200</td></tr>
+        <tr><td class="k">Frozen retry policy, in production</td><td><span class="tag pass">VERIFIED</span> 3 calls hit transient transport faults and were recovered. <code>CALL51-0000006</code>: attempt 1 <code>RETRYABLE_ERROR</code> (<code>urlopen error [Errno -2] Name or service not known</code>), attempt 2 <code>COMPLETED_VALID</code>. One call blocked 342 s before completing. No call was lost and no restart was needed</td></tr>
+        <tr><td class="k">Frozen extraction policy</td><td><span class="tag pass">unchanged</span> neither arm emits think markers in <code>content</code></td></tr>
+        <tr><td class="k">Statelessness</td><td><span class="tag pass">PASS</span> both arms, nonce not recalled across calls</td></tr>
+        <tr><td class="k">Spend control</td><td>client-side hard cap enforced per call before sending; Bedrock exposes no native cap and AWS Budgets lags billing by hours</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">09</span><span class="chip rec">record</span><span class="lbl">Repeatability</span></div>
+  <div class="body">
+    <h2>Development-only repeatability audit</h2>
+    <p>Executed on Terra: one development memory, <code>MEM51-0001</code>, 45 calls repeated across three executions. It quantifies endpoint variability in decision, rule, schema validity and output length. It was <strong>not</strong> used to select a model or to tune reasoning effort.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Quantity</th><th>Measured</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Byte-identical text</td><td class="n">2.2%</td></tr>
+        <tr><td class="k">Identical decision</td><td class="n">77.8%</td></tr>
+        <tr><td class="k">Schema validity</td><td class="n">100%</td></tr>
+      </tbody>
+    </table></div>
+    <p>Two limitations. The audit also computed identical scored correctness, an accuracy-derived quantity outside the permitted blinded set; it is declared here and played no part in any selection. And the figure is <strong>confounded by saturation</strong> &mdash; stability is trivial where accuracy is at ceiling &mdash; so it must be re-measured on a non-saturated arm before it can be reported as endpoint variability.</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="item">
+  <div class="rail"><span class="num">10</span><span class="chip sign">sign</span><span class="lbl">Approval</span></div>
+  <div class="body">
+    <h2>Dated approval</h2>
+    <div class="callout">
+      <h3>Signed by delegation, 19 August 2026</h3>
+      <p>The decision owner&rsquo;s message of 19 August ruled every decision in this record and directed that signature precede inspection. It carried no name, role or date, so it was recorded as rulings rather than as the approval. The operator then signed <strong>by delegation, on the owner&rsquo;s instruction</strong>, exactly as on 16 August 2026.</p>
+      <p>The delegation creates no discretion over the analysis: the saturation threshold, the primary claim, the estimator, the multiplicity rule and the reasoning-effort algorithm were all fixed in writing by the owner earlier the same day, and the Qwen3 run was executed and read under a code-enforced blind before any of them could be influenced by a result.</p>
+    </div>
+    <div class="sig">
+      <div class="sigrow"><span class="f">Signed by</span><span class="v">Adrian &mdash; delegated</span></div>
+      <div class="sigrow"><span class="f">Capacity</span><span class="v">run operator, on the instruction of the project decision owner</span></div>
+      <div class="sigrow"><span class="f">On behalf of</span><span class="v">Renxi Qiu, project decision owner</span></div>
+      <div class="sigrow"><span class="f">Date</span><span class="v">2026-08-19</span></div>
+      <div class="sigrow"><span class="f">Record SHA-256</span><span class="v">c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2</span></div>
+      <div class="sigrow"><span class="f">Releases</span><span class="v">Qwen3 DEVELOPMENT contrasts only &mdash; not the reserved split of any arm</span></div>
+    </div>
+    <p class="plex" style="font-size:.86rem;color:var(--ink-soft)">Full record: <code>signature/SIGNED_delegated_amendment_record.json</code>. If a record bearing the decision owner&rsquo;s own name is required for publication it should replace this one; nothing in the analysis depends on which is on file.</p>
+  </div>
+</section>
+
+<hr>
+
+<footer>
+  <p>Prepared against the <em>Cross-model replication amendment</em>, Renxi Qiu, 19 August 2026. Frozen limits quoted from <code>config/reporting_config.json</code> in <code>release_qa1c</code>. Evidence directory: <code>dca_v051/bedrock_terra/</code>. The sealed KIMI2 reserved result (B1&minus;B0 = +9.79 pp, 95% CI [5.00, 14.79]) stands unchanged and is not superseded by this work.</p>
+</footer>
+
+</div>

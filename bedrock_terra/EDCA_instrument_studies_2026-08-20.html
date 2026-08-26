@@ -1,0 +1,397 @@
+<title>Where the Benchmark Still Measures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#f8f7f3; --card:#fffffd; --well:#eeece6; --band:#e6e4dc;
+  --ink:#161a1b; --ink2:#4d5559; --ink3:#848b8f;
+  --rule:#d4d0c6; --rule2:#e5e2da;
+  --teal:#1f5e5b; --teal-bg:#e0eceb;
+  --care:#8a4a2c; --care-bg:#f5e8e0;
+  --pos:#2f6b47; --neg:#9c3d2e;
+  --bar:#2f6f6b; --bartrack:#dcd8cf;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0d0f10; --card:#16191a; --well:#0a0c0c; --band:#1b1f20;
+    --ink:#e9ebec; --ink2:#9ea5a8; --ink3:#6b7276;
+    --rule:#282d2e; --rule2:#1d2122;
+    --teal:#6fb5b0; --teal-bg:#0f2523;
+    --care:#d99873; --care-bg:#2a1a12;
+    --pos:#7fc09a; --neg:#e08f7c;
+    --bar:#4e9c96; --bartrack:#242828;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0d0f10; --card:#16191a; --well:#0a0c0c; --band:#1b1f20;
+  --ink:#e9ebec; --ink2:#9ea5a8; --ink3:#6b7276;
+  --rule:#282d2e; --rule2:#1d2122;
+  --teal:#6fb5b0; --teal-bg:#0f2523;
+  --care:#d99873; --care-bg:#2a1a12;
+  --pos:#7fc09a; --neg:#e08f7c;
+  --bar:#4e9c96; --bartrack:#242828;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.doc{max-width:60rem;margin:0 auto;padding:clamp(1.5rem,4vw,3.25rem) clamp(1rem,3.5vw,2.25rem) 5rem;
+  display:flex;flex-direction:column;gap:1.9rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.8rem,4.6vw,2.6rem);
+  line-height:1.08;letter-spacing:-.02em;margin:.35rem 0 0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.22rem;letter-spacing:-.01em;
+  margin:0 0 .2rem;text-wrap:balance}
+h3{font-weight:700;font-size:.82rem;margin:0 0 .25rem;letter-spacing:.05em;text-transform:uppercase}
+.part{font-family:Fraunces,Georgia,serif;font-size:.95rem;color:var(--teal);font-weight:600;
+  letter-spacing:.02em;border-bottom:2px solid var(--teal);padding-bottom:.3rem;margin-bottom:.2rem}
+p{margin:0 0 .72rem;max-width:68ch}p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.78rem}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.eb{font-size:.68rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--ink3)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.5rem;margin-top:.75rem;font-size:.82rem;color:var(--ink2)}
+.lede{font-size:1.06rem;color:var(--ink2)}
+.ask{background:var(--teal-bg);border:1px solid var(--teal);border-left-width:4px;border-radius:3px;
+  padding:1.1rem 1.3rem;display:flex;flex-direction:column;gap:.7rem}
+.ask h2{color:var(--teal);font-size:1.05rem}
+.ask ol{margin:0;padding-left:1.15rem;display:flex;flex-direction:column;gap:.6rem;font-size:.95rem}
+.tag{display:inline-block;font-size:.63rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  padding:.1rem .4rem;border-radius:2px;background:var(--band);color:var(--ink2);margin-right:.4rem;
+  vertical-align:.08em}
+.tag.dec{background:var(--teal);color:var(--paper)}
+.scroll{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th,td{padding:.5rem .8rem;text-align:left;border-bottom:1px solid var(--rule2);vertical-align:middle}
+th{font-size:.65rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;
+  background:var(--band);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hi{background:var(--teal-bg);font-weight:600}
+.up{color:var(--pos);font-weight:600}.dn{color:var(--neg);font-weight:600}
+.gain{display:flex;align-items:center;gap:.5rem;min-width:10rem}
+.gain .track{flex:1;height:.6rem;background:var(--bartrack);border-radius:1px;overflow:hidden}
+.gain .track i{display:block;height:100%;background:var(--bar)}
+.gain .num{font-variant-numeric:tabular-nums;font-weight:600;font-size:.83rem;min-width:3.5rem;text-align:right}
+.note{border:1px solid var(--rule);border-left:3px solid var(--teal);background:var(--card);
+  padding:.9rem 1.05rem;font-size:.94rem}
+.note h3{color:var(--teal)}
+.note.care{border-left-color:var(--care);background:var(--care-bg)}
+.note.care h3{color:var(--care)}
+.note.find{border-left-color:var(--pos)}
+.note.find h3{color:var(--pos)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--well);
+  padding:.05rem .3rem;border-radius:2px;word-break:break-word}
+footer{font-size:.79rem;color:var(--ink3);line-height:1.55;border-top:1px solid var(--rule);padding-top:1rem}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+</style>
+
+<div class="doc">
+
+<header>
+  <div class="eb">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Auxiliary instrument studies</div>
+  <h1>Where the benchmark still measures once the model is good</h1>
+  <p class="meta"><span>20 August 2026</span><span>Five experiments &middot; 2.68 USD</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<section>
+  <p class="lede">You said Terra is very clever and asked whether anything cheap could shed light on it.
+  Five experiments ran for under three dollars. They produced one answer to your question, three findings
+  nobody went looking for, one falsified prediction, and one place where a published interval is thinner
+  than it looks. The confirmatory claim came through the hardest test of the day intact.</p>
+</section>
+
+<div class="ask">
+  <h2>What we need from you</h2>
+  <ol>
+    <li><span class="tag dec">decide</span><strong>Demote M0&minus;B0 from an interval to a direction?</strong>
+    The pre-registered rule does not force it &mdash; the interval still excludes zero by 0.39 pp once
+    run-to-run variance is propagated &mdash; but three independent signs of fragility have accumulated
+    (part III). <strong>We recommend demoting it.</strong> The decision is yours: the rule as written does
+    not compel it, and rewriting a criterion after seeing data is the defect this project exists to avoid.</li>
+    <li><span class="tag dec">decide</span><strong>May the family-level pattern enter the paper as instrument
+    characterisation?</strong> Your subgroup prohibition of 19 August is untouched here and nothing is
+    claimed as an endpoint. It is pre-registered, tested out of sample, and it answers the reviewer who says
+    the effect only appears in weak models (part I).</li>
+    <li><span class="tag dec">decide</span><strong>How should the paper describe the mechanism, and does
+    decision-level instability need a section of its own?</strong> The ablation shows the memory has two
+    independent routes where the design assumes one; separately, the model changes its mind on 11% of
+    identical calls (part II and part III).</li>
+  </ol>
+</div>
+
+<hr>
+
+<section>
+  <h2>The five experiments</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Study</th><th>Question it asked</th><th class="n">Calls</th><th class="n">Cost</th><th>What came back</th></tr></thead>
+    <tbody>
+      <tr><td>1 &middot; Family pattern</td><td>Is difficulty a property of the item or the model?</td><td class="n">0</td><td class="n">0.00</td><td>Replicates in KIMI2, not Qwen3 &mdash; the failure is the point</td></tr>
+      <tr><td>2 &middot; Effort sweep</td><td>Is Qwen3's collapse our misconfiguration?</td><td class="n">360</td><td class="n">0.15</td><td>No. And <code>high</code> hangs the endpoint</td></tr>
+      <tr><td>2b &middot; Repeat control</td><td>Does the effort parameter do anything?</td><td class="n">360</td><td class="n">0.15</td><td>No. Gave us run-to-run variance instead</td></tr>
+      <tr><td>3 &middot; Terra at high effort</td><td>Is Terra's ceiling capability or effort?</td><td class="n">360</td><td class="n">1.69</td><td>Capability. The ceiling does not move at all</td></tr>
+      <tr><td>4 &middot; Memory ablation</td><td>Which part of the memory does the work?</td><td class="n">240</td><td class="n">0.10</td><td>Both, separately. Prediction falsified</td></tr>
+      <tr><td>5 &middot; Reserved repeat</td><td>Does the interval survive the model's randomness?</td><td class="n">1,440</td><td class="n">0.59</td><td>The primary does. M0&minus;B0 barely</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<div class="part">Part I &mdash; Where the benchmark still discriminates</div>
+
+<section>
+  <h2>1. As models improve, the signal migrates to one family</h2>
+  <p>Terra spends its whole error budget on one template family. That was post hoc, so it went into a
+  pre-registration with a fixed decision rule, hashed before the test sets were opened, and was then tested
+  on KIMI2 and Qwen3 reserved &mdash; whose family breakdowns had never been computed. The test is clean
+  because the design is a complete crossing: every family &times; outcome cell holds exactly 24 contexts, so
+  the outcome-level view already read on Qwen3 carries no information about this one.</p>
+  <p><strong>Baseline accuracy with no memory, by family and model:</strong></p>
+  <div class="scroll"><table>
+    <thead><tr><th>Template family</th><th class="n">Terra (B0 96.67%)</th><th class="n">KIMI2 (B0 74.17%)</th><th class="n">Qwen3 (B0 29.38%)</th></tr></thead>
+    <tbody>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="n">100.00%</td><td class="n">82.29%</td><td class="n">39.58%</td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="n">100.00%</td><td class="n">72.92%</td><td class="n">27.08%</td></tr>
+      <tr><td>RECURRENCE</td><td class="n">100.00%</td><td class="n">86.46%</td><td class="n">26.04%</td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="n">98.96%</td><td class="n">78.12%</td><td class="n">27.08%</td></tr>
+      <tr><td><strong>TEMPORAL_GAP</strong></td><td class="n hi">84.38%</td><td class="n hi">51.04%</td><td class="n">27.08%</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>And the benefit of verified memory, same cells:</strong></p>
+  <div class="scroll"><table>
+    <thead><tr><th>Template family</th><th class="n">Terra</th><th class="n">KIMI2</th><th class="n">Qwen3</th></tr></thead>
+    <tbody>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="n">+0.00</td><td class="n">+4.17</td><td class="n">+19.79</td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="n">+0.00</td><td class="n">+8.33</td><td class="n">+27.08</td></tr>
+      <tr><td>RECURRENCE</td><td class="n dn">&minus;2.08</td><td class="n">+3.12</td><td class="n">+17.71</td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="n">+0.00</td><td class="n">+5.21</td><td class="n">+32.29</td></tr>
+      <tr><td><strong>TEMPORAL_GAP</strong></td><td class="n hi">+7.29</td><td class="n hi">+28.12</td><td class="n">+29.17</td></tr>
+    </tbody>
+  </table></div>
+  <p>Terra solves four families outright and has margin only in TEMPORAL_GAP &mdash; which is exactly where
+  its only benefit appears. KIMI2 has margin everywhere but most of it there, and its benefit is
+  <strong>monotone across all five families</strong>, ordered by difficulty:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>KIMI2, ordered by difficulty</th><th class="n">B0</th><th class="n">B1</th><th>Benefit</th></tr></thead>
+    <tbody>
+      <tr><td>TEMPORAL_GAP</td><td class="n">51.04%</td><td class="n">79.17%</td><td><span class="gain"><span class="track"><i style="width:100%"></i></span><span class="num">+28.12</span></span></td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="n">72.92%</td><td class="n">81.25%</td><td><span class="gain"><span class="track"><i style="width:29.6%"></i></span><span class="num">+8.33</span></span></td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="n">78.12%</td><td class="n">83.33%</td><td><span class="gain"><span class="track"><i style="width:18.5%"></i></span><span class="num">+5.21</span></span></td></tr>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="n">82.29%</td><td class="n">86.46%</td><td><span class="gain"><span class="track"><i style="width:14.8%"></i></span><span class="num">+4.17</span></span></td></tr>
+      <tr><td>RECURRENCE</td><td class="n">86.46%</td><td class="n">89.58%</td><td><span class="gain"><span class="track"><i style="width:11.1%"></i></span><span class="num">+3.12</span></span></td></tr>
+    </tbody>
+  </table></div>
+  <p>TEMPORAL_GAP against the other four is <strong>+22.92 pp, 95% interval [12.24 &middot; 34.38]</strong>.
+  In Qwen3 the pattern does not replicate, and the reason is visible in the first table: its five families
+  sit between 26% and 40%, all near chance, so there is no difficulty gradient to detect and memory helps
+  everywhere without discriminating (difference-in-differences +4.95 pp, [&minus;10.42 &middot; 22.14], null).</p>
+  <div class="note find">
+    <h3>One principle at three points on the scale</h3>
+    <p>Verified memory pays off in proportion to what the model cannot do unaided. Terra can do almost
+    everything, so the benchmark measures it in one family; KIMI2 can do some things, so the benefit orders
+    itself by difficulty; Qwen3 can do nothing unaided, so memory carries all five.
+    <strong>A frontier model does not exhaust this benchmark &mdash; it narrows the region where the
+    benchmark discriminates, and the region it narrows towards is predictable in advance.</strong> That is a
+    measurement statement, and it is the reply to "the effect only shows up in weak models".</p>
+  </div>
+</section>
+
+<hr>
+
+<div class="part">Part II &mdash; What the memory actually does</div>
+
+<section>
+  <h2>2. Open-loop memory distracts the competent and orients the lost</h2>
+  <p>The same KIMI2 breakdown read on M0 is monotone in the opposite direction. Not pre-registered;
+  reported as observation.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Family (KIMI2)</th><th class="n">B0 unaided</th><th class="n">M0&minus;B0</th></tr></thead>
+    <tbody>
+      <tr><td>TEMPORAL_GAP</td><td class="n">51.04%</td><td class="n up">+12.50</td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="n">72.92%</td><td class="n dn">&minus;3.12</td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="n">78.12%</td><td class="n dn">&minus;6.25</td></tr>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="n">82.29%</td><td class="n dn">&minus;7.29</td></tr>
+      <tr><td>RECURRENCE</td><td class="n">86.46%</td><td class="n dn">&minus;14.58</td></tr>
+    </tbody>
+  </table></div>
+  <p>The better a model handles a family alone, the more an unresolved assumption costs it; where it is
+  lost, the same assumption helps. <strong>The negative M0&minus;B0 reported in every model is therefore not
+  a uniform penalty. It is the average of a mechanism that degrades a system that was already working.</strong>
+  That is the most concrete form the governance argument has taken so far.</p>
+  <p>A weaker sign points the same way. Raising Terra's reasoning effort erased its M0 deficit entirely
+  (95.00% &rarr; 98.33%, level with B0) while leaving B0 and B1 identical to the last decimal. But that is
+  four contexts out of 120, inside the noise measured in part III, so it is recorded and not claimed.</p>
+</section>
+
+<section>
+  <h2>3. The memory has two routes to the answer, where the design assumes one</h2>
+  <p>B1 supplies the prospective assumption, the resolved relation, and a comparison guide. Since the marker
+  <code>relation-alpha…epsilon</code> is permuted per memory, the guide is the only thing that translates it,
+  so removing the guide should have destroyed the effect.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Condition (Qwen3, development, 120 contexts)</th><th class="n">Accuracy</th><th class="n">vs B0</th><th class="n">Effect retained</th></tr></thead>
+    <tbody>
+      <tr><td>B0 &mdash; no memory</td><td class="n">32.50%</td><td class="n">&mdash;</td><td class="n">&mdash;</td></tr>
+      <tr><td>M0 &mdash; assumption, unresolved</td><td class="n">25.83%</td><td class="n dn">&minus;6.67</td><td class="n">&mdash;</td></tr>
+      <tr><td><strong>B1 &mdash; full memory</strong></td><td class="n">50.83%</td><td class="n up">+18.33</td><td class="n">100%</td></tr>
+      <tr><td>B1 without the comparison guide</td><td class="n">47.50%</td><td class="n">+15.00</td><td class="n">82%</td></tr>
+      <tr><td>B1 without the resolved relation</td><td class="n">54.17%</td><td class="n">+21.67</td><td class="n">118%</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Each component alone delivers most of the effect: they are substitutable, not complementary.</strong>
+  The model reaches the answer either by translating the marker or by reading the resolved relation in prose.
+  The marker itself is cited in 90&ndash;98% of replies in every condition including B0, so citation does not
+  reveal which route was used.</p>
+  <div class="note care">
+    <h3>A construct question, not a threat to the result</h3>
+    <p>Memory still produces the effect and the confirmatory claim is untouched. What changes is the account
+    of <em>why</em> &mdash; the design treats marker translation as necessary and it is not. Better decided
+    now than found by a reviewer.</p>
+    <p><strong>Power limit:</strong> on 120 contexts with a run-to-run sd near 3 pp, the three B1 variants
+    (50.83 / 47.50 / 54.17) all sit inside the spread measured between identical runs, so they cannot be
+    ordered against each other. What is solid is that neither ablation destroys the effect: the gap between
+    the predicted ~0 and the observed +15 is five times the noise.</p>
+  </div>
+</section>
+
+<section>
+  <h2>4. The effect is not carried by a handful of memories</h2>
+  <p>Splitting the reserved Qwen3 result by memory &mdash; the same 32 clusters the bootstrap resamples:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>B1&minus;B0 across the 32 reserved memories</th><th class="n">Count</th></tr></thead>
+    <tbody>
+      <tr><td>Memories where verified memory <strong>helped</strong></td><td class="n up">31</td></tr>
+      <tr><td>Memories with no change</td><td class="n">1</td></tr>
+      <tr><td>Memories where it <strong>hurt</strong></td><td class="n">0</td></tr>
+      <tr><td>Median effect &middot; range</td><td class="n">+26.7 pp &middot; 0.0 to +46.7</td></tr>
+    </tbody>
+  </table></div>
+  <p>Not a single memory is harmed, and the median memory gains 26.7 points. This matters for the
+  clustered-bootstrap disclosure in Finding 002: whatever the coverage of the interval, the underlying
+  pattern is not driven by a few influential clusters.</p>
+  <p>The same holds across presentation formats, which the benchmark varies deliberately:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Rendering</th><th class="n">B0</th><th class="n">M0</th><th class="n">B1</th><th class="n">B1&minus;B0</th></tr></thead>
+    <tbody>
+      <tr><td>CHRONOLOGICAL</td><td class="n">30.00%</td><td class="n">25.62%</td><td class="n">53.75%</td><td class="n up">+23.75</td></tr>
+      <tr><td>CONCISE</td><td class="n">33.12%</td><td class="n">26.88%</td><td class="n">61.25%</td><td class="n up">+28.13</td></tr>
+      <tr><td>STRUCTURED</td><td class="n">25.00%</td><td class="n">23.75%</td><td class="n">48.75%</td><td class="n up">+23.75</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<hr>
+
+<div class="part">Part III &mdash; How much the numbers can be trusted</div>
+
+<section>
+  <h2>5. The effort parameter does nothing, and finding that out gave us the variance</h2>
+  <p>Qwen3 answers ESCALATE_REVIEW for 89% of B0 items. The worry was that we caused it by freezing
+  <code>effort: low</code>. We did not &mdash; but the control run is what settled it:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Qwen3 development, same 120 contexts</th><th class="n">B0</th><th class="n">M0</th><th class="n">B1</th><th class="n">B1&minus;B0</th><th class="n">ESCALATE in B0</th></tr></thead>
+    <tbody>
+      <tr><td><code>low</code> &mdash; frozen config</td><td class="n">32.50%</td><td class="n">25.83%</td><td class="n">50.83%</td><td class="n">+18.33</td><td class="n">84.2%</td></tr>
+      <tr><td><code>medium</code></td><td class="n">32.50%</td><td class="n">24.17%</td><td class="n">56.67%</td><td class="n">+24.17</td><td class="n">87.5%</td></tr>
+      <tr><td><code>low</code> &mdash; <strong>repeated, config untouched</strong></td><td class="n">34.17%</td><td class="n">30.83%</td><td class="n">56.67%</td><td class="n">+22.50</td><td class="n">85.0%</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two runs with the identical parameter separate as much as <code>medium</code> did, and the repeat lands
+  on exactly the same B1 as <code>medium</code>. With <code>reasoning_tokens</code> at zero and output length
+  and latency unchanged, the endpoint accepts the parameter and ignores it, as it does with <code>seed</code>.
+  So the collapse is a property of the model, not of our configuration &mdash; and those three runs are
+  three replicates, which is how we obtained a variance estimate we did not have.</p>
+</section>
+
+<section>
+  <h2>6. Aggregates are stable. Individual decisions are not.</h2>
+  <p>The reserved split was run a second time under a pre-registration binding it to variance estimation
+  only: the original run remains the sole basis of every published number, and two runs must not become a
+  choice between two runs.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Reserved, Qwen3</th><th class="n">Run 1 (published)</th><th class="n">Run 2 (repeat)</th><th class="n">sd</th></tr></thead>
+    <tbody>
+      <tr><td>B0 / M0 / B1 accuracy</td><td class="n">29.38 / 25.42 / 54.58</td><td class="n">27.71 / 25.00 / <strong>54.58</strong></td><td class="n">&mdash;</td></tr>
+      <tr><td><strong>B1&minus;B0</strong></td><td class="n">+25.21 [21.67 · 28.54]</td><td class="n">+26.88 [22.08 · 31.46]</td><td class="n">1.18</td></tr>
+      <tr><td>M0&minus;B0</td><td class="n">&minus;3.96 [&minus;7.08 · &minus;0.83]</td><td class="n">&minus;2.71 [&minus;5.42 · <strong>0.00</strong>]</td><td class="n">0.88</td></tr>
+    </tbody>
+  </table></div>
+  <p>B1 returned <em>the identical count</em>, 262 of 480. But that stability is an artefact of aggregation:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Agreement between two identical runs, 1,440 calls</th><th class="n">Same decision</th><th class="n">Changed</th><th class="n">Of those: better / worse / still wrong</th></tr></thead>
+    <tbody>
+      <tr><td>B0 &mdash; no memory</td><td class="n">87.7%</td><td class="n">59</td><td class="n">21 / 29 / 9</td></tr>
+      <tr><td>M0 &mdash; open-loop memory</td><td class="n">93.3%</td><td class="n">32</td><td class="n">12 / 13 / 7</td></tr>
+      <tr><td><strong>B1 &mdash; verified memory</strong></td><td class="n hi">85.0%</td><td class="n">72</td><td class="n">22 / 22 / 28</td></tr>
+      <tr><td><strong>Overall</strong></td><td class="n">88.7%</td><td class="n">163</td><td class="n">&mdash;</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note care">
+    <h3>The finding we did not go looking for</h3>
+    <p><strong>Ask the same model the same clinical question twice and it changes its decision on 11% of
+    calls &mdash; 15% under verified memory, the condition the system would actually deploy.</strong> The
+    aggregate is reproducible because the changes cancel almost exactly: in B1, 22 flips improve and 22
+    worsen. Population-level performance replicates; the individual recommendation does not.</p>
+    <p>For a decision-support system this is a safety property, not a statistical footnote, and the paper
+    currently does not mention it. It also sharpens the governance argument: a verified memory raises the
+    average and does not deliver determinism. <strong>Our suggestion is that this deserves its own
+    paragraph in the limitations, and possibly its own figure.</strong></p>
+  </div>
+</section>
+
+<section>
+  <h2>7. Propagating the model's randomness into the published intervals</h2>
+  <p>The frozen estimator resamples memories; it does not propagate the second source above. Combining both,
+  with run 1 as the base as the pre-registration requires:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th class="n">Frozen interval</th><th class="n">sd bootstrap</th><th class="n">sd re-run</th><th class="n">Both sources</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0 primary</strong></td><td class="n">[+21.67 · +28.54]</td><td class="n">1.75</td><td class="n">1.18</td><td class="n">[+21.07 · +29.35]</td><td class="up">robust</td></tr>
+      <tr><td>M0&minus;B0 exploratory</td><td class="n">[&minus;7.08 · &minus;0.83]</td><td class="n">1.59</td><td class="n">0.88</td><td class="n">[&minus;7.53 · &minus;0.39]</td><td>excludes zero by 0.39</td></tr>
+    </tbody>
+  </table></div>
+  <p>Run-to-run variability at reserved scale turned out <strong>smaller</strong> than extrapolation from
+  development predicted, which is good news for the primary: it survives the sensitivity, the repeat and the
+  propagation with a lower bound more than twenty points clear of zero.</p>
+  <div class="note care">
+    <h3>Three signs of fragility in M0&minus;B0, none in the primary</h3>
+    <p>First, the repeat run <em>alone</em> gives [&minus;5.42 &middot; 0.00] and does not exclude zero.
+    Second, on Terra reserved the same contrast does not survive the valid-only sensitivity
+    ([&minus;2.51 &middot; +0.21]). Third, the propagated margin is 0.39 pp &mdash; and the variance estimate
+    behind it rests on two runs, which is one degree of freedom.</p>
+    <p>The pre-registered rule demotes M0&minus;B0 only if the propagated interval crosses zero, and it does
+    not. <strong>The rule is satisfied, so we have not demoted it unilaterally.</strong> We recommend that
+    you do: the direction is now consistent across seven measurements in three model families, which is a
+    real finding, whereas the interval rests on a third of a percentage point.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>What none of this establishes, and one operational note</h2>
+  <p>No endpoint, no claim, no change to the confirmatory result. The family analysis is descriptive and
+  your subgroup prohibition stands. The ablation and effort studies are on development data. The repeat run
+  creates no second result and is barred by its own pre-registration from revising any published number in
+  either direction. Every signature today is delegated, recorded as delegated, never under your name.</p>
+  <p><strong>Operational note for the annex:</strong> <code>reasoning_effort: high</code> is unusable on the
+  Qwen3 endpoint. A one-word prompt returns in 0.7 s at <code>low</code> and <code>medium</code> and times
+  out unanswered at <code>high</code> &mdash; no error, no response. Terra honours the parameter normally
+  (reasoning tokens 24.7 &rarr; 55.4) and its ceiling does not move when it does.</p>
+  <p>Total spend across the entire Bedrock campaign, including these five studies and both reserved runs,
+  is <strong>12.07 USD</strong>. KIMI2 cost nothing, having run on our own endpoint.</p>
+</section>
+
+<footer>
+  Pre-registrations: <code>exp/PREREG_family_pattern_2026-08-20.md</code> (SHA-256 f65709…64c2d2) and
+  <code>exp/PREREG_reserved_repeat_2026-08-20.md</code> (SHA-256 3cff2f…02e023), both written and hashed
+  before the corresponding data existed, each carrying its decision rule and a "report the result whatever
+  it is" clause. Scoring and estimation use the release's own parser and scorer and the estimator imported
+  unaltered from the signed <code>analysis_section6.py</code>; nothing was reimplemented and nothing in
+  <code>release_qa1c</code> was modified. The ablation package copies the release's scripts byte-identically
+  (verified with <code>diff -r</code>) and symlinks its data, so the only altered input is the prompt file
+  under test. Evidence under <code>dca_v051/bedrock_terra/out/</code> and <code>exp/</code>.
+</footer>
+
+</div>

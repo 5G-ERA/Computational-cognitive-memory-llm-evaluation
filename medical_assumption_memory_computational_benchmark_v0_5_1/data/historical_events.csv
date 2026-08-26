@@ -1,0 +1,197 @@
+episode_id,event_id,patient_id,event_time,source,role,content
+EP-0001,EVT-0000001,SYN-0001,2026-05-02,patient_report,formation_observation,Two different accounts of the agreed timing were recorded.
+EP-0001,EVT-0000002,SYN-0001,2026-05-03,patient_report,formation_observation,Accessible information was requested.
+EP-0001,EVT-0000003,SYN-0001,2026-05-11,support_record,support_action,An accessible explanation and teach-back check were completed.
+EP-0001,EVT-0000004,SYN-0001,2026-05-15,patient_report,target_measure,"At follow-up, the person described the agreed timing correctly at both contacts."
+EP-0001,EVT-0000005,SYN-0001,2026-05-19,patient_report,alternative_measure,No observation supporting the alternative routine explanation was recorded in the same window.
+EP-0001,EVT-0000006,SYN-0001,2026-05-23,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0001,EVT-0000007,SYN-0001,2026-05-27,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0002,EVT-0000018,SYN-0002,2026-05-11,patient_report,formation_observation,Two different accounts of the agreed timing were recorded.
+EP-0002,EVT-0000019,SYN-0002,2026-05-12,patient_report,formation_observation,Accessible information was requested.
+EP-0002,EVT-0000020,SYN-0002,2026-05-20,support_record,support_action,An accessible explanation and teach-back check were completed.
+EP-0002,EVT-0000021,SYN-0002,2026-05-24,patient_report,target_measure,"At follow-up, the person described the agreed timing correctly at both contacts."
+EP-0002,EVT-0000022,SYN-0002,2026-05-28,patient_report,alternative_measure,A separate current-period observation remained compatible with the practical explanation.
+EP-0002,EVT-0000023,SYN-0002,2026-06-01,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0002,EVT-0000024,SYN-0002,2026-06-05,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0003,EVT-0000035,SYN-0003,2026-05-20,patient_report,formation_observation,Two different accounts of the agreed timing were recorded.
+EP-0003,EVT-0000036,SYN-0003,2026-05-21,patient_report,formation_observation,Accessible information was requested.
+EP-0003,EVT-0000037,SYN-0003,2026-05-29,support_record,support_action,An accessible explanation and teach-back check were completed.
+EP-0003,EVT-0000038,SYN-0003,2026-06-02,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0003,EVT-0000039,SYN-0003,2026-06-06,patient_report,alternative_measure,Two later observations were consistent with the access explanation.
+EP-0003,EVT-0000040,SYN-0003,2026-06-10,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0003,EVT-0000041,SYN-0003,2026-06-14,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0004,EVT-0000052,SYN-0004,2026-05-29,patient_report,formation_observation,Two different accounts of the agreed timing were recorded.
+EP-0004,EVT-0000053,SYN-0004,2026-05-30,patient_report,formation_observation,Accessible information was requested.
+EP-0004,EVT-0000054,SYN-0004,2026-06-07,support_record,support_action,An accessible explanation and teach-back check were completed.
+EP-0004,EVT-0000055,SYN-0004,2026-06-11,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0004,EVT-0000056,SYN-0004,2026-06-15,patient_report,alternative_measure,The available records could not distinguish the understanding and concern explanations.
+EP-0004,EVT-0000057,SYN-0004,2026-06-19,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0004,EVT-0000058,SYN-0004,2026-06-23,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0005,EVT-0000069,SYN-0005,2026-06-07,patient_report,formation_observation,Two missed occasions followed changes in the evening schedule.
+EP-0005,EVT-0000070,SYN-0005,2026-06-08,patient_report,formation_observation,The agreed instructions were described consistently.
+EP-0005,EVT-0000071,SYN-0005,2026-06-16,support_record,support_action,The agreed reminder was activated and linked to the evening routine.
+EP-0005,EVT-0000072,SYN-0005,2026-06-20,patient_report,target_measure,"During fourteen days, one missed occasion was reported after an unexpected schedule change."
+EP-0005,EVT-0000073,SYN-0005,2026-06-24,patient_report,alternative_measure,No observation supporting the alternative practical explanation was recorded in the same window.
+EP-0005,EVT-0000074,SYN-0005,2026-06-28,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0005,EVT-0000075,SYN-0005,2026-07-02,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0006,EVT-0000086,SYN-0006,2026-06-16,patient_report,formation_observation,Two missed occasions followed changes in the evening schedule.
+EP-0006,EVT-0000087,SYN-0006,2026-06-17,patient_report,formation_observation,The agreed instructions were described consistently.
+EP-0006,EVT-0000088,SYN-0006,2026-06-25,support_record,support_action,The agreed reminder was activated and linked to the evening routine.
+EP-0006,EVT-0000089,SYN-0006,2026-06-29,patient_report,target_measure,"During fourteen days, one missed occasion was reported after an unexpected schedule change."
+EP-0006,EVT-0000090,SYN-0006,2026-07-03,patient_report,alternative_measure,A separate current-period observation remained compatible with the access explanation.
+EP-0006,EVT-0000091,SYN-0006,2026-07-07,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0006,EVT-0000092,SYN-0006,2026-07-11,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0007,EVT-0000103,SYN-0007,2026-06-25,patient_report,formation_observation,Two missed occasions followed changes in the evening schedule.
+EP-0007,EVT-0000104,SYN-0007,2026-06-26,patient_report,formation_observation,The agreed instructions were described consistently.
+EP-0007,EVT-0000105,SYN-0007,2026-07-04,support_record,support_action,The agreed reminder was activated and linked to the evening routine.
+EP-0007,EVT-0000106,SYN-0007,2026-07-08,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0007,EVT-0000107,SYN-0007,2026-07-12,patient_report,alternative_measure,Two later observations were consistent with the concern explanation.
+EP-0007,EVT-0000108,SYN-0007,2026-07-16,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0007,EVT-0000109,SYN-0007,2026-07-20,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0008,EVT-0000120,SYN-0008,2026-07-04,patient_report,formation_observation,Two missed occasions followed changes in the evening schedule.
+EP-0008,EVT-0000121,SYN-0008,2026-07-05,patient_report,formation_observation,The agreed instructions were described consistently.
+EP-0008,EVT-0000122,SYN-0008,2026-07-13,support_record,support_action,The agreed reminder was activated and linked to the evening routine.
+EP-0008,EVT-0000123,SYN-0008,2026-07-17,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0008,EVT-0000124,SYN-0008,2026-07-21,patient_report,alternative_measure,The available records could not distinguish the routine and review explanations.
+EP-0008,EVT-0000125,SYN-0008,2026-07-25,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0008,EVT-0000126,SYN-0008,2026-07-29,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0009,EVT-0000137,SYN-0009,2026-07-13,patient_report,formation_observation,One administration step was not completed during demonstration.
+EP-0009,EVT-0000138,SYN-0009,2026-07-14,patient_report,formation_observation,The instructions were otherwise described consistently.
+EP-0009,EVT-0000139,SYN-0009,2026-07-22,support_record,support_action,Practical support and a repeat demonstration were completed.
+EP-0009,EVT-0000140,SYN-0009,2026-07-26,patient_report,target_measure,"At follow-up, the previously missed administration step was completed correctly."
+EP-0009,EVT-0000141,SYN-0009,2026-07-30,patient_report,alternative_measure,No observation supporting the alternative access explanation was recorded in the same window.
+EP-0009,EVT-0000142,SYN-0009,2026-08-03,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0009,EVT-0000143,SYN-0009,2026-08-07,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0010,EVT-0000154,SYN-0010,2026-07-22,patient_report,formation_observation,One administration step was not completed during demonstration.
+EP-0010,EVT-0000155,SYN-0010,2026-07-23,patient_report,formation_observation,The instructions were otherwise described consistently.
+EP-0010,EVT-0000156,SYN-0010,2026-07-31,support_record,support_action,Practical support and a repeat demonstration were completed.
+EP-0010,EVT-0000157,SYN-0010,2026-08-04,patient_report,target_measure,"At follow-up, the previously missed administration step was completed correctly."
+EP-0010,EVT-0000158,SYN-0010,2026-08-08,patient_report,alternative_measure,A separate current-period observation remained compatible with the concern explanation.
+EP-0010,EVT-0000159,SYN-0010,2026-08-12,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0010,EVT-0000160,SYN-0010,2026-08-16,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0011,EVT-0000171,SYN-0011,2026-07-31,patient_report,formation_observation,One administration step was not completed during demonstration.
+EP-0011,EVT-0000172,SYN-0011,2026-08-01,patient_report,formation_observation,The instructions were otherwise described consistently.
+EP-0011,EVT-0000173,SYN-0011,2026-08-09,support_record,support_action,Practical support and a repeat demonstration were completed.
+EP-0011,EVT-0000174,SYN-0011,2026-08-13,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0011,EVT-0000175,SYN-0011,2026-08-17,patient_report,alternative_measure,Two later observations were consistent with the review explanation.
+EP-0011,EVT-0000176,SYN-0011,2026-08-21,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0011,EVT-0000177,SYN-0011,2026-08-25,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0012,EVT-0000188,SYN-0012,2026-08-09,patient_report,formation_observation,One administration step was not completed during demonstration.
+EP-0012,EVT-0000189,SYN-0012,2026-08-10,patient_report,formation_observation,The instructions were otherwise described consistently.
+EP-0012,EVT-0000190,SYN-0012,2026-08-18,support_record,support_action,Practical support and a repeat demonstration were completed.
+EP-0012,EVT-0000191,SYN-0012,2026-08-22,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0012,EVT-0000192,SYN-0012,2026-08-26,patient_report,alternative_measure,The available records could not distinguish the practical and unresolved explanations.
+EP-0012,EVT-0000193,SYN-0012,2026-08-30,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0012,EVT-0000194,SYN-0012,2026-09-03,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0013,EVT-0000205,SYN-0013,2026-08-18,patient_report,formation_observation,The planned collection was delayed because the regular arrangement was unavailable.
+EP-0013,EVT-0000206,SYN-0013,2026-08-19,patient_report,formation_observation,The person stated an intention to follow the agreed plan.
+EP-0013,EVT-0000207,SYN-0013,2026-08-27,support_record,support_action,A delivery arrangement was activated for the next supply.
+EP-0013,EVT-0000208,SYN-0013,2026-08-31,patient_report,target_measure,The next supply became available within the planned collection window.
+EP-0013,EVT-0000209,SYN-0013,2026-09-04,patient_report,alternative_measure,No observation supporting the alternative concern explanation was recorded in the same window.
+EP-0013,EVT-0000210,SYN-0013,2026-09-08,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0013,EVT-0000211,SYN-0013,2026-09-12,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0014,EVT-0000222,SYN-0014,2026-08-27,patient_report,formation_observation,The planned collection was delayed because the regular arrangement was unavailable.
+EP-0014,EVT-0000223,SYN-0014,2026-08-28,patient_report,formation_observation,The person stated an intention to follow the agreed plan.
+EP-0014,EVT-0000224,SYN-0014,2026-09-05,support_record,support_action,A delivery arrangement was activated for the next supply.
+EP-0014,EVT-0000225,SYN-0014,2026-09-09,patient_report,target_measure,The next supply became available within the planned collection window.
+EP-0014,EVT-0000226,SYN-0014,2026-09-13,patient_report,alternative_measure,A separate current-period observation remained compatible with the review explanation.
+EP-0014,EVT-0000227,SYN-0014,2026-09-17,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0014,EVT-0000228,SYN-0014,2026-09-21,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0015,EVT-0000239,SYN-0015,2026-09-05,patient_report,formation_observation,The planned collection was delayed because the regular arrangement was unavailable.
+EP-0015,EVT-0000240,SYN-0015,2026-09-06,patient_report,formation_observation,The person stated an intention to follow the agreed plan.
+EP-0015,EVT-0000241,SYN-0015,2026-09-14,support_record,support_action,A delivery arrangement was activated for the next supply.
+EP-0015,EVT-0000242,SYN-0015,2026-09-18,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0015,EVT-0000243,SYN-0015,2026-09-22,patient_report,alternative_measure,Two later observations were consistent with the unresolved explanation.
+EP-0015,EVT-0000244,SYN-0015,2026-09-26,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0015,EVT-0000245,SYN-0015,2026-09-30,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0016,EVT-0000256,SYN-0016,2026-09-14,patient_report,formation_observation,The planned collection was delayed because the regular arrangement was unavailable.
+EP-0016,EVT-0000257,SYN-0016,2026-09-15,patient_report,formation_observation,The person stated an intention to follow the agreed plan.
+EP-0016,EVT-0000258,SYN-0016,2026-09-23,support_record,support_action,A delivery arrangement was activated for the next supply.
+EP-0016,EVT-0000259,SYN-0016,2026-09-27,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0016,EVT-0000260,SYN-0016,2026-10-01,patient_report,alternative_measure,The available records could not distinguish the access and understanding explanations.
+EP-0016,EVT-0000261,SYN-0016,2026-10-05,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0016,EVT-0000262,SYN-0016,2026-10-09,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0017,EVT-0000273,SYN-0017,2026-09-23,patient_report,formation_observation,The person questioned the expected benefit.
+EP-0017,EVT-0000274,SYN-0017,2026-09-24,patient_report,formation_observation,The agreed instructions were described accurately.
+EP-0017,EVT-0000275,SYN-0017,2026-10-02,support_record,support_action,A shared discussion of concerns and preferences was completed.
+EP-0017,EVT-0000276,SYN-0017,2026-10-06,patient_report,target_measure,The follow-up record contained a stated preference and a request for further review.
+EP-0017,EVT-0000277,SYN-0017,2026-10-10,patient_report,alternative_measure,No observation supporting the alternative review explanation was recorded in the same window.
+EP-0017,EVT-0000278,SYN-0017,2026-10-14,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0017,EVT-0000279,SYN-0017,2026-10-18,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0018,EVT-0000290,SYN-0018,2026-10-02,patient_report,formation_observation,The person questioned the expected benefit.
+EP-0018,EVT-0000291,SYN-0018,2026-10-03,patient_report,formation_observation,The agreed instructions were described accurately.
+EP-0018,EVT-0000292,SYN-0018,2026-10-11,support_record,support_action,A shared discussion of concerns and preferences was completed.
+EP-0018,EVT-0000293,SYN-0018,2026-10-15,patient_report,target_measure,The follow-up record contained a stated preference and a request for further review.
+EP-0018,EVT-0000294,SYN-0018,2026-10-19,patient_report,alternative_measure,A separate current-period observation remained compatible with the unresolved explanation.
+EP-0018,EVT-0000295,SYN-0018,2026-10-23,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0018,EVT-0000296,SYN-0018,2026-10-27,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0019,EVT-0000307,SYN-0019,2026-10-11,patient_report,formation_observation,The person questioned the expected benefit.
+EP-0019,EVT-0000308,SYN-0019,2026-10-12,patient_report,formation_observation,The agreed instructions were described accurately.
+EP-0019,EVT-0000309,SYN-0019,2026-10-20,support_record,support_action,A shared discussion of concerns and preferences was completed.
+EP-0019,EVT-0000310,SYN-0019,2026-10-24,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0019,EVT-0000311,SYN-0019,2026-10-28,patient_report,alternative_measure,Two later observations were consistent with the understanding explanation.
+EP-0019,EVT-0000312,SYN-0019,2026-11-01,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0019,EVT-0000313,SYN-0019,2026-11-05,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0020,EVT-0000324,SYN-0020,2026-10-20,patient_report,formation_observation,The person questioned the expected benefit.
+EP-0020,EVT-0000325,SYN-0020,2026-10-21,patient_report,formation_observation,The agreed instructions were described accurately.
+EP-0020,EVT-0000326,SYN-0020,2026-10-29,support_record,support_action,A shared discussion of concerns and preferences was completed.
+EP-0020,EVT-0000327,SYN-0020,2026-11-02,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0020,EVT-0000328,SYN-0020,2026-11-06,patient_report,alternative_measure,The available records could not distinguish the concern and routine explanations.
+EP-0020,EVT-0000329,SYN-0020,2026-11-10,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0020,EVT-0000330,SYN-0020,2026-11-14,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0021,EVT-0000341,SYN-0021,2026-10-29,patient_report,formation_observation,A new experience was reported after the support episode began.
+EP-0021,EVT-0000342,SYN-0021,2026-10-30,patient_report,formation_observation,The person requested professional assessment before deciding how to proceed.
+EP-0021,EVT-0000343,SYN-0021,2026-11-07,support_record,support_action,An authorised healthcare review was completed.
+EP-0021,EVT-0000344,SYN-0021,2026-11-11,patient_report,target_measure,The authorised review record documented the concern and the next support step without assigning medicine causality.
+EP-0021,EVT-0000345,SYN-0021,2026-11-15,patient_report,alternative_measure,No observation supporting the alternative unresolved explanation was recorded in the same window.
+EP-0021,EVT-0000346,SYN-0021,2026-11-19,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0021,EVT-0000347,SYN-0021,2026-11-23,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0022,EVT-0000358,SYN-0022,2026-11-07,patient_report,formation_observation,A new experience was reported after the support episode began.
+EP-0022,EVT-0000359,SYN-0022,2026-11-08,patient_report,formation_observation,The person requested professional assessment before deciding how to proceed.
+EP-0022,EVT-0000360,SYN-0022,2026-11-16,support_record,support_action,An authorised healthcare review was completed.
+EP-0022,EVT-0000361,SYN-0022,2026-11-20,patient_report,target_measure,The authorised review record documented the concern and the next support step without assigning medicine causality.
+EP-0022,EVT-0000362,SYN-0022,2026-11-24,patient_report,alternative_measure,A separate current-period observation remained compatible with the understanding explanation.
+EP-0022,EVT-0000363,SYN-0022,2026-11-28,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0022,EVT-0000364,SYN-0022,2026-12-02,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0023,EVT-0000375,SYN-0023,2026-11-16,patient_report,formation_observation,A new experience was reported after the support episode began.
+EP-0023,EVT-0000376,SYN-0023,2026-11-17,patient_report,formation_observation,The person requested professional assessment before deciding how to proceed.
+EP-0023,EVT-0000377,SYN-0023,2026-11-25,support_record,support_action,An authorised healthcare review was completed.
+EP-0023,EVT-0000378,SYN-0023,2026-11-29,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0023,EVT-0000379,SYN-0023,2026-12-03,patient_report,alternative_measure,Two later observations were consistent with the routine explanation.
+EP-0023,EVT-0000380,SYN-0023,2026-12-07,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0023,EVT-0000381,SYN-0023,2026-12-11,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0024,EVT-0000392,SYN-0024,2026-11-25,patient_report,formation_observation,A new experience was reported after the support episode began.
+EP-0024,EVT-0000393,SYN-0024,2026-11-26,patient_report,formation_observation,The person requested professional assessment before deciding how to proceed.
+EP-0024,EVT-0000394,SYN-0024,2026-12-04,support_record,support_action,An authorised healthcare review was completed.
+EP-0024,EVT-0000395,SYN-0024,2026-12-08,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0024,EVT-0000396,SYN-0024,2026-12-12,patient_report,alternative_measure,The available records could not distinguish the review and practical explanations.
+EP-0024,EVT-0000397,SYN-0024,2026-12-16,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0024,EVT-0000398,SYN-0024,2026-12-20,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0025,EVT-0000409,SYN-0025,2026-12-04,patient_report,formation_observation,The patient account was incomplete.
+EP-0025,EVT-0000410,SYN-0025,2026-12-05,patient_report,formation_observation,More than one support explanation remained plausible.
+EP-0025,EVT-0000411,SYN-0025,2026-12-13,support_record,support_action,A further information-gathering contact was arranged.
+EP-0025,EVT-0000412,SYN-0025,2026-12-17,patient_report,target_measure,The follow-up record still lacked the timing needed to distinguish the two explanations.
+EP-0025,EVT-0000413,SYN-0025,2026-12-21,patient_report,alternative_measure,No observation supporting the alternative understanding explanation was recorded in the same window.
+EP-0025,EVT-0000414,SYN-0025,2026-12-25,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0025,EVT-0000415,SYN-0025,2026-12-29,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0026,EVT-0000426,SYN-0026,2026-12-13,patient_report,formation_observation,The patient account was incomplete.
+EP-0026,EVT-0000427,SYN-0026,2026-12-14,patient_report,formation_observation,More than one support explanation remained plausible.
+EP-0026,EVT-0000428,SYN-0026,2026-12-22,support_record,support_action,A further information-gathering contact was arranged.
+EP-0026,EVT-0000429,SYN-0026,2026-12-26,patient_report,target_measure,The follow-up record still lacked the timing needed to distinguish the two explanations.
+EP-0026,EVT-0000430,SYN-0026,2026-12-30,patient_report,alternative_measure,A separate current-period observation remained compatible with the routine explanation.
+EP-0026,EVT-0000431,SYN-0026,2027-01-03,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0026,EVT-0000432,SYN-0026,2027-01-07,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0027,EVT-0000443,SYN-0027,2026-12-22,patient_report,formation_observation,The patient account was incomplete.
+EP-0027,EVT-0000444,SYN-0027,2026-12-23,patient_report,formation_observation,More than one support explanation remained plausible.
+EP-0027,EVT-0000445,SYN-0027,2026-12-31,support_record,support_action,A further information-gathering contact was arranged.
+EP-0027,EVT-0000446,SYN-0027,2027-01-04,patient_report,target_measure,"At both follow-up contacts, the original difficulty remained at the same recorded level as before support."
+EP-0027,EVT-0000447,SYN-0027,2027-01-08,patient_report,alternative_measure,Two later observations were consistent with the practical explanation.
+EP-0027,EVT-0000448,SYN-0027,2027-01-12,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0027,EVT-0000449,SYN-0027,2027-01-16,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.
+EP-0028,EVT-0000460,SYN-0028,2026-12-31,patient_report,formation_observation,The patient account was incomplete.
+EP-0028,EVT-0000461,SYN-0028,2027-01-01,patient_report,formation_observation,More than one support explanation remained plausible.
+EP-0028,EVT-0000462,SYN-0028,2027-01-09,support_record,support_action,A further information-gathering contact was arranged.
+EP-0028,EVT-0000463,SYN-0028,2027-01-13,patient_report,target_measure,The follow-up record did not establish whether the support action preceded the later observation.
+EP-0028,EVT-0000464,SYN-0028,2027-01-17,patient_report,alternative_measure,The available records could not distinguish the unresolved and access explanations.
+EP-0028,EVT-0000465,SYN-0028,2027-01-21,administrative_record,limited_evidence,"A supply or attendance entry was available, but it did not establish medicine use."
+EP-0028,EVT-0000466,SYN-0028,2027-01-25,patient_report,attribution_limit,A related note lacked enough timing detail to establish attribution on its own.

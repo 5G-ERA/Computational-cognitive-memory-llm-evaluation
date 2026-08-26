@@ -1,0 +1,55 @@
+{
+  "terminology_id": "TERM-v0.5.1-qa1b",
+  "status": "canonical",
+  "authority": "Official Response to the External QA Review, Cognitive Memory Benchmark v0.5.1-qa1b, 14 August 2026, section 2",
+  "aligned_with": "A Computational Theory of Cognitive Memory",
+  "supersedes": ["terminology_v0_5_1_qa1.json"],
+  "rule": "Internal condition identifiers remain unchanged for compatibility. All protocols, reports, figures and manuscripts use the canonical names below. The expressions 'open-loop memory', 'verified memory' and 'relational memory' may be retained only as implementation descriptions and must not be used as primary scientific labels.",
+
+  "conditions": {
+    "B0_LLM_ALONE": {
+      "canonical_name": "Raw longitudinal evidence",
+      "theoretical_role": "No explicit pre-specified assumption-to-consequence mapping.",
+      "implementation_description": "public rules plus raw longitudinal and current evidence"
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "canonical_name": "Pre-specified consequence mapping",
+      "theoretical_role": "Formation-time mapping before the realised consequence is resolved.",
+      "implementation_description": "open-loop memory: B0 plus a prospective assumption and expected consequence"
+    },
+    "B1_VERIFIED_MEMORY": {
+      "canonical_name": "Cognitive memory",
+      "theoretical_role": "Preserved resolved mapping with consequence, provenance, scope, and reconstructible grounds.",
+      "implementation_description": "verified relational memory: M0 plus the resolved consequence and grounds"
+    }
+  },
+
+  "estimands": {
+    "B1_VERIFIED_MEMORY - B0_LLM_ALONE": "Cognitive-memory benefit",
+    "B1_VERIFIED_MEMORY - M0_OPEN_LOOP_MEMORY": "Consequence-resolution benefit",
+    "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE": "Pre-specified-mapping effect"
+  },
+
+  "reporting_terms": {
+    "reaction_accuracy": "Current meta-decision accuracy",
+    "rule_accuracy": "Meta-decision rule accuracy",
+    "citation_validity": "Provenance-reference validity",
+    "revised_grounded_correctness": "Certified meta-decision accuracy"
+  },
+
+  "outcome_labels": {
+    "WITHHOLD_ASSUMPTION": "Governed no-use outcome",
+    "ESCALATE_REVIEW": "Review outcome",
+    "WAIT_FOR_EVIDENCE": "Defer outcome",
+    "CONTINUE_SUPPORT": "Continue outcome",
+    "TAILOR_SUPPORT": "Tailor outcome"
+  },
+
+  "retained_as_implementation_labels_only": [
+    "open-loop memory",
+    "verified memory",
+    "relational memory"
+  ],
+
+  "prompt_safety_note": "This file is reporting-side only. It is never embedded in a model call payload, and public/world_specification.json is left byte-identical to the v0.5.1 release so that dataset, oracle, split and prompt identity remain checksum-verifiable."
+}

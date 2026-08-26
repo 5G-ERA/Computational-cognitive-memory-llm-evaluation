@@ -1,0 +1,23 @@
+{
+  "benchmark_version": "0.5.1-qa1",
+  "split": "development",
+  "calls_expected": 360,
+  "model_config": {
+    "provider": "mock",
+    "model": "mock-oracle-v1",
+    "api_url": "",
+    "temperature": 0,
+    "top_p": 1,
+    "max_output_tokens": 300,
+    "timeout_seconds": 120,
+    "seed": 13082642
+  },
+  "call_order_seed": 13082652,
+  "completion": {
+    "expected": 360,
+    "terminal": 360,
+    "all_expected_terminal": true,
+    "no_duplicate_terminal": true,
+    "pass": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "provider": "openai_compatible",
+  "model": "kimi-dev-72b",
+  "api_url": "https://REDACTED-PRIVATE-ENDPOINT/v1/chat/completions",
+  "requires_api_key": false,
+  "temperature": 0,
+  "top_p": 1,
+  "max_output_tokens": 4096,
+  "timeout_seconds": 900,
+  "seed": 13082642,
+  "model_snapshot": "moonshotai_Kimi-Dev-72B-Q4_0.gguf",
+  "endpoint_verified": "2026-08-14",
+  "decoding_mode": "free_reasoning_end_of_think",
+  "structured_output": false
+}

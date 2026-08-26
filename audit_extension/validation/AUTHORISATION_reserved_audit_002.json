@@ -1,0 +1,33 @@
+{
+  "record_id": "AUTHORISATION_reserved_audit_002",
+  "purpose": "Decision C2, Renxi Qiu, 22 August 2026: SEPARATE SIGNED AUTHORISATION REQUIRED. This record authorises audit execution against a named reserved run. It is additional to every protocol section 19 condition, not a substitute for any.",
+  "runs_authorised": [],
+  "preconditions": [
+    "protocol section 19 gate reads GO",
+    "validation/FREEZE_audit_extension_2026-08-22.json is SIGNED",
+    "validation/implementation_agreement.json is SATISFIED",
+    "validation/rater_reliability.json is SATISFIED"
+  ],
+  "scope_limits": [
+    "The audit pipeline may not read scoring_records.jsonl, hidden/, or any quarantined file.",
+    "No join between audit results and decision accuracy until both analyses are frozen."
+  ],
+  "signature_status": "NOT_SIGNED",
+  "signature_required_from": "Renxi Qiu",
+  "to_authorise": "Name the run or runs in runs_authorised, set signature_status to SIGNED, and fill signed_by and signed_at. The gate condition reserved_audit_authorisation_record_signed reads this file.",
+  "signed_by": null,
+  "signed_at": null,
+  "title": "Reserved-audit execution authorisation, external model arm",
+  "decision_basis": "C1 and E3, Renxi Qiu, 22 August 2026: KIMI as a SEPARATE AUTHORISATION, reserved-only external model arm.",
+  "runs_intended": [
+    {
+      "run": "reserved_run_2026-08-15/.../results/reserved_2026-08-15",
+      "model": "Kimi-Dev-72B",
+      "calls": 1440,
+      "verified_auditable": "all six audit inputs byte-identical between qa1b and qa1c",
+      "note": "reserved-only: there is no comparable Kimi development run"
+    }
+  ],
+  "signature_mode_required": "DIRECT",
+  "depends_on": "AUTHORISATION_reserved_audit_001 signed, or independently signed"
+}

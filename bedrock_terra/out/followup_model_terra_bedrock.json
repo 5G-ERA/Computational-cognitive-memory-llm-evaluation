@@ -1,0 +1,20 @@
+{
+  "P2b": {
+    "verdict": "ACCEPTED_AND_JSON",
+    "call": {
+      "ok": true,
+      "content": "{\"reaction\":\"TAILOR_SUPPORT\",\"rule_id\":\"R09_SECONDARY_BARRIER\",\"decisive_event_ids\":[\"EVT-0000366\",\"EVT-0000006\"],\"reason\":\"The current marker is relation-gamma, whose episode history identifies a comparable relation with an additional active barrier.\"}",
+      "finish": "stop",
+      "out_tokens": 127
+    }
+  },
+  "P9": {
+    "hashes": [
+      "3da3c675f1b6",
+      "a0287489b133",
+      "189eb3a2a9c3"
+    ],
+    "distinct": 3,
+    "verdict": "SEED_ACCEPTED_BUT_NOT_REPRODUCIBLE"
+  }
+}

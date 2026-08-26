@@ -1,0 +1,65 @@
+{
+  "support_id": "PYSUPPORT-v0.5.1-qa1b",
+  "authority": "Official Response v0.5.1-qa1b, finding C2",
+  "requires_python": ">=3.8",
+  "declared_supported": [
+    "3.8",
+    "3.9",
+    "3.10",
+    "3.11",
+    "3.12"
+  ],
+  "executed_and_verified_on": [
+    "3.8.10",
+    "3.11.16"
+  ],
+  "not_executed_here": [
+    "3.9",
+    "3.10",
+    "3.12"
+  ],
+  "verification_note": "Both required interpreters were executed. CPython 3.8.10 on the validation host and CPython 3.11.16 in a clean python:3.11-slim container. With the frozen dependency pins the two produce identical audit output, so the interpreter is not a source of variation.",
+  "compatibility_rules": [
+    "Every qa1b module begins with 'from __future__ import annotations' so PEP 604 unions in annotations never evaluate at runtime.",
+    "No structural pattern matching (3.10+).",
+    "math.comb and http.server.ThreadingHTTPServer are the newest standard-library entry points used; both exist in 3.8."
+  ],
+  "third_party": {
+    "numpy": "required by scripts/design_audit_qa1b.py",
+    "scipy": "required by scripts/design_audit_qa1b.py (linear_sum_assignment)",
+    "scikit-learn": "required by scripts/validate_v0_5_1.py and scripts/design_audit_qa1b.py",
+    "verified_versions": {
+      "scikit-learn": "1.3.2",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4"
+    }
+  },
+  "runner_dependencies": "scripts/api_runner_qa1.py, scripts/qa_runner.py, scripts/qa_core.py and the adapters use the standard library only.",
+  "dependency_pinning_required": true,
+  "frozen_requirements": "config/requirements_frozen.txt",
+  "reproducibility_finding": {
+    "summary": "The authoritative shortcut audit is not version-stable across scikit-learn major releases.",
+    "observed": {
+      "python_3.8.10 + scikit-learn 1.3.2": {
+        "current_only_transferable": 0.256,
+        "p_holm": 0.455,
+        "status": "PASS"
+      },
+      "python_3.11.16 + scikit-learn 1.3.2": {
+        "current_only_transferable": 0.256,
+        "p_holm": null,
+        "status": "PASS",
+        "note": "reproduces the 3.8 run exactly"
+      },
+      "python_3.11.16 + scikit-learn 1.9.0": {
+        "current_only_transferable": 0.287,
+        "p_holm": 0.048,
+        "status": "FAIL",
+        "note": "template_only transferable also rises from 0.204 to 0.400"
+      }
+    },
+    "cause": "LogisticRegression fitting behaviour differs between scikit-learn 1.3 and 1.9; the probe predictions change, not the audit method.",
+    "consequence": "The frozen verdict \"pass with disclosed residual\" holds only under the pinned stack. The pins are therefore part of the freeze, and any re-run must record them.",
+    "evidence": "validation/interpreter_evidence/"
+  }
+}

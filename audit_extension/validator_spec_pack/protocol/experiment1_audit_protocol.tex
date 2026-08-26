@@ -1,0 +1,54 @@
+% Experiment 1 Audit Extension Protocol - implementation reference
+%
+% The normative source is protocol/experiment1_audit_protocol_source.pdf
+% (Renxi Qiu, 22 August 2026, parent release v0.5.1-qa1c). This file records
+% where the implementation had to make the protocol operational, so that the
+% frozen protocol and the frozen code cannot drift apart silently.
+%
+% IMPLEMENTATION DELTAS, none of which change a protocol requirement:
+%
+%  S3  "rendering identifier": derived from the context_id suffix
+%      (-STR/-CHR/-CON -> STRUCTURED/CHRONOLOGICAL/CONCISE). The release
+%      records no rendering field. Derivation declared in mappings/. [A6]
+%
+%  S4  Clean-room prohibited list names the oracle-bearing files that sit
+%      OUTSIDE hidden/: data_v0_5_1/canonical_contexts.csv,
+%      data_v0_5_1/contexts.csv, data/contexts_v0_5.csv. The context map is
+%      taken from data_v0_5_1/rendering_map.csv instead. [A5]
+%
+%  S6.1 "request was not scientifically truncated" is implemented as: the
+%      payload carries every longitudinal record registered for the memory and
+%      every current record registered for the canonical context. Verified to
+%      hold for all 1800 expected calls.
+%
+%  S6.4 "decision boundary" is implemented as max(event_time) over the current
+%      records delivered in that payload.
+%
+%  S6.5 The release publishes no structured grounds field, so the self-declared
+%      categories are approximated by three deterministic obligations
+%      (L1.5.1-L1.5.3). L1.5.3 is the subject of amendment A1.
+%
+%  S6.6 "current event represented as formation evidence" has no oracle-free
+%      deterministic detector on this release and is deferred to the frozen
+%      human rubric rather than approximated by a text heuristic.
+%
+%  S7.3 Equation (1) h_pre = Hash(H, r, K, Gamma, V): three of the five
+%      operands (K, Gamma, V) are not recorded by the release. The hash is
+%      computed over the operands that exist and the degradation is declared in
+%      contracts/m0_prospective_contract.json. S8.2 inherits the weakening.
+%
+%  S7.2/S8.1/S8.3 conflict on this release; both readings (LITERAL, SCOPED)
+%      are computed and reported side by side. [A4]
+%
+%  S8.4 competing-evidence expectation: NOT_EVALUABLE_FROM_SOURCE_RELEASE, as
+%      the protocol itself directs.
+%
+%  S17 Fixtures are synthetic and self-contained so that every expected status
+%      is unambiguous; 13 fixtures cover the 11 required cases plus a valid
+%      successor and a critical rule-outcome case.
+\documentclass{article}
+\begin{document}
+\section*{Implementation reference}
+See the comments at the head of this file and \texttt{PROPOSED\_AMENDMENTS.md}.
+The normative protocol is the source PDF in this directory.
+\end{document}

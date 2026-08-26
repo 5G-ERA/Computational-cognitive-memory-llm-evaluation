@@ -1,0 +1,125 @@
+{
+  "conditions": {
+    "B0_LLM_ALONE": {
+      "n": 120,
+      "macro_f1": 1.0,
+      "balanced_accuracy": 1.0,
+      "accuracy": 1.0,
+      "rule_accuracy": 1.0,
+      "grounded_accuracy": 1.0,
+      "schema_validity": 1.0
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "n": 120,
+      "macro_f1": 1.0,
+      "balanced_accuracy": 1.0,
+      "accuracy": 1.0,
+      "rule_accuracy": 1.0,
+      "grounded_accuracy": 1.0,
+      "schema_validity": 1.0
+    },
+    "B1_VERIFIED_MEMORY": {
+      "n": 120,
+      "macro_f1": 1.0,
+      "balanced_accuracy": 1.0,
+      "accuracy": 1.0,
+      "rule_accuracy": 1.0,
+      "grounded_accuracy": 1.0,
+      "schema_validity": 1.0
+    }
+  },
+  "render_families": {
+    "STRUCTURED": {
+      "B0_LLM_ALONE": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "M0_OPEN_LOOP_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "B1_VERIFIED_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      }
+    },
+    "CHRONOLOGICAL": {
+      "B0_LLM_ALONE": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "M0_OPEN_LOOP_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "B1_VERIFIED_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      }
+    },
+    "CONCISE": {
+      "B0_LLM_ALONE": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "M0_OPEN_LOOP_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      },
+      "B1_VERIFIED_MEMORY": {
+        "n": 40,
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "accuracy": 1.0,
+        "rule_accuracy": 1.0,
+        "grounded_accuracy": 1.0,
+        "schema_validity": 1.0
+      }
+    }
+  },
+  "kpis": {
+    "memory_benefit": 0.0,
+    "verification_benefit": 0.0,
+    "grounded_memory_benefit": 0.0
+  }
+}

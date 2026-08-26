@@ -1,0 +1,64 @@
+{
+  "primary": {
+    "contrast": "B1_VERIFIED_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Cognitive-memory benefit",
+    "estimate_pp": 25.2083,
+    "ci95_pp": [
+      21.6667,
+      28.5417
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.545833,
+    "accuracy_b": 0.29375
+  },
+  "key_secondary": {
+    "contrast": "B1_VERIFIED_MEMORY - M0_OPEN_LOOP_MEMORY",
+    "reported_as": "Consequence-resolution benefit",
+    "estimate_pp": 29.1667,
+    "ci95_pp": [
+      25.4167,
+      32.9167
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.545833,
+    "accuracy_b": 0.254167
+  },
+  "key_secondary_tested": true,
+  "exploratory": {
+    "contrast": "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Pre-specified-mapping effect",
+    "estimate_pp": -3.9583,
+    "ci95_pp": [
+      -7.0833,
+      -0.8333
+    ],
+    "lower_bound_above_zero": false,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.254167,
+    "accuracy_b": 0.29375
+  },
+  "confirmatory_result": "POSITIVE",
+  "arm": "qwen3",
+  "split": "reserved",
+  "denominator": "intention-to-evaluate",
+  "estimator_source": "/home/ros/Downloads/deliverable 2/analysis/analysis_section6.py",
+  "calls": 1440,
+  "contexts": 480,
+  "memories": 32,
+  "accuracy": {
+    "B0_LLM_ALONE": 0.29375,
+    "B1_VERIFIED_MEMORY": 0.545833,
+    "M0_OPEN_LOOP_MEMORY": 0.254167
+  },
+  "meta_decision_rule_accuracy": {
+    "B0_LLM_ALONE": 0.277083,
+    "B1_VERIFIED_MEMORY": 0.49375,
+    "M0_OPEN_LOOP_MEMORY": 0.24375
+  },
+  "status_distribution": {
+    "COMPLETED_VALID": 1432,
+    "COMPLETED_INVALID_SCHEMA": 8
+  }
+}

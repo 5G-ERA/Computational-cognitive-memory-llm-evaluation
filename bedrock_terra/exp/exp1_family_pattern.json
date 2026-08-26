@@ -1,0 +1,97 @@
+{
+ "prereg_sha256": "f65709957165ef86c9bf025d17e0de4160b4dbc2d23e4b79e5ccb912b564c2d2",
+ "models": {
+  "KIMI2": {
+   "n_contexts": 480,
+   "by_family": {
+    "ADDITIONAL_OBSERVATION": {
+     "B0_LLM_ALONE": 0.822917,
+     "M0_OPEN_LOOP_MEMORY": 0.75,
+     "B1_VERIFIED_MEMORY": 0.864583,
+     "B1_minus_B0_pp": 4.1666
+    },
+    "NEW_EXPERIENCE": {
+     "B0_LLM_ALONE": 0.729167,
+     "M0_OPEN_LOOP_MEMORY": 0.697917,
+     "B1_VERIFIED_MEMORY": 0.8125,
+     "B1_minus_B0_pp": 8.3333
+    },
+    "RECURRENCE": {
+     "B0_LLM_ALONE": 0.864583,
+     "M0_OPEN_LOOP_MEMORY": 0.71875,
+     "B1_VERIFIED_MEMORY": 0.895833,
+     "B1_minus_B0_pp": 3.125
+    },
+    "SOURCE_CHANGE": {
+     "B0_LLM_ALONE": 0.78125,
+     "M0_OPEN_LOOP_MEMORY": 0.71875,
+     "B1_VERIFIED_MEMORY": 0.833333,
+     "B1_minus_B0_pp": 5.2083
+    },
+    "TEMPORAL_GAP": {
+     "B0_LLM_ALONE": 0.510417,
+     "M0_OPEN_LOOP_MEMORY": 0.635417,
+     "B1_VERIFIED_MEMORY": 0.791667,
+     "B1_minus_B0_pp": 28.125
+    }
+   },
+   "H1_lowest_B0_family": "TEMPORAL_GAP",
+   "H1_holds": true,
+   "B1_minus_B0_TEMPORAL_GAP_pp": 28.125,
+   "B1_minus_B0_other_mean_pp": 5.2083,
+   "difference_in_differences_pp": 22.9167,
+   "difference_in_differences_ci95": [
+    12.2396,
+    34.375
+   ],
+   "H2_holds": true
+  },
+  "Qwen3": {
+   "n_contexts": 480,
+   "by_family": {
+    "ADDITIONAL_OBSERVATION": {
+     "B0_LLM_ALONE": 0.395833,
+     "M0_OPEN_LOOP_MEMORY": 0.3125,
+     "B1_VERIFIED_MEMORY": 0.59375,
+     "B1_minus_B0_pp": 19.7917
+    },
+    "NEW_EXPERIENCE": {
+     "B0_LLM_ALONE": 0.270833,
+     "M0_OPEN_LOOP_MEMORY": 0.208333,
+     "B1_VERIFIED_MEMORY": 0.541667,
+     "B1_minus_B0_pp": 27.0834
+    },
+    "RECURRENCE": {
+     "B0_LLM_ALONE": 0.260417,
+     "M0_OPEN_LOOP_MEMORY": 0.229167,
+     "B1_VERIFIED_MEMORY": 0.4375,
+     "B1_minus_B0_pp": 17.7083
+    },
+    "SOURCE_CHANGE": {
+     "B0_LLM_ALONE": 0.270833,
+     "M0_OPEN_LOOP_MEMORY": 0.291667,
+     "B1_VERIFIED_MEMORY": 0.59375,
+     "B1_minus_B0_pp": 32.2917
+    },
+    "TEMPORAL_GAP": {
+     "B0_LLM_ALONE": 0.270833,
+     "M0_OPEN_LOOP_MEMORY": 0.229167,
+     "B1_VERIFIED_MEMORY": 0.5625,
+     "B1_minus_B0_pp": 29.1667
+    }
+   },
+   "H1_lowest_B0_family": "RECURRENCE",
+   "H1_holds": false,
+   "B1_minus_B0_TEMPORAL_GAP_pp": 29.1667,
+   "B1_minus_B0_other_mean_pp": 24.2188,
+   "difference_in_differences_pp": 4.9479,
+   "difference_in_differences_ci95": [
+    -10.4232,
+    22.1354
+   ],
+   "H2_holds": true
+  }
+ },
+ "H1_replicates_in_both": false,
+ "H2_replicates_in_both": true
+}

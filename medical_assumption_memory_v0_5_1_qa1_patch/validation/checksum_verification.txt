@@ -1,0 +1,17 @@
+./README.md: OK
+./patch/config/call_status_taxonomy.json: OK
+./patch/config/extraction_policy.json: OK
+./patch/config/retry_policy.json: OK
+./patch/public/terminology_v0_5_1_qa1.json: OK
+./patch/scripts/__pycache__/qa_core.cpython-312.pyc: OK
+./patch/scripts/__pycache__/qa_runner.cpython-312.pyc: OK
+./patch/scripts/apply_qa1_patch.py: OK
+./patch/scripts/qa_core.py: OK
+./patch/scripts/qa_runner.py: OK
+./protocol/v0_5_1_qa1_protocol.docx: OK
+./protocol/v0_5_1_qa1_protocol.pdf: OK
+./tests/test_pre_llm_qa.py: OK
+./validation/pdf_preflight.txt: OK
+./validation/pre_llm_gate_report.json: OK
+./validation/pre_llm_test_output.txt: OK
+./validation/terminology_lint.json: OK

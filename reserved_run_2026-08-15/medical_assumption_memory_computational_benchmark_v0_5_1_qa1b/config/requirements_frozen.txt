@@ -1,0 +1,14 @@
+# Frozen analysis dependencies for Cognitive Memory Benchmark v0.5.1-qa1b.
+#
+# These pins are part of the release freeze. The authoritative shortcut audit
+# (scripts/design_audit_qa1b.py) does NOT return a stable verdict across scikit-learn
+# major versions: under scikit-learn 1.9.0 the current-only view is flagged after Holm
+# adjustment, and template-only rises from 0.204 to 0.400 on the transferable-relabelling
+# statistic. With the pins below the audit reproduces identically on CPython 3.8.10 and
+# 3.11.16. See validation/interpreter_evidence/ for both runs.
+#
+# The runner, adapter, parser and scorer use the standard library only and are unaffected.
+
+scikit-learn==1.3.2
+numpy==1.26.4
+scipy==1.11.4

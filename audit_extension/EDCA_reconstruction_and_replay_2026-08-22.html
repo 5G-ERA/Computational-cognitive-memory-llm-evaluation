@@ -1,0 +1,288 @@
+<title>Reconstruction and Replay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1EF;
+  --ink:#141A19; --body:#2B3634; --muted:#5F6C69; --faint:#8C9895;
+  --rule:#D8E0DD; --rule-strong:#B9C6C2;
+  --accent:#12665C; --accent-soft:#E1EFEC; --accent-ink:#0B4A43;
+  --ok:#1E7A52; --ok-soft:#E2F1E9;
+  --caution:#8A5A00; --caution-soft:#F6ECD9;
+  --blocker:#A32A22; --blocker-soft:#F7E4E2;
+  --recon:#B9C6C2; --replay-id:#7FA39B; --replay-inv:#12665C;
+  --shadow:0 1px 2px rgba(20,26,25,.05), 0 8px 24px -16px rgba(20,26,25,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+    --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+    --rule:#26302E; --rule-strong:#38443F;
+    --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+    --ok:#57BC8B; --ok-soft:#12251C;
+    --caution:#D6A44B; --caution-soft:#2A2113;
+    --blocker:#E58279; --blocker-soft:#2C1815;
+    --recon:#4A5754; --replay-id:#3E7A70; --replay-inv:#54C0B0;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+  --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+  --rule:#26302E; --rule-strong:#38443F;
+  --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+  --ok:#57BC8B; --ok-soft:#12251C;
+  --caution:#D6A44B; --caution-soft:#2A2113;
+  --blocker:#E58279; --blocker-soft:#2C1815;
+  --recon:#4A5754; --replay-id:#3E7A70; --replay-inv:#54C0B0;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--body);
+  font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif; font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:54rem; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2.5rem) 6rem}
+.prose{max-width:39rem}
+h1,h2,h3{font-family:Spectral, Georgia, serif; color:var(--ink); text-wrap:balance; margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.05rem); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+h2{font-size:1.55rem; font-weight:600; line-height:1.2; letter-spacing:-.01em}
+h3{font-size:1.12rem; font-weight:600; line-height:1.3}
+p{margin:0}
+code,.mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.86em}
+code{background:var(--sunk); padding:.08em .34em; border-radius:3px; color:var(--ink)}
+strong{color:var(--ink); font-weight:600}
+em{font-style:italic}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--faint); font-weight:500}
+.stack{display:flex; flex-direction:column}
+.g-2{gap:.75rem} .g-3{gap:1.15rem} .g-4{gap:1.75rem} .g-8{gap:4.25rem}
+
+header.mast{display:flex; flex-direction:column; gap:1.4rem; padding-bottom:2rem; border-bottom:2px solid var(--rule-strong)}
+.mast .lede{font-size:1.13rem; color:var(--muted); max-width:40rem}
+.meta{display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--faint)}
+.meta b{color:var(--muted); font-weight:500}
+
+.thesis{font-family:Spectral,serif; font-size:1.38rem; line-height:1.38; color:var(--ink); font-weight:400;
+  border-left:3px solid var(--accent); padding:.35rem 0 .35rem 1.25rem; max-width:40rem}
+.thesis em{font-style:italic; color:var(--accent-ink)}
+
+/* the two halves */
+.halves{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+.halves>div{background:var(--surface); padding:1.1rem 1.25rem; display:flex; flex-direction:column; gap:.5rem}
+.halves .k{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--faint)}
+.halves .big{font-family:Spectral,serif; font-size:2rem; font-weight:600; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
+.halves .big.dim{color:var(--muted)}
+.halves .n{font-size:.86rem; color:var(--muted); line-height:1.45}
+.halves .q{font-family:Spectral,serif; font-size:1.05rem; color:var(--ink); font-style:italic}
+@media (max-width:44rem){.halves{grid-template-columns:1fr}}
+
+/* paired bars */
+.bars{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.25rem 1rem; overflow-x:auto}
+.bars svg{display:block; width:100%; height:auto; max-width:46rem}
+.bars text{font-family:"IBM Plex Mono",monospace; fill:var(--muted)}
+.bars .lab{fill:var(--ink); font-family:"Source Sans 3",sans-serif; font-weight:600; font-size:13px}
+.bars .sub{fill:var(--faint); font-size:11px}
+.bars .val{fill:var(--ink); font-size:12px; font-weight:500}
+.bars .grid{stroke:var(--rule); stroke-width:1}
+.bars .id{fill:var(--replay-id)} .bars .inv{fill:var(--replay-inv)}
+.bars .axis{font-size:11px; fill:var(--faint)}
+.legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.82rem; color:var(--muted); margin-top:.4rem}
+.legend span::before{content:""; display:inline-block; width:.8em; height:.8em; border-radius:2px; margin-right:.45em; vertical-align:-.05em}
+.legend .id::before{background:var(--replay-id)} .legend .inv::before{background:var(--replay-inv)}
+
+.tw{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.85rem}
+th,td{padding:.5rem .8rem; text-align:left; border-bottom:1px solid var(--rule); white-space:nowrap}
+thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint); font-weight:500; background:var(--sunk); border-bottom:1px solid var(--rule-strong)}
+tbody tr:last-child td{border-bottom:none}
+td.num, th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+td.lbl{font-family:"IBM Plex Mono",monospace; font-size:.79rem; color:var(--ink)}
+tr.hi td{background:var(--accent-soft)}
+caption{caption-side:bottom; text-align:left; padding:.6rem .8rem; font-size:.78rem; color:var(--muted); line-height:1.45}
+
+.pull{background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0; padding:1.05rem 1.25rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.5rem}
+.pull p{max-width:38rem}
+
+ol.dec{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+ol.dec li{background:var(--surface); padding:1rem 1.2rem; display:grid; grid-template-columns:auto 1fr; gap:.4rem 1rem; align-items:baseline}
+ol.dec .did{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:.86rem}
+ol.dec .dq{color:var(--ink); font-weight:600}
+ol.dec .dr{grid-column:2; font-size:.9rem; color:var(--muted)}
+
+footer{border-top:2px solid var(--rule-strong); padding-top:1.5rem; color:var(--faint); font-size:.83rem}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+</style>
+
+<div class="wrap stack g-8">
+
+<header class="mast">
+  <div class="stack g-3">
+    <span class="eyebrow">Experiment 1 · reframing the audit extension · 22 August 2026</span>
+    <h1>Reconstruction and&nbsp;Replay</h1>
+    <p class="lede">Renxi's definition: <em>audit is the process of reconstruction and replay.</em>
+    His puzzle: if so, why does the audit say 96–100% and the recall say 30–60%? Because the
+    extension implemented only the first half as its headline and filed the second as a side
+    check. The gap between the two numbers is the gap between those two halves — and the
+    information lives entirely in the second.</p>
+  </div>
+  <div class="meta">
+    <span><b>Data</b> reserved splits, Terra + Qwen3, 1,440 calls each; Qwen3 repeat run for identical replay</span>
+    <span><b>Oracle</b> read only to score the detectors, under signed inspection records</span>
+    <span><b>Status</b> exploratory, post hoc</span>
+  </div>
+</header>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Where each number comes from</h2>
+  </div>
+  <div class="halves">
+    <div>
+      <span class="k">Half 1 · reconstruction</span>
+      <span class="q">Can this one trace be followed from evidence to output?</span>
+      <span class="big dim">96–100%</span>
+      <span class="n">Level 1 of the extension. Grounded, consistent, schema-valid. Checked once per call,
+      never repeated. At ceiling for both models, by construction: four-field schema, runner already
+      rejects invalid responses.</span>
+      <span class="n"><strong>What it cannot see:</strong> a well-formed trace that would not come out the
+      same way twice. The §15 join proved it: 330 of 470 reconstructible Qwen3 traces in B0 were wrong.</span>
+    </div>
+    <div>
+      <span class="k">Half 2 · replay</span>
+      <span class="q">Does the pathway come out the same way again?</span>
+      <span class="big">30–60%</span>
+      <span class="n">Protocol §14, filed as a "descriptive reproducibility check." Run the same
+      context again — identically, or reworded — and compare the pathway to itself. No oracle
+      needed: disagreement is a certified error.</span>
+      <span class="n"><strong>What it sees:</strong> every inconsistent error, with 100% precision. The
+      recall — the share of errors that are inconsistent — is the number that separates the
+      models and the conditions.</span>
+    </div>
+  </div>
+  <p class="thesis">Reconstruction is necessary and saturated. Replay is where the discrimination
+  lives. Under Renxi's definition, <em>the recall number is the audit.</em></p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-3">
+    <h2>Two kinds of replay, and we have both</h2>
+    <p><strong>Identical replay</strong> repeats the same call and asks whether the pathway is
+    stochastically stable. The Qwen3 repeat run gives it. <strong>Invariant replay</strong> rewords
+    the same evidence and asks whether the pathway depends on content or on form. The three
+    renderings give it. Invariant replay is the stronger test: a model can pass identical replay
+    by being deterministic about a surface pattern.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Qwen3, reserved</th><th class="num">Identical: same rule</th><th class="num">Invariant: same rule</th><th class="num">Identical: same citations</th><th class="num">Invariant: same citations</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">M0</td><td class="num">92.5%</td><td class="num">87.5%</td><td class="num">79.3%</td><td class="num">66.9%</td></tr>
+        <tr><td class="lbl">B0</td><td class="num">87.6%</td><td class="num">75.6%</td><td class="num">74.1%</td><td class="num">53.1%</td></tr>
+        <tr class="hi"><td class="lbl">B1</td><td class="num">79.2%</td><td class="num">63.1%</td><td class="num">55.6%</td><td class="num">33.1%</td></tr>
+      </tbody>
+      <caption>Identical replay: 1,423 calls matched between the original and repeat runs. Invariant replay: from the frozen pipeline (<code>reproducibility_checks.py</code>), canonical contexts with all three renderings present, 160 per condition. The gap between the two columns is the semantic component — what rewording adds beyond stochastic noise.</caption>
+    </table>
+  </div>
+  <p class="prose">So Qwen3's instability has two components, stochastic and semantic, and
+  <strong>both grow under cognitive memory</strong>. That sounds like a cost. It is not, because of
+  where the instability sits.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Both replays as error detectors — recall on two independent axes</h2>
+    <p>A replay that disagrees with itself contains at least one error. Precision is 100% on both
+    axes in every cell. Recall is what the model can see of its own mistakes.</p>
+  </div>
+  <div class="bars">
+    <svg viewBox="0 0 720 236" role="img" aria-label="Recall of identical and invariant replay detectors, Qwen3, by condition">
+      <g class="axis">
+        <line class="grid" x1="150" y1="14" x2="150" y2="210"/>
+        <line class="grid" x1="290" y1="14" x2="290" y2="210"/>
+        <line class="grid" x1="430" y1="14" x2="430" y2="210"/>
+        <line class="grid" x1="570" y1="14" x2="570" y2="210"/>
+        <line class="grid" x1="710" y1="14" x2="710" y2="210"/>
+        <text x="150" y="228" text-anchor="middle">0%</text>
+        <text x="290" y="228" text-anchor="middle">25%</text>
+        <text x="430" y="228" text-anchor="middle">50%</text>
+        <text x="570" y="228" text-anchor="middle">75%</text>
+        <text x="710" y="228" text-anchor="middle">100%</text>
+      </g>
+      <text class="lab" x="0" y="36">M0</text><text class="sub" x="0" y="50">pre-specified map</text>
+      <rect class="id"  x="150" y="22" width="54"  height="15" rx="2"/><text class="val" x="212" y="34">9.6%</text>
+      <rect class="inv" x="150" y="41" width="88"  height="15" rx="2"/><text class="val" x="246" y="53">15.7%</text>
+
+      <text class="lab" x="0" y="104">B0</text><text class="sub" x="0" y="118">raw evidence</text>
+      <rect class="id"  x="150" y="90"  width="90"  height="15" rx="2"/><text class="val" x="248" y="102">16.1%</text>
+      <rect class="inv" x="150" y="109" width="170" height="15" rx="2"/><text class="val" x="328" y="121">30.4%</text>
+
+      <text class="lab" x="0" y="172">B1</text><text class="sub" x="0" y="186">cognitive memory</text>
+      <rect class="id"  x="150" y="158" width="207" height="15" rx="2"/><text class="val" x="365" y="170">37.0%</text>
+      <rect class="inv" x="150" y="177" width="337" height="15" rx="2"/><text class="val" x="495" y="189">60.2%</text>
+    </svg>
+    <div class="legend"><span class="id">identical replay</span><span class="inv">invariant replay (rewording)</span></div>
+  </div>
+  <div class="pull">
+    <p><strong>The same doubling on both axes.</strong> Cognitive memory takes identical-replay
+    recall from 16% to 37% and invariant-replay recall from 30% to 60%. Two independent replays,
+    one gradient: M0 &lt; B0 &lt; B1. The pre-specified map alone makes Qwen3 <em>more</em>
+    consistently wrong; cognitive memory makes its errors self-exposing.</p>
+    <p>Why: under B1 the instability moves from right answers to wrong ones. Citation stability
+    among all-correct contexts rises from 32% to 49%; among contexts with an error it falls from
+    60% to 21%. The aggregate falls because errors got noisier, which is the detector working.
+    Terra shows the faithful pattern throughout — 96% stable when right, 0–11% when wrong — and
+    catches 73–100% of its own errors by replay.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-3">
+    <h2>What the extension becomes under this reading</h2>
+    <p>The theory's ordering is audit-ready → evaluable → functionally auditable →
+    audit-conformant, where the last rung compares the realised trace against a frozen reference
+    κ*. An LLM has no κ* for its rationale. Replay is the substitute: across repetitions the pathway
+    becomes its own reference. Reconstruction is the <em>functionally auditable</em> rung; replay is
+    what κ* does for cognitive memory, done without one.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Component</th><th>What it establishes</th><th>Reserved result</th><th>Role in the paper</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Reconstruction</td><td>Every trace can be followed, no critical violation</td><td class="num">96–100%, 2 violations / 4,800, one memory</td><td>Instrument integrity, reported once</td></tr>
+        <tr><td class="lbl">Identical replay</td><td>Stochastic stability; inconsistent errors exposed</td><td class="num">recall 16% → 37% under B1</td><td>Replay result, exploratory</td></tr>
+        <tr class="hi"><td class="lbl">Invariant replay</td><td>Content-dependence; inconsistent errors exposed</td><td class="num">recall 30% → 60% under B1</td><td><strong>The discriminating result</strong></td></tr>
+        <tr><td class="lbl">§15 join</td><td>Reconstruction alone is uninformative about reliability</td><td class="num">330 / 470 conformant traces wrong</td><td>Evidence for the caveat</td></tr>
+      </tbody>
+      <caption>Terra is at ceiling on every row and is the saturation control, as decided on 19 August.</caption>
+    </table>
+  </div>
+  <p class="thesis">Cognitive memory makes the LLM's pathway replay more consistently when it is
+  right and less consistently when it is wrong, so a larger share of its errors becomes
+  self-exposing. <em>That is a reconstruction-and-replay result</em>, and it is stronger stated that
+  way than as an audit result.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Caveats and the open decision</h2>
+  </div>
+  <ol class="dec">
+    <li><span class="did">1</span><span class="dq">Exploratory, post hoc, no intervals on recall.</span><span class="dr">Built on 22 August in answer to a question, after the audit was frozen. The per-memory clustering has not been applied to the recall quantities. One dataset, two models, 32 clusters.</span></li>
+    <li><span class="did">2</span><span class="dq">Identical replay exists for Qwen3 only.</span><span class="dr">No Terra repeat run. The invariant-replay axis covers both models.</span></li>
+    <li><span class="did">3</span><span class="dq">Reproducible from the package.</span><span class="dr"><code>scripts/auditability_without_oracle.py --repeat-run</code>, under the signed inspection records; outputs in <code>results/join/</code>. The audit pipeline itself still never reads the oracle.</span></li>
+    <li><span class="did">E1-L1</span><span class="dq">Pre-specified replication, or supplement as exploratory?</span><span class="dr">The clean replication is relabelling invariance — swap R01↔R02 in the delivered vocabulary on a fresh sample. Cheap, oracle-free, and it tests reasoning against surface matching directly.</span></li>
+  </ol>
+</section>
+
+<footer class="stack g-2">
+  <p><strong>Boundary.</strong> Neither detector reads the oracle. The oracle is read only to score
+  their recall, under <code class="mono">SIG-reserved-qwen3-inspection-2026-08-19-001</code> and
+  <code class="mono">SIG-reserved-terra-inspection-2026-08-19-001</code>, after both analyses were
+  frozen as §15 requires.</p>
+</footer>
+
+</div>

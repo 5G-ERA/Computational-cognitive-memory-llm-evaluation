@@ -1,0 +1,14 @@
+{
+  "requirement": "Protocol section 17: a second independent validator must reproduce deterministic error codes, critical status, case status and aggregate counts.",
+  "status": "REMOVED_BY_DECISION",
+  "decision": "E1-G1, Renxi Qiu, 22 August 2026: YES, the independent-reimplementation requirement of protocol section 17 is removed for Experiment 1. The fixture and canonicalisation requirements of the same section remain in force and are met.",
+  "consequence": "No second implementation was written and none will be. Every audit figure rests on a single implementation. Nothing here establishes that the results are independent of one implementer's reading of the contracts.",
+  "must_be_stated_in_the_paper": true,
+  "what_still_supports_the_numbers": [
+    "validation/oracle_independence_report.json: the same code reproduces its own outputs byte for byte inside a clean room containing no oracle artefact",
+    "validation/fixture_report.json: 13 deterministic fixtures with pre-declared expected case status and expected error codes, 100 percent agreement",
+    "contracts/*.json and contracts/error_ontology.yaml: every check carries an identifier, a definition, a severity, a detection mode and a case-status effect, so a second implementer has a specification rather than a codebase to copy"
+  ],
+  "blocks_gate_condition": null,
+  "previous_status": "NOT_SATISFIED"
+}

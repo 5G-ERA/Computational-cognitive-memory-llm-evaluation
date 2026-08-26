@@ -1,0 +1,101 @@
+{
+  "test": "oracle_independence",
+  "protocol_section": 4,
+  "clean_room": "/tmp/audit_cleanroom_hvz8wsmd",
+  "permitted_release_artefacts": [
+    "public",
+    "prompts/model_calls_v0_5_1.jsonl",
+    "data_v0_5_1/historical_events.jsonl",
+    "data_v0_5_1/current_events.jsonl",
+    "data_v0_5_1/rendering_map.csv",
+    "data_v0_5_1/split_manifest.csv",
+    "validation/SHA256SUMS.txt"
+  ],
+  "permitted_run_artefacts": [
+    "responses_raw.jsonl",
+    "responses_parsed.jsonl",
+    "call_registry.jsonl",
+    "run_manifest.json"
+  ],
+  "prohibited_files_found": [],
+  "prohibited_fields_found": [],
+  "pipeline_steps": [
+    {
+      "script": "build_audit_manifest.py",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "script": "audit_level1_io.py",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "script": "audit_m0_trace.py",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "script": "audit_b1_trace.py",
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "script": "aggregate_audit_results.py",
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "output_comparison": [
+    {
+      "file": "audit_errors.jsonl",
+      "identical": true,
+      "cleanroom_sha256": "50a8d2237507a3158f3b2c6645d1b1b9b9706f9ca2adce79d98686b787ed671a",
+      "reference_sha256": "50a8d2237507a3158f3b2c6645d1b1b9b9706f9ca2adce79d98686b787ed671a"
+    },
+    {
+      "file": "audit_case_summaries.jsonl",
+      "identical": true,
+      "cleanroom_sha256": "7f45a358c090b3656901cea787ec1f227b68f198ea87afa8d7f5cb6e8c6ac74b",
+      "reference_sha256": "7f45a358c090b3656901cea787ec1f227b68f198ea87afa8d7f5cb6e8c6ac74b"
+    },
+    {
+      "file": "audit_memory_summaries.csv",
+      "identical": true,
+      "cleanroom_sha256": "26596a2e22f68cfb9a631e54feff01a4f9f0b71d6cc560cf463d0640781f779a",
+      "reference_sha256": "26596a2e22f68cfb9a631e54feff01a4f9f0b71d6cc560cf463d0640781f779a"
+    },
+    {
+      "file": "audit_condition_metrics.csv",
+      "identical": true,
+      "cleanroom_sha256": "85807dcaa5055a46ca446487422d322d9477c5f3a7ee4a8e7276a0d5d8608014",
+      "reference_sha256": "85807dcaa5055a46ca446487422d322d9477c5f3a7ee4a8e7276a0d5d8608014"
+    },
+    {
+      "file": "audit_error_domains.csv",
+      "identical": true,
+      "cleanroom_sha256": "4a82ff9d4123e5c1a3f685115565c554a94afc4fa662592e1b6a01649b390ded",
+      "reference_sha256": "4a82ff9d4123e5c1a3f685115565c554a94afc4fa662592e1b6a01649b390ded"
+    },
+    {
+      "file": "audit_root_causes.csv",
+      "identical": true,
+      "cleanroom_sha256": "da108be45b1bcd41097a57d58580e02a35bb1f83225a8296eafd6fd9cfd334e2",
+      "reference_sha256": "da108be45b1bcd41097a57d58580e02a35bb1f83225a8296eafd6fd9cfd334e2"
+    },
+    {
+      "file": "audit_transition_matrix_M0_B1.csv",
+      "identical": true,
+      "cleanroom_sha256": "8d50bc9d03c38a6f8096aa487a2b86e554820f50e409346e9f8154fc1e2402e1",
+      "reference_sha256": "8d50bc9d03c38a6f8096aa487a2b86e554820f50e409346e9f8154fc1e2402e1"
+    },
+    {
+      "file": "audit_contrasts.json",
+      "identical": true,
+      "cleanroom_sha256": "f3e2a370bbb9ff3ac085fe84a932147aa438c8a14a4c346bc68ce200a9c971b0",
+      "reference_sha256": "f3e2a370bbb9ff3ac085fe84a932147aa438c8a14a4c346bc68ce200a9c971b0"
+    }
+  ],
+  "pass": true,
+  "release_blocker_if_failed": true
+}

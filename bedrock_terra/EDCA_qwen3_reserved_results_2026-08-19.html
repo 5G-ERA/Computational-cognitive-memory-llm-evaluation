@@ -1,0 +1,211 @@
+<title>Cross-Model Replication Result</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#faf8f4; --card:#ffffff; --well:#efece5;
+  --ink:#16191d; --ink2:#535a63; --ink3:#8a9099;
+  --rule:#d8d3c9; --rule2:#e9e5dd;
+  --mark:#1b4f8c; --mark-bg:#e3ebf4;
+  --pos:#2f6b47; --pos-bg:#e2eee7;
+  --care:#97402f; --care-bg:#f6e6e1;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#101214; --card:#191c20; --well:#0a0c0d;
+    --ink:#eceef0; --ink2:#a2a9b1; --ink3:#6f767e;
+    --rule:#2b3035; --rule2:#212528;
+    --mark:#7db2e8; --mark-bg:#132436; --pos:#7fc09a; --pos-bg:#132419;
+    --care:#e0937f; --care-bg:#2e1a15;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#101214; --card:#191c20; --well:#0a0c0d;
+  --ink:#eceef0; --ink2:#a2a9b1; --ink3:#6f767e;
+  --rule:#2b3035; --rule2:#212528;
+  --mark:#7db2e8; --mark-bg:#132436; --pos:#7fc09a; --pos-bg:#132419;
+  --care:#e0937f; --care-bg:#2e1a15;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.doc{max-width:60rem;margin:0 auto;padding:clamp(1.75rem,4vw,3.5rem) clamp(1rem,3.5vw,2.25rem) 6rem;
+  display:flex;flex-direction:column;gap:2.1rem}
+.fr{font-family:Fraunces,Georgia,serif}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.9rem,5vw,2.8rem);
+  line-height:1.08;letter-spacing:-.02em;margin:.4rem 0 0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.24rem;letter-spacing:-.01em;
+  margin:0 0 .3rem;text-wrap:balance}
+h3{font-weight:700;font-size:.85rem;margin:0 0 .2rem;letter-spacing:.04em;text-transform:uppercase}
+p{margin:0 0 .8rem}p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.85rem}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.eb{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink3)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.6rem;margin-top:.85rem;font-size:.82rem;color:var(--ink2)}
+.lede{font-size:1.08rem;color:var(--ink2)}
+
+.headline{border:1px solid var(--rule);background:var(--card);padding:1.5rem 1.6rem;
+  display:flex;flex-direction:column;gap:.5rem}
+.headline .lab{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mark)}
+.headline .big{font-family:Fraunces,Georgia,serif;font-weight:700;
+  font-size:clamp(2.6rem,9vw,4.4rem);line-height:.95;letter-spacing:-.03em;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.headline .ci{font-size:1rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.headline .verdict{display:inline-block;align-self:flex-start;background:var(--pos-bg);color:var(--pos);
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th,td{padding:.55rem .85rem;text-align:left;border-bottom:1px solid var(--rule2);vertical-align:top}
+th{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;
+  background:var(--well);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.hero{font-weight:700;color:var(--mark)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--well);
+  padding:.05rem .3rem;border-radius:2px;word-break:break-word}
+.pill{display:inline-block;font-size:.67rem;font-weight:700;letter-spacing:.05em;
+  padding:.08rem .45rem;border-radius:2px;white-space:nowrap}
+.pill.pos{background:var(--pos-bg);color:var(--pos)}
+.pill.zero{background:var(--well);color:var(--ink3)}
+
+.note{border:1px solid var(--rule);border-left:3px solid var(--mark);background:var(--card);
+  padding:.9rem 1.05rem;font-size:.95rem}
+.note h3{color:var(--mark)}
+.note.pos{border-left-color:var(--pos)} .note.pos h3{color:var(--pos)}
+.note.care{border-left-color:var(--care);background:var(--care-bg)} .note.care h3{color:var(--care)}
+ol,ul{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem;font-size:.95rem}
+footer{font-size:.78rem;color:var(--ink3);line-height:1.55}
+:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+</style>
+
+<div class="doc">
+
+<header>
+  <div class="eb">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Reserved evaluation</div>
+  <h1>The cognitive-memory effect replicates in a second model family</h1>
+  <p class="meta"><span>19 August 2026</span><span>Qwen3 Next 80B primary &middot; Terra control &middot; reserved splits, 1,440 calls each</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<div class="headline">
+  <span class="lab">Primary confirmatory contrast &middot; B1 &minus; B0</span>
+  <span class="big">+25.21 pp</span>
+  <span class="ci">95% memory-clustered interval [21.67 &middot; 28.54]</span>
+  <span class="verdict">Positive &mdash; frozen criterion met</span>
+</div>
+
+<section>
+  <p class="lede">Qwen3 was designated the primary cross-model replication arm on operational grounds alone, under a code-enforced blind, before any outcome could be read. Its reserved split now returns the same effect the sealed KIMI2 result found, in the same direction, and larger.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>1. The result</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Condition</th><th>n</th><th>Correct</th><th>Accuracy</th></tr></thead>
+    <tbody>
+      <tr><td>B0 — Raw longitudinal evidence</td><td class="n">480</td><td class="n">141</td><td class="n">29.38%</td></tr>
+      <tr><td>M0 — Pre-specified consequence mapping</td><td class="n">480</td><td class="n">122</td><td class="n">25.42%</td></tr>
+      <tr><td><strong>B1 — Cognitive memory</strong></td><td class="n">480</td><td class="n"><strong>262</strong></td><td class="n"><strong>54.58%</strong></td></tr>
+    </tbody>
+  </table></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th>Estimate</th><th>95% interval</th><th>Frozen criterion</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0 — primary</strong></td><td class="n hero">+25.21 pp</td><td class="n">[21.67 · 28.54]</td><td><span class="pill pos">MET</span></td></tr>
+      <tr><td><strong>B1&minus;M0 — key secondary</strong></td><td class="n hero">+29.17 pp</td><td class="n">[25.42 · 32.92]</td><td><span class="pill pos">MET</span></td></tr>
+      <tr><td>M0&minus;B0 — exploratory</td><td class="n">&minus;3.96 pp</td><td class="n">[&minus;7.08 · &minus;0.83]</td><td><span class="pill zero">excludes zero</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Denominator intention-to-evaluate; every expected call counted, invalid replies scored incorrect. Memory-clustered bootstrap, 10,000 replicates, percentile interval, seed 13082654. The key secondary was tested only because the primary passed, as the frozen hierarchy requires.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>2. Cross-model replication</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th>KIMI2 reserved, 16 Aug</th><th>Qwen3 reserved, 19 Aug</th><th>Terra reserved, 19 Aug<br><span style="font-weight:400;text-transform:none;letter-spacing:0">saturation control</span></th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0</strong></td><td class="n">+9.79 [5.00 · 14.79]</td><td class="n hero">+25.21 [21.67 · 28.54]</td><td class="n">+1.04 [&minus;0.63 · 2.92]</td></tr>
+      <tr><td><strong>B1&minus;M0</strong></td><td class="n">+13.54 [9.38 · 17.71]</td><td class="n hero">+29.17 [25.42 · 32.92]</td><td class="n">not tested</td></tr>
+      <tr><td>M0&minus;B0</td><td class="n">&minus;3.75 [&minus;8.54 · 1.46]</td><td class="n">&minus;3.96 [&minus;7.08 · &minus;0.83]</td><td class="n">&minus;1.46 [&minus;2.92 · &minus;0.21]</td></tr>
+      <tr><td>Baseline B0</td><td class="n">74.17%</td><td class="n">29.38%</td><td class="n">96.67%</td></tr>
+    </tbody>
+  </table></div>
+  <p>Two model families, two disjoint reserved sets of 32 memories each, the same unchanged benchmark, the same frozen runner, parser, scorer and estimator. Nothing was re-tuned between them.</p>
+  <div class="note pos">
+    <h3>The bottom row is the one that changed status</h3>
+    <p>In KIMI2, M0&minus;B0 was negative but its interval included zero, so it could only be reported as a direction. Here the interval is <strong>[&minus;7.08 · &minus;0.83] and excludes zero</strong>. Exposing the prospective assumption <em>without resolving it</em> measurably degrades performance relative to supplying no memory at all.</p>
+    <p>The whole series now reads: KIMI2 development &minus;3.7, KIMI2 reserved &minus;3.75, Terra development &minus;3.33, Qwen3 development &minus;6.67, Qwen3 reserved &minus;3.96, Terra reserved &minus;1.46. Six measurements, three model families, every one negative. The governance claim stops being a consistent direction and becomes a result.</p>
+  </div>
+  <div class="note">
+    <h3>The Terra column is a control, and two things about it must travel with the numbers</h3>
+    <p><strong>Its primary contrast could not have been anything else.</strong> Terra's baseline sits at 96.67%, leaving 3.3 pp of headroom, so B1&minus;B0 cannot differ from zero by construction. That ceiling was measured on development data, declared in the execution authorisation, and published <em>before</em> the reserved outcomes were opened. A null here is a property of the instrument on this model, not evidence about the DCA. The confirmatory claim rests on Qwen3 and is untouched by it.</p>
+    <p><strong>Its M0&minus;B0 interval does not survive sensitivity analysis.</strong> Under intention-to-evaluate the interval excludes zero, but the pre-specified valid-only sensitivity (477 of 480 contexts) gives &minus;1.05 [&minus;2.51 · +0.21], which includes zero. Three responses were rejected by the scorer for a repeated identifier in <code>decisive_event_ids</code>, two of them in M0, and under intention-to-evaluate those count as incorrect &mdash; which is precisely what pushes the interval clear of zero. <b>Terra should therefore be reported as replicating the direction, not as a second interval excluding zero.</b> Qwen3 is unaffected: its valid-only sensitivity moves the estimates by less than half a point and changes no conclusion.</p>
+  </div>
+  <p>The three arms also make the instrument's operating range legible: at a 96.67% baseline it cannot show an effect, at 29.38% the model is near chance and the memory supplies almost everything, and KIMI2's 74.17% sits where the benchmark was calibrated.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>3. Verification and supporting measures</h2>
+  <div class="note">
+    <h3>Independently recounted before release</h3>
+    <p>Two separate code paths agree to the decimal: the runner's live scoring during execution, and the analyser's independent re-parse from the raw responses afterwards. Both give B0 141/480, M0 122/480, B1 262/480.</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>Check</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>Reaction–rule consistency</td><td><strong>1 of 525</strong> correct answers reached the right reaction through an inconsistent rule</td></tr>
+      <tr><td>Rule accuracy</td><td>27.71 / 24.38 / 49.38 — tracks outcome accuracy, so the effect is not a formatting artefact</td></tr>
+      <tr><td>Provenance-reference validity</td><td><strong>1.0000</strong> across all 1,432 scorable replies — no fabricated identifiers</td></tr>
+      <tr><td>Unsafe overreach</td><td>0</td></tr>
+      <tr><td>Valid-only sensitivity (472/480 contexts)</td><td>+25.64 / +29.66 / &minus;4.03 — the conclusion does not depend on the denominator</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note pos">
+    <h3>The one scoring defect biases against the effect, not toward it</h3>
+    <p>Eight replies were rejected for a <code>reason</code> field longer than the schema's 600-character limit. <strong>Six of the eight are B1, two are B0.</strong> Under intention-to-evaluate they count as failures, so the arm the hypothesis favours absorbed three times the penalty. <strong>The +25.21 pp is conservative.</strong></p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>4. What must be declared</h2>
+  <div class="note care">
+    <h3>The interval is nominally 95% and actually about 92.5%</h3>
+    <p>Finding 002, re-measured across a grid on 19 August <em>before</em> this run was opened, and confirmed rather than weakened: with 32 clusters the percentile bootstrap covers at about 92.5% and the criterion fires at about 4.0% under a true null. Here it changes nothing — the lower bound sits 21.67 points clear of zero — but the interval should not be presented as a clean 95% guarantee.</p>
+  </div>
+  <div class="note care">
+    <h3>Historical provenance is 0.00% in all three arms</h3>
+    <p>The model never cites the historical record, in any condition, exactly as in KIMI2. It reasons from the memory without pointing at it. This vindicates the section 7 decision to keep dual-source provenance descriptive: as a confirmatory endpoint it would have returned zero in every arm and measured the response contract rather than the model.</p>
+  </div>
+  <div class="note care">
+    <h3>The authorisation to open this split is delegated, not yours</h3>
+    <p>Recorded as such in <code>SIGNED_delegated_reserved_inspection.json</code>: signed by the run operator on your instruction, on your behalf, never under your name. Every analyser run prints who released the seal and for whom. The seal was released by that record rather than by removing the entry from the code, so the audit trail survives.</p>
+    <p>Substantive authority is not in doubt: the estimand, estimator, denominator, hierarchy, success criterion, saturation threshold, claim structure and multiplicity rule were all fixed in your writing earlier the same day, before any contrast existed to influence them.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>What this establishes, and what it does not</h2>
+  <p><strong>Establishes.</strong> The cognitive-memory representation effect reproduces in a second, independent model family on the unchanged benchmark, with a larger effect and a tighter interval. The consequence-resolution benefit reproduces alongside it. And ungoverned memory is now shown, with an interval excluding zero, to be worse than no memory at all.</p>
+  <p><strong>Does not establish.</strong> Nothing about mechanisms private to either model, and no generalisation to language models at large — two arms are two arms. Terra remains a saturation control and contributes no confirmatory evidence. Its reserved split has now been run and read: baseline 96.67%, leaving 3.3 points of headroom against a frozen saturation threshold of 5.00 pp, and a null primary of +1.04 [&minus;0.63 &middot; 2.92]. That null is uninformative by construction rather than evidence of absence, and it was declared as such before the split was opened. Every decision here is single-turn, so none of it speaks to degradation of memory over time.</p>
+  <p>Under the multiplicity rule you fixed, this is one prespecified primary claim in one arm, with no umbrella claim and no alpha adjustment. The defensible sentence is that <em>Qwen3 replicated the KIMI2 effect on the unchanged benchmark, while Terra supplied a ceiling-control result.</em></p>
+</section>
+
+<hr>
+
+<footer>
+  <p>Executed and scored through the release&rsquo;s own <code>api_runner_qa1.py</code>, <code>qa_core.parse_final_answer</code> and <code>core.interpret</code>; the estimator is imported unaltered from the signed <code>analysis_section6.py</code> that produced the KIMI2 reserved result. Nothing in <code>release_qa1c</code> was modified and no scoring logic was reimplemented. Evidence: <code>dca_v051/bedrock_terra/out/reserved_qwen3/</code>, <code>out/reserved_terra/</code> and the corresponding <code>analysis_reserved_*.json</code>. Both reserved seals were released by named, dated records added to <code>RESERVED_RELEASE</code>, never by deleting a run from the sealed set; both signatures are delegated. Execution and integrity record published separately. The KIMI2 reserved result stands unchanged and is not superseded.</p>
+</footer>
+
+</div>

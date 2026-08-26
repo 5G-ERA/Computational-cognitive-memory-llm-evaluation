@@ -1,0 +1,18 @@
+{
+  "split": "development",
+  "expected_calls": 360,
+  "unique_call_ids": 360,
+  "frozen_call_registry_count": 360,
+  "counts_agree": true,
+  "conditions": {
+    "B0_LLM_ALONE": 120,
+    "B1_VERIFIED_MEMORY": 120,
+    "M0_OPEN_LOOP_MEMORY": 120
+  },
+  "renderings": {
+    "CHRONOLOGICAL": 120,
+    "CONCISE": 120,
+    "STRUCTURED": 120
+  },
+  "memories": 8
+}

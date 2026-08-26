@@ -1,0 +1,61 @@
+{
+  "contract_id": "AGREE-1.0",
+  "parent_release": "v0.5.1-qa1c",
+  "purpose": "Protocol section 17 requires a second independent validator to reproduce deterministic error codes, critical status, case status and aggregate counts. This contract states exactly what must agree, so that a disagreement is evidence about the implementations and not about an unstated convention.",
+
+  "must_agree": [
+    {"dimension": "error_codes",
+     "definition": "For every (call_id, audit_level) pair, the SET of error codes raised, per reading.",
+     "tolerance": "exact set equality"},
+    {"dimension": "critical_status",
+     "definition": "For every (call_id, audit_level, reading), the boolean `critical`.",
+     "tolerance": "exact"},
+    {"dimension": "case_status",
+     "definition": "For every (call_id, audit_level, reading), the case status from the section 10 precedence.",
+     "tolerance": "exact"},
+    {"dimension": "aggregate_counts",
+     "definition": "Per (audit_level, condition, reading): expected, evaluable, reconstructible, conformant, critical.",
+     "tolerance": "exact integer equality"}
+  ],
+
+  "out_of_scope_for_agreement": [
+    {"item": "bootstrap and permutation intervals",
+     "reason": "Resampling is stochastic. The section 17 requirement names aggregate counts, not interval endpoints. Both implementations should use 10,000 resamples and seed 13082652, but the intervals are not compared."},
+    {"item": "root_cause_id string",
+     "reason": "An opaque handle. The PRIMARY error code is compared instead; the id is free."},
+    {"item": "message and evidence fields on an error row",
+     "reason": "Human-readable diagnostics. The code, severity, domain and status effect carry the meaning and are all fixed by contracts/error_ontology.yaml."},
+    {"item": "trace_completeness",
+     "reason": "Declared descriptive by protocol section 13 and emitted as null in this release; it can never override a critical violation, so it cannot change any compared dimension."},
+    {"item": "file layout and ordering inside the output files",
+     "reason": "Compared as keyed records, not as bytes."}
+  ],
+
+  "conventions_that_would_otherwise_be_implicit": {
+    "root_cause_primary_selection": "Among the distinct codes on a case, take the one with the lowest index in error_ontology.yaml root_cause_priority. If two codes share an index (they cannot, the list is unique) or a code is absent from the list, order by rank then by code string ascending. Every other distinct code is secondary.",
+    "reading_filter": "An error row carries `reading` of BOTH, LITERAL or SCOPED. The LITERAL view takes rows whose reading is BOTH or LITERAL. The SCOPED view takes rows whose reading is BOTH or SCOPED, and additionally drops any row whose code has evaluable_in_v0_5_1_qa1c=false in the ontology.",
+    "case_status_when_no_errors": "CONFORMANT.",
+    "b0_level2": "Emitted as a case row at audit_level L2_B0 with case_status NOT_APPLICABLE and structural_status NOT_APPLICABLE_BY_CONDITION_DESIGN. It is never NOT_EVALUABLE and never contributes an error.",
+    "evaluable": "case_status != NOT_EVALUABLE.",
+    "reconstructible": "case_status is one of CONFORMANT, INCOMPLETE, NONCONFORMANT. A critical or not-evaluable case is not reconstructible.",
+    "one_error_row_per_finding": "A check that finds several offending identifiers emits ONE row listing them, not one row per identifier. Domain prevalence therefore counts findings, not identifiers.",
+    "scope_violation_is_a_hard_error": "Raising a code outside the scopes declared for it in error_ontology.yaml must abort, not warn. A validator that silently accepts an out-of-scope code is not conformant to this contract.",
+    "unparseable_response": "When the parsed response is not a JSON object, emit E0_SCHEMA_INVALID and stop that case: no citation, grounds, scope or coherence check runs on it.",
+    "missing_artefact": "When payload, raw response, terminal record or parsed record is absent, emit the corresponding E0 code and stop that case."
+  },
+
+  "reference_inputs_for_the_agreement_run": {
+    "release": "release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c",
+    "runs": ["bedrock_terra/out/dev_terra", "bedrock_terra/out/dev_qwen3"],
+    "split": "development",
+    "expected_calls_per_run": 360,
+    "memory_groups": 8
+  },
+
+  "validator_must_not_read": [
+    "audit_extension/scripts/",
+    "audit_extension/results/",
+    "audit_extension/validation/",
+    "any file listed in mappings/v0_5_1_qa1c_to_audit_schema.json ORACLE_QUARANTINE.prohibited_in_clean_room"
+  ]
+}

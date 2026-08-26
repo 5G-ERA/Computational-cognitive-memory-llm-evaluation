@@ -1,0 +1,228 @@
+<title>Bedrock Arm Pre-Flight QA</title>
+<style>
+:root{
+  --paper:#f7f7f4; --raised:#ffffff; --ink:#1b1f26; --ink-soft:#5a616c;
+  --rule:#dcdcd4; --rule-soft:#ebebe4;
+  --accent:#1f5f6b; --accent-soft:#e3eff0;
+  --alarm:#9c2f21; --alarm-soft:#f6e5e2;
+  --ok:#2f6b3f; --ok-soft:#e4efe6;
+  --warn:#8a6212; --warn-soft:#f5eddc;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14171b; --raised:#1b1f24; --ink:#e6e6df; --ink-soft:#9aa1ab;
+    --rule:#2c323a; --rule-soft:#232830;
+    --accent:#6fbecb; --accent-soft:#16323a;
+    --alarm:#e2897c; --alarm-soft:#37201d;
+    --ok:#8cc79a; --ok-soft:#1c2c21;
+    --warn:#d8ac52; --warn-soft:#302711;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14171b; --raised:#1b1f24; --ink:#e6e6df; --ink-soft:#9aa1ab;
+  --rule:#2c323a; --rule-soft:#232830;
+  --accent:#6fbecb; --accent-soft:#16323a;
+  --alarm:#e2897c; --alarm-soft:#37201d;
+  --ok:#8cc79a; --ok-soft:#1c2c21;
+  --warn:#d8ac52; --warn-soft:#302711;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:Georgia,"Iowan Old Style","Times New Roman",serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:74ch;margin:0 auto;padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2rem) 6rem;
+  display:flex;flex-direction:column;gap:2.4rem}
+.sans{font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.eyebrow{font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+h1{font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.12;letter-spacing:-.022em;
+  font-weight:700;margin:.5rem 0 0;text-wrap:balance}
+h2{font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.24rem;letter-spacing:-.01em;font-weight:700;margin:0 0 .2rem;text-wrap:balance}
+h3{font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:.98rem;font-weight:700;margin:0 0 .1rem}
+p{margin:0 0 .85rem}
+p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.7rem}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:.35rem 1.4rem;font-size:.82rem;color:var(--ink-soft);
+  font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;margin-top:.9rem}
+.lede{font-size:1.09rem;color:var(--ink-soft)}
+.verdicts{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.v{border:1px solid var(--rule);background:var(--raised);padding:.95rem 1.05rem;
+  display:flex;flex-direction:column;gap:.3rem;border-top:3px solid var(--rule)}
+.v.alarm{border-top-color:var(--alarm)} .v.warn{border-top-color:var(--warn)} .v.ok{border-top-color:var(--ok)}
+.v .tag{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.v.alarm .tag{color:var(--alarm)} .v.warn .tag{color:var(--warn)} .v.ok .tag{color:var(--ok)}
+.v .txt{font-size:.92rem;line-height:1.45}
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--raised)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;
+  font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif}
+th,td{padding:.55rem .8rem;text-align:left;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+th{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  font-weight:700;background:var(--paper)}
+tbody tr:last-child td{border-bottom:0}
+td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.pill{display:inline-block;padding:.05rem .45rem;border-radius:2px;font-size:.72rem;font-weight:700;letter-spacing:.02em}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.no{background:var(--alarm-soft);color:var(--alarm)}
+.pill.mid{background:var(--warn-soft);color:var(--warn)}
+blockquote{margin:0;padding:.85rem 1.1rem;background:var(--alarm-soft);
+  border-left:3px solid var(--alarm);font-size:.95rem}
+blockquote.note{background:var(--accent-soft);border-left-color:var(--accent)}
+ol,ul{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.5rem}
+li{padding-left:.15rem}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+  background:var(--rule-soft);padding:.06rem .3rem;border-radius:2px}
+.decision{border:1px solid var(--rule);background:var(--raised);padding:1rem 1.15rem;
+  display:flex;flex-direction:column;gap:.35rem}
+.decision .who{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:700}
+footer{font-size:.8rem;color:var(--ink-soft);
+  font-family:ui-sans-serif,-apple-system,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Cognitive Memory Benchmark v0.5.1 &middot; Pre-flight QA</div>
+  <h1>Bedrock arms: measured, not assumed</h1>
+  <p class="meta"><span>19 August 2026</span><span>External QA operator</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<section>
+  <p class="lede">Two candidate arms on Amazon Bedrock — GPT-5.6 Terra and Qwen3 Next 80B — were probed end to end before any protocol decision was taken. All work ran on the <strong>development split</strong>. The reserved split was not touched, and <code>release_qa1c</code> verifies PASS (128 files, 0 changed, 0 unlisted).</p>
+</section>
+
+<div class="verdicts">
+  <div class="v alarm"><span class="tag">Blocking</span><span class="txt"><strong>Terra shows a ceiling effect.</strong> Baseline B0 measured 98.33%. B1&minus;B0 = 0.00 pp.</span></div>
+  <div class="v warn"><span class="tag">Amendment</span><span class="txt"><strong>No determinism on either arm.</strong> <code>seed</code> is accepted and not honoured, measured on both.</span></div>
+  <div class="v ok"><span class="tag">Clear</span><span class="txt"><strong>The frozen parser transfers unchanged.</strong> 360/360 valid, zero schema errors.</span></div>
+</div>
+
+<hr>
+
+<section>
+  <h2>1. The finding that decides the campaign</h2>
+  <p>The full development split was executed against Terra through the release&rsquo;s own <code>api_runner_qa1.py</code> and scorer — no scoring logic was reimplemented, so these numbers are produced by the same code that produced the sealed Kimi results.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Condition</th><th>n</th><th>Reaction accuracy</th><th>Rule accuracy</th></tr></thead>
+    <tbody>
+      <tr><td>B0 — LLM alone</td><td class="num">120</td><td class="num">98.33%</td><td class="num">98.33%</td></tr>
+      <tr><td>B1 — verified memory</td><td class="num">120</td><td class="num">98.33%</td><td class="num">98.33%</td></tr>
+      <tr><td>M0 — open-loop memory</td><td class="num">120</td><td class="num">95.00%</td><td class="num">95.00%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th>Terra (dev)</th><th>Kimi (dev)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0 — primary</strong></td><td class="num">0.00 pp</td><td class="num">+9.6 pp</td></tr>
+      <tr><td>B1&minus;M0</td><td class="num">+3.33 pp</td><td class="num">+15.2 pp</td></tr>
+      <tr><td>M0&minus;B0</td><td class="num">&minus;3.33 pp</td><td class="num">&minus;3.7 pp</td></tr>
+    </tbody>
+  </table></div>
+  <blockquote>The baseline sits at 98.33%, leaving roughly 1.7 points of headroom. The primary contrast cannot be meaningfully non-zero, and it measured exactly zero. <strong>This is not evidence that DCA fails.</strong> It is the instrument failing to discriminate: v0.5.1 was calibrated against a model with a ~74% baseline, and Terra enters at 98%.</blockquote>
+  <p>One signal survives. <strong>M0&minus;B0 = &minus;3.33 pp</strong> against Kimi&rsquo;s &minus;3.7 pp: open-loop memory mildly <em>harms</em> performance in both models. That is a cross-model reproduction of the only contrast Terra can still resolve, and it is consistent with the sealed result.</p>
+</section>
+
+<section>
+  <h2>2. Where the ceiling is not</h2>
+  <p>The aggregate hides the structure. Every one of the ten errors in the 360-call run is <strong>the same error, on the same two canonical contexts, in one template family</strong>. Four of the five families are perfect in all three conditions.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Template family</th><th>B0</th><th>M0</th><th>B1</th></tr></thead>
+    <tbody>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="num">24/24</td><td class="num">24/24</td><td class="num">24/24</td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="num">24/24</td><td class="num">24/24</td><td class="num">24/24</td></tr>
+      <tr><td>RECURRENCE</td><td class="num">24/24</td><td class="num">24/24</td><td class="num">24/24</td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="num">24/24</td><td class="num">24/24</td><td class="num">24/24</td></tr>
+      <tr><td><strong>TEMPORAL_GAP</strong></td><td class="num">22/24</td><td class="num"><strong>18/24</strong></td><td class="num">22/24</td></tr>
+    </tbody>
+  </table></div>
+  <p>The failure mode is single and nameable. On TEMPORAL_GAP contexts whose oracle answer is a <em>commitment</em> (CAN51-0017 &rarr; <code>TAILOR_SUPPORT</code>, CAN51-0021 &rarr; <code>CONTINUE_SUPPORT</code>, both with hidden <code>evidence: COMPLETE</code>), the model instead returns <code>WAIT_FOR_EVIDENCE</code> / <code>R02_EVIDENCE_INCOMPLETE</code> &mdash; which is the correct answer for the <em>other</em> contexts in that family. Faced with a temporal gap it falls back to the family&rsquo;s modal answer rather than resolving the gap. No other error occurs anywhere in the run.</p>
+  <p>Restricting to the only family with headroom separates the two mechanisms the benchmark conflates:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th>All families (n=120)</th><th>TEMPORAL_GAP (n=24)</th><th>Kimi dev</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0 — resolution</strong></td><td class="num">0.00 pp <span class="mono">(2/2)</span></td><td class="num">0.00 pp <span class="mono">(2/2)</span></td><td class="num">+9.6 pp</td></tr>
+      <tr><td><strong>B1&minus;M0 — governance</strong></td><td class="num">+3.33 pp <span class="mono">(4/0)</span></td><td class="num"><strong>+16.67 pp</strong> <span class="mono">(4/0)</span></td><td class="num">+15.2 pp</td></tr>
+      <tr><td>M0&minus;B0</td><td class="num">&minus;3.33 pp <span class="mono">(0/4)</span></td><td class="num">&minus;16.67 pp <span class="mono">(0/4)</span></td><td class="num">&minus;3.7 pp</td></tr>
+    </tbody>
+  </table></div>
+  <blockquote class="note"><strong>A dissociation, offered as a hypothesis and nothing more.</strong> Terra gains nothing from the resolution DCA performs &mdash; it already resolves &mdash; but it is still harmed by ungoverned memory, and on the hard family the harm is large and every discordant pair runs the same way (4/0 and 0/4, no reversals). The governance half of the mechanism does not require capability headroom in the way the resolution half does: a model that cannot get more correct can always be made less correct.</blockquote>
+  <p>The statistics do not support asserting this. Discordant counts of 4/0 give an exact two-sided <em>p</em> = 0.125; two canonical contexts drive every number in the table; the endpoint is non-deterministic, so B1&minus;B0 = 0.00 pp cannot be distinguished from run-to-run noise at this scale. This is a subgroup identified <em>after</em> seeing the results. It is a hypothesis for pre-registration, not a finding.</p>
+</section>
+
+<section>
+  <h2>3. Gate results, both arms</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Gate</th><th>Terra</th><th>Qwen3 Next 80B</th></tr></thead>
+    <tbody>
+      <tr><td>A1 — system message respected</td><td><span class="pill ok">PASS</span></td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td>A2 — <code>response_format</code></td><td><span class="pill ok">accepted, JSON</span></td><td><span class="pill ok">accepted, JSON</span></td></tr>
+      <tr><td>Determinism</td><td><span class="pill no">none</span></td><td><span class="pill no">none</span></td></tr>
+      <tr><td>Output ceiling field</td><td><code>max_completion_tokens</code></td><td><code>max_completion_tokens</code></td></tr>
+      <tr><td>Reasoning markers in content</td><td><span class="pill ok">none</span></td><td><span class="pill ok">none</span></td></tr>
+      <tr><td>Frozen parser on a real call</td><td><span class="pill ok">VALID, 0 errors</span></td><td><span class="pill ok">VALID, 0 errors</span></td></tr>
+      <tr><td>Statelessness</td><td><span class="pill ok">PASS</span></td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td><code>reasoning_effort</code></td><td>low / medium / high</td><td><span class="pill mid">low / medium</span></td></tr>
+    </tbody>
+  </table></div>
+  <p><strong><code>extraction_policy.json</code> needs no change on either arm.</strong> Neither model emits think markers in <code>content</code>, so the frozen policy parses the whole message. This was the largest identified risk in the migration — the Kimi marker list, and defect 001 with it, was expected to require per-arm re-derivation. It does not.</p>
+</section>
+
+<section>
+  <h2>4. Determinism: a global amendment, not a per-arm one</h2>
+  <p>The frozen configuration specifies <code>temperature: 0</code> and <code>seed: 13082642</code>. On Terra, <code>temperature: 0</code> is rejected outright: <em>&ldquo;Only the default (1) value is supported.&rdquo;</em> On both arms <code>seed</code> is <strong>accepted and silently ignored</strong> — three identical calls with a fixed seed produced three different outputs on each model.</p>
+  <blockquote class="note"><strong>Correction to an earlier recommendation.</strong> The two-arm design was proposed partly on the grounds that Qwen3 would preserve the frozen determinism clause, leaving any amendment scoped to a single arm. Measurement disproves that. The amendment is global. Cross-model replication still justifies two arms; the reproducible-anchor argument does not survive.</blockquote>
+  <p>Consequences are narrower than they appear. The causal contrast is unaffected — generation noise is variance, not bias, and the clustered bootstrap already propagates it. What changes is that exact numerical replication becomes impossible, and the estimand shifts from <em>the effect in this system</em> to <em>the expected effect over the model&rsquo;s output distribution</em>. Both are declarable in one sentence of the protocol annex.</p>
+  <p>Run-to-run variability was measured directly on Terra (one development memory, 45 calls &times; 3 executions): byte-identical text 2.2%, identical decision 77.8%, <strong>identical scored correctness 100%</strong>, accuracy shift 0.00 pp. The variation lives in phrasing and evidence citation, not in the reaction. That figure is currently confounded by the ceiling and must be re-measured if a viable arm is found.</p>
+</section>
+
+<section>
+  <h2>5. Terra cannot be version-pinned</h2>
+  <p>There is no dated variant of <code>openai.gpt-5.6-terra</code>, the response echoes the alias rather than a resolved version, and <code>system_fingerprint</code> is null. Neither the configuration nor the response reveals what actually served the request. If AWS moves the model behind the alias mid-run, the data will not show it.</p>
+  <p>This is a limitation to declare, not to engineer around. Available mitigations: record the run window so the served version is bounded in time, and rely on an open-weights arm as the reproducible anchor of the pair.</p>
+</section>
+
+<section>
+  <h2>6. Cost and operations</h2>
+  <p>Measured, not estimated. Terra consumes ~1,820 input and ~110 output tokens per call against Kimi&rsquo;s 1,495-token output mean — roughly thirteen times more output-efficient. A full 1,800-call arm costs approximately <strong>US$9</strong> on Terra and under <strong>US$3</strong> on Qwen3. Truncation risk at the frozen 4,096 ceiling is effectively nil, against 4.0% measured on the sealed Kimi run.</p>
+  <p>Cost is not a constraint on this campaign. A client-side hard spend cap is enforced per call by the adapter, since Bedrock has no native spend limit and AWS Budgets lags billing data by hours.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>Decisions required</h2>
+  <div class="decision">
+    <span class="who">Decision 1 &middot; blocking</span>
+    <h3>Arm selection, given the ceiling</h3>
+    <p>Terra cannot serve the primary endpoint as the benchmark stands. Options: harden the task set so a frontier baseline is not saturated (a redesign, and it breaks comparability with the sealed Kimi result); retain Terra only as a saturation control and run the primary on models with measured headroom; or select arms by measured baseline headroom rather than by capability tier. Qwen3&rsquo;s development split has since been run and the arm is <strong>eligible</strong>: 360/360 terminal, every frozen operational monitor at or near its floor, and the full reserved matrix feasible in about 1.6 hours for roughly US$0.59. Eligibility was decided on operational evidence alone, under a code-enforced blind, before any contrast was read.</p><p>Section 2 adds a fourth, cheaper option and one hazard. The ceiling is <em>not uniform</em>: difficulty is concentrated in TEMPORAL_GAP, and a frontier arm built around the difficulty structure that survives would not require rebuilding the dataset. The hazard is that this subgroup was identified after seeing results, and selecting the contexts where an effect can appear is the same error as defect D3 in benchmark v3.2. It is admissible only as a separately pre-registered design, declared as such, and never merged with the sealed result.</p>
+  </div>
+  <div class="decision">
+    <span class="who">Decision 2</span>
+    <h3>Determinism amendment</h3>
+    <p>The frozen <code>temperature</code>/<code>seed</code> clause cannot be satisfied on any Bedrock arm. Requesting approval to declare both arms non-deterministic and to restate the estimand accordingly.</p>
+  </div>
+  <div class="decision">
+    <span class="who">Decision 3</span>
+    <h3><code>reasoning_effort</code> — a new frozen parameter</h3>
+    <p>No Kimi analogue exists. It must be chosen and frozen before the development sweep. Proposed selection criterion: JSON validity and truncation rate only — <strong>never B1&minus;B0</strong>, which would repeat defect D3 of benchmark v3.2, tuning a parameter toward our own hypothesis.</p>
+  </div>
+  <div class="decision">
+    <span class="who">Decision 4</span>
+    <h3>Multiplicity</h3>
+    <p>Two arms constitute two confirmatory families. Recommended: two independent pre-registered replications, each carrying its own primary claim, requiring no alpha adjustment. Deciding this after seeing results forfeits confirmatory status.</p>
+  </div>
+</section>
+
+<hr>
+
+<footer>
+  <p>Provenance: all measurements on the DEVELOPMENT split, executed through the frozen <code>api_runner_qa1.py</code>, <code>qa_core.parse_final_answer</code> and <code>core.interpret</code> with no reimplementation. The reserved 1,440-call split remains untouched. The sealed Kimi result (B1&minus;B0 = +9.79 pp, 95% CI [5.00, 14.79]) stands unchanged and is not superseded by this work. Evidence: <code>dca_v051/bedrock_terra/out/</code>.</p>
+</footer>
+
+</div>

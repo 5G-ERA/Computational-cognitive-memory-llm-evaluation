@@ -1,0 +1,3 @@
+{"call_id": "CALL51-0000302", "terminal_status": "COMPLETED_VALID", "condition": "M0_OPEN_LOOP_MEMORY", "memory_id": "MEM51-0007"}
+{"call_id": "CALL51-0000012", "terminal_status": "COMPLETED_VALID", "condition": "B1_VERIFIED_MEMORY", "memory_id": "MEM51-0001"}
+{"call_id": "CALL51-0000112", "terminal_status": "COMPLETED_VALID", "condition": "B0_LLM_ALONE", "memory_id": "MEM51-0003"}

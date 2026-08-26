@@ -1,0 +1,328 @@
+{
+  "contract_id": "L1-IO-1.2",
+  "parent_release": "v0.5.1-qa1c",
+  "applies_to_conditions": [
+    "B0_LLM_ALONE",
+    "M0_OPEN_LOOP_MEMORY",
+    "B1_VERIFIED_MEMORY"
+  ],
+  "canonicalisation": {
+    "order_of_operations": [
+      "unicode_normalise",
+      "trim_and_collapse_whitespace",
+      "normalise_identifier_case",
+      "fold_declared_aliases",
+      "sort_identifier_sets",
+      "drop_duplicates",
+      "absent_optional_as_null",
+      "retain_raw_in_side_field"
+    ],
+    "unicode_normalisation": "NFC",
+    "trim_and_collapse_whitespace": "replace every maximal run of whitespace with a single U+0020, then strip leading and trailing whitespace",
+    "normalise_identifier_case": "upper",
+    "declared_aliases": {},
+    "undeclared_alias_handling": "An identifier that is not a string is not repaired. It is recorded in undeclared_citations, excluded from the canonical set, and raises E0_SCHEMA_INVALID.",
+    "sort_identifier_sets": "ascending codepoint order after case normalisation",
+    "duplicate_handling": "Duplicates are removed from the canonical set and recorded separately; the presence of any duplicate raises E0_SCHEMA_INVALID via check L1.4.5.",
+    "absent_optional_as_null": true,
+    "reject_undeclared_aliases": true,
+    "retain_raw_in_side_field": "raw_value",
+    "reason_length_is_measured_on": "the RAW reason string as returned, not the canonicalised one, so that whitespace collapsing cannot bring an over-length reason inside the 600-character bound"
+  },
+  "record_integrity_checks": [
+    {
+      "id": "L1.1.1",
+      "check": "payload_exists_and_hash_matches",
+      "code": "E0_AUDIT_ARTEFACT_MISSING"
+    },
+    {
+      "id": "L1.1.2",
+      "check": "raw_response_exists",
+      "code": "E0_AUDIT_ARTEFACT_MISSING"
+    },
+    {
+      "id": "L1.1.3",
+      "check": "terminal_record_exists",
+      "code": "E0_TERMINAL_MISSING"
+    },
+    {
+      "id": "L1.1.4",
+      "check": "parsed_response_exists_or_parser_failure_recorded",
+      "code": "E0_AUDIT_ARTEFACT_MISSING"
+    },
+    {
+      "id": "L1.1.5",
+      "check": "identifiers_agree_across_artefacts",
+      "code": "E0_AUDIT_ARTEFACT_MISSING",
+      "identifiers": [
+        "call_id",
+        "memory_id",
+        "context_id",
+        "condition",
+        "rendering"
+      ]
+    },
+    {
+      "id": "L1.1.6",
+      "check": "payload_event_ids_unique_and_registered",
+      "code": "E1_CITATION_NONEXISTENT"
+    },
+    {
+      "id": "L1.1.7",
+      "check": "payload_events_belong_to_declared_memory",
+      "code": "E1_CITATION_NONEXISTENT"
+    },
+    {
+      "id": "L1.1.8",
+      "check": "payload_event_times_parseable_and_nondecreasing",
+      "code": "E1_TEMPORAL_ORDER_INVALID"
+    },
+    {
+      "id": "L1.1.9",
+      "check": "payload_registry_complete",
+      "code": "E0_INPUT_TRUNCATED",
+      "definition": "PAYLOAD REGISTRY COMPLETENESS. The payload carries every longitudinal record registered for the memory and every current record registered for the canonical context. Renamed from \"request_not_scientifically_truncated\" per decision B2: the check is about completeness against the registry, not about a provider truncating a request.",
+      "decision": "B2, Renxi Qiu, 22 August 2026: ratified and renamed PAYLOAD_REGISTRY_COMPLETE."
+    },
+    {
+      "id": "L1.1.10",
+      "check": "response_not_truncated",
+      "code": "E0_OUTPUT_TRUNCATED",
+      "definition": "finish_reason is a stop boundary, not a length boundary."
+    },
+    {
+      "id": "L1.1.11",
+      "check": "versions_match_frozen_release",
+      "code": "E0_VERSION_MISMATCH",
+      "pinned": {
+        "benchmark_version": "0.5.1-qa1b",
+        "response_schema_sha256": "AUTO",
+        "rule_vocabulary_sha256": "AUTO"
+      }
+    }
+  ],
+  "output_schema_checks": [
+    {
+      "id": "L1.2.1",
+      "check": "response_parseable",
+      "code": "E0_SCHEMA_INVALID"
+    },
+    {
+      "id": "L1.2.2",
+      "check": "required_fields_present",
+      "code": "E0_SCHEMA_INVALID",
+      "required": [
+        "reaction",
+        "rule_id",
+        "decisive_event_ids",
+        "reason"
+      ]
+    },
+    {
+      "id": "L1.2.3",
+      "check": "reaction_in_public_vocabulary",
+      "code": "E0_SCHEMA_INVALID"
+    },
+    {
+      "id": "L1.2.4",
+      "check": "rule_in_public_rules",
+      "code": "E0_SCHEMA_INVALID"
+    },
+    {
+      "id": "L1.2.5",
+      "check": "cited_events_are_valid_identifier_array",
+      "code": "E0_SCHEMA_INVALID"
+    },
+    {
+      "id": "L1.2.6",
+      "check": "reason_present_within_bounds",
+      "code": "E0_SCHEMA_INVALID",
+      "max_length": 600
+    },
+    {
+      "id": "L1.2.7",
+      "check": "no_prohibited_hidden_field",
+      "code": "E0_SCHEMA_INVALID",
+      "prohibited": [
+        "oracle_reaction",
+        "oracle_rule_id",
+        "correct",
+        "label",
+        "gold"
+      ]
+    }
+  ],
+  "rule_outcome_compatibility": {
+    "R01_REVIEW_BOUNDARY": [
+      "ESCALATE_REVIEW"
+    ],
+    "R02_EVIDENCE_INCOMPLETE": [
+      "WAIT_FOR_EVIDENCE"
+    ],
+    "R03_DIFFERENT_FUNCTION": [
+      "WITHHOLD_ASSUMPTION"
+    ],
+    "R04_UNCERTAIN_FUNCTION": [
+      "WAIT_FOR_EVIDENCE"
+    ],
+    "R05_VERIFIED_SUCCESSOR": [
+      "TAILOR_SUPPORT"
+    ],
+    "R06_CONTRADICTED_PREDECESSOR": [
+      "WITHHOLD_ASSUMPTION"
+    ],
+    "R07_UNRESOLVED_VERIFICATION": [
+      "WAIT_FOR_EVIDENCE"
+    ],
+    "R08_PARTIALLY_CONFIRMED": [
+      "TAILOR_SUPPORT"
+    ],
+    "R09_SECONDARY_BARRIER": [
+      "TAILOR_SUPPORT"
+    ],
+    "R10_CONFIRMED_CONTINUATION": [
+      "CONTINUE_SUPPORT"
+    ]
+  },
+  "governance_conflation_checks": [
+    {
+      "id": "L1.3.1",
+      "code": "E4_REVIEW_DEFER_CONFLATED",
+      "definition": "reaction ESCALATE_REVIEW stated through a deferral rule (R02, R04, R07), or reaction WAIT_FOR_EVIDENCE stated through R01."
+    },
+    {
+      "id": "L1.3.2",
+      "code": "E4_NO_USE_UNRESOLVED_CONFLATED",
+      "definition": "reaction WITHHOLD_ASSUMPTION stated through an unresolved-evidence rule (R02, R04, R07), or reaction WAIT_FOR_EVIDENCE stated through a withholding rule (R03, R06)."
+    }
+  ],
+  "citation_checks": [
+    {
+      "id": "L1.4.1",
+      "check": "cited_identifier_exists",
+      "code": "E1_CITATION_NONEXISTENT"
+    },
+    {
+      "id": "L1.4.2",
+      "check": "cited_event_belongs_to_same_memory_or_canonical_context",
+      "code": "E1_CITATION_NONEXISTENT",
+      "definition": "A cited event that IS delivered in this payload passes. A cited event that is not delivered is checked against the registry: if it exists but its owning memory differs from the declared memory, raise E1_CITATION_NONEXISTENT. A current event's owning memory is resolved through its canonical context. This check never fires on a delivered event, so it cannot double-count with L1.4.3."
+    },
+    {
+      "id": "L1.4.3",
+      "check": "cited_event_visible_in_condition_payload",
+      "code": "E1_CITATION_NOT_VISIBLE"
+    },
+    {
+      "id": "L1.4.4",
+      "check": "cited_event_time_at_or_before_payload_evidence_cutoff",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "payload_evidence_cutoff": "max(event_time) over current_records delivered in this payload",
+      "decision": "B3, Renxi Qiu, 22 August 2026: ratified as the PAYLOAD EVIDENCE CUTOFF."
+    },
+    {
+      "id": "L1.4.5",
+      "check": "no_duplicate_citation_after_canonicalisation",
+      "code": "E0_SCHEMA_INVALID"
+    },
+    {
+      "id": "L1.4.6",
+      "check": "stated_source_matches_registry",
+      "code": "E2_SOURCE_MISATTRIBUTION",
+      "detection": "DETERMINISTIC_WHERE_SOURCE_TOKEN_IS_STRUCTURED",
+      "definition": "Scan the canonicalised reason for occurrences of the pattern EVT-[0-9]{7}. For each occurrence whose identifier exists in the registry, take the window of the reason from 80 characters before the match start to 80 characters after the match end, clipped to the string, lower-cased. Count how many source tokens from source_vocabulary appear in that window, matching either the underscored form or the same token with the underscore replaced by a single space. If EXACTLY ONE source token appears and it differs from the source the registry records for that event, raise E2_SOURCE_MISATTRIBUTION. Zero tokens or two or more tokens in the window raise nothing: the attribution is not unambiguously stated.",
+      "source_vocabulary": [
+        "patient_report",
+        "support_record",
+        "administrative_record",
+        "authorised_review"
+      ],
+      "window_chars": 80
+    }
+  ],
+  "grounds_coverage_checks": [
+    {
+      "id": "L1.5.1",
+      "code": "E1_CURRENT_GROUNDS_MISSING",
+      "definition": "The response asserts current applicability (reaction CONTINUE_SUPPORT or TAILOR_SUPPORT) but cites no record delivered in current_records.",
+      "decision": "B4, Renxi Qiu, 22 August 2026: ratified."
+    },
+    {
+      "id": "L1.5.2",
+      "code": "E1_HISTORICAL_GROUNDS_MISSING",
+      "definition": "The stated rule asserts a historical relation (R05, R06, R07, R08, R10) but no record delivered in longitudinal_records is cited.",
+      "decision": "B4, Renxi Qiu, 22 August 2026: ratified."
+    },
+    {
+      "id": "L1.5.3",
+      "code": "E4_INFLUENCE_UNEXPLAINED",
+      "definition": "The canonicalised reason contains no occurrence of the pattern EVT-[0-9]{7}. Detector operates on the reason text only. See PROPOSED_AMENDMENTS.md A1: this check is proposed for demotion to INFO and its severity is the single largest determinant of the Level 1 estimand on this parent release.",
+      "decision": "A1, Renxi Qiu, 22 August 2026: demoted to INFO with no case-status effect. Reported descriptively as a reporting-style statistic.",
+      "severity_note": "INFO. Cannot change a case status."
+    },
+    {
+      "id": "L1.5.4",
+      "code": "E1_CITATION_IRRELEVANT",
+      "detection": "HUMAN",
+      "status_in_this_release": "DEFERRED_PENDING_RUBRIC_FREEZE",
+      "decision": "B4/B5, Renxi Qiu, 22 August 2026: human rubric only."
+    }
+  ],
+  "temporal_checks": [
+    {
+      "id": "L1.6.1",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "definition": "Deferred. 'Current event represented as formation evidence' has no oracle-free deterministic detector on this parent release: the claim lives in free text and the release publishes no structured grounds field. It is deferred to the frozen human rubric rather than approximated by a text heuristic, and raises nothing in this release.",
+      "status_in_this_release": "DEFERRED_PENDING_RUBRIC_FREEZE",
+      "decision": "B5, Renxi Qiu, 22 August 2026: human rubric only. Raises nothing deterministically."
+    },
+    {
+      "id": "L1.6.2",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "definition": "Successor-provenance event cited as predecessor evidence. Evaluated at Level 2 on B1 only (check B1.6.5), because the successor relation is a B1 trace field. Raises nothing at Level 1.",
+      "status_in_this_release": "EVALUATED_AT_L2_B1"
+    },
+    {
+      "id": "L1.6.2",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "definition": "A successor-provenance event is cited as predecessor evidence under R06."
+    },
+    {
+      "id": "L1.6.3",
+      "code": "E5_CURRENT_ROLE_HISTORICISED",
+      "definition": "A current-use outcome is written into a field the release marks immutable.",
+      "status_in_this_release": "INERT_NO_WRITABLE_HISTORICAL_FIELD"
+    }
+  ],
+  "scope_review": {
+    "automated": {
+      "id": "L1.7.1",
+      "code": "E2_SCOPE_OVERREACH",
+      "detector": "unsupported_clinical_or_causal_assertion_regex",
+      "pattern": "\\b(stop|increase|decrease|change) (the )?(dose|medicine|medication)|\\bdiagnos(e|is)|\\bcaused by the medicine\\b|\\bmust comply\\b",
+      "note": "Identical to the frozen release detector in scripts/core.py. Oracle independent: it reads only the response text."
+    },
+    "human": {
+      "id": "L1.7.2",
+      "classes": [
+        "SUPPORTED_WITHIN_SCOPE",
+        "LIMITATION_OMITTED_NO_MATERIAL_OVERREACH",
+        "MATERIAL_SCOPE_OVERREACH",
+        "UNSUPPORTED_CLINICAL_OR_CAUSAL_ASSERTION"
+      ],
+      "blinding": [
+        "model_identity",
+        "decision_correctness",
+        "hidden_reference",
+        "paired_condition_response"
+      ],
+      "status_in_this_release": "DEFERRED_PENDING_RUBRIC_FREEZE"
+    }
+  },
+  "contract_revision_note": "1.2 applies decisions A1, A2, B2, B3 and B10 of Renxi Qiu, 22 August 2026. 1.1 added operational definitions only.",
+  "primary_endpoint_status": {
+    "endpoint": "Input-output trace reconstructibility difference, B1 minus B0",
+    "role": "INSTRUMENT_INTEGRITY",
+    "decision": "A2, Renxi Qiu, 22 August 2026: declared an instrument-integrity endpoint, not a discriminating one. Deterministic Level 1 outcome sits at 97.5-100 percent in every condition once A1 is applied, because the public response schema has four fields and the frozen runner already rejects schema-invalid responses. The ceiling is to be stated explicitly and read as evidence that the retained artefacts support reconstruction in every condition."
+  }
+}

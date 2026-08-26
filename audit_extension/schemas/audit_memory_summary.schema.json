@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "audit_memory_summary",
+  "type": "object",
+  "required": ["memory_id","condition","audit_level","reading","expected","evaluable","reconstructible","conformant","critical"],
+  "additionalProperties": false,
+  "properties": {
+    "memory_id": {"type": "string"},
+    "condition": {"type": "string"},
+    "audit_level": {"type": "string"},
+    "reading": {"type": "string"},
+    "expected": {"type": "integer"},
+    "evaluable": {"type": "integer"},
+    "reconstructible": {"type": "integer"},
+    "conformant": {"type": "integer"},
+    "critical": {"type": "integer"},
+    "not_applicable": {"type": "integer"}
+  }
+}

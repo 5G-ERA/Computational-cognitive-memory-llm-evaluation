@@ -1,0 +1,1 @@
+{"provider":"mock","model":"mock-oracle-v1","api_url":"","api_key_env":"LLM_API_KEY","temperature":0,"top_p":1,"max_output_tokens":300,"timeout_seconds":120,"seed":13082642}

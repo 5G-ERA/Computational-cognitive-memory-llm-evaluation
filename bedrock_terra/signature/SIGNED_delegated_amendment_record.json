@@ -1,0 +1,39 @@
+{
+  "record_id": "SIG-xmodel-amendment-2026-08-19-001",
+  "record_type": "delegated_signature",
+  "is_owner_countersignature": false,
+  "covers": "EDCA_preexecution_amendment_record_2026-08-19.html",
+  "record_sha256": "c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2",
+
+  "authority_chain": [
+    "Cross-model replication amendment, Renxi Qiu, 19 August 2026 — Decisions 1 to 4 and the required pre-execution amendment record",
+    "Rulings of 19 August 2026 by the decision owner: saturation threshold 5.00 pp ACCEPT; post-signature analyst classification RATIFY; use of saturation for inclusion or selection PROHIBIT; Qwen3 retained regardless of baseline CONFIRM; primary confirmatory claim QWEN3 B1 MINUS B0; Terra DESCRIPTIVE, FULLY REPORTED; umbrella success claim NONE; multiplicity adjustment NONE",
+    "Instruction relayed by the operator on 19 August 2026: the operator signs in the decision owner's place, as on 16 August 2026"
+  ],
+
+  "signature": {
+    "signed_by": "Adrian",
+    "capacity": "run operator, signing on the delegated instruction of the project decision owner",
+    "on_behalf_of": "Renxi Qiu, project decision owner",
+    "date": "2026-08-19",
+    "record_sha256": "c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2",
+    "statement": "I approve the pre-execution amendment record, including the three prior-inspection disclosures in item 00, and authorise inspection of the Qwen3 development scientific contrasts under the analysis frozen in that record."
+  },
+
+  "scope": {
+    "released": "Qwen3 DEVELOPMENT split scientific contrasts only.",
+    "not_released": "The RESERVED split of any arm. This signature does not authorise a reserved run."
+  },
+
+  "what_this_record_is_not": [
+    "It is not the project decision owner's own signature.",
+    "It is not a cryptographic signature.",
+    "It does not alter any ruling; every analysis parameter was fixed in writing by the decision owner earlier the same day, before any contrast was inspected."
+  ],
+
+  "substantive_authority_is_not_in_doubt": "The saturation threshold, the primary confirmatory claim, the estimator, the multiplicity rule and the reasoning-effort selection algorithm were all ruled in writing by the decision owner on 19 August 2026, and the Qwen3 development run was executed and read under a code-enforced blind before any of them could be influenced by a result. The delegation therefore creates no discretion over the analysis.",
+
+  "outstanding": "If a record bearing the decision owner's own name is required for publication, it should replace this one. Nothing in the analysis depends on which of the two is on file.",
+
+  "name_to_confirm": "The delegate is recorded as 'Adrian'. Correct signed_by and capacity if a fuller name or a different role should appear."
+}

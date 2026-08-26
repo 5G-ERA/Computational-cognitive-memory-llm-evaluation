@@ -1,0 +1,50 @@
+{
+  "record_id": "AUTH-reserved-qwen3-2026-08-19-001",
+  "record_type": "execution_authorisation",
+  "is_owner_countersignature": false,
+  "is_signature": false,
+
+  "authorises": "EXECUTION of the RESERVED split for the Qwen3 arm: 32 memories x 45 calls = 1,440 calls.",
+  "does_not_authorise": "INSPECTION of any reserved outcome. No accuracy, contrast, or saturation classification may be computed or read from this run without a further, separately signed authorisation record. The seal in analysis_dev_arm.py refuses reserved runs unconditionally.",
+
+  "authority_chain": [
+    "Cross-model replication amendment, Renxi Qiu, 19 August 2026 - Decision 1 designates Qwen3 the primary cross-model replication arm subject to operational eligibility only; Decision 4 places the single primary confirmatory claim on Qwen3 B1 minus B0",
+    "Operational eligibility established 19 August 2026 on the development split under a code-enforced blind, before any contrast was read: 360/360 terminal, truncation 0.000, invalid rate 0.0028, reserved matrix feasible",
+    "Pre-execution amendment record signed by delegation 19 August 2026, digest c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2",
+    "Instruction of 19 August 2026 by the run operator: launch the Qwen3 reserved run"
+  ],
+
+  "authorised_by": {
+    "name": "Adrian",
+    "capacity": "run operator",
+    "date": "2026-08-19",
+    "statement": "I authorise execution of the Qwen3 reserved split under the frozen configuration. I do not authorise inspection of its outcomes."
+  },
+
+  "precedent": "This mirrors the KIMI2 reserved run of 15-16 August 2026, where execution proceeded on a relayed authorisation and the outcomes stayed sealed until a signature existed. Execution and inspection are separate acts and are authorised separately.",
+
+  "frozen_configuration": {
+    "config": "config/model_qwen3_bedrock.json",
+    "model": "qwen.qwen3-next-80b-a3b",
+    "reasoning_effort": "low, selected by the blinded operational hierarchy of Decision 3",
+    "max_output_tokens": 4096,
+    "max_tokens_field": "max_completion_tokens",
+    "structured_output": false,
+    "send_sampling_params": false,
+    "temperature_and_seed": "not set; accepted but not honoured by the endpoint - stochastic estimand per Decision 2",
+    "timeout_seconds": 900,
+    "concurrency": 1,
+    "call_order_seed": 13082652,
+    "retry_policy": "release default, 3 attempts, backoff 0/2/8 s",
+    "runner": "release scripts/api_runner_qa1.py, unmodified, Bedrock adapter injected",
+    "spend_cap_usd": 5.0
+  },
+
+  "expected": {
+    "calls": 1440,
+    "projected_wall_clock_hours": 1.6,
+    "projected_cost_usd": 0.59
+  },
+
+  "on_completion": "Report completion, integrity and the blinded operational summary only. The scoring records stay unopened."
+}

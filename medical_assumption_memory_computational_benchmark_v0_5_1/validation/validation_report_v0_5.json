@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "checks": {
+    "canonical_200": true,
+    "balanced_reactions": true,
+    "rendered_600": true,
+    "three_renderings_each": true,
+    "calls_1800": true,
+    "three_conditions_each": true,
+    "split_40_160": true,
+    "controls_600": true,
+    "refs_600": true,
+    "condition_parity": true,
+    "condition_hierarchy": true,
+    "rendering_oracle_equivalence": true,
+    "no_episode_reaction_leak": true
+  },
+  "reaction_distribution": {
+    "CONTINUE_SUPPORT": 40,
+    "TAILOR_SUPPORT": 40,
+    "ESCALATE_REVIEW": 40,
+    "WITHHOLD_ASSUMPTION": 40,
+    "WAIT_FOR_EVIDENCE": 40
+  },
+  "render_families": {
+    "STRUCTURED": 200,
+    "CHRONOLOGICAL": 200,
+    "CONCISE": 200
+  },
+  "note": "Development package. Challenge baselines and external API QA must pass before reserved execution."
+}

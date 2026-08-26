@@ -1,0 +1,212 @@
+{
+ "audit_level": "L1_IO",
+ "call": {
+  "call_id": "CALL-FIX-LEVEL1-CRITICAL-RULE-OUT",
+  "canonical_id": "CAN-FIX-01",
+  "condition": "B1_VERIFIED_MEMORY",
+  "context_id": "CAN-FIX-01-STR",
+  "memory_id": "MEM-FIX-01",
+  "payload": {
+   "condition": "B1_VERIFIED_MEMORY",
+   "current_records": [
+    {
+     "content": "A previously represented difficulty is mentioned currently.",
+     "event_id": "EVT-9000101",
+     "event_time": "2026-09-10",
+     "source": "patient_report"
+    },
+    {
+     "content": "A current observation from another support source.",
+     "event_id": "EVT-9000102",
+     "event_time": "2026-09-11",
+     "source": "support_record"
+    }
+   ],
+   "longitudinal_records": [
+    {
+     "content": "Formation record for the represented support relation.",
+     "event_id": "EVT-9000001",
+     "event_time": "2026-08-01",
+     "source": "patient_report"
+    },
+    {
+     "content": "The planned support action was implemented.",
+     "event_id": "EVT-9000002",
+     "event_time": "2026-08-08",
+     "source": "support_record"
+    },
+    {
+     "content": "The later account improved after support.",
+     "event_id": "EVT-9000003",
+     "event_time": "2026-08-15",
+     "source": "patient_report"
+    },
+    {
+     "content": "Attendance was recorded but medicine use was not established.",
+     "event_id": "EVT-9000004",
+     "event_time": "2026-08-20",
+     "source": "administrative_record"
+    },
+    {
+     "content": "A later alternative relation was observed.",
+     "event_id": "EVT-9000005",
+     "event_time": "2026-08-22",
+     "source": "support_record"
+    },
+    {
+     "content": "Registered but never delivered in any condition payload.",
+     "event_id": "EVT-9000999",
+     "event_time": "2026-09-01",
+     "source": "support_record"
+    }
+   ],
+   "reaction_vocabulary": [
+    "CONTINUE_SUPPORT",
+    "TAILOR_SUPPORT",
+    "ESCALATE_REVIEW",
+    "WITHHOLD_ASSUMPTION",
+    "WAIT_FOR_EVIDENCE"
+   ],
+   "shared_world_rules": {
+    "world_specification_id": "MSW-0.5.1"
+   },
+   "verified_cognitive_memory": {
+    "comparison_guide": {
+     "relation-delta": "The current relation is comparable and no additional barrier is active."
+    },
+    "memory_id": "MEM-FIX-01",
+    "prospective": {
+     "alternative": "PRACTICAL",
+     "assumption": "The plan may not yet be understood consistently.",
+     "expected_consequence": "Teach-back should improve the later account."
+    },
+    "resolved_relation": {
+     "competing_or_unresolved_event_ids": [
+      "EVT-9000004"
+     ],
+     "constitutive_event_ids": [
+      "EVT-9000002",
+      "EVT-9000003"
+     ],
+     "limitations": [
+      "Availability does not establish medicine use."
+     ],
+     "scope": "understanding",
+     "statement": "The target relation changed after support and the assessed alternative was not established."
+    },
+    "successor_relation": null
+   }
+  }
+ },
+ "context_map": {
+  "CAN-FIX-01-STR": {
+   "canonical_id": "CAN-FIX-01",
+   "memory_id": "MEM-FIX-01",
+   "rendering": "STRUCTURED"
+  }
+ },
+ "events": {
+  "EVT-9000001": {
+   "content": "Formation record for the represented support relation.",
+   "event_id": "EVT-9000001",
+   "event_time": "2026-08-01",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "patient_report"
+  },
+  "EVT-9000002": {
+   "content": "The planned support action was implemented.",
+   "event_id": "EVT-9000002",
+   "event_time": "2026-08-08",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  },
+  "EVT-9000003": {
+   "content": "The later account improved after support.",
+   "event_id": "EVT-9000003",
+   "event_time": "2026-08-15",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "patient_report"
+  },
+  "EVT-9000004": {
+   "content": "Attendance was recorded but medicine use was not established.",
+   "event_id": "EVT-9000004",
+   "event_time": "2026-08-20",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "administrative_record"
+  },
+  "EVT-9000005": {
+   "content": "A later alternative relation was observed.",
+   "event_id": "EVT-9000005",
+   "event_time": "2026-08-22",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  },
+  "EVT-9000101": {
+   "content": "A previously represented difficulty is mentioned currently.",
+   "event_id": "EVT-9000101",
+   "event_time": "2026-09-10",
+   "owner": "CAN-FIX-01",
+   "scope": "CANONICAL_CONTEXT",
+   "source": "patient_report"
+  },
+  "EVT-9000102": {
+   "content": "A current observation from another support source.",
+   "event_id": "EVT-9000102",
+   "event_time": "2026-09-11",
+   "owner": "CAN-FIX-01",
+   "scope": "CANONICAL_CONTEXT",
+   "source": "support_record"
+  },
+  "EVT-9000999": {
+   "content": "Registered but never delivered in any condition payload.",
+   "event_id": "EVT-9000999",
+   "event_time": "2026-09-01",
+   "owner": "MEM-FIX-01",
+   "scope": "MEMORY",
+   "source": "support_record"
+  }
+ },
+ "fixture": "level1_critical_rule_outcome",
+ "manifest_row": {
+  "call_id": "CALL-FIX-LEVEL1-CRITICAL-RULE-OUT",
+  "canonical_id": "CAN-FIX-01",
+  "condition": "B1_VERIFIED_MEMORY",
+  "context_id": "CAN-FIX-01-STR",
+  "level1_contract": "L1-IO-1.2",
+  "level2_contract": "L2-B1-1.2",
+  "memory_id": "MEM-FIX-01",
+  "payload_sha256": "1c6ab5883fb4ab02598e96de7165a2d73056846670cfabbeb1a32e88394a4f2d",
+  "rendering": "STRUCTURED"
+ },
+ "parsed": {
+  "call_id": "CALL-FIX-LEVEL1-CRITICAL-RULE-OUT",
+  "parsed": {
+   "decisive_event_ids": [
+    "EVT-9000003",
+    "EVT-9000101"
+   ],
+   "reaction": "ESCALATE_REVIEW",
+   "reason": "The longitudinal record EVT-9000003 shows the represented relation held after support, and the current record EVT-9000101 reports the same relation with no additional barrier, so the relation remains comparable.",
+   "rule_id": "R10_CONFIRMED_CONTINUATION"
+  },
+  "status": "COMPLETED_VALID"
+ },
+ "raw": {
+  "call_id": "CALL-FIX-LEVEL1-CRITICAL-RULE-OUT",
+  "finish_reason": "stop"
+ },
+ "run_manifest": {
+  "benchmark_version": "0.5.1-qa1b"
+ },
+ "terminal": {
+  "call_id": "CALL-FIX-LEVEL1-CRITICAL-RULE-OUT",
+  "condition": "B1_VERIFIED_MEMORY",
+  "memory_id": "MEM-FIX-01",
+  "terminal_status": "COMPLETED_VALID"
+ }
+}

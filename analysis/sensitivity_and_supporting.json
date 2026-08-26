@@ -1,0 +1,68 @@
+{
+ "sensitivity_valid_response_only": {
+  "contexts_retained": 426,
+  "of": 480,
+  "Cognitive-memory benefit": {
+   "estimate_pp": 8.9202,
+   "ci95_pp": [
+    4.794,
+    13.3787
+   ],
+   "lower_above_zero": true,
+   "accuracy": {
+    "B1_VERIFIED_MEMORY": 0.875587,
+    "B0_LLM_ALONE": 0.786385
+   }
+  },
+  "Consequence-resolution benefit": {
+   "estimate_pp": 12.6761,
+   "ci95_pp": [
+    9.3023,
+    16.4414
+   ],
+   "lower_above_zero": true,
+   "accuracy": {
+    "B1_VERIFIED_MEMORY": 0.875587,
+    "M0_OPEN_LOOP_MEMORY": 0.748826
+   }
+  },
+  "Pre-specified-mapping effect": {
+   "estimate_pp": -3.7559,
+   "ci95_pp": [
+    -8.3532,
+    0.9828
+   ],
+   "lower_above_zero": false,
+   "accuracy": {
+    "M0_OPEN_LOOP_MEMORY": 0.748826,
+    "B0_LLM_ALONE": 0.786385
+   }
+  }
+ },
+ "provenance_supporting": {
+  "B0_LLM_ALONE": {
+   "scorable": 462,
+   "provenance_reference_validity": 1.0,
+   "decisive_citation_validity": 0.6061,
+   "historical_provenance_hit": 0.0022,
+   "current_provenance_hit": 0.6061,
+   "dual_source_completeness": 0.0022
+  },
+  "B1_VERIFIED_MEMORY": {
+   "scorable": 464,
+   "provenance_reference_validity": 1.0,
+   "decisive_citation_validity": 0.7823,
+   "historical_provenance_hit": 0.0474,
+   "current_provenance_hit": 0.7629,
+   "dual_source_completeness": 0.028
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+   "scorable": 456,
+   "provenance_reference_validity": 1.0,
+   "decisive_citation_validity": 0.6601,
+   "historical_provenance_hit": 0.0,
+   "current_provenance_hit": 0.6601,
+   "dual_source_completeness": 0.0
+  }
+ }
+}

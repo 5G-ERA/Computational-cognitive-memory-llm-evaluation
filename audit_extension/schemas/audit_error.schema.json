@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "audit_error",
+  "type": "object",
+  "required": ["call_id","memory_id","condition","rendering","audit_level","code","domain","severity","detection","message"],
+  "additionalProperties": false,
+  "properties": {
+    "call_id": {"type": "string"},
+    "memory_id": {"type": "string"},
+    "context_id": {"type": "string"},
+    "canonical_id": {"type": "string"},
+    "condition": {"type": "string", "enum": ["B0_LLM_ALONE","M0_OPEN_LOOP_MEMORY","B1_VERIFIED_MEMORY"]},
+    "rendering": {"type": "string", "enum": ["STRUCTURED","CHRONOLOGICAL","CONCISE"]},
+    "audit_level": {"type": "string", "enum": ["L1_IO","L2_M0","L2_B1"]},
+    "check_id": {"type": "string"},
+    "code": {"type": "string"},
+    "domain": {"type": "string", "enum": ["E0","E1","E2","E3","E4","E5"]},
+    "severity": {"type": "string", "enum": ["INFO","MINOR","MAJOR","CRITICAL"]},
+    "detection": {"type": "string", "enum": ["DETERMINISTIC","HUMAN","HYBRID"]},
+    "status_effect": {"type": "string", "enum": ["NOT_EVALUABLE","NONCONFORMANT_CRITICAL","NONCONFORMANT","INCOMPLETE","NONE"]},
+    "message": {"type": "string"},
+    "evidence": {"type": "object"},
+    "reading": {"type": "string", "enum": ["LITERAL","SCOPED","BOTH"]}
+  }
+}

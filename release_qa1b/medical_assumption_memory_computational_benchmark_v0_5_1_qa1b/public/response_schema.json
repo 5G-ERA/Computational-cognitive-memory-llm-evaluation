@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "required": [
+    "reaction",
+    "rule_id",
+    "decisive_event_ids",
+    "reason"
+  ],
+  "properties": {
+    "reaction": {
+      "type": "string",
+      "enum": [
+        "CONTINUE_SUPPORT",
+        "TAILOR_SUPPORT",
+        "ESCALATE_REVIEW",
+        "WITHHOLD_ASSUMPTION",
+        "WAIT_FOR_EVIDENCE"
+      ]
+    },
+    "rule_id": {
+      "type": "string",
+      "enum": [
+        "R01_REVIEW_BOUNDARY",
+        "R02_EVIDENCE_INCOMPLETE",
+        "R03_DIFFERENT_FUNCTION",
+        "R04_UNCERTAIN_FUNCTION",
+        "R05_VERIFIED_SUCCESSOR",
+        "R06_CONTRADICTED_PREDECESSOR",
+        "R07_UNRESOLVED_VERIFICATION",
+        "R08_PARTIALLY_CONFIRMED",
+        "R09_SECONDARY_BARRIER",
+        "R10_CONFIRMED_CONTINUATION"
+      ]
+    },
+    "decisive_event_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^EVT-[0-9]{7}$"
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 600
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,53 @@
+
+P0  model listing
+  ! HTTP Error 404: Not Found
+
+P1  system message respected
+  with long system block             -> ok (in=1851 out=16 fr=length)
+  user only                          -> ok (in=1578 out=16 fr=length)
+  verdict: PASS_SYSTEM_RESPECTED
+
+P2  response_format
+  response_format=json_object        -> HTTP 403
+  verdict: REJECTED_HTTP_403
+
+P3  determinism parameters
+  temperature=0                      -> HTTP 400
+  top_p=1                            -> ok (in=1598 out=16 fr=length)
+  seed=13082642                      -> ok (in=1598 out=16 fr=length)
+  all three                          -> HTTP 400
+  verdict: DETERMINISM_UNAVAILABLE_amendment_required
+
+P4  output ceiling field
+  max_completion_tokens=16           -> ok (in=1598 out=16 fr=length)
+  max_tokens=16                      -> HTTP 400
+  effective: ['max_completion_tokens']
+
+P5/P8  real DEVELOPMENT call through the frozen parser
+  full dev call                      -> ok (in=1820 out=105 fr=stop)
+  markers: NO_MARKERS_IN_CONTENT_frozen_policy_parses_whole_message | parser: COMPLETED_VALID
+
+P6  statelessness
+  turn 1 (plant nonce)               -> ok (in=23 out=31 fr=stop)
+  turn 2 (ask for nonce)             -> ok (in=26 out=23 fr=stop)
+  verdict: PASS_STATELESS
+
+P7  reasoning_effort
+  reasoning_effort=low               -> ok (in=1820 out=76 fr=stop)
+  reasoning_effort=medium            -> ok (in=1820 out=116 fr=stop)
+  reasoning_effort=high              -> ok (in=1820 out=108 fr=stop)
+  supported: ['low', 'medium', 'high']
+
+  P0  model id served            None
+  P1  system respected (A1)      PASS_SYSTEM_RESPECTED
+  P2  response_format (A2)       REJECTED_HTTP_403
+  P3  determinism                DETERMINISM_UNAVAILABLE_amendment_required
+  P3  params accepted            top_p=1, seed=13082642
+  P4  effective ceiling field    max_completion_tokens
+  P5  reasoning markers          NO_MARKERS_IN_CONTENT_frozen_policy_parses_whole_message
+  P6  statelessness              PASS_STATELESS
+  P7  reasoning_effort           low, medium, high
+  P8  frozen parser status       COMPLETED_VALID
+
+wrote /home/ros/dca_v051/bedrock_terra/out/probe_model_terra_bedrock.json
+wrote /home/ros/dca_v051/bedrock_terra/out/probe_model_terra_bedrock.md

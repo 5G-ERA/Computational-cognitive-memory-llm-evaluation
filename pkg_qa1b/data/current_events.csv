@@ -1,0 +1,281 @@
+context_id,event_id,patient_id,event_time,source,role,content
+CTX-000001,EVT-0000008,SYN-0001,2026-07-08,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000001,EVT-0000009,SYN-0001,2026-07-09,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000002,EVT-0000010,SYN-0001,2026-07-08,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with routine."
+CTX-000002,EVT-0000011,SYN-0001,2026-07-09,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000003,EVT-0000012,SYN-0001,2026-07-08,patient_report,current_observation,The earlier episode concerned understanding.
+CTX-000003,EVT-0000013,SYN-0001,2026-07-09,support_record,current_observation,"The current observations concern routine, with no current observation about understanding."
+CTX-000004,EVT-0000014,SYN-0001,2026-07-08,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000004,EVT-0000015,SYN-0001,2026-07-09,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000005,EVT-0000016,SYN-0001,2026-07-08,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000005,EVT-0000017,SYN-0001,2026-07-09,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000006,EVT-0000025,SYN-0002,2026-07-17,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000006,EVT-0000026,SYN-0002,2026-07-18,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000007,EVT-0000027,SYN-0002,2026-07-17,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with practical."
+CTX-000007,EVT-0000028,SYN-0002,2026-07-18,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000008,EVT-0000029,SYN-0002,2026-07-17,patient_report,current_observation,The earlier episode concerned understanding.
+CTX-000008,EVT-0000030,SYN-0002,2026-07-18,support_record,current_observation,"The current observations concern practical, with no current observation about understanding."
+CTX-000009,EVT-0000031,SYN-0002,2026-07-17,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000009,EVT-0000032,SYN-0002,2026-07-18,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000010,EVT-0000033,SYN-0002,2026-07-17,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000010,EVT-0000034,SYN-0002,2026-07-18,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000011,EVT-0000042,SYN-0003,2026-07-26,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000011,EVT-0000043,SYN-0003,2026-07-27,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000012,EVT-0000044,SYN-0003,2026-07-26,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with access."
+CTX-000012,EVT-0000045,SYN-0003,2026-07-27,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000013,EVT-0000046,SYN-0003,2026-07-26,patient_report,current_observation,The earlier episode concerned understanding.
+CTX-000013,EVT-0000047,SYN-0003,2026-07-27,support_record,current_observation,"The current observations concern access, with no current observation about understanding."
+CTX-000014,EVT-0000048,SYN-0003,2026-07-26,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000014,EVT-0000049,SYN-0003,2026-07-27,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000015,EVT-0000050,SYN-0003,2026-07-26,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000015,EVT-0000051,SYN-0003,2026-07-27,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000016,EVT-0000059,SYN-0004,2026-08-04,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000016,EVT-0000060,SYN-0004,2026-08-05,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000017,EVT-0000061,SYN-0004,2026-08-04,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with concern."
+CTX-000017,EVT-0000062,SYN-0004,2026-08-05,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000018,EVT-0000063,SYN-0004,2026-08-04,patient_report,current_observation,The earlier episode concerned understanding.
+CTX-000018,EVT-0000064,SYN-0004,2026-08-05,support_record,current_observation,"The current observations concern concern, with no current observation about understanding."
+CTX-000019,EVT-0000065,SYN-0004,2026-08-04,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000019,EVT-0000066,SYN-0004,2026-08-05,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000020,EVT-0000067,SYN-0004,2026-08-04,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000020,EVT-0000068,SYN-0004,2026-08-05,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000021,EVT-0000076,SYN-0005,2026-08-13,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000021,EVT-0000077,SYN-0005,2026-08-14,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000022,EVT-0000078,SYN-0005,2026-08-13,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with practical."
+CTX-000022,EVT-0000079,SYN-0005,2026-08-14,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000023,EVT-0000080,SYN-0005,2026-08-13,patient_report,current_observation,The earlier episode concerned routine.
+CTX-000023,EVT-0000081,SYN-0005,2026-08-14,support_record,current_observation,"The current observations concern practical, with no current observation about routine."
+CTX-000024,EVT-0000082,SYN-0005,2026-08-13,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000024,EVT-0000083,SYN-0005,2026-08-14,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000025,EVT-0000084,SYN-0005,2026-08-13,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000025,EVT-0000085,SYN-0005,2026-08-14,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000026,EVT-0000093,SYN-0006,2026-08-22,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000026,EVT-0000094,SYN-0006,2026-08-23,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000027,EVT-0000095,SYN-0006,2026-08-22,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with access."
+CTX-000027,EVT-0000096,SYN-0006,2026-08-23,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000028,EVT-0000097,SYN-0006,2026-08-22,patient_report,current_observation,The earlier episode concerned routine.
+CTX-000028,EVT-0000098,SYN-0006,2026-08-23,support_record,current_observation,"The current observations concern access, with no current observation about routine."
+CTX-000029,EVT-0000099,SYN-0006,2026-08-22,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000029,EVT-0000100,SYN-0006,2026-08-23,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000030,EVT-0000101,SYN-0006,2026-08-22,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000030,EVT-0000102,SYN-0006,2026-08-23,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000031,EVT-0000110,SYN-0007,2026-08-31,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000031,EVT-0000111,SYN-0007,2026-09-01,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000032,EVT-0000112,SYN-0007,2026-08-31,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with concern."
+CTX-000032,EVT-0000113,SYN-0007,2026-09-01,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000033,EVT-0000114,SYN-0007,2026-08-31,patient_report,current_observation,The earlier episode concerned routine.
+CTX-000033,EVT-0000115,SYN-0007,2026-09-01,support_record,current_observation,"The current observations concern concern, with no current observation about routine."
+CTX-000034,EVT-0000116,SYN-0007,2026-08-31,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000034,EVT-0000117,SYN-0007,2026-09-01,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000035,EVT-0000118,SYN-0007,2026-08-31,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000035,EVT-0000119,SYN-0007,2026-09-01,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000036,EVT-0000127,SYN-0008,2026-09-09,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000036,EVT-0000128,SYN-0008,2026-09-10,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000037,EVT-0000129,SYN-0008,2026-09-09,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with review."
+CTX-000037,EVT-0000130,SYN-0008,2026-09-10,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000038,EVT-0000131,SYN-0008,2026-09-09,patient_report,current_observation,The earlier episode concerned routine.
+CTX-000038,EVT-0000132,SYN-0008,2026-09-10,support_record,current_observation,"The current observations concern review, with no current observation about routine."
+CTX-000039,EVT-0000133,SYN-0008,2026-09-09,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000039,EVT-0000134,SYN-0008,2026-09-10,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000040,EVT-0000135,SYN-0008,2026-09-09,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000040,EVT-0000136,SYN-0008,2026-09-10,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000041,EVT-0000144,SYN-0009,2026-09-18,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000041,EVT-0000145,SYN-0009,2026-09-19,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000042,EVT-0000146,SYN-0009,2026-09-18,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with access."
+CTX-000042,EVT-0000147,SYN-0009,2026-09-19,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000043,EVT-0000148,SYN-0009,2026-09-18,patient_report,current_observation,The earlier episode concerned practical.
+CTX-000043,EVT-0000149,SYN-0009,2026-09-19,support_record,current_observation,"The current observations concern access, with no current observation about practical."
+CTX-000044,EVT-0000150,SYN-0009,2026-09-18,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000044,EVT-0000151,SYN-0009,2026-09-19,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000045,EVT-0000152,SYN-0009,2026-09-18,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000045,EVT-0000153,SYN-0009,2026-09-19,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000046,EVT-0000161,SYN-0010,2026-09-27,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000046,EVT-0000162,SYN-0010,2026-09-28,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000047,EVT-0000163,SYN-0010,2026-09-27,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with concern."
+CTX-000047,EVT-0000164,SYN-0010,2026-09-28,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000048,EVT-0000165,SYN-0010,2026-09-27,patient_report,current_observation,The earlier episode concerned practical.
+CTX-000048,EVT-0000166,SYN-0010,2026-09-28,support_record,current_observation,"The current observations concern concern, with no current observation about practical."
+CTX-000049,EVT-0000167,SYN-0010,2026-09-27,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000049,EVT-0000168,SYN-0010,2026-09-28,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000050,EVT-0000169,SYN-0010,2026-09-27,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000050,EVT-0000170,SYN-0010,2026-09-28,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000051,EVT-0000178,SYN-0011,2026-10-06,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000051,EVT-0000179,SYN-0011,2026-10-07,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000052,EVT-0000180,SYN-0011,2026-10-06,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with review."
+CTX-000052,EVT-0000181,SYN-0011,2026-10-07,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000053,EVT-0000182,SYN-0011,2026-10-06,patient_report,current_observation,The earlier episode concerned practical.
+CTX-000053,EVT-0000183,SYN-0011,2026-10-07,support_record,current_observation,"The current observations concern review, with no current observation about practical."
+CTX-000054,EVT-0000184,SYN-0011,2026-10-06,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000054,EVT-0000185,SYN-0011,2026-10-07,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000055,EVT-0000186,SYN-0011,2026-10-06,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000055,EVT-0000187,SYN-0011,2026-10-07,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000056,EVT-0000195,SYN-0012,2026-10-15,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000056,EVT-0000196,SYN-0012,2026-10-16,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000057,EVT-0000197,SYN-0012,2026-10-15,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with unresolved."
+CTX-000057,EVT-0000198,SYN-0012,2026-10-16,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000058,EVT-0000199,SYN-0012,2026-10-15,patient_report,current_observation,The earlier episode concerned practical.
+CTX-000058,EVT-0000200,SYN-0012,2026-10-16,support_record,current_observation,"The current observations concern unresolved, with no current observation about practical."
+CTX-000059,EVT-0000201,SYN-0012,2026-10-15,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000059,EVT-0000202,SYN-0012,2026-10-16,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000060,EVT-0000203,SYN-0012,2026-10-15,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000060,EVT-0000204,SYN-0012,2026-10-16,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000061,EVT-0000212,SYN-0013,2026-10-24,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000061,EVT-0000213,SYN-0013,2026-10-25,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000062,EVT-0000214,SYN-0013,2026-10-24,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with concern."
+CTX-000062,EVT-0000215,SYN-0013,2026-10-25,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000063,EVT-0000216,SYN-0013,2026-10-24,patient_report,current_observation,The earlier episode concerned access.
+CTX-000063,EVT-0000217,SYN-0013,2026-10-25,support_record,current_observation,"The current observations concern concern, with no current observation about access."
+CTX-000064,EVT-0000218,SYN-0013,2026-10-24,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000064,EVT-0000219,SYN-0013,2026-10-25,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000065,EVT-0000220,SYN-0013,2026-10-24,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000065,EVT-0000221,SYN-0013,2026-10-25,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000066,EVT-0000229,SYN-0014,2026-11-02,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000066,EVT-0000230,SYN-0014,2026-11-03,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000067,EVT-0000231,SYN-0014,2026-11-02,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with review."
+CTX-000067,EVT-0000232,SYN-0014,2026-11-03,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000068,EVT-0000233,SYN-0014,2026-11-02,patient_report,current_observation,The earlier episode concerned access.
+CTX-000068,EVT-0000234,SYN-0014,2026-11-03,support_record,current_observation,"The current observations concern review, with no current observation about access."
+CTX-000069,EVT-0000235,SYN-0014,2026-11-02,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000069,EVT-0000236,SYN-0014,2026-11-03,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000070,EVT-0000237,SYN-0014,2026-11-02,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000070,EVT-0000238,SYN-0014,2026-11-03,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000071,EVT-0000246,SYN-0015,2026-11-11,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000071,EVT-0000247,SYN-0015,2026-11-12,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000072,EVT-0000248,SYN-0015,2026-11-11,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with unresolved."
+CTX-000072,EVT-0000249,SYN-0015,2026-11-12,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000073,EVT-0000250,SYN-0015,2026-11-11,patient_report,current_observation,The earlier episode concerned access.
+CTX-000073,EVT-0000251,SYN-0015,2026-11-12,support_record,current_observation,"The current observations concern unresolved, with no current observation about access."
+CTX-000074,EVT-0000252,SYN-0015,2026-11-11,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000074,EVT-0000253,SYN-0015,2026-11-12,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000075,EVT-0000254,SYN-0015,2026-11-11,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000075,EVT-0000255,SYN-0015,2026-11-12,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000076,EVT-0000263,SYN-0016,2026-11-20,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000076,EVT-0000264,SYN-0016,2026-11-21,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000077,EVT-0000265,SYN-0016,2026-11-20,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with understanding."
+CTX-000077,EVT-0000266,SYN-0016,2026-11-21,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000078,EVT-0000267,SYN-0016,2026-11-20,patient_report,current_observation,The earlier episode concerned access.
+CTX-000078,EVT-0000268,SYN-0016,2026-11-21,support_record,current_observation,"The current observations concern understanding, with no current observation about access."
+CTX-000079,EVT-0000269,SYN-0016,2026-11-20,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000079,EVT-0000270,SYN-0016,2026-11-21,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000080,EVT-0000271,SYN-0016,2026-11-20,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000080,EVT-0000272,SYN-0016,2026-11-21,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000081,EVT-0000280,SYN-0017,2026-11-29,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000081,EVT-0000281,SYN-0017,2026-11-30,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000082,EVT-0000282,SYN-0017,2026-11-29,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with review."
+CTX-000082,EVT-0000283,SYN-0017,2026-11-30,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000083,EVT-0000284,SYN-0017,2026-11-29,patient_report,current_observation,The earlier episode concerned concern.
+CTX-000083,EVT-0000285,SYN-0017,2026-11-30,support_record,current_observation,"The current observations concern review, with no current observation about concern."
+CTX-000084,EVT-0000286,SYN-0017,2026-11-29,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000084,EVT-0000287,SYN-0017,2026-11-30,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000085,EVT-0000288,SYN-0017,2026-11-29,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000085,EVT-0000289,SYN-0017,2026-11-30,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000086,EVT-0000297,SYN-0018,2026-12-08,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000086,EVT-0000298,SYN-0018,2026-12-09,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000087,EVT-0000299,SYN-0018,2026-12-08,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with unresolved."
+CTX-000087,EVT-0000300,SYN-0018,2026-12-09,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000088,EVT-0000301,SYN-0018,2026-12-08,patient_report,current_observation,The earlier episode concerned concern.
+CTX-000088,EVT-0000302,SYN-0018,2026-12-09,support_record,current_observation,"The current observations concern unresolved, with no current observation about concern."
+CTX-000089,EVT-0000303,SYN-0018,2026-12-08,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000089,EVT-0000304,SYN-0018,2026-12-09,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000090,EVT-0000305,SYN-0018,2026-12-08,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000090,EVT-0000306,SYN-0018,2026-12-09,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000091,EVT-0000314,SYN-0019,2026-12-17,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000091,EVT-0000315,SYN-0019,2026-12-18,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000092,EVT-0000316,SYN-0019,2026-12-17,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with understanding."
+CTX-000092,EVT-0000317,SYN-0019,2026-12-18,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000093,EVT-0000318,SYN-0019,2026-12-17,patient_report,current_observation,The earlier episode concerned concern.
+CTX-000093,EVT-0000319,SYN-0019,2026-12-18,support_record,current_observation,"The current observations concern understanding, with no current observation about concern."
+CTX-000094,EVT-0000320,SYN-0019,2026-12-17,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000094,EVT-0000321,SYN-0019,2026-12-18,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000095,EVT-0000322,SYN-0019,2026-12-17,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000095,EVT-0000323,SYN-0019,2026-12-18,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000096,EVT-0000331,SYN-0020,2026-12-26,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000096,EVT-0000332,SYN-0020,2026-12-27,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000097,EVT-0000333,SYN-0020,2026-12-26,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with routine."
+CTX-000097,EVT-0000334,SYN-0020,2026-12-27,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000098,EVT-0000335,SYN-0020,2026-12-26,patient_report,current_observation,The earlier episode concerned concern.
+CTX-000098,EVT-0000336,SYN-0020,2026-12-27,support_record,current_observation,"The current observations concern routine, with no current observation about concern."
+CTX-000099,EVT-0000337,SYN-0020,2026-12-26,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000099,EVT-0000338,SYN-0020,2026-12-27,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000100,EVT-0000339,SYN-0020,2026-12-26,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000100,EVT-0000340,SYN-0020,2026-12-27,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000101,EVT-0000348,SYN-0021,2027-01-04,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000101,EVT-0000349,SYN-0021,2027-01-05,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000102,EVT-0000350,SYN-0021,2027-01-04,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with unresolved."
+CTX-000102,EVT-0000351,SYN-0021,2027-01-05,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000103,EVT-0000352,SYN-0021,2027-01-04,patient_report,current_observation,The earlier episode concerned review.
+CTX-000103,EVT-0000353,SYN-0021,2027-01-05,support_record,current_observation,"The current observations concern unresolved, with no current observation about review."
+CTX-000104,EVT-0000354,SYN-0021,2027-01-04,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000104,EVT-0000355,SYN-0021,2027-01-05,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000105,EVT-0000356,SYN-0021,2027-01-04,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000105,EVT-0000357,SYN-0021,2027-01-05,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000106,EVT-0000365,SYN-0022,2027-01-13,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000106,EVT-0000366,SYN-0022,2027-01-14,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000107,EVT-0000367,SYN-0022,2027-01-13,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with understanding."
+CTX-000107,EVT-0000368,SYN-0022,2027-01-14,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000108,EVT-0000369,SYN-0022,2027-01-13,patient_report,current_observation,The earlier episode concerned review.
+CTX-000108,EVT-0000370,SYN-0022,2027-01-14,support_record,current_observation,"The current observations concern understanding, with no current observation about review."
+CTX-000109,EVT-0000371,SYN-0022,2027-01-13,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000109,EVT-0000372,SYN-0022,2027-01-14,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000110,EVT-0000373,SYN-0022,2027-01-13,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000110,EVT-0000374,SYN-0022,2027-01-14,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000111,EVT-0000382,SYN-0023,2027-01-22,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000111,EVT-0000383,SYN-0023,2027-01-23,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000112,EVT-0000384,SYN-0023,2027-01-22,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with routine."
+CTX-000112,EVT-0000385,SYN-0023,2027-01-23,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000113,EVT-0000386,SYN-0023,2027-01-22,patient_report,current_observation,The earlier episode concerned review.
+CTX-000113,EVT-0000387,SYN-0023,2027-01-23,support_record,current_observation,"The current observations concern routine, with no current observation about review."
+CTX-000114,EVT-0000388,SYN-0023,2027-01-22,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000114,EVT-0000389,SYN-0023,2027-01-23,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000115,EVT-0000390,SYN-0023,2027-01-22,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000115,EVT-0000391,SYN-0023,2027-01-23,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000116,EVT-0000399,SYN-0024,2027-01-31,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000116,EVT-0000400,SYN-0024,2027-02-01,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000117,EVT-0000401,SYN-0024,2027-01-31,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with practical."
+CTX-000117,EVT-0000402,SYN-0024,2027-02-01,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000118,EVT-0000403,SYN-0024,2027-01-31,patient_report,current_observation,The earlier episode concerned review.
+CTX-000118,EVT-0000404,SYN-0024,2027-02-01,support_record,current_observation,"The current observations concern practical, with no current observation about review."
+CTX-000119,EVT-0000405,SYN-0024,2027-01-31,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000119,EVT-0000406,SYN-0024,2027-02-01,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000120,EVT-0000407,SYN-0024,2027-01-31,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000120,EVT-0000408,SYN-0024,2027-02-01,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000121,EVT-0000416,SYN-0025,2027-02-09,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000121,EVT-0000417,SYN-0025,2027-02-10,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000122,EVT-0000418,SYN-0025,2027-02-09,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with understanding."
+CTX-000122,EVT-0000419,SYN-0025,2027-02-10,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000123,EVT-0000420,SYN-0025,2027-02-09,patient_report,current_observation,The earlier episode concerned unresolved.
+CTX-000123,EVT-0000421,SYN-0025,2027-02-10,support_record,current_observation,"The current observations concern understanding, with no current observation about unresolved."
+CTX-000124,EVT-0000422,SYN-0025,2027-02-09,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000124,EVT-0000423,SYN-0025,2027-02-10,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000125,EVT-0000424,SYN-0025,2027-02-09,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000125,EVT-0000425,SYN-0025,2027-02-10,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000126,EVT-0000433,SYN-0026,2027-02-18,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000126,EVT-0000434,SYN-0026,2027-02-19,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000127,EVT-0000435,SYN-0026,2027-02-18,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with routine."
+CTX-000127,EVT-0000436,SYN-0026,2027-02-19,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000128,EVT-0000437,SYN-0026,2027-02-18,patient_report,current_observation,The earlier episode concerned unresolved.
+CTX-000128,EVT-0000438,SYN-0026,2027-02-19,support_record,current_observation,"The current observations concern routine, with no current observation about unresolved."
+CTX-000129,EVT-0000439,SYN-0026,2027-02-18,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000129,EVT-0000440,SYN-0026,2027-02-19,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000130,EVT-0000441,SYN-0026,2027-02-18,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000130,EVT-0000442,SYN-0026,2027-02-19,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000131,EVT-0000450,SYN-0027,2027-02-27,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000131,EVT-0000451,SYN-0027,2027-02-28,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000132,EVT-0000452,SYN-0027,2027-02-27,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with practical."
+CTX-000132,EVT-0000453,SYN-0027,2027-02-28,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000133,EVT-0000454,SYN-0027,2027-02-27,patient_report,current_observation,The earlier episode concerned unresolved.
+CTX-000133,EVT-0000455,SYN-0027,2027-02-28,support_record,current_observation,"The current observations concern practical, with no current observation about unresolved."
+CTX-000134,EVT-0000456,SYN-0027,2027-02-27,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000134,EVT-0000457,SYN-0027,2027-02-28,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000135,EVT-0000458,SYN-0027,2027-02-27,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000135,EVT-0000459,SYN-0027,2027-02-28,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."
+CTX-000136,EVT-0000467,SYN-0028,2027-03-08,patient_report,current_observation,The support difficulty described in the earlier formation events is reported again.
+CTX-000136,EVT-0000468,SYN-0028,2027-03-09,support_record,current_observation,The present record concerns the same support activity and time horizon as the earlier episode.
+CTX-000137,EVT-0000469,SYN-0028,2027-03-08,patient_report,current_observation,"The earlier support difficulty is reported again, and a separate observation is consistent with access."
+CTX-000137,EVT-0000470,SYN-0028,2027-03-09,support_record,current_observation,Both observations concern the same current support activity.
+CTX-000138,EVT-0000471,SYN-0028,2027-03-08,patient_report,current_observation,The earlier episode concerned unresolved.
+CTX-000138,EVT-0000472,SYN-0028,2027-03-09,support_record,current_observation,"The current observations concern access, with no current observation about unresolved."
+CTX-000139,EVT-0000473,SYN-0028,2027-03-08,patient_report,current_observation,The current record contains supply and support-action information.
+CTX-000139,EVT-0000474,SYN-0028,2027-03-09,support_record,current_observation,The latest account of how the plan is being managed predates the current support period.
+CTX-000140,EVT-0000475,SYN-0028,2027-03-08,patient_report,current_observation,A new experience is reported during the current support period.
+CTX-000140,EVT-0000476,SYN-0028,2027-03-09,support_record,current_observation,"No authorised review record is present, and professional assessment is requested before proceeding."

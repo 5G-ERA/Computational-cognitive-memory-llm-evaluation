@@ -1,0 +1,42 @@
+{
+  "R01_REVIEW_BOUNDARY": {
+    "reaction": "ESCALATE_REVIEW",
+    "description": "A current report requires authorised healthcare review."
+  },
+  "R02_EVIDENCE_INCOMPLETE": {
+    "reaction": "WAIT_FOR_EVIDENCE",
+    "description": "Comparison-critical current evidence is incomplete."
+  },
+  "R03_DIFFERENT_FUNCTION": {
+    "reaction": "WITHHOLD_ASSUMPTION",
+    "description": "The current issue belongs to a different support function."
+  },
+  "R04_UNCERTAIN_FUNCTION": {
+    "reaction": "WAIT_FOR_EVIDENCE",
+    "description": "The current functional relation cannot be established."
+  },
+  "R05_VERIFIED_SUCCESSOR": {
+    "reaction": "TAILOR_SUPPORT",
+    "description": "A verified successor governs after predecessor contradiction."
+  },
+  "R06_CONTRADICTED_PREDECESSOR": {
+    "reaction": "WITHHOLD_ASSUMPTION",
+    "description": "The contradicted predecessor cannot govern and no verified successor applies."
+  },
+  "R07_UNRESOLVED_VERIFICATION": {
+    "reaction": "WAIT_FOR_EVIDENCE",
+    "description": "The historical assumption remains unresolved."
+  },
+  "R08_PARTIALLY_CONFIRMED": {
+    "reaction": "TAILOR_SUPPORT",
+    "description": "The historical relation remains useful with qualification."
+  },
+  "R09_SECONDARY_BARRIER": {
+    "reaction": "TAILOR_SUPPORT",
+    "description": "A secondary barrier is currently active."
+  },
+  "R10_CONFIRMED_CONTINUATION": {
+    "reaction": "CONTINUE_SUPPORT",
+    "description": "A confirmed historical relation remains comparable."
+  }
+}

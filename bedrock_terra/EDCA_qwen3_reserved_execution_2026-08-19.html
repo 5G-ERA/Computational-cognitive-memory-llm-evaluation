@@ -1,0 +1,224 @@
+<title>Qwen3 Reserved Execution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --field:#f2f0ec; --card:#ffffff; --well:#e6e2db;
+  --ink:#191713; --ink2:#57534b; --ink3:#8b867c;
+  --rule:#d4cfc5; --rule2:#e5e1d9;
+  --copper:#9a5b2c; --copper-bg:#f3e6da;
+  --seal:#7a1f1f; --seal-bg:#f3e0de;
+  --good:#2c5f4a; --good-bg:#e0ece6;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --field:#131211; --card:#1c1a18; --well:#0d0c0b;
+    --ink:#ece8e0; --ink2:#a09a90; --ink3:#726c63;
+    --rule:#302c28; --rule2:#242120;
+    --copper:#d08b52; --copper-bg:#2c1d12;
+    --seal:#d98a83; --seal-bg:#2e1715;
+    --good:#7db99e; --good-bg:#15251e;
+  }
+}
+:root[data-theme="dark"]{
+  --field:#131211; --card:#1c1a18; --well:#0d0c0b;
+  --ink:#ece8e0; --ink2:#a09a90; --ink3:#726c63;
+  --rule:#302c28; --rule2:#242120;
+  --copper:#d08b52; --copper-bg:#2c1d12;
+  --seal:#d98a83; --seal-bg:#2e1715;
+  --good:#7db99e; --good-bg:#15251e;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--field);color:var(--ink);
+  font-family:Newsreader,Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.page{max-width:58rem;margin:0 auto;padding:clamp(1.75rem,4vw,3.5rem) clamp(1rem,3.5vw,2.25rem) 6rem;
+  display:flex;flex-direction:column;gap:2rem}
+.cond{font-family:"Roboto Condensed",Arial,sans-serif}
+.mono{font-family:"Roboto Mono",ui-monospace,Menlo,monospace}
+h1{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.05;letter-spacing:-.015em;
+  margin:.4rem 0 0;text-transform:uppercase;text-wrap:balance}
+h2{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:1.15rem;
+  letter-spacing:.01em;margin:0 0 .3rem;text-transform:uppercase;text-wrap:balance}
+h3{font-family:"Roboto Condensed",Arial,sans-serif;font-weight:700;font-size:.9rem;
+  margin:0 0 .15rem;letter-spacing:.03em;text-transform:uppercase}
+p{margin:0 0 .8rem}p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.8rem}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.tag{font-family:"Roboto Condensed",Arial,sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink3)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.6rem;margin-top:.8rem;
+  font-family:"Roboto Condensed",Arial,sans-serif;font-size:.85rem;color:var(--ink2)}
+.lede{font-size:1.08rem;color:var(--ink2)}
+
+.hero{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule)}
+.hero div{background:var(--card);padding:1rem 1.1rem;display:flex;flex-direction:column;gap:.15rem}
+.hero .k{font-family:"Roboto Condensed",Arial,sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink3)}
+.hero .v{font-family:"Roboto Mono",monospace;font-weight:700;font-size:1.6rem;line-height:1.1;
+  color:var(--copper);font-variant-numeric:tabular-nums}
+.hero .s{font-family:"Roboto Condensed",Arial,sans-serif;font-size:.78rem;color:var(--ink2)}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-family:"Roboto Condensed",Arial,sans-serif;font-size:.88rem}
+th,td{padding:.5rem .8rem;text-align:left;border-bottom:1px solid var(--rule2);vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);font-weight:700;
+  background:var(--well);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:"Roboto Mono",monospace;white-space:nowrap}
+code{font-family:"Roboto Mono",ui-monospace,Menlo,monospace;font-size:.85em;background:var(--well);
+  padding:.05rem .3rem;word-break:break-word}
+.pill{display:inline-block;font-family:"Roboto Condensed",Arial,sans-serif;font-size:.68rem;
+  font-weight:700;letter-spacing:.05em;padding:.08rem .45rem;white-space:nowrap}
+.pill.ok{background:var(--good-bg);color:var(--good)}
+.pill.no{background:var(--seal-bg);color:var(--seal)}
+
+.note{border:1px solid var(--rule);border-left:3px solid var(--copper);background:var(--card);
+  padding:.9rem 1.05rem;font-size:.95rem}
+.note h3{color:var(--copper)}
+.note.declare{border-left-color:var(--seal)} .note.declare h3{color:var(--seal)}
+.note.ok{border-left-color:var(--good)} .note.ok h3{color:var(--good)}
+
+.sealbar{border:2px solid var(--seal);background:var(--seal-bg);padding:1.1rem 1.25rem;
+  display:flex;flex-direction:column;gap:.5rem}
+.sealbar h2{color:var(--seal);margin:0}
+.locked{display:grid;grid-template-columns:1fr auto;gap:.35rem 1rem;
+  font-family:"Roboto Condensed",Arial,sans-serif;font-size:.87rem}
+.locked b{font-weight:400}
+.locked span{font-family:"Roboto Mono",monospace;font-size:.78rem;color:var(--seal);
+  letter-spacing:.1em}
+.trace{font-family:"Roboto Mono",monospace;font-size:.76rem;background:var(--well);
+  border:1px solid var(--rule);padding:.7rem .85rem;overflow-x:auto;line-height:1.7;color:var(--ink2)}
+ol,ul{margin:0;padding-left:1.3rem;display:flex;flex-direction:column;gap:.4rem;font-size:.96rem}
+footer{font-family:"Roboto Condensed",Arial,sans-serif;font-size:.8rem;color:var(--ink3);line-height:1.55}
+:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+</style>
+
+<div class="page">
+
+<header>
+  <div class="tag">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Cross-model replication</div>
+  <h1>Qwen3 reserved split: executed and sealed</h1>
+  <p class="meta"><span>19 August 2026</span><span>Reserved split &middot; 1,440 calls</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<section>
+  <p class="lede">The primary cross-model replication arm has been run in full. This report covers completion, matrix integrity and transport only. <strong>No outcome has been inspected</strong> &mdash; not an accuracy, not a contrast, not a saturation classification. The analyser refuses reserved runs unconditionally and no digest unlocks it.</p>
+</section>
+
+<div class="hero">
+  <div><span class="k">Completion</span><span class="v">1440/1440</span><span class="s"><code>pass: true</code></span></div>
+  <div><span class="k">Valid</span><span class="v">100%</span><span class="s">0 truncation, 0 schema errors</span></div>
+  <div><span class="k">Calls lost</span><span class="v">0</span><span class="s">23 recovered by restart</span></div>
+  <div><span class="k">Cost</span><span class="v">$0.59</span><span class="s">against a $5 cap</span></div>
+</div>
+
+<hr>
+
+<section>
+  <h2>1. The matrix is exact</h2>
+  <p>The frozen design is 32 reserved memories &times; 5 reactions &times; 3 renderings &times; 3 conditions. Every cell is present and none is duplicated.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Property</th><th>Required</th><th>Observed</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Memories</td><td class="n">32</td><td class="n">32</td><td><span class="pill ok">EXACT</span></td></tr>
+      <tr><td>Calls per memory</td><td class="n">45</td><td class="n">45 min, 45 max</td><td><span class="pill ok">EXACT</span></td></tr>
+      <tr><td>B0 — Raw longitudinal evidence</td><td class="n">480</td><td class="n">480</td><td><span class="pill ok">EXACT</span></td></tr>
+      <tr><td>M0 — Pre-specified consequence map</td><td class="n">480</td><td class="n">480</td><td><span class="pill ok">EXACT</span></td></tr>
+      <tr><td>B1 — Cognitive memory</td><td class="n">480</td><td class="n">480</td><td><span class="pill ok">EXACT</span></td></tr>
+      <tr><td>Duplicate terminal records</td><td class="n">0</td><td class="n">0</td><td><span class="pill ok">NONE</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>All 1,440 calls returned HTTP 200 with <code>finish_reason: stop</code> and terminal status <code>COMPLETED_VALID</code>. Output ran to a median of 116 tokens and a maximum of 294 against the frozen 4,096 ceiling, so <strong>truncation was not merely rare, it was structurally impossible</strong> &mdash; against 4.0% on the sealed KIMI2 run.</p>
+  <div class="note ok">
+    <h3>Statelessness verified</h3>
+    <p>Input tokens ranged from 1,504 to 2,049 across all 1,440 calls, tracking payload size and nothing else. There is no upward drift, so no context leaked between calls and each remained an independent decision. This is the same check that validated the KIMI2 reserved run.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>2. Transport: 113 faults, nothing lost</h2>
+  <p>The host is on Wi-Fi with no wired interface, and its radio power-saving was active during the run. That produced a burst of DNS resolution failures and TLS handshake timeouts, concentrated in the opening third and absent from the last 60%.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Event</th><th>Count</th><th>Outcome</th></tr></thead>
+    <tbody>
+      <tr><td>Retryable transport faults</td><td class="n">90</td><td>recovered within the frozen 3-attempt policy</td></tr>
+      <tr><td>Attempts exhausted</td><td class="n">23</td><td>written as <em>restartable</em>, not terminal</td></tr>
+      <tr><td>Calls needing more than one attempt</td><td class="n">36</td><td>all completed</td></tr>
+      <tr><td>Provider errors (429, 5xx)</td><td class="n">0</td><td>none &mdash; the fault was local</td></tr>
+      <tr><td><strong>Calls permanently lost</strong></td><td class="n">0</td><td><span class="pill ok">NONE</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Pass one closed at <strong>1,417/1,440 with <code>pass: false</code></strong>. Because exhausted transport failures are recorded as restartable and never written to the call registry, relaunching the same command retried exactly those 23 and closed the run at 1,440/1,440 in about 100 seconds. Nothing was edited between passes.</p>
+  <div class="note">
+    <h3>This is the 13 August defect, repaired and now proven in production</h3>
+    <p>The runner as originally supplied wrote failed calls to the registry as terminal, so a restart skipped them: a measured silent loss of 20%. The corrected runner has now met a genuinely degraded network and lost nothing. A representative trace:</p>
+    <div class="trace">CALL51-0000327  attempt 1  RETRYABLE_ERROR  urlopen error [Errno -2] Name or service not known
+CALL51-0000327  attempt 2  RETRYABLE_ERROR  urlopen error [Errno -2] Name or service not known
+CALL51-0000327  attempt 3  COMPLETED_VALID</div>
+    <p>The policy exercised its full depth rather than its happy path. Wi-Fi power saving has since been disabled on the host.</p>
+  </div>
+  <div class="note declare">
+    <h3>Declared: the host suspended for 70 minutes mid-run</h3>
+    <p>The laptop entered <code>sleep.target</code> at 15:59:51 and left it at 17:09:24 &mdash; the lid-close default, since corrected. The run process was frozen for that interval and resumed without intervention.</p>
+    <p>It is disclosed because an auditor should know the host slept, but it did not corrupt the run: zero transport faults occur in the affected window, all 1,440 responses are valid, and input tokens stay flat across the boundary. Wall-clock timings from this run are therefore not a usable throughput measurement; per-call latency is (median 2.38 s, p95 4.63 s).</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>3. Execution conditions, as frozen</h2>
+  <div class="scroll"><table>
+    <tbody>
+      <tr><td>Model</td><td><code>qwen.qwen3-next-80b-a3b</code>, Amazon Bedrock, us-east-1, base model id direct</td></tr>
+      <tr><td>Runner</td><td>release <code>scripts/api_runner_qa1.py</code>, unmodified, Bedrock adapter injected</td></tr>
+      <tr><td>Reasoning effort</td><td><code>low</code> &mdash; selected by the blinded operational hierarchy of Decision 3, not by hand</td></tr>
+      <tr><td>Output ceiling</td><td>4,096 via <code>max_completion_tokens</code></td></tr>
+      <tr><td>Sampling</td><td>not sent; <code>seed</code> accepted but not honoured by the endpoint &mdash; stochastic estimand per Decision 2</td></tr>
+      <tr><td>Retry policy</td><td>release default: 3 attempts, backoff 0/2/8 s, jitter seed 13082653</td></tr>
+      <tr><td>Call order</td><td>frozen shuffle, seed 13082652; conditions interleaved</td></tr>
+      <tr><td>Concurrency</td><td>1 (the frozen runner is serial)</td></tr>
+      <tr><td>Tokens</td><td>1,758 input mean; 121 output mean, 116 median, 294 max</td></tr>
+    </tbody>
+  </table></div>
+  <p>Because the call order is a frozen shuffle with conditions interleaved, the transport faults fell at random across B0, M0 and B1. They cannot have favoured any arm, and in any case none resulted in a lost call.</p>
+</section>
+
+<hr>
+
+<div class="sealbar">
+  <h2>Sealed</h2>
+  <p style="font-size:.95rem">Written by the frozen scorer during the run and not opened. The analyser refuses reserved runs unconditionally &mdash; the refusal is not gated on a digest, because the authorisation that would release it does not exist.</p>
+  <div class="locked">
+    <b>B0, M0, B1 accuracy</b><span>SEALED</span>
+    <b>B1 &minus; B0, the primary confirmatory contrast</b><span>SEALED</span>
+    <b>B1 &minus; M0, the key secondary</b><span>SEALED</span>
+    <b>M0 &minus; B0, exploratory</b><span>SEALED</span>
+    <b>Rule, grounding and provenance measures</b><span>SEALED</span>
+    <b>Saturation classification</b><span>SEALED</span>
+  </div>
+</div>
+
+<section>
+  <h2>What is needed to open it</h2>
+  <p>The delegated signature of 19 August released the Qwen3 <em>development</em> contrasts and states explicitly that it does not release the reserved split of any arm. Opening this run therefore requires a separate authorisation that does not yet exist.</p>
+  <p>Given that this is the single primary confirmatory claim of the programme, the recommendation is that it carry <strong>your own signature rather than a delegated one</strong>. Everything else is in place: the analysis is frozen and pre-registered, the estimator is the one that produced the sealed KIMI2 result, and its coverage characteristic was re-measured across a grid before this run was opened &mdash; confirming, not weakening, the published Finding 002.</p>
+  <div class="note">
+    <h3>Once authorised</h3>
+    <p>The analysis is a single command and completes in seconds, with zero further model calls. The hierarchy is fixed: B1&minus;B0 first, the key secondary tested only if the primary succeeds, M0&minus;B0 exploratory; intention-to-evaluate denominator; memory-clustered bootstrap, 10,000 replicates, 95% percentile interval, seed 13082654.</p>
+  </div>
+</section>
+
+<hr>
+
+<footer>
+  <p>Executed through the release&rsquo;s own runner, parser and scorer with nothing in <code>release_qa1c</code> modified. Evidence: <code>dca_v051/bedrock_terra/out/reserved_qwen3/</code> and <code>out/reserved_qwen3_blind_summary.json</code>. Execution authorisation: <code>signature/AUTHORISATION_reserved_qwen3.json</code>. The sealed KIMI2 reserved result (B1&minus;B0 = +9.79 pp, 95% CI [5.00, 14.79]) stands unchanged and is not superseded by this work.</p>
+</footer>
+
+</div>

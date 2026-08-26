@@ -1,0 +1,46 @@
+ 8 mem  base 0.33  effect   0.0 pp  ->  coverage  89.8%  clears zero   5.0%  width 29.47 pp
+ 8 mem  base 0.33  effect  10.0 pp  ->  coverage  88.9%  clears zero  28.2%  width 29.98 pp
+ 8 mem  base 0.33  effect  18.0 pp  ->  coverage  89.0%  clears zero  59.9%  width 30.42 pp
+ 8 mem  base 0.55  effect   0.0 pp  ->  coverage  89.6%  clears zero   5.4%  width 30.76 pp
+ 8 mem  base 0.55  effect  10.0 pp  ->  coverage  88.8%  clears zero  27.3%  width 30.22 pp
+ 8 mem  base 0.55  effect  18.0 pp  ->  coverage  90.3%  clears zero  58.8%  width 29.08 pp
+ 8 mem  base 0.75  effect   0.0 pp  ->  coverage  89.4%  clears zero   4.8%  width 27.47 pp
+ 8 mem  base 0.75  effect  10.0 pp  ->  coverage  86.5%  clears zero  23.7%  width 25.00 pp
+ 8 mem  base 0.75  effect  18.0 pp  ->  coverage  80.2%  clears zero  55.8%  width 23.01 pp
+32 mem  base 0.33  effect   0.0 pp  ->  coverage  94.4%  clears zero   2.7%  width 15.99 pp
+32 mem  base 0.33  effect  10.0 pp  ->  coverage  93.0%  clears zero  67.3%  width 16.36 pp
+32 mem  base 0.33  effect  18.0 pp  ->  coverage  93.8%  clears zero  98.0%  width 16.49 pp
+32 mem  base 0.55  effect   0.0 pp  ->  coverage  92.8%  clears zero   4.1%  width 16.54 pp
+32 mem  base 0.55  effect  10.0 pp  ->  coverage  93.7%  clears zero  61.6%  width 16.39 pp
+32 mem  base 0.55  effect  18.0 pp  ->  coverage  92.8%  clears zero  96.9%  width 15.74 pp
+32 mem  base 0.75  effect   0.0 pp  ->  coverage  92.0%  clears zero   1.4%  width 14.83 pp
+32 mem  base 0.75  effect  10.0 pp  ->  coverage  84.6%  clears zero  52.2%  width 13.66 pp
+32 mem  base 0.75  effect  18.0 pp  ->  coverage  57.2%  clears zero  95.7%  width 12.51 pp
+
+written to out/coverage_study.json in 707 s
+{
+  "reserved_32_memories_under_null": {
+    "coverage_min": 0.92,
+    "coverage_max": 0.944,
+    "coverage_mean": 0.9307,
+    "clears_zero_mean": 0.0273
+  },
+  "reserved_32_memories_effect_10pp": {
+    "coverage_min": 0.846,
+    "coverage_max": 0.937,
+    "coverage_mean": 0.9043,
+    "clears_zero_mean": 0.6037
+  },
+  "development_8_memories_under_null": {
+    "coverage_min": 0.894,
+    "coverage_max": 0.898,
+    "coverage_mean": 0.896,
+    "clears_zero_mean": 0.0507
+  },
+  "development_8_memories_effect_10pp": {
+    "coverage_min": 0.865,
+    "coverage_max": 0.889,
+    "coverage_mean": 0.8807,
+    "clears_zero_mean": 0.264
+  }
+}

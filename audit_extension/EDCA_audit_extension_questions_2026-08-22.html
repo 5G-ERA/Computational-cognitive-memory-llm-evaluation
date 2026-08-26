@@ -1,0 +1,357 @@
+<title>Audit Extension Open Questions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1EF;
+  --ink:#141A19; --body:#2B3634; --muted:#5F6C69; --faint:#8C9895;
+  --rule:#D8E0DD; --rule-strong:#B9C6C2;
+  --accent:#12665C; --accent-soft:#E1EFEC; --accent-ink:#0B4A43;
+  --ok:#1E7A52; --ok-soft:#E2F1E9; --caution:#8A5A00; --caution-soft:#F6ECD9;
+  --blocker:#A32A22; --blocker-soft:#F7E4E2;
+  --shadow:0 1px 2px rgba(20,26,25,.05), 0 8px 24px -16px rgba(20,26,25,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+    --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+    --rule:#26302E; --rule-strong:#38443F;
+    --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+    --ok:#57BC8B; --ok-soft:#12251C; --caution:#D6A44B; --caution-soft:#2A2113;
+    --blocker:#E58279; --blocker-soft:#2C1815;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+  --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+  --rule:#26302E; --rule-strong:#38443F;
+  --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+  --ok:#57BC8B; --ok-soft:#12251C; --caution:#D6A44B; --caution-soft:#2A2113;
+  --blocker:#E58279; --blocker-soft:#2C1815;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--body);
+  font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif; font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:54rem; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2.5rem) 6rem}
+.prose{max-width:39rem}
+h1,h2,h3{font-family:Spectral, Georgia, serif; color:var(--ink); text-wrap:balance; margin:0}
+h1{font-size:clamp(2rem,5vw,2.9rem); line-height:1.09; font-weight:700; letter-spacing:-.015em}
+h2{font-size:1.5rem; font-weight:600; letter-spacing:-.008em}
+h3{font-size:1.15rem; font-weight:600; line-height:1.32}
+p{margin:0}
+code,.mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.86em}
+code{background:var(--sunk); padding:.08em .34em; border-radius:3px; color:var(--ink)}
+strong{color:var(--ink); font-weight:600}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--faint); font-weight:500}
+.stack{display:flex; flex-direction:column}
+.g-1{gap:.4rem} .g-2{gap:.8rem} .g-3{gap:1.2rem} .g-4{gap:1.8rem} .g-5{gap:2.4rem} .g-7{gap:3.6rem} .g-9{gap:4.75rem}
+
+header.mast{display:flex; flex-direction:column; gap:1.3rem; padding-bottom:1.9rem; border-bottom:2px solid var(--rule-strong)}
+.mast .lede{font-size:1.11rem; color:var(--muted); max-width:39rem}
+.meta{display:flex; flex-wrap:wrap; gap:.35rem 1.5rem; font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--faint)}
+.meta b{color:var(--muted); font-weight:500}
+
+.grouphead{display:flex; flex-direction:column; gap:.55rem; padding-bottom:.3rem}
+.grouphead .tag{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); font-weight:600}
+
+.q{border-top:1px solid var(--rule); padding-top:1.35rem; display:flex; flex-direction:column; gap:.85rem}
+.qhead{display:flex; align-items:baseline; gap:.7rem; flex-wrap:wrap}
+.qid{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:.95rem; color:var(--accent)}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase;
+  font-weight:600; padding:.2rem .5rem; border-radius:3px; white-space:nowrap}
+.chip.blk{background:var(--blocker-soft); color:var(--blocker)}
+.chip.cau{background:var(--caution-soft); color:var(--caution)}
+.chip.note{background:var(--sunk); color:var(--muted)}
+.chip.ok{background:var(--ok-soft); color:var(--ok)}
+.ans{display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:baseline;
+  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--ok);
+  border-radius:0 5px 5px 0; padding:.8rem 1.1rem; box-shadow:var(--shadow)}
+.ans .al{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ok); font-weight:600; white-space:nowrap}
+dl.ratify dd.a{grid-column:2; font-size:.9rem; color:var(--ok); margin-top:.3rem}
+.q h3{flex:1 1 17rem; min-width:0}
+
+.rec{display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:baseline;
+  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:0 5px 5px 0; padding:.85rem 1.1rem; box-shadow:var(--shadow)}
+.rec .rl{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent); font-weight:600; white-space:nowrap}
+.rec p{max-width:36rem}
+
+.tw{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.85rem}
+th,td{padding:.48rem .8rem; text-align:left; border-bottom:1px solid var(--rule); white-space:nowrap}
+thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint); font-weight:500; background:var(--sunk); border-bottom:1px solid var(--rule-strong)}
+tbody tr:last-child td{border-bottom:none}
+td.num, th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+td.lbl{font-family:"IBM Plex Mono",monospace; font-size:.79rem; color:var(--ink)}
+tr.hi td{background:var(--accent-soft)}
+td .flag{color:var(--blocker); font-weight:600}
+caption{caption-side:bottom; text-align:left; padding:.55rem .8rem; font-size:.78rem; color:var(--muted); line-height:1.45}
+
+dl.ratify{margin:0; display:flex; flex-direction:column; gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+dl.ratify > div{background:var(--surface); padding:.95rem 1.15rem; display:grid;
+  grid-template-columns:3.1rem 1fr; gap:.35rem .9rem; align-items:baseline}
+dl.ratify dt{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:.86rem}
+dl.ratify dd{margin:0}
+dl.ratify dd.t{color:var(--ink); font-weight:600}
+dl.ratify dd.d{grid-column:2; font-size:.92rem; color:var(--muted)}
+
+.answers{background:var(--sunk); border:1px solid var(--rule); border-radius:6px; padding:1.15rem 1.3rem;
+  font-family:"IBM Plex Mono",monospace; font-size:.82rem; line-height:1.9; color:var(--muted); overflow-x:auto}
+.answers b{color:var(--ink); font-weight:600}
+footer{border-top:2px solid var(--rule-strong); padding-top:1.4rem; color:var(--faint); font-size:.83rem}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+</style>
+
+<div class="wrap stack g-9">
+
+<header class="mast">
+  <div class="stack g-3">
+    <span class="eyebrow">Answered &amp; applied · 22 August 2026</span>
+    <h1>Audit Extension Open&nbsp;Questions</h1>
+    <p class="lede">Eighteen questions stood between the extension and a defensible freeze. All
+    eighteen were answered on 22 August 2026 and all eighteen are applied. This page keeps the
+    questions and the reasoning that produced them, each with the answer it received.</p>
+  </div>
+  <div class="meta">
+    <span><b>Protocol</b> Experiment 1 Audit Extension, 22 Aug 2026</span>
+    <span><b>Parent release</b> v0.5.1-qa1c</span>
+    <span><b>Fixtures</b> 15/15</span>
+    <span><b>Clean room §4</b> pass</span>
+    <span><b>Gate §19</b> NO-GO, 4 conditions</span>
+    <span><b>Reserved</b> untouched</span>
+  </div>
+</header>
+
+<section class="stack g-5">
+  <div class="grouphead prose">
+    <span class="tag">Group A · six decisions</span>
+    <h2>These change what the audit measures</h2>
+    <p>Each is measured on the development splits of Terra and Qwen3, 360 calls each, 8 memory
+    clusters, paired memory-clustered bootstrap with 10,000 resamples.</p>
+  </div>
+
+  <div class="stack g-7">
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A1</span><span class="chip ok">Answered</span>
+        <h3>Demote <code>E4_INFLUENCE_UNEXPLAINED</code> to INFO?</h3></div>
+      <p class="prose">The release publishes no structured grounds field, so the only
+      oracle-independent detector for this code is whether the free-text <code>reason</code> quotes
+      an event identifier. Terra never does; Qwen3 usually does. It fires on 360/360 Terra cases and
+      54/360 Qwen3 cases.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Check</th><th>Model</th><th class="num">B0</th><th class="num">M0</th><th class="num">B1</th><th class="num">ΔIO = B1 − B0, 95% CI</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">active</td><td>Terra</td><td class="num">0.00%</td><td class="num">0.00%</td><td class="num">0.00%</td><td class="num">+0.00 [+0.00, +0.00]</td></tr>
+          <tr class="hi"><td class="lbl">active</td><td>Qwen3</td><td class="num">87.50%</td><td class="num">85.83%</td><td class="num">75.83%</td><td class="num"><span class="flag">−11.67 [−20.00, −2.50]</span></td></tr>
+          <tr><td class="lbl">removed</td><td>Terra</td><td class="num">99.17%</td><td class="num">99.17%</td><td class="num">100.00%</td><td class="num">+0.83 [+0.00, +2.50]</td></tr>
+          <tr><td class="lbl">removed</td><td>Qwen3</td><td class="num">97.50%</td><td class="num">98.33%</td><td class="num">97.50%</td><td class="num">+0.00 [−2.50, +2.50]</td></tr>
+        </tbody>
+        <caption>One check, whose detector is prose style, is the sole reason the primary Level 1 estimand excludes zero — in the direction against cognitive memory.</caption>
+      </table></div>
+      <div class="rec"><span class="rl">Recommend</span>
+        <p>Yes. Demote to INFO and report descriptively. Its deterministic content is already
+        carried by <code>E0_SCHEMA_INVALID</code> and the two grounds-missing codes.</p></div>
+          <div class="ans"><span class="al">Answer</span><p><strong>YES</strong></p></div>
+    </article>
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A2</span><span class="chip ok">Answered</span>
+        <h3>Declare ΔIO an instrument-integrity endpoint rather than a discriminating one?</h3></div>
+      <p class="prose">With A1 applied, deterministic Level 1 conformity is 97.5%–100% in every
+      condition for both models. Structural, not incidental: the public response schema has four
+      fields and the frozen runner already rejects schema-invalid responses, so nearly any response
+      reaching the audit is Level 1 conformant. Same shape as the ceiling in the Terra decision
+      arm.</p>
+      <div class="rec"><span class="rl">Recommend</span>
+        <p>Keep ΔIO, state the ceiling explicitly, and report it as evidence that the retained
+        artefacts support reconstruction in every condition — a claim the paper can make — rather
+        than as a contrast expected to move.</p></div>
+          <div class="ans"><span class="al">Answer</span><p><strong>YES</strong></p></div>
+    </article>
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A3</span><span class="chip ok">Answered</span>
+        <h3>Add <code>UNRESOLVED_BY_CONDITION_DESIGN</code>, so §8.3 stops making the UNRESOLVED family critical?</h3></div>
+      <p class="prose">Exactly 10 of 40 memories carry <code>constitutive_event_ids: []</code>, and
+      they are exactly the 10 whose verification state is <code>UNRESOLVED</code> — one per
+      assumption family, by design. An unresolved verification has no constitutive evidence
+      <em>because it was never resolved</em>. §8.3 calls that a critical violation.</p>
+      <div class="tw"><table>
+        <thead><tr><th>Contrast, SCOPED reading</th><th class="num">Terra</th><th class="num">Qwen3</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">ΔTrace = B1 − M0</td><td class="num">−25.00 [−62.50, +0.00]</td><td class="num">−25.83 [−62.50, −0.83]</td></tr>
+          <tr><td class="lbl">ΔCritical = B1 − M0</td><td class="num">+25.00 [+0.00, +62.50]</td><td class="num">+25.00 [+0.00, +62.50]</td></tr>
+          <tr><td class="lbl">B1 critical rate</td><td class="num">25.00%</td><td class="num">25.00%</td></tr>
+        </tbody>
+        <caption>Two different models agree to within 0.83 pp because the quantity is a property of the dataset, not of either system. The reserved split holds 8 of 32 such memories, so it reproduces at exactly 25% there too.</caption>
+      </table></div>
+      <div class="rec"><span class="rl">Recommend</span>
+        <p>Yes — symmetric with the <code>OPEN_LOOP_BY_CONDITION_DESIGN</code> exemption §7.2
+        already grants M0. The positive obligation, that unresolvedness is <em>represented</em>
+        rather than dropped, is already covered by <code>E2_UNRESOLVED_COLLAPSED</code>.</p></div>
+          <div class="ans"><span class="al">Answer</span><p><strong>YES</strong></p></div>
+    </article>
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A4</span><span class="chip ok">Answered</span>
+        <h3>Level 2 as a release-integrity audit now, or extend the response schema and re-run?</h3></div>
+      <p class="prose">§8.1 requires fields absent from the release to be marked
+      <code>NOT_RECORDED_IN_SOURCE_RELEASE</code> and never inferred. §7.2 and §8.3 make several of
+      those same fields mandatory components. Both readings are computed:</p>
+      <div class="tw"><table>
+        <thead><tr><th>Reading</th><th class="num">M0 L2 conformity</th><th class="num">B1 L2 conformity</th><th class="num">B1 critical</th><th class="num">ΔTrace</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">LITERAL</td><td class="num">0.00%</td><td class="num">0.00%</td><td class="num">100.00%</td><td class="num"><span class="flag">+0.00 [+0.00, +0.00]</span></td></tr>
+          <tr><td class="lbl">SCOPED</td><td class="num">100.00%</td><td class="num">74–75%</td><td class="num">25.00%</td><td class="num">−25 (the A3 artefact)</td></tr>
+        </tbody>
+        <caption>Under LITERAL the estimand has a zero point and a zero-width interval in both models: it cannot move. Under SCOPED it is A3. Neither reading measures a system property.</caption>
+      </table></div>
+      <p class="prose">The cause is structural, not editorial. <strong>The release has no
+      trace-writing path.</strong> M0 and B1 objects are delivered <em>to</em> the model in the
+      payload; the model returns only <code>reaction</code>, <code>rule_id</code>,
+      <code>decisive_event_ids</code> and <code>reason</code>. Level 2 as specified audits the
+      dataset, which the §14 checks confirm is invariant across all five contexts, all three
+      renderings and both models, for every memory. That is also why the protocol reads as if
+      written for Experiment 2, where the system writes a lifecycle trace κ<sub>t</sub> and
+      equation (36) compares it with a frozen reference certificate. Experiment 1 has no
+      κ<sub>t</sub>.</p>
+      <div class="rec"><span class="rl">Recommend</span>
+        <p>Report Level 2 as a release-integrity audit for this paper — the retained artefacts are
+        complete, coherent and non-rewritten, stated once for the release — and drop equation (7),
+        declaring the schema extension as the §21 follow-on.</p></div>
+          <div class="ans"><span class="al">Answer</span><p><strong>RELEASE-INTEGRITY NOW, EXTEND SCHEMA AS FOLLOW-ON</strong></p></div>
+    </article>
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A5</span><span class="chip ok">Answered</span>
+        <h3>Which reading is normative for the paper — LITERAL or SCOPED?</h3></div>
+      <p class="prose">Both are computed and both are in <code>results/</code>. Only one can be the
+      headline. Partly consequential on A4: under that recommendation, SCOPED is the natural choice
+      and LITERAL becomes a declared sensitivity.</p>
+          <div class="ans"><span class="al">Answer</span><p><strong>SCOPED, LITERAL AS SENSITIVITY ONLY</strong></p></div>
+    </article>
+
+    <article class="q">
+      <div class="qhead"><span class="qid">A6</span><span class="chip ok">Answered</span>
+        <h3>Will you sign the freeze record?</h3></div>
+      <p class="prose">The third unmet §19 gate condition. All 83 files are hashed in
+      <code>validation/SHA256SUMS.txt</code>. No signature record exists — I will not write one
+      naming you unless you sign it.</p>
+          <div class="ans"><span class="al">Answer</span><p><strong>REQUIRES RENXI QIU SIGNATURE</strong></p></div>
+    </article>
+
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="grouphead prose">
+    <span class="tag">Group B · ten ratifications</span>
+    <h2>Conventions the protocol leaves open</h2>
+    <p>Each is a place where the protocol does not determine an implementation. I chose, and
+    recorded the choice in the contracts. They need ratifying <strong>now</strong>: Adrian is
+    writing the independent §17 validator from the contracts alone, and an unratified convention
+    produces a disagreement that is about the specification rather than about either
+    implementation.</p>
+  </div>
+  <dl class="ratify">
+    <div><dt>B1</dt><dd class="t">Rendering identifier (§3)</dd>
+      <dd class="d">Not recorded on the call envelope. Derived from the <code>context_id</code> suffix: <code>-STR</code> → STRUCTURED, <code>-CHR</code> → CHRONOLOGICAL, <code>-CON</code> → CONCISE. Ratify the derivation into the frozen protocol?</dd><dd class="a">Answer: <strong>RATIFY</strong></dd></div>
+    <div><dt>B2</dt><dd class="t">"Scientifically truncated" request (§6.1)</dd>
+      <dd class="d">Implemented as: the payload carries every longitudinal record registered for the memory and every current record registered for the canonical context. Verified to hold for all 1800 expected calls.</dd><dd class="a">Answer: <strong>RATIFY, RENAME PAYLOAD_REGISTRY_COMPLETE</strong></dd></div>
+    <div><dt>B3</dt><dd class="t">Decision boundary (§6.4)</dd>
+      <dd class="d">The protocol names it but does not define it. Implemented as <code>max(event_time)</code> over the current records delivered in that payload.</dd><dd class="a">Answer: <strong>RATIFY AS PAYLOAD EVIDENCE CUTOFF</strong></dd></div>
+    <div><dt>B4</dt><dd class="t">Self-declared grounds categories (§6.5)</dd>
+      <dd class="d">The six categories cannot be read off a response that has no structured grounds field. Reduced to three deterministic obligations; the rest deferred to the human rubric rather than approximated by text heuristics.</dd><dd class="a">Answer: <strong>RATIFY</strong></dd></div>
+    <div><dt>B5</dt><dd class="t">Current event as formation evidence (§6.6)</dd>
+      <dd class="d">No oracle-free deterministic detector exists on this release — the claim lives in free text. Deferred to the frozen human rubric; raises nothing today.</dd><dd class="a">Answer: <strong>HUMAN RUBRIC ONLY</strong></dd></div>
+    <div><dt>B6</dt><dd class="t">Prospective integrity hash (§7.3)</dd>
+      <dd class="d">Equation (1) has five operands; three — attributed capability, evidence contract, verification window — are not recorded. Hash computed over the other three, and §8.2's non-rewrite test inherits the weakening. Ratify the degraded hash, or withdraw the non-rewrite test as unevaluable here?</dd><dd class="a">Answer: <strong>REPORT AS PARTIAL FIELD STABILITY, WITHDRAW FULL NON-REWRITE CLAIM</strong></dd></div>
+    <div><dt>B7</dt><dd class="t">Competing evidence (§8.4)</dd>
+      <dd class="d">The field exists but the release states no expectation of when it must be non-empty, so the check records <code>NOT_EVALUABLE_FROM_SOURCE_RELEASE</code>, exactly as §8.4 directs. Reference integrity is still checked.</dd><dd class="a">Answer: <strong>NOT EVALUABLE FROM SOURCE RELEASE</strong></dd></div>
+    <div><dt>B8</dt><dd class="t">Human-detected codes (§16)</dd>
+      <dd class="d">Four codes declared inert pending a frozen rubric, and <code>E2_SCOPE_OVERREACH</code> scored by its automated half only. So every conformity figure in <code>results/</code> is <strong>deterministic-only</strong> and therefore an upper bound: the human layer can only lower it. Confirm the list, and that the paper carries the caveat?</dd><dd class="a">Answer: <strong>RATIFY, DETERMINISTIC-ONLY UPPER BOUNDS</strong></dd></div>
+    <div><dt>B9</dt><dd class="t">Cluster coverage (§15)</dd>
+      <dd class="d">8 development clusters. Our own coverage study puts 8-cluster bootstrap coverage near 89.6% against a nominal 95%, and 32-cluster near 92.5%. Confirm audit intervals carry the same disclosure the decision results already carry?</dd><dd class="a">Answer: <strong>RATIFY</strong></dd></div>
+    <div><dt>B10</dt><dd class="t">Naming, against theory equation (36)</dd>
+      <dd class="d">V4.7 defines audit conformity as the realised lifecycle trace matching an independently specified frozen reference certificate. This extension is oracle-independent and has no certificate, so it measures the rung below — functional auditability plus internal coherence — which is what §1 says it does. Rename to <em>trace reconstructibility</em> and <em>trace coherence</em>, reserving <em>audit conformity</em> for equation (36)?</dd><dd class="a">Answer: <strong>USE RECONSTRUCTIBILITY AND COHERENCE, RESERVE AUDIT CONFORMITY FOR LIFECYCLE CERTIFICATE TEST</strong></dd></div>
+  </dl>
+</section>
+
+<section class="stack g-4">
+  <div class="grouphead prose">
+    <span class="tag">Group C · two scope questions</span>
+    <h2>What the audit covers, and under whose authorisation</h2>
+  </div>
+  <dl class="ratify">
+    <div><dt>C1</dt><dd class="t">Does the audit extend to the Kimi arm?</dd>
+      <dd class="d">The Kimi reserved run (1440 calls) has every artefact the audit needs, and I verified that all six audit inputs — payloads, both event registries, the context map, the response schema and the rule vocabulary — are byte-identical between qa1b and qa1c, so it audits against the qa1c contracts without a version mismatch. It adds a third model, but only at the reserved level: there is no comparable Kimi development run. Include it, and under what authorisation?</dd><dd class="a">Answer: <strong>YES, RESERVED-ONLY POST-FREEZE ARM</strong></dd></div>
+    <div><dt>C2</dt><dd class="t">Reserved audit authorisation</dd>
+      <dd class="d">§19 is NO-GO; reserved audit execution is not authorised. Three mandatory conditions are unmet: the independent validator (Adrian is writing it now from the contracts alone), the human-review rubric and blinding, and the signed freeze. Once met, does reserved audit execution need its own authorisation record naming the run, as reserved <em>execution</em> did — or does the frozen protocol plus your signature suffice?</dd><dd class="a">Answer: <strong>SEPARATE SIGNED AUTHORISATION REQUIRED</strong></dd></div>
+  </dl>
+</section>
+
+<section class="stack g-4">
+  <div class="grouphead prose">
+    <span class="tag">Not blocked</span>
+    <h2>One result needs no decision at all</h2>
+    <p>The §14 cross-rendering check required no new calls and survives every amendment above.</p>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Model</th><th>Condition</th><th class="num">Reaction agree</th><th class="num">Rule agree</th><th class="num">Citation set exact</th><th class="num">Citation Jaccard</th></tr></thead>
+    <tbody>
+      <tr><td>Terra</td><td class="lbl">B0</td><td class="num">95.0%</td><td class="num">95.0%</td><td class="num">85.0%</td><td class="num">0.931</td></tr>
+      <tr><td>Terra</td><td class="lbl">M0</td><td class="num">100.0%</td><td class="num">100.0%</td><td class="num">82.5%</td><td class="num">0.936</td></tr>
+      <tr><td>Terra</td><td class="lbl">B1</td><td class="num">97.5%</td><td class="num">97.5%</td><td class="num">82.5%</td><td class="num">0.947</td></tr>
+      <tr><td>Qwen3</td><td class="lbl">B0</td><td class="num">80.0%</td><td class="num">80.0%</td><td class="num">50.0%</td><td class="num">0.746</td></tr>
+      <tr><td>Qwen3</td><td class="lbl">M0</td><td class="num">82.5%</td><td class="num">82.5%</td><td class="num">67.5%</td><td class="num">0.816</td></tr>
+      <tr class="hi"><td>Qwen3</td><td class="lbl">B1</td><td class="num">72.5%</td><td class="num">67.5%</td><td class="num">17.5%</td><td class="num">0.592</td></tr>
+    </tbody>
+    <caption>Agreement of the returned decision, rule and cited evidence across the structured, chronological and concise renderings of the same canonical context. 40 canonical contexts per cell.</caption>
+  </table></div>
+  <p class="prose">For Qwen3, giving the model more retained memory makes <em>which evidence it
+  cites</em> markedly less stable to how the same records are worded — citation sets agree exactly
+  in half of B0 contexts but in under a fifth of B1 contexts — while the decision itself stays
+  comparatively stable. Terra shows no such spread. An oracle-free property of the interface; it
+  belongs in the supplement whatever is decided about Levels 1 and 2.</p>
+</section>
+
+<section class="stack g-3">
+  <h2>Recorded</h2>
+  <p class="prose">All eighteen answers are recorded with their provenance in
+  <code>validation/DECISIONS_2026-08-22.json</code>, each naming the contract file it landed in.
+  The record is explicitly <strong>not</strong> a signature: decision A6 states the freeze requires
+  the signature of Renxi Qiu, which has not been given, and no artefact in the package asserts
+  one.</p>
+  <div class="ans"><span class="al">Assessment</span>
+    <p>“This resolution makes the audit substantially more defensible. It removes style-dependent
+    and design-dependent artefacts, prevents an invariant dataset audit from being misreported as
+    model performance, and aligns the terminology with the theory's stronger lifecycle definition
+    of audit conformity.” — Renxi Qiu, 22 August 2026</p></div>
+  <p class="prose">Results after applying every decision are in the
+  <a href="https://claude.ai/code/artifact/959b94f1-4701-43d9-ab1f-42d8d3d07749">preflight
+  report</a>: no critical violation on either development split, and the Level 1 difference that
+  had excluded zero against cognitive memory returns to +0.00 [−2.50, +2.50].</p>
+</section>
+
+<footer class="stack g-2">
+  <p><strong>Boundary.</strong> No reserved split has been audited. No accuracy figure appears
+  anywhere in the package and no join between accuracy and audit results has been performed.
+  Development-split intervals rest on 8 memory clusters and should be read as optimistic.</p>
+  <p>Package at <code class="mono">~/dca_v051/audit_extension/</code> · findings in
+  <code class="mono">PROPOSED_AMENDMENTS.md</code> · validator brief in
+  <code class="mono">validator_spec_pack/SPEC.md</code></p>
+</footer>
+
+</div>

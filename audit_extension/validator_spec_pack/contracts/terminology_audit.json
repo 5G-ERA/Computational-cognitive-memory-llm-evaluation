@@ -1,0 +1,126 @@
+{
+  "terminology_id": "AUDIT-TERM-1.0",
+  "status": "canonical",
+  "authority": "Decisions of Renxi Qiu, 22 August 2026, items A2, A4, A5 and B10, recorded in validation/DECISIONS_2026-08-22.json",
+  "aligned_with": "A Computational Theory of Cognitive Memory V4.7",
+  "supersedes": [],
+  "rule": "Internal metric keys and file column names remain unchanged for compatibility. All protocols, reports, figures and manuscripts use the canonical names below. This mirrors the parent release's own public/terminology_v0_5_1.json convention.",
+
+  "reserved_term": {
+    "audit conformity": {
+      "reserved_for": "Theory equation (36): AuditConformant_t = 1 iff the realised lifecycle trace matches the independently specified frozen reference certificate AND no critical violation is present.",
+      "must_not_be_used_for": "any outcome of this audit extension",
+      "reason": "This extension is oracle independent by design and has no reference certificate to match against. It measures the rung below in the theory's own ordering: audit-ready, evaluable, functionally auditable, audit-conformant.",
+      "decision": "B10, Renxi Qiu, 22 August 2026: USE RECONSTRUCTIBILITY AND COHERENCE, RESERVE AUDIT CONFORMITY FOR LIFECYCLE CERTIFICATE TEST."
+    }
+  },
+
+  "metrics": {
+    "coverage": {
+      "internal_key": "coverage",
+      "canonical_name": "Audit coverage",
+      "definition": "Evaluable records over expected records.",
+      "theory_rung": "evaluable"
+    },
+    "reconstructibility": {
+      "internal_key": "reconstructibility",
+      "canonical_name": "Functional auditability",
+      "definition": "Records whose pathway could be reconstructed, over expected records. A case counts when its status is CONFORMANT, INCOMPLETE or NONCONFORMANT: the pathway was reconstructible even where it carried a defect.",
+      "theory_rung": "functionally auditable",
+      "renamed_because": "The protocol's section 13 metric and the Level 1 headline outcome would otherwise both be called reconstructibility. The theory already names this rung."
+    },
+    "conformity_at_L1_IO": {
+      "internal_key": "conformity",
+      "audit_level": "L1_IO",
+      "canonical_name": "Input-output trace reconstructibility",
+      "definition": "Cases whose input-output pathway reconstructs with no defect, over expected cases.",
+      "former_name": "Level 1 audit conformity"
+    },
+    "conformity_at_L2": {
+      "internal_key": "conformity",
+      "audit_level": ["L2_M0", "L2_B1"],
+      "canonical_name": "Cognitive-trace coherence",
+      "definition": "Cases whose retained cognitive-trace object is internally coherent with no defect, over expected cases.",
+      "former_name": "Level 2 audit conformity"
+    },
+    "critical_rate": {
+      "internal_key": "critical_rate",
+      "canonical_name": "Critical-violation rate",
+      "definition": "Records carrying a critical violation, over expected records."
+    },
+    "partial_prospective_field_stability": {
+      "internal_key": "prospective_hash_equal",
+      "canonical_name": "Partial prospective field stability",
+      "definition": "Memories whose three recorded prospective fields are identical between the M0 and B1 objects, over memories. Covers three of the five operands of protocol equation (1).",
+      "former_name": "prospective non-rewrite",
+      "decision": "B6, Renxi Qiu, 22 August 2026: the full non-rewrite claim is withdrawn on this parent release."
+    }
+  },
+
+  "estimands": {
+    "delta_IO_B1_minus_B0": {
+      "canonical_name": "Trace-reconstructibility difference, cognitive memory minus raw longitudinal evidence",
+      "role": "INSTRUMENT_INTEGRITY",
+      "confirmatory": false,
+      "decision": "A2, Renxi Qiu, 22 August 2026: declared an instrument-integrity endpoint, not a discriminating one.",
+      "reporting_requirement": "The ceiling must be stated explicitly. Deterministic Level 1 outcome sits at 97.5-100 percent in every condition, because the public response schema has four fields and the frozen runner already rejects schema-invalid responses. Read it as evidence that the retained artefacts support reconstruction in every condition."
+    },
+    "delta_IO_M0_minus_B0": {
+      "canonical_name": "Trace-reconstructibility difference, pre-specified consequence mapping minus raw longitudinal evidence",
+      "role": "INSTRUMENT_INTEGRITY",
+      "confirmatory": false
+    },
+    "delta_Trace_B1_minus_M0": {
+      "canonical_name": "Cognitive-trace coherence difference",
+      "role": "WITHDRAWN",
+      "confirmatory": false,
+      "decision": "A4, Renxi Qiu, 22 August 2026: RELEASE-INTEGRITY NOW, EXTEND SCHEMA AS FOLLOW-ON. Protocol equation (7) is withdrawn from the confirmatory set.",
+      "reason": "The release has no trace-writing path, so the contrast compares a dataset property that is invariant across all five contexts, all three renderings and every model.",
+      "reporting_requirement": "Report Level 2 once for the release as a release-integrity audit, not as a per-condition contrast. If the difference is shown at all, it must be labelled withdrawn and descriptive."
+    },
+    "delta_Critical_B1_minus_M0": {
+      "canonical_name": "Critical-violation rate difference",
+      "role": "DESCRIPTIVE",
+      "confirmatory": false
+    }
+  },
+
+  "readings": {
+    "SCOPED": {
+      "canonical_name": "Scoped reading",
+      "status": "NORMATIVE",
+      "definition": "Canonical fields the parent release does not record are recorded as NOT_RECORDED_IN_SOURCE_RELEASE and excluded from the outcome.",
+      "decision": "A5, Renxi Qiu, 22 August 2026: SCOPED."
+    },
+    "LITERAL": {
+      "canonical_name": "Literal reading",
+      "status": "SENSITIVITY_ONLY",
+      "definition": "Canonical fields the parent release does not record count as missing mandatory components.",
+      "decision": "A5, Renxi Qiu, 22 August 2026: LITERAL AS SENSITIVITY ONLY.",
+      "reporting_requirement": "Must never appear as a headline figure. Report as a declared sensitivity analysis."
+    }
+  },
+
+  "mandatory_caveats": {
+    "deterministic_only_upper_bound": {
+      "text": "Every outcome reported here is a deterministic-only figure and therefore an upper bound. Four human-detected codes are inert pending a frozen rubric and E2_SCOPE_OVERREACH is scored by its automated half only; adding the human layer can only lower these figures, never raise them.",
+      "decision": "B8, Renxi Qiu, 22 August 2026: RATIFY, CURRENT RESULTS ARE DETERMINISTIC-ONLY UPPER BOUNDS."
+    },
+    "cluster_coverage": {
+      "text": "Memory-clustered bootstrap intervals under-cover at these cluster counts. The parent release's own coverage study puts 8-cluster coverage near 89.6 percent and 32-cluster coverage near 92.5 percent against a nominal 95 percent. Every audit interval carries the same disclosure the decision results carry.",
+      "decision": "B9, Renxi Qiu, 22 August 2026: RATIFY."
+    },
+    "level1_ceiling": {
+      "text": "Level 1 sits at a ceiling by construction on this parent release and is reported as an instrument-integrity endpoint.",
+      "decision": "A2, Renxi Qiu, 22 August 2026."
+    }
+  },
+
+  "structural_statuses": {
+    "NOT_APPLICABLE_BY_CONDITION_DESIGN": "B0 has no persistent cognitive-trace object. Its Level 2 status is not incomplete and not failed.",
+    "OPEN_LOOP_BY_CONDITION_DESIGN": "M0 records no evidence-resolved consequence. Absent closure is the condition's content, not an error.",
+    "UNRESOLVED_BY_CONDITION_DESIGN": "The retained relation positively represents unresolvedness. Absent constitutive evidence is that relation's content, not an error.",
+    "NOT_RECORDED_IN_SOURCE_RELEASE": "The parent release records no such field. Never inferred.",
+    "NOT_EVALUABLE_FROM_SOURCE_RELEASE": "The parent release declares the field but states no expectation against which it could be evaluated."
+  }
+}

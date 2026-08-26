@@ -1,0 +1,39 @@
+{
+  "record_id": "AUTH-v0.5.1-qa1b-001",
+  "record_type": "relayed_message_authorisation",
+  "is_countersigned_document": false,
+  "authority_referenced": "Official Release and Assessment Decision, Cognitive Memory Benchmark v0.5.1-qa1b, 15 August 2026, section 13 and Annex B",
+
+  "authorisation": {
+    "granted_by": "Renxi Qiu",
+    "role": "Project decision owner",
+    "date": "2026-08-15",
+    "medium": "message relayed to the external QA operator",
+    "verbatim": "go ahead",
+    "scope_as_understood": "Proceed past the freeze checklist. Section 13 makes the reserved 1,440-call evaluation openable once the remaining runtime, call-matrix, clean-archive, checksum and signature checks pass."
+  },
+
+  "what_this_record_is_not": [
+    "It is not a cryptographic signature.",
+    "It is not a countersigned freeze document bearing the decision owner's own hand.",
+    "It was not authored by the decision owner directly into this package; it is a faithful record of a relayed instruction, entered by the external QA operator."
+  ],
+
+  "why_recorded_this_way": "Annex B assigns the governance signature to the project decision owner. The external QA operator does not hold that authority and has not signed on the owner's behalf. This record preserves the authorisation and its provenance so the owner can either countersign it or replace it with a formally signed block.",
+
+  "hash_binding_note": "Annex B requires the owner to sign the date and the ARCHIVE hash. An archive hash cannot be stored inside the archive it describes, so the in-package binding is the manifest digest, which covers every other file. The archive digest is reported alongside the delivered archive and must be entered by the owner when countersigning.",
+
+  "operator_confirmation": {
+    "operator": "external QA",
+    "statement": "Every Annex B gate other than the governance signature is evidenced in this package and reproducible from it. The reserved split was untouched at the time of this record.",
+    "reserved_model_responses_existing_at_record_time": 0
+  },
+
+  "owner_countersignature": {
+    "signed_by": null,
+    "role": null,
+    "date": null,
+    "archive_sha256": null,
+    "statement": "I authorise the reserved 1,440-call evaluation against the package whose archive digest is recorded above."
+  }
+}

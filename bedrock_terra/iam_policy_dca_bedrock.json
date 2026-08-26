@@ -1,0 +1,54 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowBearerTokenAuth",
+      "Effect": "Allow",
+      "Action": "bedrock:CallWithBearerToken",
+      "Resource": "*",
+      "_comment": "Gates use of a Bedrock API key at all, independent of InvokeModel. Must be Resource:* - it authorises the authentication method, not a model, so it cannot be scoped by resource. Which models the key can actually reach is still constrained by the InvokeModel statements below."
+    },
+    {
+      "Sid": "MarketplaceViewOnly",
+      "Effect": "Allow",
+      "Action": "aws-marketplace:ViewSubscriptions",
+      "Resource": "*",
+      "_comment": "Third-party models on Bedrock (OpenAI, Qwen) are brokered through AWS Marketplace, so the calling principal must be able to SEE the account's subscription. Deliberately excludes aws-marketplace:Subscribe: that would let this key subscribe the account to any Marketplace product and incur charges. The subscription itself is established once by an admin."
+    },
+    {
+      "Sid": "Discovery",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:ListFoundationModels",
+        "bedrock:GetFoundationModel",
+        "bedrock:ListInferenceProfiles"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "TerraViaGlobalProfile",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      "Resource": [
+        "arn:aws:bedrock:us-east-1:REDACTED-AWS-ACCOUNT:inference-profile/global.openai.gpt-5.6-terra",
+        "arn:aws:bedrock:*::foundation-model/openai.gpt-5.6-terra",
+        "arn:aws:bedrock:us-east-1:REDACTED-AWS-ACCOUNT:project/default"
+      ]
+    },
+    {
+      "Sid": "Qwen3DirectInRegion",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+      ],
+      "Resource": [
+        "arn:aws:bedrock:us-east-1::foundation-model/qwen.qwen3-next-80b-a3b",
+        "arn:aws:bedrock:us-east-1:REDACTED-AWS-ACCOUNT:project/default"
+      ]
+    }
+  ]
+}

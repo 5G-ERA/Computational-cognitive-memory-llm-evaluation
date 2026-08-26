@@ -1,0 +1,115 @@
+{
+  "contract_id": "CRIT-1.1",
+  "parent_release": "v0.5.1-qa1c",
+  "note": "Protocol section 10. A case carrying any of these is NONCONFORMANT_CRITICAL and no completeness score can override it.",
+  "critical_codes": [
+    {
+      "code": "E1_CITATION_NONEXISTENT",
+      "protocol_phrase": "fabricated evidence",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E1_CITATION_NOT_VISIBLE",
+      "protocol_phrase": "invisible evidence",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "protocol_phrase": "invalid chronology",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E2_CAPABILITY_MISATTRIBUTION",
+      "protocol_phrase": "wrong capability attribution",
+      "evaluable_in_v0_5_1_qa1c": false
+    },
+    {
+      "code": "E2_UNRESOLVED_COLLAPSED",
+      "protocol_phrase": "unresolvedness represented as resolution",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E2_EXPECTED_AS_REALISED",
+      "protocol_phrase": "expected consequence represented as realised evidence",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E3_CONSEQUENCE_CLOSURE_ABSENT",
+      "protocol_phrase": "absent B1 closure",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E3_CONSTITUTIVE_LINK_MISSING",
+      "protocol_phrase": "absent B1 constitutive evidence",
+      "evaluable_in_v0_5_1_qa1c": true,
+      "exemption": "UNRESOLVED_BY_CONDITION_DESIGN, decision A3, Renxi Qiu, 22 August 2026. A relation that positively represents unresolvedness is exempt."
+    },
+    {
+      "code": "E4_RULE_OUTCOME_INCONSISTENT",
+      "protocol_phrase": "incompatible rule and stated outcome",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E4_ROLE_TRACE_INCONSISTENT",
+      "protocol_phrase": "role-trace inconsistency",
+      "evaluable_in_v0_5_1_qa1c": false
+    },
+    {
+      "code": "E5_PROSPECTIVE_REWRITE",
+      "protocol_phrase": "silent prospective rewrite",
+      "evaluable_in_v0_5_1_qa1c": false,
+      "decision": "B6, Renxi Qiu, 22 August 2026: full non-rewrite claim withdrawn on this parent release; the code is INFO with no case-status effect here."
+    },
+    {
+      "code": "E5_PREDECESSOR_OVERWRITTEN",
+      "protocol_phrase": "predecessor overwrite",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E5_SUCCESSOR_INVALID",
+      "protocol_phrase": "invalid successor",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E0_TERMINAL_MISSING",
+      "protocol_phrase": "record absent",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E0_INPUT_TRUNCATED",
+      "protocol_phrase": "record absent",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E0_AUDIT_ARTEFACT_MISSING",
+      "protocol_phrase": "record absent",
+      "evaluable_in_v0_5_1_qa1c": true
+    },
+    {
+      "code": "E5_CURRENT_ROLE_HISTORICISED",
+      "protocol_phrase": "current role historicised",
+      "evaluable_in_v0_5_1_qa1c": true
+    }
+  ],
+  "case_status_precedence": [
+    "NOT_APPLICABLE",
+    "NOT_EVALUABLE",
+    "NONCONFORMANT_CRITICAL",
+    "NONCONFORMANT",
+    "INCOMPLETE",
+    "CONFORMANT"
+  ],
+  "severities": [
+    "INFO",
+    "MINOR",
+    "MAJOR",
+    "CRITICAL"
+  ],
+  "structural_statuses_never_critical": [
+    "NOT_APPLICABLE_BY_CONDITION_DESIGN",
+    "OPEN_LOOP_BY_CONDITION_DESIGN",
+    "UNRESOLVED_BY_CONDITION_DESIGN",
+    "NOT_RECORDED_IN_SOURCE_RELEASE",
+    "NOT_EVALUABLE_FROM_SOURCE_RELEASE"
+  ]
+}

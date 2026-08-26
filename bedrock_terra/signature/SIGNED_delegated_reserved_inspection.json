@@ -1,0 +1,42 @@
+{
+  "record_id": "SIG-reserved-qwen3-inspection-2026-08-19-001",
+  "record_type": "delegated_signature",
+  "is_owner_countersignature": false,
+  "authorises": "INSPECTION of the Qwen3 RESERVED split outcomes (1,440 calls), under the analysis frozen in the pre-execution amendment record.",
+  "covers_run": "out/reserved_qwen3",
+  "record_sha256": "c8c548554da689843065d68527fe858651f00c491b4d9854aa1b17c1a3dc7ef2",
+
+  "authority_chain": [
+    "Cross-model replication amendment, Renxi Qiu, 19 August 2026 - Decision 1 designates Qwen3 the primary cross-model replication arm; Decision 4 places the single primary confirmatory claim on Qwen3 B1 minus B0",
+    "Rulings of 19 August 2026 by the decision owner, all recorded BEFORE this run was opened: saturation threshold 5.00 pp ACCEPT; post-signature analyst classification RATIFY; saturation for inclusion or selection PROHIBIT; Qwen3 retained regardless of baseline CONFIRM; primary claim QWEN3 B1 MINUS B0; Terra DESCRIPTIVE FULLY REPORTED; umbrella claim NONE; multiplicity adjustment NONE",
+    "Pre-execution amendment record, signed by delegation 19 August 2026",
+    "Execution authorisation AUTH-reserved-qwen3-2026-08-19-001, which authorised running but not inspecting",
+    "Instruction of 19 August 2026 relayed by the operator: the decision owner asked the operator to authorise in his place, as on 16 August 2026"
+  ],
+
+  "signature": {
+    "signed_by": "Adrian",
+    "capacity": "run operator, signing on the delegated instruction of the project decision owner",
+    "on_behalf_of": "Renxi Qiu, project decision owner",
+    "date": "2026-08-19",
+    "statement": "I authorise inspection of the Qwen3 reserved outcomes under the frozen section 6 analysis, with no change to any analysis parameter."
+  },
+
+  "what_this_record_is_not": [
+    "It is not the project decision owner's own signature.",
+    "It is not a cryptographic signature.",
+    "It does not alter any analysis parameter. Every parameter was fixed in writing by the decision owner earlier the same day."
+  ],
+
+  "substantive_authority_is_not_in_doubt": "The estimand, estimator, denominator, outcome hierarchy, success criterion, saturation threshold, claim structure and multiplicity rule were all ruled in writing by the decision owner on 19 August 2026. The run was executed and its operational eligibility read under a code-enforced blind before any of those could be influenced by a result. The delegation therefore creates no discretion over the analysis.",
+
+  "frozen_analysis": {
+    "denominator": "intention-to-evaluate",
+    "estimator": "memory-clustered bootstrap, 10,000 replicates, 95% percentile interval, seed 13082654",
+    "hierarchy": "primary B1-B0; key secondary B1-M0 tested only if the primary succeeds; exploratory M0-B0",
+    "criterion": "lower bound of the two-sided 95% interval above zero",
+    "coverage_disclosure": "Finding 002 as published, confirmed by the grid measurement of 19 August: ~92.5% coverage, criterion fires at ~4.0% under the null with 32 clusters"
+  },
+
+  "outstanding": "If a record bearing the decision owner's own name is required for publication, it should replace this one. Nothing in the analysis depends on which is on file."
+}

@@ -1,0 +1,539 @@
+# Experiment 1 Audit Extension - machine-readable error ontology
+# Protocol section 9. Parent release v0.5.1-qa1c.
+#
+# Every code declares:
+#   label       human label
+#   definition  what the code asserts
+#   scopes      audit scopes in which the code may be raised
+#               (L1_IO, L2_M0, L2_B1)
+#   severity    INFO | MINOR | MAJOR | CRITICAL
+#   detection   DETERMINISTIC | HUMAN | HYBRID
+#   status      case-status effect: NOT_EVALUABLE | NONCONFORMANT_CRITICAL
+#               | NONCONFORMANT | INCOMPLETE | NONE
+#   domain      parent domain
+#   evaluable_in_v0_5_1_qa1c
+#               true  -> the frozen release retains the artefact this code needs
+#               false -> the release does not record the field; the code is
+#                        declared but structurally inert on this parent release
+#   inert_reason  why, when evaluable_in_v0_5_1_qa1c is false
+#
+# 1.1 applies the decisions of Renxi Qiu, 22 August 2026 (A1, A3, B6). Each changed code
+# carries a `decision` field naming the decision that changed it.
+#
+# Structural statuses (never errors, protocol section 9 closing paragraph):
+#   OPEN_LOOP_BY_CONDITION_DESIGN            M0 consequence closure
+#   NOT_APPLICABLE_BY_CONDITION_DESIGN       B0 Level 2
+#   NOT_RECORDED_IN_SOURCE_RELEASE           field absent from parent release
+#   NOT_EVALUABLE_FROM_SOURCE_RELEASE        expectation absent from parent release
+
+ontology_version: "AUDIT-ONT-1.1"
+parent_release: "v0.5.1-qa1c"
+
+domains:
+  E0: {label: "Record and execution"}
+  E1: {label: "Evidence and provenance"}
+  E2: {label: "Semantic and attribution"}
+  E3: {label: "Cognitive-trace construction"}
+  E4: {label: "Current-use governance"}
+  E5: {label: "Historical integrity"}
+
+structural_statuses:
+  - NOT_APPLICABLE_BY_CONDITION_DESIGN
+  - OPEN_LOOP_BY_CONDITION_DESIGN
+  - UNRESOLVED_BY_CONDITION_DESIGN
+  - NOT_RECORDED_IN_SOURCE_RELEASE
+  - NOT_EVALUABLE_FROM_SOURCE_RELEASE
+
+# UNRESOLVED_BY_CONDITION_DESIGN (decision A3, Renxi Qiu, 22 August 2026)
+#
+# Symmetric with the OPEN_LOOP_BY_CONDITION_DESIGN exemption protocol section 7.2 already
+# grants M0. When a retained relation POSITIVELY REPRESENTS unresolvedness, absent constitutive
+# evidence is that relation's content and must not raise E3_CONSTITUTIVE_LINK_MISSING.
+#
+# Detector, oracle free, read from the delivered memory object alone:
+#     constitutive_event_ids is empty
+#     AND competing_or_unresolved_event_ids is non-empty
+#     AND the resolved statement is present and non-empty
+# Verified against all 40 memories of the parent release: it selects exactly the 10 whose
+# verification family is UNRESOLVED, with no false positive and no false negative, without
+# reading the verification column or any other decision-adjacent field.
+#
+# An empty constitutive set WITHOUT that positive representation is not exempt: the relation is
+# simply broken and E3_CONSTITUTIVE_LINK_MISSING still applies.
+
+codes:
+
+  # ---------------------------------------------------------------- E0
+  E0_TERMINAL_MISSING:
+    domain: E0
+    label: "Terminal status record missing"
+    definition: "No terminal-status record exists for an expected call."
+    scopes: [L1_IO]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NOT_EVALUABLE
+    evaluable_in_v0_5_1_qa1c: true
+
+  E0_INPUT_TRUNCATED:
+    domain: E0
+    label: "Request payload truncated"
+    definition: "The delivered payload does not carry the full record set declared for the memory and canonical context."
+    scopes: [L1_IO]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NOT_EVALUABLE
+    evaluable_in_v0_5_1_qa1c: true
+
+  E0_OUTPUT_TRUNCATED:
+    domain: E0
+    label: "Provider response truncated"
+    definition: "The provider terminated generation on a length boundary rather than a stop boundary."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NOT_EVALUABLE
+    evaluable_in_v0_5_1_qa1c: true
+
+  E0_SCHEMA_INVALID:
+    domain: E0
+    label: "Response fails the public schema"
+    definition: "The parsed response does not satisfy the frozen public response schema."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E0_AUDIT_ARTEFACT_MISSING:
+    domain: E0
+    label: "Required audit artefact missing"
+    definition: "A payload, raw response, parsed response or registry artefact required by the manifest row is absent."
+    scopes: [L1_IO, L2_M0, L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NOT_EVALUABLE
+    evaluable_in_v0_5_1_qa1c: true
+
+  E0_VERSION_MISMATCH:
+    domain: E0
+    label: "Version mismatch against frozen release"
+    definition: "Parser, schema, adapter or benchmark version recorded in the run does not match the frozen release."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  # ---------------------------------------------------------------- E1
+  E1_CITATION_NONEXISTENT:
+    domain: E1
+    label: "Cited event does not exist"
+    definition: "A cited event identifier is absent from the source-event registry."
+    scopes: [L1_IO]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E1_CITATION_NOT_VISIBLE:
+    domain: E1
+    label: "Cited event was not visible in this condition"
+    definition: "A cited event exists in the registry but was not delivered in this condition payload."
+    scopes: [L1_IO]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E1_CITATION_IRRELEVANT:
+    domain: E1
+    label: "Cited event does not substantively support the stated ground"
+    definition: "A visible and existing citation does not support the ground the response itself claims."
+    scopes: [L1_IO]
+    severity: MINOR
+    detection: HUMAN
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "Requires the frozen blinded human rubric of protocol section 16, which is not yet signed."
+
+  E1_HISTORICAL_GROUNDS_MISSING:
+    domain: E1
+    label: "Historical ground claimed without a historical citation"
+    definition: "The stated rule asserts a historical relation but no longitudinal record is cited."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E1_CURRENT_GROUNDS_MISSING:
+    domain: E1
+    label: "Current applicability claimed without a current citation"
+    definition: "The response asserts current applicability but cites no current record."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E1_TEMPORAL_ORDER_INVALID:
+    domain: E1
+    label: "Invalid chronology"
+    definition: "Event timestamps are unparseable, out of required order, or a cited event postdates the decision boundary."
+    scopes: [L1_IO, L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E1_WINDOW_INVALID:
+    domain: E1
+    label: "Verification window invalid or violated"
+    definition: "The declared verification window is ill-ordered, or constitutive evidence falls outside it."
+    scopes: [L2_M0, L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records no verification_window field in either memory object."
+
+  E1_PROVENANCE_INCOMPLETE:
+    domain: E1
+    label: "Provenance incomplete"
+    definition: "A required source attribution for a cited or constitutive event is missing."
+    scopes: [L1_IO, L2_B1]
+    severity: MINOR
+    detection: DETERMINISTIC
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: true
+
+  # ---------------------------------------------------------------- E2
+  E2_CAPABILITY_MISATTRIBUTION:
+    domain: E2
+    label: "Wrong capability attributed"
+    definition: "The attributed capability identifier does not match the event registry."
+    scopes: [L2_M0, L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records no attributed_capability_id in either memory object."
+
+  E2_SOURCE_MISATTRIBUTION:
+    domain: E2
+    label: "Wrong source attributed"
+    definition: "A stated source identifier disagrees with the source recorded for the event."
+    scopes: [L1_IO, L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E2_FUNCTION_MISMATCH:
+    domain: E2
+    label: "Represented function mismatch"
+    definition: "The represented function identifier disagrees between prospective and resolved trace."
+    scopes: [L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records no represented_function_id; only a free-text scope string."
+
+  E2_SCOPE_OVERREACH:
+    domain: E2
+    label: "Material scope overreach"
+    definition: "The response asserts applicability or clinical content beyond the declared scope."
+    scopes: [L1_IO, L2_B1]
+    severity: MAJOR
+    detection: HYBRID
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E2_SCOPE_UNDERUSE:
+    domain: E2
+    label: "Scope underuse"
+    definition: "The response withholds a contribution that the declared scope admits."
+    scopes: [L1_IO, L2_B1]
+    severity: INFO
+    detection: HUMAN
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "Requires the frozen blinded human rubric of protocol section 16."
+
+  E2_LIMITATION_OMITTED:
+    domain: E2
+    label: "Declared limitation omitted"
+    definition: "A limitation recorded in the memory object is not reflected where the response qualifies its use."
+    scopes: [L1_IO, L2_B1]
+    severity: MINOR
+    detection: HUMAN
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "Requires the frozen blinded human rubric of protocol section 16."
+
+  E2_UNRESOLVED_COLLAPSED:
+    domain: E2
+    label: "Unresolvedness represented as resolution"
+    definition: "Evidence recorded as competing or unresolved is represented as settled."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E2_EXPECTED_AS_REALISED:
+    domain: E2
+    label: "Expected consequence represented as realised evidence"
+    definition: "The prospective expected consequence is recorded or used as if it were realised evidence."
+    scopes: [L2_M0, L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  # ---------------------------------------------------------------- E3
+  E3_PROSPECTIVE_TRACE_INCOMPLETE:
+    domain: E3
+    label: "Prospective trace incomplete"
+    definition: "A mandatory prospective component is missing from the M0 object."
+    scopes: [L2_M0, L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: INCOMPLETE
+    evaluable_in_v0_5_1_qa1c: true
+
+  E3_CONSEQUENCE_CLOSURE_ABSENT:
+    domain: E3
+    label: "Consequence closure absent"
+    definition: "A B1 trace records no resolved consequence."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+    note: "Never raised for M0; M0 closure is OPEN_LOOP_BY_CONDITION_DESIGN."
+
+  E3_RESOLUTION_STATUS_MISSING:
+    domain: E3
+    label: "Typed resolution status missing"
+    definition: "The resolved consequence carries no typed status from the public trace vocabulary."
+    scopes: [L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: INCOMPLETE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records the resolved relation as free text with no typed status field and publishes no trace vocabulary."
+
+  E3_CONSTITUTIVE_LINK_MISSING:
+    domain: E3
+    label: "Constitutive evidence link missing"
+    definition: "The resolved consequence cites no constitutive event, or a constitutive event does not belong to the memory."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E3_COMPETING_EVIDENCE_OMITTED:
+    domain: E3
+    label: "Competing evidence omitted"
+    definition: "Competing or qualifying evidence expected by the release is not retained."
+    scopes: [L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "The release declares a competing_or_unresolved_event_ids field but no expectation of when it must be non-empty; protocol section 8.4 therefore yields NOT_EVALUABLE_FROM_SOURCE_RELEASE."
+
+  E3_TRACE_OUTPUT_DISCONNECTED:
+    domain: E3
+    label: "Trace disconnected from output"
+    definition: "The returned decision cites no element of the trace it was given."
+    scopes: [L2_M0, L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E3_CURRENT_USE_GROUNDS_MISSING:
+    domain: E3
+    label: "Current-use grounds missing"
+    definition: "The trace states a current use without recording the grounds for it."
+    scopes: [L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  # ---------------------------------------------------------------- E4
+  E4_RULE_OUTCOME_INCONSISTENT:
+    domain: E4
+    label: "Stated rule cannot produce the stated outcome"
+    definition: "The reaction returned is not the reaction the returned rule admits in the public rule vocabulary."
+    scopes: [L1_IO]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E4_REVIEW_DEFER_CONFLATED:
+    domain: E4
+    label: "Review and deferral conflated"
+    definition: "An escalation for authorised review is stated through a deferral rule, or the converse."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E4_NO_USE_UNRESOLVED_CONFLATED:
+    domain: E4
+    label: "Withholding and unresolvedness conflated"
+    definition: "Withholding on scope grounds is stated through an unresolved-evidence rule, or the converse."
+    scopes: [L1_IO]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: NONCONFORMANT
+    evaluable_in_v0_5_1_qa1c: true
+
+  E4_QUALIFICATION_OMITTED:
+    domain: E4
+    label: "Required qualification omitted"
+    definition: "A qualified outcome is stated without the qualification that the trace requires."
+    scopes: [L1_IO, L2_B1]
+    severity: MINOR
+    detection: HUMAN
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "Requires the frozen blinded human rubric of protocol section 16."
+
+  E4_INFLUENCE_UNEXPLAINED:
+    domain: E4
+    label: "Influence unexplained"
+    definition: "The response gives no stated ground for the influence the memory exerted."
+    scopes: [L1_IO]
+    severity: INFO
+    detection: HYBRID
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: true
+    decision: "A1, Renxi Qiu, 22 August 2026: demoted from MAJOR/NONCONFORMANT/DETERMINISTIC."
+    decision_reason: >-
+      The only oracle-independent detector available on this parent release is whether the
+      free-text reason quotes an event identifier, which separates two models' writing habits
+      rather than two conditions' auditability. It fired on 360/360 Terra cases and 54/360 Qwen3
+      cases and was the sole reason the primary Level 1 estimand excluded zero. It is now
+      reported descriptively and cannot change a case status.
+
+  E4_ROLE_TRACE_INCONSISTENT:
+    domain: E4
+    label: "Role and trace inconsistent"
+    definition: "The stated current role contradicts the retained trace."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records no current_relation or stated role field in the memory object; the model returns no role field."
+
+  # ---------------------------------------------------------------- E5
+  E5_PROSPECTIVE_REWRITE:
+    domain: E5
+    label: "Silent prospective rewrite"
+    definition: "The B1 prospective relation differs from the M0 prospective relation without a declared versioned successor."
+    scopes: [L2_B1]
+    severity: INFO
+    detection: DETERMINISTIC
+    status: NONE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: >-
+      Decision B6, Renxi Qiu, 22 August 2026: the full non-rewrite claim is withdrawn on this
+      parent release. Equation (1) has five operands and this release records three, so the hash
+      certifies a weaker invariant than the protocol specifies. The comparison is retained and
+      reported as PARTIAL PROSPECTIVE FIELD STABILITY, descriptive only; it can no longer
+      produce a critical violation or change a case status.
+    decision: "B6, Renxi Qiu, 22 August 2026: report as partial field stability, withdraw full non-rewrite claim."
+
+  E5_PREDECESSOR_OVERWRITTEN:
+    domain: E5
+    label: "Predecessor overwritten"
+    definition: "Historical predecessor content has been replaced rather than superseded."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E5_SUCCESSOR_INVALID:
+    domain: E5
+    label: "Invalid successor"
+    definition: "A declared successor cites no new evidence, repeats the predecessor identity, or records no succession reason."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E5_CURRENT_ROLE_HISTORICISED:
+    domain: E5
+    label: "Current role written into historical fields"
+    definition: "A current-use outcome has been written into an immutable historical field."
+    scopes: [L2_B1]
+    severity: CRITICAL
+    detection: DETERMINISTIC
+    status: NONCONFORMANT_CRITICAL
+    evaluable_in_v0_5_1_qa1c: true
+
+  E5_VERSION_AMBIGUOUS:
+    domain: E5
+    label: "Semantic version ambiguous"
+    definition: "The trace carries no semantic version, or two distinct traces share one version."
+    scopes: [L2_M0, L2_B1]
+    severity: MAJOR
+    detection: DETERMINISTIC
+    status: INCOMPLETE
+    evaluable_in_v0_5_1_qa1c: false
+    inert_reason: "v0_5_1_qa1c records no semantic_version field in either memory object."
+
+# Root-cause priority, highest first (protocol section 11).
+root_cause_priority:
+  - E0_AUDIT_ARTEFACT_MISSING
+  - E0_TERMINAL_MISSING
+  - E0_INPUT_TRUNCATED
+  - E0_OUTPUT_TRUNCATED
+  - E0_SCHEMA_INVALID
+  - E0_VERSION_MISMATCH
+  - E5_PROSPECTIVE_REWRITE
+  - E5_PREDECESSOR_OVERWRITTEN
+  - E5_SUCCESSOR_INVALID
+  - E5_CURRENT_ROLE_HISTORICISED
+  - E2_EXPECTED_AS_REALISED
+  - E2_UNRESOLVED_COLLAPSED
+  - E2_CAPABILITY_MISATTRIBUTION
+  - E2_SOURCE_MISATTRIBUTION
+  - E1_CITATION_NONEXISTENT
+  - E1_CITATION_NOT_VISIBLE
+  - E1_TEMPORAL_ORDER_INVALID
+  - E3_CONSEQUENCE_CLOSURE_ABSENT
+  - E3_CONSTITUTIVE_LINK_MISSING
+  - E4_RULE_OUTCOME_INCONSISTENT
+  - E4_ROLE_TRACE_INCONSISTENT
+  - E4_REVIEW_DEFER_CONFLATED
+  - E4_NO_USE_UNRESOLVED_CONFLATED
+  - E3_TRACE_OUTPUT_DISCONNECTED
+  - E3_CURRENT_USE_GROUNDS_MISSING
+  - E3_PROSPECTIVE_TRACE_INCOMPLETE
+  - E1_HISTORICAL_GROUNDS_MISSING
+  - E1_CURRENT_GROUNDS_MISSING
+  - E4_INFLUENCE_UNEXPLAINED
+  - E2_SCOPE_OVERREACH
+  - E1_PROVENANCE_INCOMPLETE
+  - E1_WINDOW_INVALID
+  - E2_FUNCTION_MISMATCH
+  - E3_RESOLUTION_STATUS_MISSING
+  - E3_COMPETING_EVIDENCE_OMITTED
+  - E5_VERSION_AMBIGUOUS
+  - E1_CITATION_IRRELEVANT
+  - E2_LIMITATION_OMITTED
+  - E4_QUALIFICATION_OMITTED
+  - E2_SCOPE_UNDERUSE

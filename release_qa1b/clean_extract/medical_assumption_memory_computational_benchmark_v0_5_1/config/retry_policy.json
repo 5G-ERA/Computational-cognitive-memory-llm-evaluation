@@ -1,0 +1,1 @@
+{"max_attempts":3,"retry_http_status":[429,500,502,503,504],"backoff_seconds":[0,2,8],"do_not_retry_model_output":true}

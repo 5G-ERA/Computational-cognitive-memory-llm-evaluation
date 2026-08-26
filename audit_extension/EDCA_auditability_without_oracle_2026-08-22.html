@@ -1,0 +1,296 @@
+<title>Auditability Without an Oracle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1EF;
+  --ink:#141A19; --body:#2B3634; --muted:#5F6C69; --faint:#8C9895;
+  --rule:#D8E0DD; --rule-strong:#B9C6C2;
+  --accent:#12665C; --accent-soft:#E1EFEC; --accent-ink:#0B4A43;
+  --ok:#1E7A52; --ok-soft:#E2F1E9;
+  --caution:#8A5A00; --caution-soft:#F6ECD9;
+  --blocker:#A32A22; --blocker-soft:#F7E4E2;
+  --bar-b0:#B9C6C2; --bar-m0:#D8C7A3; --bar-b1:#12665C;
+  --shadow:0 1px 2px rgba(20,26,25,.05), 0 8px 24px -16px rgba(20,26,25,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+    --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+    --rule:#26302E; --rule-strong:#38443F;
+    --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+    --ok:#57BC8B; --ok-soft:#12251C;
+    --caution:#D6A44B; --caution-soft:#2A2113;
+    --blocker:#E58279; --blocker-soft:#2C1815;
+    --bar-b0:#4A5754; --bar-m0:#7A6A45; --bar-b1:#54C0B0;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+  --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+  --rule:#26302E; --rule-strong:#38443F;
+  --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+  --ok:#57BC8B; --ok-soft:#12251C;
+  --caution:#D6A44B; --caution-soft:#2A2113;
+  --blocker:#E58279; --blocker-soft:#2C1815;
+  --bar-b0:#4A5754; --bar-m0:#7A6A45; --bar-b1:#54C0B0;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--body);
+  font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif; font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:54rem; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2.5rem) 6rem}
+.prose{max-width:39rem}
+h1,h2,h3{font-family:Spectral, Georgia, serif; color:var(--ink); text-wrap:balance; margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.05rem); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+h2{font-size:1.55rem; font-weight:600; line-height:1.2; letter-spacing:-.01em}
+h3{font-size:1.12rem; font-weight:600; line-height:1.3}
+p{margin:0}
+code,.mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.86em}
+code{background:var(--sunk); padding:.08em .34em; border-radius:3px; color:var(--ink)}
+strong{color:var(--ink); font-weight:600}
+em{font-style:italic}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--faint); font-weight:500}
+.stack{display:flex; flex-direction:column}
+.g-2{gap:.75rem} .g-3{gap:1.15rem} .g-4{gap:1.75rem} .g-8{gap:4.25rem}
+
+header.mast{display:flex; flex-direction:column; gap:1.4rem; padding-bottom:2rem; border-bottom:2px solid var(--rule-strong)}
+.mast .lede{font-size:1.13rem; color:var(--muted); max-width:40rem}
+.meta{display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--faint)}
+.meta b{color:var(--muted); font-weight:500}
+
+.thesis{font-family:Spectral,serif; font-size:1.38rem; line-height:1.38; color:var(--ink); font-weight:400;
+  border-left:3px solid var(--accent); padding:.35rem 0 .35rem 1.25rem; max-width:40rem}
+.thesis em{font-style:italic; color:var(--accent-ink)}
+
+/* the detector, as three boxes */
+.detector{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+.detector>div{background:var(--surface); padding:.95rem 1.1rem; display:flex; flex-direction:column; gap:.35rem}
+.detector .k{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--faint)}
+.detector .v{font-family:Spectral,serif; font-size:1.05rem; color:var(--ink); line-height:1.35}
+.detector .n{font-size:.82rem; color:var(--muted); line-height:1.4}
+@media (max-width:44rem){.detector{grid-template-columns:1fr}}
+
+/* recall bars */
+.bars{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.25rem 1rem; overflow-x:auto}
+.bars svg{display:block; width:100%; height:auto; max-width:46rem}
+.bars text{font-family:"IBM Plex Mono",monospace; fill:var(--muted)}
+.bars .lab{fill:var(--ink); font-family:"Source Sans 3",sans-serif; font-weight:600; font-size:13px}
+.bars .val{fill:var(--ink); font-size:12.5px; font-weight:500}
+.bars .grid{stroke:var(--rule); stroke-width:1}
+.bars .b0{fill:var(--bar-b0)} .bars .m0{fill:var(--bar-m0)} .bars .b1{fill:var(--bar-b1)}
+.bars .axis{font-size:11px; fill:var(--faint)}
+.legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.82rem; color:var(--muted); margin-top:.4rem}
+.legend span::before{content:""; display:inline-block; width:.8em; height:.8em; border-radius:2px; margin-right:.45em; vertical-align:-.05em}
+.legend .b0::before{background:var(--bar-b0)} .legend .m0::before{background:var(--bar-m0)} .legend .b1::before{background:var(--bar-b1)}
+
+.tw{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.85rem}
+th,td{padding:.5rem .8rem; text-align:left; border-bottom:1px solid var(--rule); white-space:nowrap}
+thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint); font-weight:500; background:var(--sunk); border-bottom:1px solid var(--rule-strong)}
+tbody tr:last-child td{border-bottom:none}
+td.num, th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+td.lbl{font-family:"IBM Plex Mono",monospace; font-size:.79rem; color:var(--ink)}
+tr.hi td{background:var(--accent-soft)}
+td .flag{color:var(--blocker); font-weight:600}
+caption{caption-side:bottom; text-align:left; padding:.6rem .8rem; font-size:.78rem; color:var(--muted); line-height:1.45}
+
+.pull{background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0; padding:1.05rem 1.25rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.5rem}
+.pull p{max-width:38rem}
+.pull.warn{border-left-color:var(--caution)}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase;
+  font-weight:600; padding:.2rem .5rem; border-radius:3px; white-space:nowrap; display:inline-block}
+.chip.cau{background:var(--caution-soft); color:var(--caution)}
+.chip.blk{background:var(--blocker-soft); color:var(--blocker)}
+
+ol.dec{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+ol.dec li{background:var(--surface); padding:1rem 1.2rem; display:grid; grid-template-columns:auto 1fr; gap:.4rem 1rem; align-items:baseline}
+ol.dec .did{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:.86rem}
+ol.dec .dq{color:var(--ink); font-weight:600}
+ol.dec .dr{grid-column:2; font-size:.9rem; color:var(--muted)}
+
+footer{border-top:2px solid var(--rule-strong); padding-top:1.5rem; color:var(--faint); font-size:.83rem}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+</style>
+
+<div class="wrap stack g-8">
+
+<header class="mast">
+  <div class="stack g-3">
+    <span class="eyebrow">Experiment 1 · exploratory analysis · 22 August 2026</span>
+    <h1>Auditability Without an&nbsp;Oracle</h1>
+    <p class="lede">Renxi's revised question: <em>how does an LLM localise its own error without an
+    oracle — and if it cannot, it is not auditable.</em> It can, partially, with perfect precision
+    and bounded recall. That recall is measurable, it is a property of the model under a memory
+    interface, and cognitive memory doubles it.</p>
+  </div>
+  <div class="meta">
+    <span><b>Data</b> reserved splits, Terra + Qwen3, 1,440 calls each, 32 memory groups</span>
+    <span><b>Oracle</b> used only to score the detector, under signed inspection records</span>
+    <span><b>Status</b> exploratory, post hoc</span>
+  </div>
+</header>
+
+<section class="stack g-4">
+  <p class="thesis">A consistent error is indistinguishable from consistent correct reasoning. An
+  <em>inconsistent</em> error is a certified error. So the share of a model's errors that are
+  inconsistent is exactly the share it can localise without an oracle — and that share is what
+  <em>auditable</em> should mean for an LLM.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>The detector</h2>
+    <p>Each canonical context has one correct rule. The benchmark delivers it in three renderings
+    that differ only in wording. Nothing else is needed.</p>
+  </div>
+  <div class="detector">
+    <div><span class="k">1 · invariant</span><span class="v">Same context, three wordings</span><span class="n">Structured, chronological and concise renderings of identical evidence. One correct rule exists for all three.</span></div>
+    <div><span class="k">2 · test</span><span class="v">Do the three returned rules agree?</span><span class="n">If they differ, at least one is wrong. Certified by logic. The oracle is not consulted.</span></div>
+    <div><span class="k">3 · localise</span><span class="v">The error is in premise selection</span><span class="n">Rule → reaction is a tautology the models violate once in 2,869 responses. So a disagreement sits upstream, in which evidence was read as which world-state.</span></div>
+  </div>
+  <p class="prose">Precision is 100% by construction, and it is 100% in every cell below. What
+  varies is <strong>recall</strong>: the fraction of contexts containing an error that the detector
+  flags. The oracle enters only to count that denominator.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Recall — the fraction of errors the model can see without help</h2>
+  </div>
+  <div class="bars">
+    <svg viewBox="0 0 720 250" role="img" aria-label="Recall of the oracle-free error detector by model and condition">
+      <g class="axis">
+        <line class="grid" x1="150" y1="18" x2="150" y2="222"/>
+        <line class="grid" x1="290" y1="18" x2="290" y2="222"/>
+        <line class="grid" x1="430" y1="18" x2="430" y2="222"/>
+        <line class="grid" x1="570" y1="18" x2="570" y2="222"/>
+        <line class="grid" x1="710" y1="18" x2="710" y2="222"/>
+        <text x="150" y="240" text-anchor="middle">0%</text>
+        <text x="290" y="240" text-anchor="middle">25%</text>
+        <text x="430" y="240" text-anchor="middle">50%</text>
+        <text x="570" y="240" text-anchor="middle">75%</text>
+        <text x="710" y="240" text-anchor="middle">100%</text>
+      </g>
+      <text class="lab" x="0" y="38">Qwen3</text>
+      <rect class="m0" x="150" y="26" width="88"  height="18" rx="2"/><text class="val" x="246" y="40">M0 · 15.7%</text>
+      <rect class="b0" x="150" y="50" width="170" height="18" rx="2"/><text class="val" x="328" y="64">B0 · 30.4%</text>
+      <rect class="b1" x="150" y="74" width="337" height="18" rx="2"/><text class="val" x="495" y="88">B1 · 60.2%</text>
+
+      <text class="lab" x="0" y="146">Terra</text>
+      <rect class="m0" x="150" y="134" width="407" height="18" rx="2"/><text class="val" x="565" y="148">M0 · 72.7%</text>
+      <rect class="b0" x="150" y="158" width="436" height="18" rx="2"/><text class="val" x="594" y="172">B0 · 77.8%</text>
+      <rect class="b1" x="150" y="182" width="560" height="18" rx="2"/><text class="val" x="590" y="196" style="fill:var(--surface)">B1 · 100%</text>
+    </svg>
+    <div class="legend"><span class="m0">M0 pre-specified map</span><span class="b0">B0 raw evidence</span><span class="b1">B1 cognitive memory</span></div>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Model</th><th>Condition</th><th class="num">Contexts</th><th class="num">Flagged</th><th class="num">Precision</th><th class="num">With an error</th><th class="num">Recall</th><th class="num">Invisible</th></tr></thead>
+      <tbody>
+        <tr><td>Qwen3</td><td class="lbl">M0</td><td class="num">160</td><td class="num">20</td><td class="num">100%</td><td class="num">127</td><td class="num">15.7%</td><td class="num"><span class="flag">107</span></td></tr>
+        <tr><td>Qwen3</td><td class="lbl">B0</td><td class="num">158</td><td class="num">38</td><td class="num">100%</td><td class="num">125</td><td class="num">30.4%</td><td class="num"><span class="flag">87</span></td></tr>
+        <tr class="hi"><td>Qwen3</td><td class="lbl">B1</td><td class="num">154</td><td class="num">56</td><td class="num">100%</td><td class="num">93</td><td class="num"><strong>60.2%</strong></td><td class="num">37</td></tr>
+        <tr><td>Terra</td><td class="lbl">M0</td><td class="num">158</td><td class="num">8</td><td class="num">100%</td><td class="num">11</td><td class="num">72.7%</td><td class="num">3</td></tr>
+        <tr><td>Terra</td><td class="lbl">B0</td><td class="num">160</td><td class="num">7</td><td class="num">100%</td><td class="num">9</td><td class="num">77.8%</td><td class="num">2</td></tr>
+        <tr><td>Terra</td><td class="lbl">B1</td><td class="num">159</td><td class="num">7</td><td class="num">100%</td><td class="num">7</td><td class="num">100%</td><td class="num">0</td></tr>
+      </tbody>
+      <caption><em>Invisible</em> = contexts where all three renderings return the same wrong rule. A stable confabulation. No oracle-free method can see these, and on that point Renxi's intuition holds exactly.</caption>
+    </table>
+  </div>
+  <div class="pull">
+    <p><strong>The recall is not a constant of the model.</strong> Qwen3 alone can see 30% of its
+    errors; with the pre-specified map it sees <em>fewer</em>, 16%; with cognitive memory it sees
+    60%. Invisible errors fall from 107 to 87 to 37 along the same gradient. The interface changes
+    how many of the model's mistakes are self-detectable — which is the operational meaning of
+    auditability.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Why — the instability moves from right answers to wrong ones</h2>
+    <p>Citation-set stability across the three renderings, split by whether the context was
+    answered correctly.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Model</th><th>Condition</th><th class="num">Stable when all correct</th><th class="num">Stable when any wrong</th><th>Pattern</th></tr></thead>
+      <tbody>
+        <tr><td>Qwen3</td><td class="lbl">M0</td><td class="num">44.1%</td><td class="num">73.0%</td><td>inverted — wrong answers rest on the steadier grounds</td></tr>
+        <tr><td>Qwen3</td><td class="lbl">B0</td><td class="num">32.4%</td><td class="num">59.7%</td><td>inverted</td></tr>
+        <tr class="hi"><td>Qwen3</td><td class="lbl">B1</td><td class="num">49.3%</td><td class="num">21.2%</td><td><strong>flips to the faithful pattern</strong></td></tr>
+        <tr><td>Terra</td><td class="lbl">B0</td><td class="num">96.7%</td><td class="num">11.1%</td><td>faithful — stable when right, noisy when wrong</td></tr>
+        <tr><td>Terra</td><td class="lbl">B1</td><td class="num">95.4%</td><td class="num">0.0%</td><td>faithful</td></tr>
+      </tbody>
+      <caption>A faithful rationale is stable when the answer is right and unstable when it is wrong, because a wrong answer has no single true ground to be stable on. Qwen3 without cognitive memory shows the reverse — the signature of stable confabulation.</caption>
+    </table>
+  </div>
+  <div class="pull warn">
+    <p><span class="chip cau">Correction</span></p>
+    <p><strong>This reverses the reading I gave earlier today.</strong> The aggregate drop in Qwen3's
+    citation stability under cognitive memory (53% → 33%, −20 pp, Holm p = 0.009) is real, and I
+    reported it as "cognitive memory destabilises the model's stated grounds." The decomposition
+    shows the opposite meaning: stability moved <em>from</em> wrong answers <em>to</em> right ones.
+    The aggregate fell because the errors got noisier — which is the detector working. This could
+    only be seen with the oracle, which is itself Renxi's point about baselines.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-3">
+    <h2>What this says about the question</h2>
+    <p><strong>Is the LLM auditable?</strong> Not in the sense the theory defines — a realised
+    trace compared against a frozen reference certificate. There is no κ* for an LLM's rationale,
+    because the rationale is produced by the same opaque process as the answer, at the same moment,
+    with no prior commitment to compare against. Cognitive memory has that commitment by
+    construction. That is the paper's thesis, not a problem for it.</p>
+    <p><strong>Can it localise its own error without an oracle?</strong> Yes, partially and
+    asymmetrically. Inconsistent errors: certified, localised to premise selection, 100% precision.
+    Consistent errors: invisible, and indistinguishable from correct reasoning. The rationale is
+    <em>falsifiable but not certifiable</em>.</p>
+    <p><strong>So what is auditability, for an LLM?</strong> The recall of this detector — the share
+    of the model's errors that are inconsistent rather than stable. It is a number. Terra is
+    73–100% auditable in this sense. Qwen3 alone is 30%. Qwen3 under cognitive memory is 60%.</p>
+  </div>
+  <p class="thesis">The LLM is not auditable. The LLM under cognitive memory is <em>more auditable
+  than the LLM alone</em> — and that is a cleaner statement of the thesis than the accuracy result.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>Caveats, all mandatory</h2>
+  </div>
+  <ol class="dec">
+    <li><span class="did">1</span><span class="dq">Exploratory and post hoc.</span><span class="dr">Built on 22 August in answer to a question, after the audit was frozen. Not a pre-specified endpoint. No multiplicity correction has been applied, because no hypothesis was declared in advance to correct for.</span></li>
+    <li><span class="did">2</span><span class="dq">One dataset, two models, 32 clusters.</span><span class="dr">Recall differences carry no interval here; the per-memory clustering has not been applied to this quantity yet.</span></li>
+    <li><span class="did">3</span><span class="dq">The detector only sees rule disagreement.</span><span class="dr">A stronger invariant — relabelling R01↔R02 in the delivered vocabulary — would separate reasoning from surface matching directly, but needs new calls under a prospective protocol.</span></li>
+    <li><span class="did">4</span><span class="dq">Reproducible from the package.</span><span class="dr"><code>scripts/auditability_without_oracle.py</code>, run under the two signed inspection authorisations; outputs in <code>results/join/</code>.</span></li>
+  </ol>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>One decision</h2>
+  </div>
+  <ol class="dec">
+    <li><span class="did">E1-L1</span><span class="dq">Is "auditability as detector recall" worth a pre-specified replication, or does it go to the supplement as exploratory beside the §15 join?</span><span class="dr">A replication would be relabelling invariance on a fresh sample: cheap, oracle-free, and it tests reasoning versus imitation directly. The supplement route costs nothing and keeps the claim honest about its status.</span></li>
+  </ol>
+</section>
+
+<footer class="stack g-2">
+  <p><strong>Boundary.</strong> The detector never reads the oracle. The oracle is read only to
+  score the detector's recall, under <code class="mono">SIG-reserved-qwen3-inspection-2026-08-19-001</code>
+  and <code class="mono">SIG-reserved-terra-inspection-2026-08-19-001</code>. Both audit analyses
+  were frozen before this join, as protocol §15 requires.</p>
+</footer>
+
+</div>

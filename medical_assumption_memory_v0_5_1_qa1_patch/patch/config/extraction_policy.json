@@ -1,0 +1,8 @@
+{
+  "mode": "free_reasoning_end_of_think",
+  "structured_output_default": false,
+  "end_of_think_markers": ["</think>", "<|end_of_thought|>", "<|end_of_think|>"],
+  "acceptance_rule": "Parse exactly one JSON object from the segment after the first configured end-of-think marker.",
+  "truncated_rule": "If no end-of-think marker is present and reasoning mode is known to emit one, classify as COMPLETED_OUTPUT_TRUNCATED.",
+  "grammar_gate": "Do not use grammar-constrained decoding unless paired QA shows no material accuracy loss, enumeration-order collapse, or condition-specific distortion."
+}

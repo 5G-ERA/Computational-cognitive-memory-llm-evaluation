@@ -1,0 +1,148 @@
+{
+  "suite": "production_faults_qa1b",
+  "checks": [
+    {
+      "name": "429 then success is retried once",
+      "pass": true
+    },
+    {
+      "name": "500 then 503 then success takes three attempts",
+      "pass": true
+    },
+    {
+      "name": "both calls reach a terminal record",
+      "pass": true
+    },
+    {
+      "name": "terminal status is COMPLETED_VALID",
+      "pass": true
+    },
+    {
+      "name": "final object taken from after the unicode end marker",
+      "pass": true
+    },
+    {
+      "name": "draft object inside the reasoning block ignored",
+      "pass": true
+    },
+    {
+      "name": "no Authorization header is sent",
+      "pass": true
+    },
+    {
+      "name": "conversation_id is never sent",
+      "pass": true
+    },
+    {
+      "name": "system message is present in every request",
+      "pass": true
+    },
+    {
+      "name": "max_tokens ceiling is propagated",
+      "pass": true
+    },
+    {
+      "name": "truncated reply classified COMPLETED_OUTPUT_TRUNCATED",
+      "pass": true
+    },
+    {
+      "name": "truncation is terminal and not retried",
+      "pass": true
+    },
+    {
+      "name": "401 stops after one attempt",
+      "pass": true
+    },
+    {
+      "name": "401 classified CLIENT_CONFIGURATION_ERROR",
+      "pass": true
+    },
+    {
+      "name": "context-limit error stops after one attempt",
+      "pass": true
+    },
+    {
+      "name": "context-limit classified TRANSPORT_CONTEXT_LIMIT",
+      "pass": true
+    },
+    {
+      "name": "500-carried context limit stops after one attempt",
+      "pass": true
+    },
+    {
+      "name": "500-carried context limit classified TRANSPORT_CONTEXT_LIMIT",
+      "pass": true
+    },
+    {
+      "name": "500-carried context limit is not restartable",
+      "pass": true
+    },
+    {
+      "name": "timeout produces a retryable attempt then a success",
+      "pass": true
+    },
+    {
+      "name": "exhausted call is NOT written to the registry",
+      "pass": true
+    },
+    {
+      "name": "exhausted call is marked restartable",
+      "pass": true
+    },
+    {
+      "name": "completion validator fails while a call is missing",
+      "pass": true
+    },
+    {
+      "name": "completion validator names the shortfall",
+      "pass": true
+    },
+    {
+      "name": "total outage leaves the registry empty",
+      "pass": true
+    },
+    {
+      "name": "total outage fails the completion validator",
+      "pass": true
+    },
+    {
+      "name": "restart recovers every call",
+      "pass": true
+    },
+    {
+      "name": "restart produces no duplicate terminal record",
+      "pass": true
+    },
+    {
+      "name": "already-terminal calls are skipped",
+      "pass": true
+    },
+    {
+      "name": "registry is unchanged",
+      "pass": true
+    },
+    {
+      "name": "duplicate-terminal guard still passes",
+      "pass": true
+    },
+    {
+      "name": "retryable statuses are 429 and 5xx only",
+      "pass": true
+    },
+    {
+      "name": "client errors listed as non-retryable",
+      "pass": true
+    },
+    {
+      "name": "model output is never retried",
+      "pass": true
+    },
+    {
+      "name": "max attempts is 3",
+      "pass": true
+    }
+  ],
+  "passed": 35,
+  "total": 35,
+  "status": "PASS"
+}

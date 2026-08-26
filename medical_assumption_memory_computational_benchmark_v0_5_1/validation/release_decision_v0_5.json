@@ -1,0 +1,14 @@
+{
+  "release": "v0.5-development",
+  "structural_validation": "PASS",
+  "data_balance": "PASS",
+  "rendering_equivalence": "PASS",
+  "condition_parity": "PASS",
+  "reaction_leakage": "PASS",
+  "assumption_only_gate": "PASS",
+  "memory_only_gate": "PASS",
+  "current_only_gate": "FAIL",
+  "reserved_external_execution": "BLOCKED",
+  "decision": "NO_GO",
+  "reason": "Current-only grouped lexical macro-F1 is 0.878, above the frozen 0.45 challenge gate."
+}

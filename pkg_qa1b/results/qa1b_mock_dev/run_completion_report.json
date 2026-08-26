@@ -1,0 +1,7 @@
+{
+  "expected": 360,
+  "terminal": 360,
+  "all_expected_terminal": true,
+  "no_duplicate_terminal": true,
+  "pass": true
+}

@@ -1,0 +1,274 @@
+<title>Qwen3 Arm Eligibility</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap">
+<style>
+:root{
+  --ground:#eef1f4; --panel:#ffffff; --recess:#e2e7ec;
+  --ink:#12171c; --ink-2:#4d5866; --ink-3:#828e9c;
+  --line:#cfd7de; --line-2:#e0e6eb;
+  --signal:#0f6e5c; --signal-bg:#dfeeea;
+  --sealed:#8a6a2f; --sealed-bg:#f2ebdc;
+  --flag:#a03a2c; --flag-bg:#f6e3df;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#10141a; --panel:#171d25; --recess:#0b0f14;
+    --ink:#e6ebf0; --ink-2:#9aa7b5; --ink-3:#6d7a89;
+    --line:#28313b; --line-2:#1e2630;
+    --signal:#4fbfa5; --signal-bg:#0e2a25;
+    --sealed:#c9a656; --sealed-bg:#2a2314;
+    --flag:#dd8b7e; --flag-bg:#301d1a;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#10141a; --panel:#171d25; --recess:#0b0f14;
+  --ink:#e6ebf0; --ink-2:#9aa7b5; --ink-3:#6d7a89;
+  --line:#28313b; --line-2:#1e2630;
+  --signal:#4fbfa5; --signal-bg:#0e2a25;
+  --sealed:#c9a656; --sealed-bg:#2a2314;
+  --flag:#dd8b7e; --flag-bg:#301d1a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:Literata,Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:63rem;margin:0 auto;padding:clamp(1.75rem,4vw,3.5rem) clamp(1rem,3.5vw,2.25rem) 6rem;
+  display:flex;flex-direction:column;gap:2.1rem}
+.arch{font-family:Archivo,-apple-system,"Helvetica Neue",Arial,sans-serif}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace}
+h1{font-family:Archivo,-apple-system,Arial,sans-serif;font-weight:700;
+  font-size:clamp(1.75rem,4.6vw,2.5rem);line-height:1.08;letter-spacing:-.025em;margin:.4rem 0 0;
+  text-wrap:balance}
+h2{font-family:Archivo,-apple-system,Arial,sans-serif;font-weight:600;font-size:1.12rem;
+  letter-spacing:-.012em;margin:0 0 .3rem;text-wrap:balance}
+h3{font-family:Archivo,-apple-system,Arial,sans-serif;font-weight:600;font-size:.86rem;
+  margin:0 0 .15rem;letter-spacing:.005em}
+p{margin:0 0 .8rem}p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.85rem}
+hr{border:0;border-top:1px solid var(--line);margin:0}
+.kicker{font-family:Archivo,Arial,sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--ink-3)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.6rem;margin-top:.85rem;font-family:Archivo,Arial,sans-serif;
+  font-size:.8rem;color:var(--ink-2)}
+.lede{font-size:1.06rem;color:var(--ink-2)}
+
+.verdict{border:1px solid var(--signal);background:var(--panel);display:grid;
+  grid-template-columns:auto 1fr;gap:0}
+@media (max-width:38rem){.verdict{grid-template-columns:1fr}}
+.verdict .stamp{background:var(--signal-bg);padding:1.15rem 1.5rem;display:flex;flex-direction:column;
+  justify-content:center;gap:.1rem;border-right:1px solid var(--signal)}
+@media (max-width:38rem){.verdict .stamp{border-right:0;border-bottom:1px solid var(--signal)}}
+.verdict .stamp .w{font-family:Archivo,Arial,sans-serif;font-weight:700;font-size:1.5rem;
+  letter-spacing:-.02em;color:var(--signal);line-height:1}
+.verdict .stamp .s{font-family:Archivo,Arial,sans-serif;font-size:.64rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.verdict .txt{padding:1.15rem 1.4rem;font-size:.96rem}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:.8rem}
+.card{border:1px solid var(--line);background:var(--panel);padding:.9rem 1rem;
+  display:flex;flex-direction:column;gap:.45rem}
+.card .lab{font-family:Archivo,Arial,sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3)}
+.card .val{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:1.45rem;line-height:1;
+  color:var(--signal);font-variant-numeric:tabular-nums}
+.meter{height:6px;background:var(--recess);position:relative;overflow:hidden}
+.meter i{position:absolute;top:0;bottom:0;left:0;background:var(--signal);display:block}
+.meter u{position:absolute;top:-3px;bottom:-3px;width:1px;background:var(--sealed);text-decoration:none}
+.scale{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;
+  font-size:.65rem;color:var(--ink-3)}
+
+.scroll{overflow-x:auto;border:1px solid var(--line);background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-family:Archivo,Arial,sans-serif;font-size:.845rem}
+th,td{padding:.52rem .8rem;text-align:left;border-bottom:1px solid var(--line-2);vertical-align:top}
+th{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;
+  background:var(--recess);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-family:"JetBrains Mono",monospace;
+  white-space:nowrap}
+td.k{font-weight:500}
+code{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:.85em;background:var(--recess);
+  padding:.05rem .3rem;border-radius:2px;word-break:break-word}
+
+.pill{display:inline-block;font-family:Archivo,Arial,sans-serif;font-size:.65rem;font-weight:700;
+  letter-spacing:.06em;padding:.09rem .44rem;border-radius:2px;white-space:nowrap}
+.pill.ok{background:var(--signal-bg);color:var(--signal)}
+.pill.held{background:var(--sealed-bg);color:var(--sealed)}
+
+.sealbox{border:1px solid var(--sealed);background:var(--sealed-bg);padding:1rem 1.15rem;
+  display:flex;flex-direction:column;gap:.6rem}
+.sealbox h2{color:var(--sealed)}
+.sealed-list{display:flex;flex-direction:column;gap:.3rem}
+.sealed-row{display:grid;grid-template-columns:1fr 8.5rem;gap:.8rem;align-items:center;
+  font-family:Archivo,Arial,sans-serif;font-size:.85rem}
+@media (max-width:30rem){.sealed-row{grid-template-columns:1fr 6rem}}
+.redact{height:1.05rem;background:repeating-linear-gradient(135deg,var(--sealed) 0 5px,transparent 5px 10px);
+  opacity:.5;border:1px solid var(--sealed)}
+
+.note{border-left:3px solid var(--signal);background:var(--panel);border-top:1px solid var(--line);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:.85rem 1.05rem;font-size:.94rem}
+.note h3{color:var(--signal)}
+.trace{font-family:"JetBrains Mono",monospace;font-size:.76rem;background:var(--recess);
+  border:1px solid var(--line);padding:.75rem .9rem;overflow-x:auto;line-height:1.75;color:var(--ink-2)}
+.trace b{color:var(--signal);font-weight:700}
+.trace em{color:var(--flag);font-style:normal}
+footer{font-family:Archivo,Arial,sans-serif;font-size:.77rem;color:var(--ink-3);line-height:1.55}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Cross-model replication</div>
+  <h1>Qwen3 Next 80B: eligibility on blinded evidence</h1>
+  <p class="meta"><span>19 August 2026</span><span>Development split, 360 calls</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<div class="verdict">
+  <div class="stamp"><span class="w">ELIGIBLE</span><span class="s">Decision 1 &middot; operational only</span></div>
+  <div class="txt">Every frozen operational monitor sits at its floor: <strong>360/360 terminal, zero truncation, one schema rejection in 360.</strong> The reserved matrix is feasible in about an hour and a half for well under a dollar. Scientific accuracy was not consulted and remains sealed.</div>
+</div>
+
+<section>
+  <p class="lede">This report is defined as much by what it does not contain as by what it does. Decision 1 rules that development testing may establish endpoint viability but must not determine retention by B0, B1, B1&minus;B0, B1&minus;M0 or per-class performance. Decision 3 fixes what a configuration summary may say. Everything below is inside those limits.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>1. The frozen operational monitors</h2>
+  <p>No new thresholds were introduced. All three already exist in <code>config/reporting_config.json</code> under <code>operational_monitoring</code>, whose own note records that they are safeguards rather than scientific endpoints. Bars below are drawn to the stop limit of 0.10; the marker shows the 0.05 warning line.</p>
+  <div class="grid2">
+    <div class="card">
+      <span class="lab">Output truncation</span>
+      <span class="val">0.000</span>
+      <div class="meter"><i style="width:0.5%"></i><u style="left:50%"></u></div>
+      <div class="scale"><span>0</span><span>warn 0.05</span><span>stop 0.10</span></div>
+    </div>
+    <div class="card">
+      <span class="lab">Between-condition spread</span>
+      <span class="val">0.000</span>
+      <div class="meter"><i style="width:0.5%"></i><u style="left:50%"></u></div>
+      <div class="scale"><span>0</span><span>warn 0.05</span><span>stop 0.10</span></div>
+    </div>
+    <div class="card">
+      <span class="lab">Invalid output rate</span>
+      <span class="val">0.003</span>
+      <div class="meter"><i style="width:2.8%"></i><u style="left:50%"></u></div>
+      <div class="scale"><span>0</span><span>warn 0.05</span><span>stop 0.10</span></div>
+    </div>
+  </div>
+  <p>All 360 calls returned HTTP 200 with <code>finish_reason: stop</code>. The frozen extraction policy and scorer were used unmodified; no scoring logic was reimplemented.</p>
+  <div class="note">
+    <h3>Correction, and a small defect in the release</h3>
+    <p>An earlier version of this page reported zero schema errors, taking the figure from the runner&rsquo;s own record. Re-deriving with the frozen scorer finds <strong>one rejection in 360</strong>: <code>CALL51-0000192</code> returned a <code>reason</code> field of 665 characters against the schema maximum of 600, so <code>schema_errors()</code> returns <code>INVALID_REASON</code>. Under intention-to-evaluate it counts as incorrect, which is the correct handling.</p>
+    <p>The two disagree because <strong>the runner&rsquo;s terminal status does not incorporate the scorer&rsquo;s schema check</strong>: the call is recorded <code>COMPLETED_VALID</code> with an empty <code>errors</code> list for an object the scorer rejects. This is the same family as defect 001 &mdash; a divergence between what the runner records and what the scorer decides &mdash; and is benign at this rate, but it is a real inconsistency in the release and is reported rather than smoothed over. The invalid-output rate is 1/360 = <span class="mono">0.0028</span>, against a warning line of 0.05: eligibility is unaffected.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>2. The five eligibility checks</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Check &mdash; Decision 1</th><th>Measured</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Unchanged scientific payload fits</td><td class="n">1,759 input tokens, mean</td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td class="k">All conditions transmitted without content loss</td><td class="n">3 / 3 conditions</td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td class="k">Output parsing technically viable</td><td class="n">0 JSON errors; 1 schema rejection in 360 (0.0028)</td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td class="k">Reliability acceptable</td><td class="n">360/360 terminal, 3 recovered</td><td><span class="pill ok">PASS</span></td></tr>
+      <tr><td class="k">Complete reserved matrix feasible</td><td class="n">1,440 calls &asymp; 1.6 h, &asymp; US$0.59</td><td><span class="pill ok">PASS</span></td></tr>
+    </tbody>
+  </table></div>
+  <p>Content loss would show up as a shortfall in the richest condition. It does not: <strong>B1, the largest payload, transmits at its full size</strong> and returns the longest outputs.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Condition</th><th>n</th><th>Input tokens, mean</th><th>Output tokens, mean</th><th>Output max</th><th>Latency, median</th></tr></thead>
+    <tbody>
+      <tr><td class="k">B0 &mdash; Raw longitudinal evidence</td><td class="n">120</td><td class="n">1,656.5</td><td class="n">121.7</td><td class="n">194</td><td class="n">2.45 s</td></tr>
+      <tr><td class="k">M0 &mdash; Pre-specified consequence map</td><td class="n">120</td><td class="n">1,695.6</td><td class="n">116.3</td><td class="n">229</td><td class="n">2.38 s</td></tr>
+      <tr><td class="k">B1 &mdash; Cognitive memory</td><td class="n">120</td><td class="n">1,923.6</td><td class="n">129.8</td><td class="n">239</td><td class="n">2.58 s</td></tr>
+    </tbody>
+  </table></div>
+  <p>The longest response in the whole run was 239 tokens against a frozen ceiling of 4,096. <strong>Truncation risk on this arm is not small, it is structurally absent</strong> &mdash; against 4.0% measured on the sealed KIMI2 run.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>3. What was not looked at</h2>
+  <div class="sealbox">
+    <h2>Sealed at the time of this report</h2>
+    <p style="font-size:.93rem">These quantities were written by the frozen scorer during the run and were <strong>not read while eligibility was decided</strong>. The seal was released later on 19 August 2026 by a delegated signature on the pre-execution amendment record, and the contrasts are reported separately. Eligibility was therefore settled on operational evidence alone, exactly as Decision 1 requires.</p>
+    <div class="sealed-list">
+      <div class="sealed-row"><span>B0 reaction accuracy</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>M0 reaction accuracy</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>B1 reaction accuracy</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>B1 &minus; B0, the primary contrast</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>B1 &minus; M0</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>Rule and grounding accuracy</span><span class="redact"></span></div>
+      <div class="sealed-row"><span>Saturation classification</span><span class="redact"></span></div>
+    </div>
+  </div>
+  <div class="note">
+    <h3>Blinding enforced in code, not by discipline</h3>
+    <p>The summary above was produced by <code>blind_operational_summary.py</code>, which emits only the fields Decision 3 permits and <strong>raises an error rather than open <code>scoring_records.jsonl</code></strong>. An operator who wanted to peek would have to modify the tool, which would leave a trace. Per-condition truncation is reported because it is itself a frozen operational monitor, not an outcome.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>4. Reasoning effort: the selection is forced</h2>
+  <p>Decision 3 excludes any setting that truncates input, exceeds the frozen truncation limit, or falls below the frozen validity limit, then takes the <strong>lowest</strong> surviving effort. This endpoint exposes <code>low</code> and <code>medium</code>; <code>high</code> exceeded the 180-second probe timeout.</p>
+  <p><code>low</code> clears steps 1&ndash;3 with every monitor at zero. Because it is the lowest setting available, no higher setting could outrank it, so <strong>none was run and none needed to be</strong>. The frozen value is <code>low</code>, chosen by the algorithm rather than by an operator, which removes the tuning hazard the decision was written to prevent.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>5. The retry policy, proven in production</h2>
+  <p>Three calls hit a transient DNS failure. All three recovered, one of them only on its third attempt &mdash; the policy exercising its full depth rather than its happy path.</p>
+  <div class="trace">CALL51-0000006  attempt 1  <em>RETRYABLE_ERROR</em>  urlopen error [Errno -2] Name or service not known
+CALL51-0000006  attempt 2  <b>COMPLETED_VALID</b>
+
+CALL51-0000293  attempt 1  <em>RETRYABLE_ERROR</em>  urlopen error [Errno -2] Name or service not known
+CALL51-0000293  attempt 2  <b>COMPLETED_VALID</b>
+
+CALL51-0000327  attempt 1  <em>RETRYABLE_ERROR</em>  urlopen error [Errno -2] Name or service not known
+CALL51-0000327  attempt 2  <em>RETRYABLE_ERROR</em>  urlopen error [Errno -2] Name or service not known
+CALL51-0000327  attempt 3  <b>COMPLETED_VALID</b></div>
+  <p>One further call blocked for 342 seconds before returning normally. <strong>No call was lost, no restart was required, and the run closed at 360/360 with <code>pass: true</code>.</strong> This is the defect found on 13 August &mdash; a runner that silently dropped 20% of calls and recovered none on restart &mdash; now repaired and demonstrated against a real network fault rather than a fault injector.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>6. Cost and reserved feasibility</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Quantity</th><th>Qwen3 development</th><th>Qwen3 reserved, projected</th><th>KIMI2 reserved, actual</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Calls</td><td class="n">360</td><td class="n">1,440</td><td class="n">1,440</td></tr>
+      <tr><td class="k">Wall clock</td><td class="n">0.4 h</td><td class="n">1.6 h</td><td class="n">~33 h</td></tr>
+      <tr><td class="k">Cost</td><td class="n">US$0.15</td><td class="n">US$0.59</td><td class="n">&mdash;</td></tr>
+      <tr><td class="k">Output tokens, mean</td><td class="n">122.6</td><td class="n">&mdash;</td><td class="n">1,495</td></tr>
+      <tr><td class="k">Truncation at 4,096</td><td class="n">0.0%</td><td class="n">&mdash;</td><td class="n">4.0%</td></tr>
+    </tbody>
+  </table></div>
+  <p>Latency: median 2.45 s, 95th percentile 5.11 s, maximum 342.7 s on the one blocked call. A client-side hard spend cap of US$5 is enforced per call before sending, since Bedrock exposes no native cap and AWS Budgets lags billing by hours. The projected reserved run uses about 12% of it.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>What this does and does not establish</h2>
+  <p>It establishes that the endpoint can carry the unchanged benchmark: the payload fits, all three conditions transmit intact, the frozen parser and scorer work without modification, transport faults recover, and the full reserved matrix is affordable and quick. Under Decision 1 that is the whole of the eligibility question.</p>
+  <p><strong>It establishes nothing about whether the effect replicates.</strong> The development contrasts were opened only after the record was signed, and in any case the confirmatory claim ruled by Decision 4 is the <em>reserved</em> split, which remains untouched. The value of the sequence is that this arm was retained on operational grounds before any result could influence the choice.</p>
+</section>
+
+<hr>
+
+<footer>
+  <p>Executed through the release&rsquo;s own <code>api_runner_qa1.py</code>, <code>qa_core.parse_final_answer</code> and <code>core.interpret</code>, with the Bedrock adapter injected and nothing in <code>release_qa1c</code> modified. Evidence: <code>dca_v051/bedrock_terra/out/dev_qwen3/</code> and <code>out/qwen3_blind_operational_summary.json</code>. The sealed KIMI2 reserved result (B1&minus;B0 = +9.79 pp, 95% CI [5.00, 14.79]) stands unchanged and is not superseded by this work.</p>
+</footer>
+
+</div>

@@ -1,0 +1,108 @@
+{
+  "reporting_config_id": "REPORT-v0.5.1-qa1b",
+  "authority": "Official Release and Assessment Decision, Cognitive Memory Benchmark v0.5.1-qa1b, 15 August 2026",
+  "supersedes": "the 14 August draft of this file, which specified exact McNemar tests and excluded invalid output from accuracy denominators; both are retired by sections 5 and 6 of the release decision",
+  "terminology_source": "public/terminology_v0_5_1.json",
+
+  "outcome_hierarchy": {
+    "note": "Confirmatory testing is hierarchical. The key secondary contrast is tested only if the primary succeeds.",
+    "primary": {
+      "contrast": "B1_VERIFIED_MEMORY - B0_LLM_ALONE",
+      "reported_as": "Cognitive-memory benefit",
+      "alpha": 0.05,
+      "sided": "two-sided"
+    },
+    "key_secondary": {
+      "contrast": "B1_VERIFIED_MEMORY - M0_OPEN_LOOP_MEMORY",
+      "reported_as": "Consequence-resolution benefit",
+      "alpha": 0.05,
+      "sided": "two-sided",
+      "tested_only_if_primary_succeeds": true
+    },
+    "exploratory": {
+      "contrast": "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE",
+      "reported_as": "Pre-specified-mapping effect"
+    },
+    "supporting_or_exploratory": [
+      "rendering-family results", "class-level results", "provenance measures",
+      "latency", "token use", "condition interactions", "meta-decision rule accuracy"
+    ]
+  },
+
+  "primary_outcome": {
+    "field": "reaction_correct",
+    "reported_as": "Current meta-decision accuracy",
+    "unit": "proportion of EXPECTED calls (intention-to-evaluate)"
+  },
+
+  "intention_to_evaluate": {
+    "rule": "Every expected call remains in the primary denominator.",
+    "scored_incorrect": [
+      "COMPLETED_OUTPUT_TRUNCATED", "COMPLETED_INVALID_JSON", "COMPLETED_INVALID_SCHEMA",
+      "unknown reaction", "unknown rule", "internal response conflict", "refusal",
+      "MODEL_EMPTY"
+    ],
+    "not_model_outcomes": {
+      "statuses": ["TRANSPORT_RATE_LIMIT_EXHAUSTED", "TRANSPORT_TIMEOUT_EXHAUSTED",
+                   "TRANSPORT_SERVER_ERROR_EXHAUSTED", "TRANSPORT_CONTEXT_LIMIT",
+                   "CLIENT_CONFIGURATION_ERROR"],
+      "rule": "Retryable transport failures must be recovered through the frozen retry and restart process or the run remains incomplete. They are never converted into a correct or incorrect model answer."
+    },
+    "sensitivity_analysis": "A valid-response-only analysis is reported as a secondary sensitivity analysis and cannot replace the primary denominator."
+  },
+
+  "statistical_inference": {
+    "independent_unit": "memory",
+    "unit_note": "Each sampled memory retains all 5 current contexts, all 3 renderings and all 3 conditions; clusters move together.",
+    "point_estimate": "call-level difference in current meta-decision accuracy",
+    "uncertainty": "memory-clustered bootstrap",
+    "bootstrap_replicates": 10000,
+    "interval": "percentile 95%",
+    "positive_confirmatory_criterion": "lower bound of the two-sided 95% interval exceeds zero",
+    "bootstrap_seed": 13082654,
+    "retired": "Unclustered exact McNemar is NOT used for confirmatory inference (release decision A9).",
+    "supporting_analyses": [
+      "memory-level means", "canonical-context summaries", "rendering-family results",
+      "cluster-aware regression or GEE"
+    ]
+  },
+
+  "operational_monitoring": {
+    "note": "Operational safeguards, not scientific endpoints. If a stop threshold is crossed, execution pauses BEFORE condition-accuracy results are inspected.",
+    "overall_output_truncation": {"warning": 0.05, "stop": 0.10},
+    "absolute_truncation_difference_between_conditions": {"warning": 0.05, "stop": 0.10},
+    "invalid_output_rate": {"warning": 0.05, "stop": 0.10}
+  },
+
+  "provenance_outcomes": {
+    "note": "The response contract asks for one or more decisive event identifiers and does not require separate historical and current fields. Dual-source completeness is therefore descriptive, not confirmatory.",
+    "provenance_reference_validity": {
+      "definition": "Proportion of cited identifiers visible in the supplied payload",
+      "role": "supporting", "field": "provenance_reference_validity"},
+    "decisive_citation_validity": {
+      "definition": "At least one cited identifier belongs to an acceptable decisive group",
+      "role": "supporting", "field": "decisive_citation_validity"},
+    "historical_provenance_hit": {
+      "definition": "At least one acceptable historical identifier is cited",
+      "role": "descriptive", "field": "historical_provenance_hit"},
+    "current_context_provenance_hit": {
+      "definition": "At least one acceptable current identifier is cited",
+      "role": "descriptive", "field": "current_provenance_hit"},
+    "dual_source_provenance_completeness": {
+      "definition": "At least one acceptable historical AND one acceptable current identifier are cited",
+      "role": "descriptive", "field": "dual_source_provenance_completeness"}
+  },
+
+  "retired_metrics": {
+    "certified_meta_decision_accuracy": "NOT a confirmatory endpoint in this release and not to be reported under that name (release decision section 7). The field is still computed for audit continuity but carries no confirmatory role. A future benchmark may reintroduce the concept through an explicit response contract with separate historical and current provenance fields.",
+    "grounded_correct": "Retired. Required exhaustive citation of every decisive event and therefore measured exhaustiveness rather than grounding."
+  },
+
+  "reporting_terms": {
+    "reaction_accuracy": "Current meta-decision accuracy",
+    "rule_accuracy": "Meta-decision rule accuracy",
+    "citation_validity": "Provenance-reference validity"
+  },
+
+  "claim_boundary": "Cognitive memory improved, did not improve, or had uncertain effect on logical recovery of current meta-decisions relative to raw longitudinal evidence and the pre-specified consequence mapping. The experiment does not establish medical correctness, clinical effectiveness, patient benefit, complete DCA equivalence, authorised intervention, realised warranted use, full Distributed Cognitive Continuity, generalisation to natural clinical records, or generalisation across models from a single-model experiment."
+}

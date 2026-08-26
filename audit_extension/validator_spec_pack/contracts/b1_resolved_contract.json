@@ -1,0 +1,369 @@
+{
+  "contract_id": "L2-B1-1.2",
+  "parent_release": "v0.5.1-qa1c",
+  "trace_type": "EVIDENCE_RESOLVED_SINGLE_CANDIDATE_DCC",
+  "applies_to_conditions": [
+    "B1_VERIFIED_MEMORY"
+  ],
+  "source_object": "payload.verified_cognitive_memory",
+  "_reading_note": "Same conflict as the M0 contract between protocol sections 8.1 and 8.3. Both readings are computed; see results/audit_condition_metrics.csv, column `reading`.",
+  "fields": [
+    {
+      "canonical": "memory_id",
+      "source_path": "verified_cognitive_memory.memory_id",
+      "presence": "PRESENT",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "trace_type",
+      "source_path": "CONSTANT:EVIDENCE_RESOLVED_SINGLE_CANDIDATE_DCC",
+      "presence": "DERIVED",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "formation_assumption_id",
+      "source_path": "verified_cognitive_memory.prospective.assumption",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "attributed_capability_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E2_CAPABILITY_MISATTRIBUTION"
+    },
+    {
+      "canonical": "expected_consequence_id",
+      "source_path": "verified_cognitive_memory.prospective.expected_consequence",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "evidence_contract_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_PROSPECTIVE_TRACE_INCOMPLETE"
+    },
+    {
+      "canonical": "represented_function_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E2_FUNCTION_MISMATCH",
+      "note": "resolved_relation.scope is a free-text scope label, not a function identifier, and is not mapped to it."
+    },
+    {
+      "canonical": "resolved_consequence_status",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E3_RESOLUTION_STATUS_MISSING",
+      "note": "The release publishes no trace vocabulary. resolved_relation.statement carries the resolution in free text only."
+    },
+    {
+      "canonical": "resolved_consequence_statement",
+      "source_path": "verified_cognitive_memory.resolved_relation.statement",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": true,
+      "code": "E3_CONSEQUENCE_CLOSURE_ABSENT"
+    },
+    {
+      "canonical": "resolution_time",
+      "source_path": null,
+      "presence": "DERIVABLE_FROM_REGISTRY",
+      "mandatory_literal": true,
+      "recoverable_from": "max(event_time) over constitutive_event_ids in the source-event registry",
+      "note": "Recoverable by derivation from the event registry, which the protocol permits as normalisation rather than inference: no semantic content is added."
+    },
+    {
+      "canonical": "constitutive_event_ids",
+      "source_path": "verified_cognitive_memory.resolved_relation.constitutive_event_ids",
+      "presence": "PRESENT",
+      "mandatory_literal": true,
+      "code": "E3_CONSTITUTIVE_LINK_MISSING"
+    },
+    {
+      "canonical": "competing_event_ids",
+      "source_path": "verified_cognitive_memory.resolved_relation.competing_or_unresolved_event_ids",
+      "presence": "PRESENT",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "source_ids",
+      "source_path": null,
+      "presence": "DERIVABLE_FROM_REGISTRY",
+      "mandatory_literal": true,
+      "recoverable_from": "source field of each constitutive event in the source-event registry"
+    },
+    {
+      "canonical": "semantic_scope_status",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E2_SCOPE_OVERREACH"
+    },
+    {
+      "canonical": "semantic_scope_label",
+      "source_path": "verified_cognitive_memory.resolved_relation.scope",
+      "presence": "PRESENT_AS_FREE_TEXT",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "limitations",
+      "source_path": "verified_cognitive_memory.resolved_relation.limitations",
+      "presence": "PRESENT",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "current_relation",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E4_ROLE_TRACE_INCONSISTENT",
+      "note": "The release instead exposes comparison_guide, a set of five candidate current relations. The memory object states none of them as the holding one: which relation holds is exactly what the model must determine from current evidence. This is a condition-design property, not an omission."
+    },
+    {
+      "canonical": "comparison_guide",
+      "source_path": "verified_cognitive_memory.comparison_guide",
+      "presence": "PRESENT_NOT_IN_CANONICAL_SCHEMA",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "stated_dcc_outcome",
+      "source_path": "response.reaction",
+      "presence": "PRESENT_IN_RESPONSE_NOT_IN_TRACE",
+      "mandatory_literal": true,
+      "note": "Recorded by the model's response object, not by any persisted trace. The release has no trace-writing path."
+    },
+    {
+      "canonical": "stated_rule_id",
+      "source_path": "response.rule_id",
+      "presence": "PRESENT_IN_RESPONSE_NOT_IN_TRACE",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "prospective_hash",
+      "source_path": null,
+      "presence": "DERIVED",
+      "mandatory_literal": true
+    },
+    {
+      "canonical": "predecessor_id",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "successor_relation",
+      "source_path": "verified_cognitive_memory.successor_relation",
+      "presence": "PRESENT_NULLABLE",
+      "mandatory_literal": false
+    },
+    {
+      "canonical": "semantic_version",
+      "source_path": null,
+      "presence": "NOT_RECORDED_IN_SOURCE_RELEASE",
+      "mandatory_literal": true,
+      "code": "E5_VERSION_AMBIGUOUS"
+    }
+  ],
+  "closure_checks": [
+    {
+      "id": "B1.3.1",
+      "check": "resolution_status_in_public_trace_vocabulary",
+      "code": "E3_RESOLUTION_STATUS_MISSING",
+      "evaluable": false
+    },
+    {
+      "id": "B1.3.2",
+      "check": "resolved_statement_present",
+      "code": "E3_CONSEQUENCE_CLOSURE_ABSENT",
+      "evaluable": true
+    },
+    {
+      "id": "B1.3.3",
+      "check": "resolution_time_follows_formation",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "evaluable": true,
+      "definition": "max(event_time) over constitutive events must be at or after min(event_time) over the memory's longitudinal records.",
+      "exemption": "not evaluated when the relation is UNRESOLVED_BY_CONDITION_DESIGN"
+    },
+    {
+      "id": "B1.3.4",
+      "check": "constitutive_evidence_exists",
+      "code": "E3_CONSTITUTIVE_LINK_MISSING",
+      "evaluable": true,
+      "exemption": "UNRESOLVED_BY_CONDITION_DESIGN, see unresolved_by_condition_design"
+    },
+    {
+      "id": "B1.3.5",
+      "check": "constitutive_evidence_belongs_to_memory",
+      "code": "E3_CONSTITUTIVE_LINK_MISSING",
+      "evaluable": true,
+      "exemption": "UNRESOLVED_BY_CONDITION_DESIGN, see unresolved_by_condition_design"
+    },
+    {
+      "id": "B1.3.6",
+      "check": "constitutive_evidence_visible_in_payload",
+      "code": "E1_CITATION_NOT_VISIBLE",
+      "evaluable": true
+    },
+    {
+      "id": "B1.3.7",
+      "check": "evidence_within_evidence_contract_window",
+      "code": "E1_WINDOW_INVALID",
+      "evaluable": false
+    },
+    {
+      "id": "B1.3.8",
+      "check": "required_source_types_represented",
+      "code": "E1_PROVENANCE_INCOMPLETE",
+      "evaluable": false,
+      "note": "The release declares no required source-type set for a resolved relation."
+    },
+    {
+      "id": "B1.3.9",
+      "check": "expected_consequence_not_copied_into_resolved_field",
+      "code": "E2_EXPECTED_AS_REALISED",
+      "evaluable": true,
+      "definition": "token-set Jaccard between expected_consequence and resolved statement must be < 0.85 after canonicalisation."
+    },
+    {
+      "id": "B1.3.10",
+      "check": "unresolved_not_represented_as_resolved",
+      "code": "E2_UNRESOLVED_COLLAPSED",
+      "evaluable": true,
+      "definition": "competing_or_unresolved_event_ids must be disjoint from constitutive_event_ids."
+    }
+  ],
+  "competing_evidence_check": {
+    "id": "B1.4",
+    "status": "NOT_EVALUABLE_FROM_SOURCE_RELEASE",
+    "reason": "The release declares the field but states no expectation of when it must be non-empty. Protocol section 8.4 forbids inferring the omission from the decision oracle.",
+    "reference_checks_still_run": [
+      "competing ids exist in the registry",
+      "competing ids belong to the memory",
+      "competing ids are retained in the payload"
+    ]
+  },
+  "current_use_coherence": [
+    {
+      "id": "B1.6.1",
+      "check": "stated_rule_admits_stated_outcome",
+      "code": "E4_RULE_OUTCOME_INCONSISTENT",
+      "evaluable": true
+    },
+    {
+      "id": "B1.6.2",
+      "check": "stated_outcome_coherent_with_current_relation",
+      "code": "E4_ROLE_TRACE_INCONSISTENT",
+      "evaluable": false,
+      "reason": "No current_relation field is recorded; see fields[current_relation]."
+    },
+    {
+      "id": "B1.6.3",
+      "check": "current_use_grounds_recorded",
+      "code": "E3_CURRENT_USE_GROUNDS_MISSING",
+      "evaluable": true,
+      "definition": "Reaction is CONTINUE_SUPPORT or TAILOR_SUPPORT and the canonical cited set shares no member with the set of event identifiers delivered in current_records."
+    },
+    {
+      "id": "B1.6.4",
+      "check": "trace_reaches_output",
+      "code": "E3_TRACE_OUTPUT_DISCONNECTED",
+      "evaluable": true,
+      "definition": "A response invoking a historical rule (R05-R10) must cite at least one event the retained trace itself names (constitutive or competing) or another longitudinal record of the memory."
+    },
+    {
+      "id": "B1.6.5",
+      "check": "successor_cited_as_predecessor_evidence",
+      "code": "E1_TEMPORAL_ORDER_INVALID",
+      "evaluable": true,
+      "definition": "Applies only when stated rule is R06_CONTRADICTED_PREDECESSOR and a successor relation is recorded. Let H be the intersection of the canonical cited set with the delivered longitudinal identifiers, and P the successor's provenance_event_ids. If H is non-empty and H is a subset of P, the successor's own evidence is being used as predecessor evidence: raise E1_TEMPORAL_ORDER_INVALID."
+    }
+  ],
+  "historical_integrity_checks": [
+    {
+      "id": "B1.7.1",
+      "check": "partial_prospective_field_stability",
+      "code": "E5_PROSPECTIVE_REWRITE",
+      "evaluable": true,
+      "case_status_effect": "NONE",
+      "decision": "B6, Renxi Qiu, 22 August 2026."
+    },
+    {
+      "id": "B1.7.2",
+      "check": "predecessor_identity_valid",
+      "code": "E5_PREDECESSOR_OVERWRITTEN",
+      "evaluable": true,
+      "definition": "Where successor_relation is present, the predecessor resolved_relation must still be retained verbatim in the same object."
+    },
+    {
+      "id": "B1.7.3",
+      "check": "successor_distinct_from_predecessor",
+      "code": "E5_SUCCESSOR_INVALID",
+      "evaluable": true,
+      "definition": "successor_relation.statement must differ from resolved_relation.statement and successor_relation.scope must be recorded."
+    },
+    {
+      "id": "B1.7.4",
+      "check": "successor_cites_new_evidence",
+      "code": "E5_SUCCESSOR_INVALID",
+      "evaluable": true,
+      "definition": "successor_relation.provenance_event_ids must be non-empty, must exist in the registry, must belong to the memory, and must not be a subset of constitutive_event_ids."
+    },
+    {
+      "id": "B1.7.5",
+      "check": "succession_reason_recorded",
+      "code": "E5_SUCCESSOR_INVALID",
+      "evaluable": true,
+      "definition": "successor_relation.statement serves as the recorded reason and must be non-empty."
+    },
+    {
+      "id": "B1.7.6",
+      "check": "current_use_not_written_into_immutable_fields",
+      "code": "E5_CURRENT_ROLE_HISTORICISED",
+      "evaluable": true,
+      "definition": "Concatenate, separated by single spaces, the canonicalised resolved_consequence_statement, the canonicalised formation_assumption, and the string form of every entry in limitations. If any of the five public reaction labels (CONTINUE_SUPPORT, TAILOR_SUPPORT, ESCALATE_REVIEW, WITHHOLD_ASSUMPTION, WAIT_FOR_EVIDENCE) occurs as a substring of that concatenation, raise E5_CURRENT_ROLE_HISTORICISED, listing the labels found in ascending order. Matching is case sensitive on the exact label form."
+    }
+  ],
+  "contract_revision_note": "1.2 applies decisions A3, A4 and B6 of Renxi Qiu, 22 August 2026.",
+  "partial_prospective_field_stability": {
+    "id": "B1.2",
+    "replaces": "non_rewrite_check",
+    "decision": "B6, Renxi Qiu, 22 August 2026: report as PARTIAL PROSPECTIVE FIELD STABILITY. The full non-rewrite claim is withdrawn on this parent release.",
+    "definition": "Compare the sha256 of the canonicalised B1 prospective relation with the sha256 of the canonicalised M0 open-loop object for the same memory. Equality certifies that the three prospective fields this release records are stable between the two conditions.",
+    "operands": [
+      "formation_assumption",
+      "expected_consequence",
+      "assessed_alternative"
+    ],
+    "operands_not_recorded_by_this_release": [
+      "attributed_capability",
+      "evidence_contract",
+      "verification_window"
+    ],
+    "reported_as": "descriptive statistic in the release-integrity report, per memory and in aggregate",
+    "case_status_effect": "NONE",
+    "code_if_unequal": "E5_PROSPECTIVE_REWRITE, severity INFO, status NONE, inert on this release",
+    "withdrawn_claim": "This test does NOT establish that no silent prospective rewrite occurred. It covers three of the five operands of protocol equation (1)."
+  },
+  "unresolved_by_condition_design": {
+    "id": "B1.3.4a",
+    "structural_status": "UNRESOLVED_BY_CONDITION_DESIGN",
+    "decision": "A3, Renxi Qiu, 22 August 2026: added, symmetric with the OPEN_LOOP_BY_CONDITION_DESIGN exemption protocol section 7.2 grants M0.",
+    "detector": "constitutive_event_ids is empty AND competing_or_unresolved_event_ids is non-empty AND the resolved statement is present and non-empty. Read from the delivered memory object alone; no decision-adjacent field is consulted.",
+    "validation": "Verified against all 40 memories of the parent release: selects exactly the 10 whose verification family is UNRESOLVED, with no false positive and no false negative, without reading the verification column.",
+    "effect": "E3_CONSTITUTIVE_LINK_MISSING is not raised, and the case records the structural status. The positive obligation is checked instead: unresolvedness must be REPRESENTED, which is what the detector requires and which E2_UNRESOLVED_COLLAPSED continues to guard.",
+    "not_exempt": "An empty constitutive set WITHOUT that positive representation is not exempt. The relation is simply broken and E3_CONSTITUTIVE_LINK_MISSING still applies."
+  },
+  "level2_reporting_role": {
+    "decision": "A4, Renxi Qiu, 22 August 2026: RELEASE-INTEGRITY NOW, EXTEND SCHEMA AS FOLLOW-ON.",
+    "now": "Level 2 is reported once for the release as a release-integrity audit: the retained cognitive-memory artefacts are complete, coherent and non-rewritten within the fields this release records. It is NOT reported as a per-condition contrast.",
+    "equation_7_status": "WITHDRAWN_FROM_CONFIRMATORY_SET",
+    "equation_7_reason": "The release has no trace-writing path. The M0 and B1 objects are delivered to the model inside the payload and the model returns only reaction, rule_id, decisive_event_ids and reason, so equation (7) contrasts a dataset property that is invariant across all five contexts, all three renderings and every model.",
+    "follow_on": "Extend the public response schema so the model returns the resolution state, the evidence it relied on, the current relation it judged to hold and its grounds for current use. That requires new calls under a separate prospectively frozen protocol, which protocol section 21 already anticipates."
+  }
+}

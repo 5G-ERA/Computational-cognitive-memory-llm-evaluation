@@ -1,0 +1,38 @@
+{
+  "_what": "Measured baseline from the SEALED Kimi reserved run (1440/1440). Use it to judge probe P7: an arm whose output distribution sits materially above this will truncate more often at the frozen 4096 ceiling.",
+  "source": "reserved_run_2026-08-15/.../results/reserved_2026-08-15/responses_raw.jsonl",
+  "model": "Kimi-Dev-72B Q4_0 (moonshotai_Kimi-Dev-72B-Q4_0.gguf)",
+  "calls": 1440,
+  "frozen_max_output_tokens": 4096,
+  "input_tokens": {
+    "min": 1519,
+    "p50": 1776,
+    "p90": 2012,
+    "max": 2064,
+    "mean": 1773
+  },
+  "output_tokens": {
+    "min": 255,
+    "p50": 1140,
+    "p90": 3110,
+    "max": 4096,
+    "mean": 1495
+  },
+  "truncated_at_ceiling": {
+    "count": 58,
+    "rate": 0.0403,
+    "note": "finish_reason='length'. The frozen 4096 ceiling was ALREADY binding for 4% of Kimi calls. On a reasoning model whose reasoning tokens draw on the same completion budget, this rate can only go up."
+  },
+  "qa1b_vs_qa1c": {
+    "truncated_under_qa1b": 93,
+    "malformed_marker_recovered_by_qa1c": 35,
+    "genuine_length_truncations": 58,
+    "note": "Confirms defect 001 from the local evidence: 35 valid answers were scored truncated because Kimi emitted the end marker as '/think' without the closing glyph."
+  },
+  "reserved_run_cost_if_repeated": {
+    "total_input_tokens": 2553750,
+    "total_output_tokens": 2152405,
+    "terra_global_usd": 30.94,
+    "qwen3_next_80b_usd": 2.97
+  }
+}

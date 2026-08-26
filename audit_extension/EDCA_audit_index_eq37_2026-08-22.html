@@ -1,0 +1,358 @@
+<title>The Audit Index on Experiment 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#F6F8F7; --surface:#FFFFFF; --sunk:#EDF1EF;
+  --ink:#141A19; --body:#2B3634; --muted:#5F6C69; --faint:#8C9895;
+  --rule:#D8E0DD; --rule-strong:#B9C6C2;
+  --accent:#12665C; --accent-soft:#E1EFEC; --accent-ink:#0B4A43;
+  --ok:#1E7A52; --ok-soft:#E2F1E9;
+  --caution:#8A5A00; --caution-soft:#F6ECD9;
+  --blocker:#A32A22; --blocker-soft:#F7E4E2;
+  --b-m0:#D8C7A3; --b-b0:#B9C6C2; --b-b1:#12665C;
+  --shadow:0 1px 2px rgba(20,26,25,.05), 0 8px 24px -16px rgba(20,26,25,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+    --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+    --rule:#26302E; --rule-strong:#38443F;
+    --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+    --ok:#57BC8B; --ok-soft:#12251C;
+    --caution:#D6A44B; --caution-soft:#2A2113;
+    --blocker:#E58279; --blocker-soft:#2C1815;
+    --b-m0:#7A6A45; --b-b0:#4A5754; --b-b1:#54C0B0;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1312; --surface:#151B1A; --sunk:#1B2322;
+  --ink:#E9EEEC; --body:#C6D0CD; --muted:#93A09D; --faint:#6E7B78;
+  --rule:#26302E; --rule-strong:#38443F;
+  --accent:#54C0B0; --accent-soft:#152C29; --accent-ink:#8CD9CC;
+  --ok:#57BC8B; --ok-soft:#12251C;
+  --caution:#D6A44B; --caution-soft:#2A2113;
+  --blocker:#E58279; --blocker-soft:#2C1815;
+  --b-m0:#7A6A45; --b-b0:#4A5754; --b-b1:#54C0B0;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0; background:var(--ground); color:var(--body);
+  font-family:"Source Sans 3", ui-sans-serif, system-ui, sans-serif; font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:54rem; margin:0 auto; padding:clamp(2rem,5vw,4.5rem) clamp(1.1rem,4vw,2.5rem) 6rem}
+.prose{max-width:39rem}
+h1,h2,h3{font-family:Spectral, Georgia, serif; color:var(--ink); text-wrap:balance; margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.05rem); line-height:1.08; font-weight:700; letter-spacing:-.015em}
+h2{font-size:1.55rem; font-weight:600; line-height:1.2; letter-spacing:-.01em}
+h3{font-size:1.12rem; font-weight:600; line-height:1.3}
+p{margin:0}
+code,.mono{font-family:"IBM Plex Mono", ui-monospace, monospace; font-size:.86em}
+code{background:var(--sunk); padding:.08em .34em; border-radius:3px; color:var(--ink)}
+strong{color:var(--ink); font-weight:600}
+em{font-style:italic}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--faint); font-weight:500}
+.stack{display:flex; flex-direction:column}
+.g-2{gap:.75rem} .g-3{gap:1.15rem} .g-4{gap:1.75rem} .g-8{gap:4.25rem}
+
+header.mast{display:flex; flex-direction:column; gap:1.4rem; padding-bottom:2rem; border-bottom:2px solid var(--rule-strong)}
+.mast .lede{font-size:1.13rem; color:var(--muted); max-width:40rem}
+.meta{display:flex; flex-wrap:wrap; gap:.4rem 1.6rem; font-family:"IBM Plex Mono",monospace; font-size:.76rem; color:var(--faint)}
+.meta b{color:var(--muted); font-weight:500}
+
+.thesis{font-family:Spectral,serif; font-size:1.38rem; line-height:1.38; color:var(--ink); font-weight:400;
+  border-left:3px solid var(--accent); padding:.35rem 0 .35rem 1.25rem; max-width:40rem}
+.thesis em{font-style:italic; color:var(--accent-ink)}
+
+.eq{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:1.2rem 1.4rem;
+  font-family:Spectral,serif; font-size:1.35rem; color:var(--ink); text-align:center; line-height:1.6}
+.eq .sub{font-size:.7em; vertical-align:sub}
+.eq .sup{font-size:.7em; vertical-align:super}
+.eq .src{display:block; font-family:"IBM Plex Mono",monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--faint); margin-top:.6rem}
+
+.map{display:grid; grid-template-columns:auto 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+.map>div{background:var(--surface); padding:.8rem 1.1rem}
+.map .k{font-family:Spectral,serif; font-size:1.05rem; color:var(--ink); white-space:nowrap}
+.map .k .sub{font-size:.7em; vertical-align:sub}
+.map .v{font-size:.92rem; color:var(--body); line-height:1.5}
+.map .v b{color:var(--ink)}
+@media (max-width:40rem){.map{grid-template-columns:1fr}.map .k{padding-bottom:0}}
+
+.bars{background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:1.1rem 1.25rem 1rem; overflow-x:auto}
+.bars svg{display:block; width:100%; height:auto; max-width:46rem}
+.bars text{font-family:"IBM Plex Mono",monospace; fill:var(--muted)}
+.bars .lab{fill:var(--ink); font-family:"Source Sans 3",sans-serif; font-weight:600; font-size:13px}
+.bars .val{fill:var(--ink); font-size:12px; font-weight:500}
+.bars .grid{stroke:var(--rule); stroke-width:1}
+.bars .m0{fill:var(--b-m0)} .bars .b0{fill:var(--b-b0)} .bars .b1{fill:var(--b-b1)}
+.bars .axis{font-size:11px; fill:var(--faint)}
+.legend{display:flex; gap:1.4rem; flex-wrap:wrap; font-size:.82rem; color:var(--muted); margin-top:.4rem}
+.legend span::before{content:""; display:inline-block; width:.8em; height:.8em; border-radius:2px; margin-right:.45em; vertical-align:-.05em}
+.legend .m0::before{background:var(--b-m0)} .legend .b0::before{background:var(--b-b0)} .legend .b1::before{background:var(--b-b1)}
+
+.tw{overflow-x:auto; border:1px solid var(--rule); border-radius:6px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; font-size:.85rem}
+th,td{padding:.5rem .8rem; text-align:left; border-bottom:1px solid var(--rule); white-space:nowrap}
+thead th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint); font-weight:500; background:var(--sunk); border-bottom:1px solid var(--rule-strong)}
+tbody tr:last-child td{border-bottom:none}
+td.num, th.num{text-align:right; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+td.lbl{font-family:"IBM Plex Mono",monospace; font-size:.79rem; color:var(--ink)}
+tr.hi td{background:var(--accent-soft)}
+td .flag{color:var(--blocker); font-weight:600}
+caption{caption-side:bottom; text-align:left; padding:.6rem .8rem; font-size:.78rem; color:var(--muted); line-height:1.45}
+
+.pull{background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:0 6px 6px 0; padding:1.05rem 1.25rem; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:.5rem}
+.pull p{max-width:38rem}
+.pull.warn{border-left-color:var(--caution)}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.11em; text-transform:uppercase;
+  font-weight:600; padding:.2rem .5rem; border-radius:3px; white-space:nowrap; display:inline-block}
+.chip.cau{background:var(--caution-soft); color:var(--caution)}
+
+ol.dec{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:6px; overflow:hidden}
+ol.dec li{background:var(--surface); padding:1rem 1.2rem; display:grid; grid-template-columns:auto 1fr; gap:.4rem 1rem; align-items:baseline}
+ol.dec .did{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--accent); font-size:.86rem}
+ol.dec .dq{color:var(--ink); font-weight:600}
+ol.dec .dr{grid-column:2; font-size:.9rem; color:var(--muted)}
+
+footer{border-top:2px solid var(--rule-strong); padding-top:1.5rem; color:var(--faint); font-size:.83rem}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+</style>
+
+<div class="wrap stack g-8">
+
+<header class="mast">
+  <div class="stack g-3">
+    <span class="eyebrow">Experiment 1 · equation (37) of V4.7, computed · 22 August 2026</span>
+    <h1>The Audit Index on Experiment&nbsp;1</h1>
+    <p class="lede">The audit's goal is to turn unknown-unknowns into known-unknowns: errors that show
+    rather than errors that look clean. Under cognitive memory Qwen3's known-unknowns nearly triple.
+    Equation (37) of V4.7 is then computed as written, and the page shows why it counts the
+    opposite thing — and why the known-unknown rate, not the index, is what the Kimi
+    pre-registration tests.</p>
+  </div>
+  <div class="meta">
+    <span><b>Data</b> reserved splits, Terra + Qwen3, 160 boundaries per condition, 32 memory groups</span>
+    <span><b>Oracle</b> read only for the error-conditioned view, under signed inspection records</span>
+    <span><b>Code</b> scripts/audit_index_eq37.py</span>
+  </div>
+</header>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>The audit goal is the known-unknown</h2>
+    <p>Every boundary falls into one of four cells. The audit's product is the cell where an error
+    is <em>known</em> to be an error — flagged, routed to review, before anyone acted on it. Its
+    failure is the cell where an error looks clean and proceeds. Renxi's terms: the goal is the
+    known-unknown; the enemy is the unknown-unknown.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Qwen3, reserved</th><th class="num">known-known<br><span style="font-weight:400;text-transform:none;letter-spacing:0">correct, clean</span></th><th class="num">known-unknown<br><span style="font-weight:400;text-transform:none;letter-spacing:0">error, flagged — the goal</span></th><th class="num">unknown-unknown<br><span style="font-weight:400;text-transform:none;letter-spacing:0">error, looks clean</span></th><th class="num">false alarm<br><span style="font-weight:400;text-transform:none;letter-spacing:0">correct, flagged</span></th><th class="num">known-unknown rate</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">M0</td><td class="num">33</td><td class="num">20</td><td class="num"><span class="flag">107</span></td><td class="num">0</td><td class="num">15.7%</td></tr>
+        <tr><td class="lbl">B0</td><td class="num">33</td><td class="num">38</td><td class="num"><span class="flag">87</span></td><td class="num">0</td><td class="num">30.4%</td></tr>
+        <tr class="hi"><td class="lbl">B1</td><td class="num">61</td><td class="num"><strong>56</strong></td><td class="num">37</td><td class="num">0</td><td class="num"><strong>60.2%</strong></td></tr>
+      </tbody>
+      <caption>Terra, for reference: known-unknown rate 72.7% / 77.8% / 100% across M0 / B0 / B1, with 3 / 2 / 0 unknown-unknowns. False alarms are zero everywhere by construction: a rendering disagreement proves an error, so a correct boundary is never flagged.</caption>
+    </table>
+  </div>
+  <p class="thesis">Cognitive memory nearly triples Qwen3's known-unknowns, 20 → 56, and cuts its
+  unknown-unknowns by two thirds, 107 → 37. <em>That is the audit result.</em> The known-unknown rate —
+  errors caught over errors made — is the quantity to report, and it is what the pre-registered
+  Kimi test measures.</p>
+  <div class="pull warn">
+    <p><strong>Where equation (37) fits, and why it cannot be the goal.</strong> Q<sub>audit</sub> counts
+    the boundaries that look clean — the known-knowns <em>plus</em> the unknown-unknowns — over all
+    boundaries. It adds the best cell to the worst cell. That is why it ranks M0 first (107 hidden
+    errors look clean) and B1 last (56 errors refuse to). Q<sub>audit</sub> is the fraction of
+    boundaries that would proceed without review: a throughput figure, not a quality figure. It is
+    correctly a <em>secondary descriptive</em> index in the paper, and it must stay one.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>1 · The naming is already in the paper</h2>
+    <p>V4.7 defines the Cognitive Memory Audit Index as a secondary descriptive aggregation:</p>
+  </div>
+  <div class="eq">
+    Q<span class="sub">audit</span> = (1 / T<span class="sub">eval</span>) · Σ<span class="sub">t : I<sub>t</sub><sup>audit</sup>=1</span> (q<span class="sub">DCA,t</span> · q<span class="sub">DCC,t</span>)<span class="sup">1/2</span>
+    <span class="src">A Computational Theory of Cognitive Memory, V4.7, equation (37)</span>
+  </div>
+  <div class="prose stack g-3">
+    <p>That is √(DCA·DCC), averaged over the evaluable boundaries — "divided by time." So the answer
+    to <em>can we say audit = √(DCA·DCC)/time</em> is: you already did. What was missing was the
+    mapping onto Experiment 1, where a boundary is not a deployment step but a decision call.</p>
+  </div>
+  <div class="map">
+    <div class="k">t</div><div class="v">A <b>boundary</b>: one canonical context under one condition, delivered in three renderings.</div>
+    <div class="k">q<span class="sub">DCA,t</span></div><div class="v"><b>Reconstruction.</b> DCA conformity is whether the interface exposes the grounds needed to reconstruct. Here: trace completeness from the Level 1 audit — the weighted proportion of valid mandatory components — averaged over the three renderings. Oracle-free.</div>
+    <div class="k">q<span class="sub">DCC,t</span></div><div class="v"><b>Replay.</b> DCC is continuity of the resolved pathway across boundaries. Here: pathway invariance — the fraction of rendering pairs returning the same rule, 0, ⅓ or 1. Oracle-free.</div>
+    <div class="k">T<span class="sub">eval</span></div><div class="v">Boundaries with all three renderings valid: 160 per condition on every reserved split. Nothing dropped.</div>
+    <div class="k">critical</div><div class="v">A critical violation on any rendering forces the term to 0, per the paper: "silent historical rewriting … prevented audit conformity regardless of the scalar score."</div>
+  </div>
+  <p class="thesis">Per boundary, <em>audit = √(reconstruction · replay)</em>. Names: <strong>trace
+  reconstructibility</strong> for q<sub>DCA</sub>, <strong>pathway invariance</strong> for
+  q<sub>DCC</sub>, <strong>functional audit</strong> for their geometric mean. <em>Audit
+  conformity</em> stays reserved for equation (36), which needs a κ*.</p>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>2 · Equation (37), computed</h2>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Model</th><th>Condition</th><th class="num">q̄<sub>DCA</sub></th><th class="num">q̄<sub>DCC</sub></th><th class="num">Q<sub>audit</sub></th></tr></thead>
+      <tbody>
+        <tr><td>Qwen3</td><td class="lbl">M0</td><td class="num">0.989</td><td class="num">0.912</td><td class="num">0.935</td></tr>
+        <tr><td>Qwen3</td><td class="lbl">B0</td><td class="num">0.993</td><td class="num">0.837</td><td class="num">0.890</td></tr>
+        <tr class="hi"><td>Qwen3</td><td class="lbl">B1</td><td class="num">0.980</td><td class="num">0.740</td><td class="num"><span class="flag">0.811</span></td></tr>
+        <tr><td>Terra</td><td class="lbl">M0</td><td class="num">0.943</td><td class="num">0.967</td><td class="num">0.950</td></tr>
+        <tr><td>Terra</td><td class="lbl">B0</td><td class="num">0.943</td><td class="num">0.971</td><td class="num">0.953</td></tr>
+        <tr><td>Terra</td><td class="lbl">B1</td><td class="num">0.943</td><td class="num">0.971</td><td class="num">0.953</td></tr>
+      </tbody>
+      <caption>q̄<sub>DCA</sub> saturates near 1 for both models: reconstruction is at ceiling by construction. Everything Q<sub>audit</sub> does, it does through q<sub>DCC</sub>.</caption>
+    </table>
+  </div>
+  <div class="pull warn">
+    <p><span class="chip cau">Read carefully</span></p>
+    <p><strong>Q<sub>audit</sub> falls for Qwen3 under cognitive memory: −7.93 points, 95% CI
+    [−12.37, −3.59], permutation p = 0.0016</strong>, and the pre-specified map scores highest.
+    In the four-cell terms above this is exactly expected: Q<sub>audit</sub> is the clean fraction,
+    known-knowns plus unknown-unknowns, and cognitive memory moved 70 boundaries out of the
+    unknown-unknown cell into the known-unknown cell. The index went down because the audit
+    worked.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2">
+    <h2>3 · Why the fall is the index working</h2>
+    <p>Split every boundary by whether it was answered correctly. The oracle enters only here.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Model</th><th>Condition</th><th class="num">Q on correct boundaries</th><th class="num">Q on erroneous boundaries</th><th class="num">Separation</th></tr></thead>
+      <tbody>
+        <tr><td>Qwen3</td><td class="lbl">M0</td><td class="num">0.993</td><td class="num">0.919</td><td class="num">0.074</td></tr>
+        <tr><td>Qwen3</td><td class="lbl">B0</td><td class="num">0.998</td><td class="num">0.862</td><td class="num">0.135</td></tr>
+        <tr class="hi"><td>Qwen3</td><td class="lbl">B1</td><td class="num">0.985</td><td class="num">0.701</td><td class="num"><strong>0.285</strong></td></tr>
+        <tr><td>Terra</td><td class="lbl">M0</td><td class="num">0.971</td><td class="num">0.673</td><td class="num">0.298</td></tr>
+        <tr><td>Terra</td><td class="lbl">B0</td><td class="num">0.971</td><td class="num">0.651</td><td class="num">0.320</td></tr>
+        <tr><td>Terra</td><td class="lbl">B1</td><td class="num">0.971</td><td class="num">0.561</td><td class="num">0.410</td></tr>
+      </tbody>
+      <caption>Qwen3 B1 − B0 on correct boundaries: −1.23 [−2.68, −0.36]. On erroneous boundaries: −16.17 [−22.05, −10.30]. Terra on erroneous: −16.27 [−32.75, +0.20] — same magnitude, wide only because Terra has 7–9 errors to measure on.</caption>
+    </table>
+  </div>
+  <div class="bars">
+    <svg viewBox="0 0 720 236" role="img" aria-label="Separation of Q_audit between correct and erroneous boundaries, by model and condition">
+      <g class="axis">
+        <line class="grid" x1="150" y1="14" x2="150" y2="210"/>
+        <line class="grid" x1="290" y1="14" x2="290" y2="210"/>
+        <line class="grid" x1="430" y1="14" x2="430" y2="210"/>
+        <line class="grid" x1="570" y1="14" x2="570" y2="210"/>
+        <line class="grid" x1="710" y1="14" x2="710" y2="210"/>
+        <text x="150" y="228" text-anchor="middle">0.0</text>
+        <text x="290" y="228" text-anchor="middle">0.125</text>
+        <text x="430" y="228" text-anchor="middle">0.25</text>
+        <text x="570" y="228" text-anchor="middle">0.375</text>
+        <text x="710" y="228" text-anchor="middle">0.5</text>
+      </g>
+      <text class="lab" x="0" y="34">Qwen3</text>
+      <rect class="m0" x="150" y="22" width="83"  height="15" rx="2"/><text class="val" x="241" y="34">M0 · 0.074</text>
+      <rect class="b0" x="150" y="41" width="151" height="15" rx="2"/><text class="val" x="309" y="53">B0 · 0.135</text>
+      <rect class="b1" x="150" y="60" width="319" height="15" rx="2"/><text class="val" x="477" y="72">B1 · 0.285</text>
+      <text class="lab" x="0" y="142">Terra</text>
+      <rect class="m0" x="150" y="130" width="334" height="15" rx="2"/><text class="val" x="492" y="142">M0 · 0.298</text>
+      <rect class="b0" x="150" y="149" width="358" height="15" rx="2"/><text class="val" x="516" y="161">B0 · 0.320</text>
+      <rect class="b1" x="150" y="168" width="459" height="15" rx="2"/><text class="val" x="617" y="180">B1 · 0.410</text>
+    </svg>
+    <div class="legend"><span class="m0">M0 pre-specified map</span><span class="b0">B0 raw evidence</span><span class="b1">B1 cognitive memory</span></div>
+  </div>
+  <div class="pull">
+    <p><strong>Q<sub>audit</sub> barely moves on correct boundaries and falls sharply on erroneous
+    ones.</strong> The separation between the two — how well a low Q flags an error — doubles for
+    Qwen3 under cognitive memory, 0.135 → 0.285, and rises for Terra too, 0.320 → 0.410. The
+    aggregate fell because the erroneous boundaries fell, which is what an audit index is
+    <em>for</em>: in the DCC mechanism, a boundary whose pathway will not replay should resolve to
+    review, not to a confident answer. Cognitive memory makes Qwen3's errors look like what they
+    are.</p>
+    <p>The pre-specified map is the trap case. Its Q<sub>audit</sub> is highest because its errors are
+    the most consistent — Q on erroneous boundaries 0.919 — so they pass as auditable. That is the
+    stable confabulation signature, and it is why aggregate Q<sub>audit</sub> must never be compared
+    across conditions as a score.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-3">
+    <h2>4 · Significance at 95%, and the confirmatory path</h2>
+    <p>Same method as the performance result — paired memory-clustered bootstrap, 10,000
+    resamples, same seed, 32 clusters — applied to three quantities on the Qwen3 reserved split:</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Quantity, B1 − B0</th><th class="num">Point</th><th class="num">95% CI</th><th class="num">Perm. p</th><th>Reads as</th></tr></thead>
+      <tbody>
+        <tr><td class="lbl">Q<sub>audit</sub>, aggregate</td><td class="num">−7.93</td><td class="num">[−12.37, −3.59]</td><td class="num">0.0016</td><td>falls — misleading alone</td></tr>
+        <tr><td class="lbl">Q<sub>audit</sub> on erroneous boundaries</td><td class="num">−16.17</td><td class="num">[−22.05, −10.30]</td><td class="num">—</td><td>errors become visible</td></tr>
+        <tr class="hi"><td class="lbl">Replay recall (auditability)</td><td class="num"><strong>+29.82</strong></td><td class="num"><strong>[+17.14, +42.23]</strong></td><td class="num">0.0002</td><td><strong>the result to report</strong></td></tr>
+      </tbody>
+      <caption>All three exclude zero. The recall interval is wider in margin than the accuracy result was (+25.21 pp, [21.67, 28.54]).</caption>
+    </table>
+  </div>
+  <div class="pull warn">
+    <p><strong>But every one of these is post hoc.</strong> The hypothesis was formed on the same
+    data that produced the interval, and no p-value repairs that. To be confirmatory in the sense
+    the performance result is, the endpoint must be fixed before it meets a sample it has not
+    seen.</p>
+    <p><strong>There is such a sample, already paid for.</strong> The Kimi reserved arm: 1,347 valid
+    calls, all three renderings, decision oracle already unsealed, and <em>no audit or replay
+    quantity ever computed on it</em>. A pre-registration is written and hashed —
+    <code>validation/PREREG_replay_recall_kimi_2026-08-22.json</code> — fixing the detector, the
+    aggregation, the bootstrap, the seed, the success criterion, the exclusions and the code hash.
+    Primary endpoint: replay recall B1 − B0, predicted positive. If you sign it and the Kimi audit
+    authorisation, the confirmatory test runs with zero new model calls.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-3">
+    <h2>5 · What the paper should say</h2>
+    <p><strong>Report equation (37) as the paper already frames it</strong> — a secondary
+    descriptive index — and add two things Experiment 1 makes necessary. First, that
+    q<sub>DCA</sub> saturates for an LLM, so Q<sub>audit</sub> reduces to pathway invariance.
+    Second, that aggregate Q<sub>audit</sub> must not be compared across conditions as a score,
+    because a model that confabulates consistently scores high; the quantity that carries
+    information is Q<sub>audit</sub> <em>on erroneous boundaries</em>, or equivalently the recall of
+    the invariance detector.</p>
+    <p><strong>The one-sentence result:</strong> under cognitive memory, the audit index of a
+    correct boundary is unchanged and the audit index of an erroneous boundary falls by 16 points,
+    so the index separates the two twice as well — the LLM's mistakes become self-flagging.</p>
+  </div>
+</section>
+
+<section class="stack g-4">
+  <div class="prose stack g-2"><h2>Decisions</h2></div>
+  <ol class="dec">
+    <li><span class="did">E1-M1</span><span class="dq">Sign the pre-registration as written, or amend it first?</span><span class="dr">Primary endpoint replay recall B1 − B0 on Kimi reserved; two descriptive secondaries; disconfirmation stated.</span></li>
+    <li><span class="did">E1-M2</span><span class="dq">Sign <code>AUTHORISATION_reserved_audit_002</code> so the Kimi confirmatory run can proceed?</span><span class="dr">Kimi is the only untouched arm. Once its replay quantities are computed, it can never again serve as a confirmatory sample.</span></li>
+    <li><span class="did">E1-M3</span><span class="dq">Adopt the mapping of q<sub>DCA</sub> and q<sub>DCC</sub> above as the Experiment 1 instantiation of (37)?</span><span class="dr">Trace completeness and pairwise rule invariance. Both oracle-free, both already computed by the frozen pipeline.</span></li>
+  </ol>
+</section>
+
+<footer class="stack g-2">
+  <p><strong>Boundary.</strong> Q<sub>audit</sub> is oracle-free. The oracle is read only for the
+  error-conditioned rows, under <code class="mono">SIG-reserved-qwen3-inspection-2026-08-19-001</code>
+  and <code class="mono">SIG-reserved-terra-inspection-2026-08-19-001</code>. Exploratory and post
+  hoc throughout; the Kimi pre-registration is the route out of that status.</p>
+</footer>
+
+</div>

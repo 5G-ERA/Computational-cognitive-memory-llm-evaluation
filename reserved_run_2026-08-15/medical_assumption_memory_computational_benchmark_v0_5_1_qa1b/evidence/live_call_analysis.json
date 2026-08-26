@@ -1,0 +1,260 @@
+{
+  "n_calls": 12,
+  "shipped_parser_status": {
+    "COMPLETED_OUTPUT_TRUNCATED": 12
+  },
+  "qa1b_parser_status": {
+    "COMPLETED_VALID": 11,
+    "COMPLETED_OUTPUT_TRUNCATED": 1
+  },
+  "schema_valid": 11,
+  "reaction_correct": 8,
+  "certified_all_groups": 0,
+  "certified_any_group": 5,
+  "detail": [
+    {
+      "call_id": "CALL51-0000112",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 2413,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000169",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 592,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": true,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        false
+      ]
+    },
+    {
+      "call_id": "CALL51-0000259",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 1788,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000067",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "length",
+      "kimi_markers": 0,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_OUTPUT_TRUNCATED",
+      "completion_tokens": 4096,
+      "history_messages": 2,
+      "objects_after_marker": 0,
+      "fenced_json": false
+    },
+    {
+      "call_id": "CALL51-0000302",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 538,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": true,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 2,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000092",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 733,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": false,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000179",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 3002,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": false,
+      "legacy_grounded_correct": false,
+      "n_cited": 3,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000254",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 951,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 2,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000012",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 1110,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        false
+      ]
+    },
+    {
+      "call_id": "CALL51-0000312",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 2595,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": false,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        false
+      ]
+    },
+    {
+      "call_id": "CALL51-0000186",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 519,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": true,
+      "schema_errors": [],
+      "reaction_correct": false,
+      "legacy_grounded_correct": false,
+      "n_cited": 1,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    },
+    {
+      "call_id": "CALL51-0000357",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "kimi_markers": 1,
+      "frozen_markers": 0,
+      "shipped": "COMPLETED_OUTPUT_TRUNCATED",
+      "qa1b": "COMPLETED_VALID",
+      "completion_tokens": 424,
+      "history_messages": 2,
+      "objects_after_marker": 1,
+      "fenced_json": true,
+      "schema_errors": [],
+      "reaction_correct": true,
+      "legacy_grounded_correct": false,
+      "n_cited": 2,
+      "hits_each_group": [
+        false,
+        true
+      ]
+    }
+  ]
+}

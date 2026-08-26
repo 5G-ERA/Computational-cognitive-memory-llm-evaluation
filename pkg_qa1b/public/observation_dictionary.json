@@ -1,0 +1,6 @@
+{
+  "patient_report": "May report understanding, routine, preference, experience, or current management; does not establish clinical causality.",
+  "support_record": "May establish whether a support action was implemented.",
+  "administrative_record": "May establish availability or attendance; does not establish medicine use.",
+  "authorised_review": "May report review status and the documented next support step."
+}

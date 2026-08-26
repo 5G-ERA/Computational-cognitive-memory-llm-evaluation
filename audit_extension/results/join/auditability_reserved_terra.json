@@ -1,0 +1,47 @@
+{
+  "label": "reserved_terra",
+  "inspection_authorisation": "SIG-reserved-terra-inspection-2026-08-19-001",
+  "analysis_status": "EXPLORATORY_POST_HOC",
+  "detector": "rule disagreement across the three renderings of one canonical context; oracle-free; precision 100 percent by construction",
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "contexts": 160,
+      "flagged": 7,
+      "flagged_containing_error": 7,
+      "precision": 100.0,
+      "contexts_with_error": 9,
+      "recall": 77.77777777777777,
+      "consistently_wrong_invisible": 2,
+      "citation_stability_among_all_correct": 96.6887417218543,
+      "citation_stability_among_with_error": 11.11111111111111,
+      "n_all_correct": 151,
+      "n_with_error": 9
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "contexts": 158,
+      "flagged": 8,
+      "flagged_containing_error": 8,
+      "precision": 100.0,
+      "contexts_with_error": 11,
+      "recall": 72.72727272727273,
+      "consistently_wrong_invisible": 3,
+      "citation_stability_among_all_correct": 84.35374149659864,
+      "citation_stability_among_with_error": 9.090909090909092,
+      "n_all_correct": 147,
+      "n_with_error": 11
+    },
+    "B1_VERIFIED_MEMORY": {
+      "contexts": 159,
+      "flagged": 7,
+      "flagged_containing_error": 7,
+      "precision": 100.0,
+      "contexts_with_error": 7,
+      "recall": 100.0,
+      "consistently_wrong_invisible": 0,
+      "citation_stability_among_all_correct": 95.39473684210526,
+      "citation_stability_among_with_error": 0.0,
+      "n_all_correct": 152,
+      "n_with_error": 7
+    }
+  }
+}

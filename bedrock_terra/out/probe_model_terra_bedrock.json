@@ -1,0 +1,157 @@
+{
+  "config_file": "config/model_terra_bedrock.json",
+  "model_requested": "global.openai.gpt-5.6-terra",
+  "release": "/home/ros/dca_v051/release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c",
+  "probes": {
+    "P0": {
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "url": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1/models"
+    },
+    "P1": {
+      "verdict": "PASS_SYSTEM_RESPECTED",
+      "with_system": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 1166,
+        "served_model": "global.openai.gpt-5.6-terra",
+        "finish_reason": "length",
+        "prompt_tokens": 1851,
+        "completion_tokens": 16,
+        "reasoning_tokens": 16,
+        "content": "",
+        "reasoning_field": null
+      },
+      "without_system": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 1285,
+        "served_model": "global.openai.gpt-5.6-terra",
+        "finish_reason": "length",
+        "prompt_tokens": 1578,
+        "completion_tokens": 16,
+        "reasoning_tokens": 16,
+        "content": "",
+        "reasoning_field": null
+      }
+    },
+    "P2": {
+      "verdict": "REJECTED_HTTP_403",
+      "call": {
+        "ok": false,
+        "http": 403,
+        "body": "{\"error\":{\"message\":\"Model access is denied due to IAM user or service role is not authorized to perform the required AWS Marketplace actions (aws-marketplace:ViewSubscriptions, aws-marketplace:Subscribe) to enable access to this model. Refer to the Amazon Bedrock documentation for further details. Your AWS Marketplace subscription for this model cannot be completed at this time. If you recently fixed this issue, try again after 2 minutes.\",\"type\":\"permission_denied_error\",\"param\":null,\"code\":\"access_denied\"}}"
+      }
+    },
+    "P3": {
+      "per_param": {
+        "temperature=0": {
+          "accepted": false,
+          "http": 400,
+          "body": "{\"error\":{\"message\":\"Unsupported value: 'temperature' does not support 0 with this model. Only the default (1) value is supported.\",\"type\":\"invalid_request_error\",\"param\":\"temperature\",\"code\":\"unsupported_value\"}}"
+        },
+        "top_p=1": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        },
+        "seed=13082642": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        },
+        "all three": {
+          "accepted": false,
+          "http": 400,
+          "body": "{\"error\":{\"message\":\"Unsupported value: 'temperature' does not support 0 with this model. Only the default (1) value is supported.\",\"type\":\"invalid_request_error\",\"param\":\"temperature\",\"code\":\"unsupported_value\"}}"
+        }
+      },
+      "verdict": "DETERMINISM_UNAVAILABLE_amendment_required",
+      "accepted_params": [
+        "top_p=1",
+        "seed=13082642"
+      ]
+    },
+    "P4": {
+      "per_field": {
+        "max_completion_tokens": {
+          "accepted": true,
+          "http": 200,
+          "finish_reason": "length",
+          "completion_tokens": 16,
+          "body": null
+        },
+        "max_tokens": {
+          "accepted": false,
+          "http": 400,
+          "finish_reason": null,
+          "completion_tokens": null,
+          "body": "{\"error\":{\"message\":\"Unsupported parameter: 'max_tokens' is not supported with this model.\",\"type\":\"invalid_request_error\",\"param\":\"max_tokens\",\"code\":\"unsupported_parameter\"}}"
+        }
+      },
+      "effective_fields": [
+        "max_completion_tokens"
+      ],
+      "recommended": "max_completion_tokens"
+    },
+    "P5_P8": {
+      "call": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 1836,
+        "served_model": "global.openai.gpt-5.6-terra",
+        "finish_reason": "stop",
+        "prompt_tokens": 1820,
+        "completion_tokens": 105,
+        "reasoning_tokens": 32,
+        "reasoning_field": null
+      },
+      "content_chars": 284,
+      "content_head": "{\"reaction\":\"TAILOR_SUPPORT\",\"rule_id\":\"R09_SECONDARY_BARRIER\",\"decisive_event_ids\":[\"EVT-0000366\",\"EVT-0000006\"],\"reason\":\"The current marker is relation-gamma, whose episode-specific verified history states that the relation is comparable and an additional barrier remains active.\"}",
+      "frozen_end_markers_found": [],
+      "frozen_start_markers_found": [],
+      "reasoning_in_separate_field": null,
+      "unlisted_marker_candidates": [],
+      "marker_verdict": "NO_MARKERS_IN_CONTENT_frozen_policy_parses_whole_message",
+      "frozen_parser_status": "COMPLETED_VALID",
+      "frozen_parser_errors": [],
+      "schema_errors": []
+    },
+    "P6": {
+      "verdict": "PASS_STATELESS",
+      "turn2_content": "NONE"
+    },
+    "P7": {
+      "per_level": {
+        "low": {
+          "accepted": true,
+          "http": 200,
+          "completion_tokens": 76,
+          "reasoning_tokens": 0,
+          "finish_reason": "stop",
+          "body": null
+        },
+        "medium": {
+          "accepted": true,
+          "http": 200,
+          "completion_tokens": 116,
+          "reasoning_tokens": 47,
+          "finish_reason": "stop",
+          "body": null
+        },
+        "high": {
+          "accepted": true,
+          "http": 200,
+          "completion_tokens": 108,
+          "reasoning_tokens": 38,
+          "finish_reason": "stop",
+          "body": null
+        }
+      },
+      "supported": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  }
+}

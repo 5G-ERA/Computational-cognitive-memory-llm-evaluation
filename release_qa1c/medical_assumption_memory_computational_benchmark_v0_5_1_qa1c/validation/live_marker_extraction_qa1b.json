@@ -1,0 +1,78 @@
+{
+  "suite": "live_marker_extraction_qa1b",
+  "live_captures": 12,
+  "scope": "curated live subset available in the release package, not the full development run",
+  "status_distribution": {
+    "COMPLETED_VALID": 11,
+    "COMPLETED_OUTPUT_TRUNCATED": 1
+  },
+  "checks": [
+    {
+      "name": "unicode end marker is configured",
+      "pass": true
+    },
+    {
+      "name": "unicode start marker is configured",
+      "pass": true
+    },
+    {
+      "name": "configuration agrees with the module defaults",
+      "pass": true
+    },
+    {
+      "name": "every configured end marker seen in the captures is Unicode",
+      "pass": true
+    },
+    {
+      "name": "the HTML-style marker never appears in real output",
+      "pass": true
+    },
+    {
+      "name": "all complete replies parse to one object",
+      "pass": true
+    },
+    {
+      "name": "truncated replies are classified as truncation, not invalid JSON",
+      "pass": true
+    },
+    {
+      "name": "no capture is silently dropped",
+      "pass": true
+    },
+    {
+      "name": "extracted reaction always comes from the post-reasoning segment",
+      "pass": true
+    },
+    {
+      "name": "reaction present in every parsed object",
+      "pass": true
+    },
+    {
+      "name": "a rule identifier is present in every parsed object",
+      "pass": true
+    },
+    {
+      "name": "decisive_event_ids present in every parsed object",
+      "pass": true
+    },
+    {
+      "name": "every call got its own server-assigned conversation id, none reused",
+      "pass": true
+    },
+    {
+      "name": "no capture carries accumulated multi-turn history",
+      "pass": true
+    },
+    {
+      "name": "finish_reason is populated on every capture",
+      "pass": true
+    },
+    {
+      "name": "output stayed under the frozen 4096-token ceiling on complete replies",
+      "pass": true
+    }
+  ],
+  "passed": 16,
+  "total": 16,
+  "status": "PASS"
+}

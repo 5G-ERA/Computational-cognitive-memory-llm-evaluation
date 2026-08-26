@@ -1,0 +1,66 @@
+{
+  "label": "reserved_qwen3",
+  "inspection_authorisation": "SIG-reserved-qwen3-inspection-2026-08-19-001",
+  "protocol_section": 15,
+  "reading": "SCOPED",
+  "audit_level": "L1_IO",
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "cells": {
+        "correct_conformant": 140,
+        "correct_nonconformant": 1,
+        "incorrect_conformant": 330,
+        "incorrect_nonconformant": 7
+      },
+      "accuracy_given_conformant": 29.78723404255319,
+      "accuracy_given_nonconformant": 12.5,
+      "n_nonconformant": 8,
+      "difference_conformant_minus_nonconformant": {
+        "point": 19.642857142857146,
+        "lo": -2.67857142857143,
+        "hi": 34.82142857142857,
+        "clusters": 8,
+        "resamples": 10000
+      },
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "cells": {
+        "correct_conformant": 121,
+        "correct_nonconformant": 1,
+        "incorrect_conformant": 352,
+        "incorrect_nonconformant": 6
+      },
+      "accuracy_given_conformant": 25.58139534883721,
+      "accuracy_given_nonconformant": 14.285714285714286,
+      "n_nonconformant": 7,
+      "difference_conformant_minus_nonconformant": {
+        "point": 18.244406196213426,
+        "lo": -21.42857142857143,
+        "hi": 40.74074074074074,
+        "clusters": 6,
+        "resamples": 10000
+      },
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    },
+    "B1_VERIFIED_MEMORY": {
+      "cells": {
+        "correct_conformant": 256,
+        "correct_nonconformant": 7,
+        "incorrect_conformant": 206,
+        "incorrect_nonconformant": 5
+      },
+      "accuracy_given_conformant": 55.41125541125541,
+      "accuracy_given_nonconformant": 58.333333333333336,
+      "n_nonconformant": 12,
+      "difference_conformant_minus_nonconformant": {
+        "point": 1.1707988980716233,
+        "lo": -19.834710743801654,
+        "hi": 20.554854981084485,
+        "clusters": 9,
+        "resamples": 10000
+      },
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    }
+  }
+}

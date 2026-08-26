@@ -1,0 +1,6 @@
+{
+  "CONFIRMED": "Support was implemented; the predicted observation occurred; timing was sufficient; no better competing explanation was established.",
+  "PARTIALLY_CONFIRMED": "The predicted observation occurred, while another support barrier remained active.",
+  "CONTRADICTED": "Support was implemented, but the predicted observation did not occur and direct continuation was not warranted.",
+  "UNRESOLVED": "Implementation, timing, attribution, or completeness was insufficient."
+}

@@ -1,0 +1,65 @@
+\documentclass[10.5pt]{article}
+\usepackage[margin=.85in]{geometry}\usepackage[T1]{fontenc}\usepackage{lmodern,microtype,booktabs,longtable,amsmath,xcolor,hyperref,fancyhdr}
+\definecolor{navy}{HTML}{173B57}\definecolor{teal}{HTML}{167D86}\definecolor{pale}{HTML}{EAF3F6}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=teal,pdftitle={Medical Assumption Memory Benchmark v0.4.2}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Medical Assumption Memory Benchmark}\fancyhead[R]{\small v0.4.2}\fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
+\title{\vspace{-1.2cm}\textcolor{navy}{\Huge Medical Assumption Memory Computational Benchmark}\\[.25cm]\Large API-ready dataset, algorithm, scoring, and KPI protocol v0.4.2}
+\author{Protocol version 1.0}\date{13 August 2026}
+\begin{document}\sloppy\emergencystretch=2em
+\maketitle
+\noindent\colorbox{pale}{\parbox{.96\linewidth}{\textbf{Purpose.} Given a disclosed synthetic medicines-support world, determine whether verified cognitive memory improves an LLM's recovery of deterministic oracle reactions. This is a computational benchmark and not a test of medical correctness.}}
+\tableofcontents\newpage
+\section{Research design}
+The conditions are B0 raw longitudinal evidence, M0 open-loop prospective memory, and B1 verified relational cognitive memory. Every condition receives identical public assumptions, verification semantics, observation roles, reaction policy, rule vocabulary, output schema, raw historical events, and current events. Only episode-specific memory closure differs.
+\[
+KPI_1=MacroF1_{primary}(B1)-MacroF1_{primary}(B0)
+\]
+\[
+KPI_2=MacroF1_{primary}(B1)-MacroF1_{primary}(M0)
+\]
+The hidden state is generated first, the oracle decision second, and visible language third. The renderer cannot inspect the final reaction.
+
+\section{Cognitive-memory construction}
+For episode $e$, the prospective record is
+\[
+A_e=\langle H_e,K_e,\Gamma_e,W_e,Alt_e,L_e\rangle,
+\]
+containing the assumption, expected consequence, formation evidence, verification window, alternatives, and limitations. Raw follow-up events are preserved as $R_e^{raw}$. The public verification policy produces a resolved relation $V_e$. The closed memory is
+\[
+M_e=\langle A_e,R_e^{raw},V_e,P_e,S_e,L_e,h_e\rangle,
+\]
+where $P_e$ identifies constitutive and competing provenance, $S_e$ is successor state, and $h_e$ is a canonical hash.
+
+The algorithm samples assumption and verification state, renders formation evidence, freezes the assumption, creates source-level follow-up observations, resolves the relation independently, constructs and hashes memory, samples a current state, runs the reaction oracle, and finally renders current observations and B0/M0/B1 payloads. B1 contains a relational resolution rather than a final reaction.
+
+\section{Public world and response contract}
+Seven intuitive assumptions cover understanding, routine, practical administration, access, concern, authorised review, and unresolved evidence. Ten public rule IDs map the first applicable oracle rule to one of five reactions.
+
+Every API response must be one JSON object containing reaction, rule ID, decisive event IDs, and a short reason. Local code validates schema, checks reaction-rule consistency, confirms cited IDs were visible, tests condition-aware evidence groups, compares with the hidden oracle, and computes grounded correctness. No second LLM or human adjudicator interprets results.
+
+\section{Dataset}
+The release contains 28 episodes, crossing seven assumptions with four verification states. Five current transformations per episode yield 140 contexts and 420 calls. Seven episodes form development and 21 form reserved evaluation. Base and secondary transformations form the primary memory-sensitive set. The full five-transformation set is secondary.
+
+Visible observations avoid reaction tokens and direct verification labels. Open-loop records contain source-level events rather than statements that an assumption was confirmed or contradicted. Hidden challenge flags are fixed before model execution.
+
+\section{External API execution}
+The runner supports a mock adapter and an OpenAI-compatible adapter. API keys are read from environment variables. Each call uses a fresh stateless request. Raw provider responses are written before parsing. Structured objects are preferred; otherwise the complete assistant text must parse as JSON. Invalid model output is not repaired or retried.
+
+Infrastructure failures may be retried under the frozen retry policy. Model refusals, malformed JSON, wrong rules, and unsupported citations are terminal model outcomes. Run artefacts include raw responses, scoring records, call registry, model configuration, call counts, and KPI outputs. The runner can restart without repeating completed calls.
+
+\section{Deterministic interpretation}
+For each response the interpreter records reaction correctness, rule correctness, reaction-rule consistency, citation validity, historical evidence coverage, current evidence coverage, unsafe-overreach flags, and grounded correctness. A response is grounded-correct only when the reaction and rule are correct, consistent, all citations are visible, and required evidence groups are covered.
+
+\section{KPIs and metrics}
+The primary metric uses macro-F1 over reaction classes present in the frozen primary reference set. Secondary metrics include full five-class macro-F1, balanced accuracy, overall accuracy, rule accuracy, grounded accuracy, schema validity, citation validity, selective non-use, predecessor withholding, verified-successor application, and unsafe-overreach rate. Episode-clustered bootstrap intervals use at least 10,000 replicates.
+
+The mock run is an integration test and is expected to score perfectly; it is not an estimate of model benefit.
+
+\section{Validation and release gates}
+Release gates require 100\% oracle replay across stored references, exhaustive oracle reachability across 576 state combinations, raw information parity, public-rule equality, correct B0/M0/B1 hierarchy, zero episode-specific reaction-token leakage, valid development/reserved counts, and passing interpreter tests.
+
+Before reserved external execution, complete a 15-call development micro-smoke, freeze the model snapshot and decoding configuration, and archive checksums. The reserved run contains 315 calls. Results may support only computational claims about recovering oracle-defined reactions.
+
+\section{Limitations and v0.5 boundary}
+The release has one language rendering per hidden state and relatively few continuation cases. Current-language shortcuts remain a development concern and must be assessed with current-only, assumption-only, memory-only, lexical, identifier, and structure baselines before a confirmatory release. v0.5 should add held-out render families, greater continuation coverage, token-matched controls, and sample size based on v0.4.2 episode-level variance.
+\end{document}

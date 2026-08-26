@@ -1,0 +1,33 @@
+{
+  "B0_LLM_ALONE": {
+    "canonical_name": "Raw longitudinal evidence",
+    "paper_construct": "No explicit pre-specified mapping"
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+    "canonical_name": "Pre-specified consequence mapping",
+    "short_name": "Pre-specified mapping",
+    "paper_construct": "mu_pre condition",
+    "deprecated_primary_labels": ["Open-loop assumption memory", "Open-loop memory"]
+  },
+  "B1_VERIFIED_MEMORY": {
+    "canonical_name": "Cognitive memory",
+    "short_name": "Cognitive-memory condition",
+    "paper_construct": "Preserved mu_res condition",
+    "representation_note": "Implemented through a preserved consequence-resolved relational representation",
+    "deprecated_primary_labels": ["Relational memory", "Verified memory"]
+  },
+  "contrasts": {
+    "B1_minus_B0": "Cognitive-memory benefit",
+    "B1_minus_M0": "Consequence-resolution benefit",
+    "M0_minus_B0": "Pre-specified-mapping effect"
+  },
+  "outcomes": {
+    "reaction_accuracy": "Current meta-decision accuracy",
+    "rule_accuracy": "Meta-decision rule accuracy",
+    "WITHHOLD_ASSUMPTION": "Governed no-use outcome",
+    "ESCALATE_REVIEW": "Review outcome",
+    "WAIT_FOR_EVIDENCE": "Defer outcome",
+    "citation_validity": "Provenance-reference validity",
+    "grounded_correct": "Certified meta-decision accuracy"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "record_id": "AUTHORISATION_reserved_audit_001",
+  "purpose": "Decision C2, Renxi Qiu, 22 August 2026: SEPARATE SIGNED AUTHORISATION REQUIRED. This record authorises audit execution against a named reserved run. It is additional to every protocol section 19 condition, not a substitute for any.",
+  "runs_authorised": [
+    "bedrock_terra/out/reserved_terra",
+    "bedrock_terra/out/reserved_qwen3"
+  ],
+  "preconditions": [
+    "protocol section 19 gate reads GO",
+    "validation/FREEZE_audit_extension_2026-08-22.json is SIGNED",
+    "validation/implementation_agreement.json is SATISFIED",
+    "validation/rater_reliability.json is SATISFIED"
+  ],
+  "scope_limits": [
+    "The audit pipeline may not read scoring_records.jsonl, hidden/, or any quarantined file.",
+    "No join between audit results and decision accuracy until both analyses are frozen."
+  ],
+  "signature_status": "SIGNED",
+  "signature_required_from": "Renxi Qiu",
+  "to_authorise": "Name the run or runs in runs_authorised, set signature_status to SIGNED, and fill signed_by and signed_at. The gate condition reserved_audit_authorisation_record_signed reads this file.",
+  "signed_by": "Adrian Lendinez Ibanez",
+  "signed_at": "2026-08-22T16:24:27+01:00",
+  "title": "Reserved-audit execution authorisation, primary arms",
+  "decision_basis": "E2 and E3, Renxi Qiu, 22 August 2026: RENXI SIGNS; two separate signed records; reserved runs authorised TERRA and QWEN3; KIMI under a separate authorisation.",
+  "runs_intended": [
+    {
+      "run": "bedrock_terra/out/reserved_terra",
+      "model": "GPT-4.6 Terra",
+      "calls": 1440
+    },
+    {
+      "run": "bedrock_terra/out/reserved_qwen3",
+      "model": "Qwen3",
+      "calls": 1440
+    }
+  ],
+  "signature_mode_required": "DELEGATED",
+  "delegation_basis": {
+    "authorisation": "Renxi Qiu authorises Adrian Lendinez Ibanez to act at his own level of authority, relayed by Adrian on 22 August 2026.",
+    "form": "PARAPHRASE RELAYED BY THE DELEGATE, not verbatim words from the delegator",
+    "supersedes": "Decision E2 of the same day, which answered RENXI SIGNS.",
+    "concern_raised_and_overruled": "The signature was withheld once on the ground that this record unseals reserved data and nothing was waiting on it. The delegate reaffirmed the instruction; it is recorded here rather than resolved silently."
+  },
+  "what_this_authorises": "Audit execution against the two named reserved runs. It does NOT by itself run anything, and it does not authorise joining audit results with decision accuracy.",
+  "signature_mode": "DELEGATED",
+  "on_behalf_of": "Renxi Qiu",
+  "delegating_instruction": "Renxi Qiu authorises Adrian at his own level of authority; relayed by Adrian, 22 August 2026; reaffirmed after the signature was withheld once",
+  "satisfies_signature_requirement_literally": false,
+  "signature_caveat": "The record requires the signature of Renxi Qiu. This is a DELEGATED signature by Adrian Lendinez Ibanez on their instruction, not a signature by Renxi Qiu. Anyone relying on this record should know which of the two it is."
+}

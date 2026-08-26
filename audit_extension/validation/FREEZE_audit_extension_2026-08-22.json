@@ -1,0 +1,139 @@
+{
+  "record_id": "FREEZE_audit_extension_2026-08-22",
+  "purpose": "Protocol section 19 condition audit_software_and_contracts_hashed_and_signed. Freezes the audit extension implementation and its contracts.",
+  "subject": "Experiment 1 Audit Extension, parent release v0.5.1-qa1c",
+  "contracts_frozen": {
+    "level1_io_contract": "L1-IO-1.3",
+    "m0_prospective_contract": "L2-M0-1.2",
+    "b1_resolved_contract": "L2-B1-1.2",
+    "critical_violations": "CRIT-1.1",
+    "error_ontology": "AUDIT-ONT-1.2",
+    "agreement_contract": "AGREE-1.0",
+    "terminology": "AUDIT-TERM-1.0"
+  },
+  "decisions_applied": "validation/DECISIONS_2026-08-22.json, 18 of 18",
+  "manifest": {
+    "file": "validation/SHA256SUMS.txt",
+    "files_covered": 188,
+    "sha256_of_manifest": "9ed38065834c8b37d085468bb1d77399708575b49c8c217de26c7decadbd9006",
+    "excludes": [
+      "validation/SHA256SUMS.txt",
+      "validation/FREEZE_*.json",
+      "validation/AUTHORISATION_*.json",
+      "validation/go_no_go_gate.json"
+    ],
+    "excludes_reason": "The signature and state layer is not part of what is frozen. A freeze record that hashed a manifest containing itself could never be consistent: signing it changes it and invalidates the hash it certifies.",
+    "rebuild_with": "scripts/build_manifest.sh"
+  },
+  "verification_at_freeze_time": {
+    "fixtures": "15 of 15, status and codes, plus 10 canonicalisation tests",
+    "oracle_independence": "PASS, 8 of 8 outputs byte-identical in the clean room",
+    "runs_audited": [
+      "dev_terra",
+      "dev_qwen3"
+    ],
+    "reserved_splits_audited": []
+  },
+  "what_this_signature_does_NOT_authorise": [
+    "reserved audit execution, which needs its own signed authorisation per decision C2",
+    "joining audit results with decision accuracy, which needs both analyses frozen",
+    "the Kimi reserved-only arm, which is post-freeze and also needs the C2 authorisation"
+  ],
+  "signature_status": "SIGNED",
+  "signature_required_from": "Renxi Qiu",
+  "signature_basis": "A6 and E2, Renxi Qiu, 22 August 2026: REQUIRES RENXI QIU SIGNATURE; E2 confirms RENXI SIGNS, not delegated.",
+  "to_sign": "Set signature_status to SIGNED and fill signed_by, signed_at and manifest.sha256_of_manifest_confirmed. The gate reads this file; it does not read prose.",
+  "signed_by": "Adrian Lendinez Ibanez",
+  "signed_at": "2026-08-22T16:13:28+01:00",
+  "signature_mode_required": "DELEGATED",
+  "sign_when": "E1-E1 is superseded: there is no validator to agree. A replacement trigger has not been given. See the open question in DECISIONS_2026-08-22_round2.json.",
+  "delegation_basis": {
+    "authorisation": "Renxi Qiu authorises Adrian Lendinez Ibanez to act at his own level of authority, relayed by Adrian on 22 August 2026.",
+    "form": "PARAPHRASE RELAYED BY THE DELEGATE, not verbatim words from the delegator",
+    "supersedes": "Decision E2 of the same day, which answered RENXI SIGNS when offered the choice between a direct and a delegated signature. That answer is superseded by this later authorisation and the change is recorded rather than applied silently.",
+    "limit": "Authority to act at the same level does not make the delegate the delegator. signed_by names whoever typed the signature, always."
+  },
+  "signature_mode": "DELEGATED",
+  "on_behalf_of": "Renxi Qiu",
+  "delegating_instruction": "Renxi Qiu authorises Adrian at his own level of authority; relayed by Adrian, 22 August 2026",
+  "satisfies_signature_requirement_literally": false,
+  "signature_caveat": "The record requires the signature of Renxi Qiu. This is a DELEGATED signature by Adrian Lendinez Ibanez on their instruction, not a signature by Renxi Qiu. Anyone relying on this record should know which of the two it is.",
+  "post_signature_amendments": [
+    {
+      "date": "2026-08-22",
+      "change": "V4_7_TERMINOLOGY_PATCH.md added and decision record E1-F2 updated",
+      "manifest_before": "a1435830a2fe022e",
+      "manifest_after": "b0faf7cf63e50f43",
+      "note": "The freeze was already signed. Adding a drafted patch document changes the manifest, so the change is recorded here rather than re-hashed silently. It touches no contract and no audit code: fixtures, clean room and gate are unaffected."
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Corrected the recorded scope of decision E1-G1 across README.md, implementation_agreement.json, DECISIONS_2026-08-22_round2.json and go_no_go_gate.py, and aligned README.md with the removal of section 16.",
+      "manifest_before": "b0faf7cf63e50f43",
+      "manifest_after": "dfd02debdcb20cae",
+      "reason": "The records said 'protocol section 17 is REMOVED'. The question actually put and answered was narrower: the independent-reimplementation requirement. Section 17 also mandates the deterministic fixtures and canonicalisation tests, which nobody removed and which still pass 15 of 15 and 10 of 10. Left uncorrected, the record would have licensed dropping the fixtures too.",
+      "touches_contracts_or_audit_code": false
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Reserved audit executed for reserved_terra and reserved_qwen3 under AUTHORISATION_reserved_audit_001; results written to results/; V4_7_TERMINOLOGY_PATCH.md revised with reserved figures.",
+      "manifest_before": "dfd02debdcb20cae",
+      "manifest_after": "3137d9daa906030f",
+      "reason": "The drafted supplement stated 'no critical violation in any condition' on the strength of the development splits. The reserved splits produced two, so the statement was false and was corrected before anyone could quote it.",
+      "touches_contracts_or_audit_code": false
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Contract L1-IO-1.2 -> L1-IO-1.3, correcting the E2_SOURCE_MISATTRIBUTION detector; all four runs re-audited.",
+      "manifest_before": "3137d9daa906030f",
+      "manifest_after": "aa047c3534269ea7",
+      "reason": "FINDING_003. The defect changed a headline conclusion: the Qwen3 condition difference no longer excludes zero.",
+      "touches_contracts_or_audit_code": true,
+      "verification_after": "fixtures 15/15, canonicalisation 10/10, clean room re-run required"
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Cross-rendering condition contrast promoted from an ad-hoc analysis into scripts/reproducibility_checks.py, with memory-clustered intervals, paired permutation and Holm adjustment; all four runs re-audited.",
+      "manifest_before": "aa047c3534269ea7",
+      "manifest_after": "66e9d9370f380f9d",
+      "reason": "FINDING_003 established that a headline separating conditions must carry an interval and must be reproducible from the pipeline. The cross-rendering result had neither.",
+      "touches_contracts_or_audit_code": true,
+      "analysis_status": "EXPLORATORY: section 14 declares this check descriptive; the contrast is an addition, not a pre-specified endpoint."
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Section 15 join (scripts/join_audit_with_accuracy.py) and the oracle-free auditability analysis (scripts/auditability_without_oracle.py) added, both reading the oracle under the two signed inspection authorisations; outputs in results/join/; artifact EDCA_auditability_without_oracle.",
+      "manifest_before": "93711c44265ab786",
+      "manifest_after": "a1cbcd5d58986efe",
+      "reason": "Renxi Qiu asked how an LLM localises error without an oracle. Both scripts are companions to the audit, not part of its pipeline; neither is imported by it. The audit pipeline still never reads the oracle.",
+      "touches_contracts_or_audit_code": false,
+      "analysis_status": "EXPLORATORY_POST_HOC"
+    },
+    {
+      "date": "2026-08-22",
+      "change": "auditability_without_oracle.py gains --repeat-run (identical replay); artifact EDCA_reconstruction_and_replay added.",
+      "manifest_before": "a1cbcd5d58986efe",
+      "manifest_after": "5a95ebfef320c95d",
+      "reason": "Renxi Qiu: audit is reconstruction AND replay. Identical replay added as a second replay axis beside invariant replay.",
+      "touches_contracts_or_audit_code": false,
+      "analysis_status": "EXPLORATORY_POST_HOC"
+    },
+    {
+      "date": "2026-08-22",
+      "change": "scripts/audit_index_eq37.py (V4.7 equation 37 on Experiment 1), results/join/eq37_*.json, PREREG_replay_recall_kimi record, artifact EDCA_audit_index_eq37.",
+      "manifest_before": "5a95ebfef320c95d",
+      "manifest_after": "c801cb613744b3bb",
+      "reason": "Renxi Qiu: is audit = sqrt(DCA*DCC)/time, and how to reach 95 percent significance. Equation 37 computed as written; Kimi pre-registered as the confirmatory sample before being opened.",
+      "touches_contracts_or_audit_code": false,
+      "analysis_status": "EXPLORATORY_POST_HOC; PREREG unsigned; Kimi untouched"
+    },
+    {
+      "date": "2026-08-22",
+      "change": "Kimi confirmatory machinery: rescore_kimi_qa1c.py (qa1c re-parse, counts only), run_confirmatory_replay.py (refuses without both signatures, one shot, hash-pinned), PREREG amended to pin the qa1c input by sha256 before signature.",
+      "manifest_before": "9404bf9a14cfc608",
+      "manifest_after": "f9fe91c7d6c4674d",
+      "reason": "The frozen Kimi decision result used the qa1c parse (1,382 valid); the run directory holds the qa1b scoring (1,347). The confirmatory test must use the same valid set, fixed before signature. No replay quantity has been computed on Kimi; the runner refused without signatures.",
+      "touches_contracts_or_audit_code": false
+    }
+  ]
+}

@@ -1,0 +1,206 @@
+{
+  "purpose": "Quantify the undercoverage disclosed as FINDING_002, before any reserved outcome is inspected. The frozen estimator is characterised, not altered.",
+  "estimator_source": "/home/ros/Downloads/deliverable 2/analysis/analysis_section6.py",
+  "estimator_altered": false,
+  "design": {
+    "contexts_per_memory_per_condition": 15,
+    "shared_memory_sd": 0.1,
+    "memory_by_condition_interaction_sd": 0.18,
+    "note": "The interaction is what creates clustered dependence in the difference; a shared memory effect cancels and is not enough to exercise the estimator."
+  },
+  "replicates_per_cell": 1000,
+  "bootstrap_replicates": 2000,
+  "nominal_coverage": 0.95,
+  "nominal_one_sided_alpha": 0.025,
+  "cells": [
+    {
+      "coverage": 0.898,
+      "lower_bound_clears_zero": 0.05,
+      "mean_ci_width_pp": 29.47,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.33,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.889,
+      "lower_bound_clears_zero": 0.282,
+      "mean_ci_width_pp": 29.98,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.33,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.89,
+      "lower_bound_clears_zero": 0.599,
+      "mean_ci_width_pp": 30.42,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.33,
+      "true_effect_pp": 18.0
+    },
+    {
+      "coverage": 0.896,
+      "lower_bound_clears_zero": 0.054,
+      "mean_ci_width_pp": 30.76,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.55,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.888,
+      "lower_bound_clears_zero": 0.273,
+      "mean_ci_width_pp": 30.22,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.55,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.903,
+      "lower_bound_clears_zero": 0.588,
+      "mean_ci_width_pp": 29.08,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.55,
+      "true_effect_pp": 18.0
+    },
+    {
+      "coverage": 0.894,
+      "lower_bound_clears_zero": 0.048,
+      "mean_ci_width_pp": 27.47,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.75,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.865,
+      "lower_bound_clears_zero": 0.237,
+      "mean_ci_width_pp": 25.0,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.75,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.802,
+      "lower_bound_clears_zero": 0.558,
+      "mean_ci_width_pp": 23.01,
+      "memories": 8,
+      "split": "development split",
+      "baseline": 0.75,
+      "true_effect_pp": 18.0
+    },
+    {
+      "coverage": 0.944,
+      "lower_bound_clears_zero": 0.027,
+      "mean_ci_width_pp": 15.99,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.33,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.93,
+      "lower_bound_clears_zero": 0.673,
+      "mean_ci_width_pp": 16.36,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.33,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.938,
+      "lower_bound_clears_zero": 0.98,
+      "mean_ci_width_pp": 16.49,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.33,
+      "true_effect_pp": 18.0
+    },
+    {
+      "coverage": 0.928,
+      "lower_bound_clears_zero": 0.041,
+      "mean_ci_width_pp": 16.54,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.55,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.937,
+      "lower_bound_clears_zero": 0.616,
+      "mean_ci_width_pp": 16.39,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.55,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.928,
+      "lower_bound_clears_zero": 0.969,
+      "mean_ci_width_pp": 15.74,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.55,
+      "true_effect_pp": 18.0
+    },
+    {
+      "coverage": 0.92,
+      "lower_bound_clears_zero": 0.014,
+      "mean_ci_width_pp": 14.83,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.75,
+      "true_effect_pp": 0.0
+    },
+    {
+      "coverage": 0.846,
+      "lower_bound_clears_zero": 0.522,
+      "mean_ci_width_pp": 13.66,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.75,
+      "true_effect_pp": 10.0
+    },
+    {
+      "coverage": 0.572,
+      "lower_bound_clears_zero": 0.957,
+      "mean_ci_width_pp": 12.51,
+      "memories": 32,
+      "split": "reserved split",
+      "baseline": 0.75,
+      "true_effect_pp": 18.0
+    }
+  ],
+  "headline": {
+    "reserved_32_memories_under_null": {
+      "coverage_min": 0.92,
+      "coverage_max": 0.944,
+      "coverage_mean": 0.9307,
+      "clears_zero_mean": 0.0273
+    },
+    "reserved_32_memories_effect_10pp": {
+      "coverage_min": 0.846,
+      "coverage_max": 0.937,
+      "coverage_mean": 0.9043,
+      "clears_zero_mean": 0.6037
+    },
+    "development_8_memories_under_null": {
+      "coverage_min": 0.894,
+      "coverage_max": 0.898,
+      "coverage_mean": 0.896,
+      "clears_zero_mean": 0.0507
+    },
+    "development_8_memories_effect_10pp": {
+      "coverage_min": 0.865,
+      "coverage_max": 0.889,
+      "coverage_mean": 0.8807,
+      "clears_zero_mean": 0.264
+    }
+  },
+  "elapsed_seconds": 707.2
+}

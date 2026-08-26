@@ -1,0 +1,11 @@
+runner congelado : /home/ros/dca_v051/release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c/scripts/api_runner_qa1.py
+adaptador        : BedrockOpenAIAdapter (inyectado)
+split            : development
+
+{
+  "expected": 360,
+  "terminal": 360,
+  "all_expected_terminal": true,
+  "no_duplicate_terminal": true,
+  "pass": true
+}

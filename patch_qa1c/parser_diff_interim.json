@@ -1,0 +1,320 @@
+{
+  "report": "qa1c_parser_diff",
+  "defect": "DEFECT_001 malformed reasoning end marker",
+  "responses_inspected": 1260,
+  "frozen_end_markers": [
+    "</think>",
+    "<|end_of_thought|>",
+    "<|end_of_think|>",
+    "\u25c1/think\u25b7"
+  ],
+  "qa1c_end_markers": [
+    "</think>",
+    "<|end_of_thought|>",
+    "<|end_of_think|>",
+    "\u25c1/think\u25b7",
+    "\u25c1/think"
+  ],
+  "status_before": {
+    "COMPLETED_VALID": 1175,
+    "COMPLETED_OUTPUT_TRUNCATED": 85
+  },
+  "status_after": {
+    "COMPLETED_VALID": 1207,
+    "COMPLETED_OUTPUT_TRUNCATED": 53
+  },
+  "records_changed": 32,
+  "changes": [
+    {
+      "call_id": "CALL51-0001504",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 639,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001230",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 680,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001057",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 670,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000798",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 1061,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000661",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 602,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001654",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 432,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001512",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 658,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001094",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 644,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001648",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 600,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001585",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 867,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001069",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 537,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001608",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 523,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001101",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 534,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000975",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 526,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001739",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 650,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001106",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 831,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001590",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 541,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000562",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 668,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001306",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 789,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001033",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 394,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000420",
+      "condition": "B1_VERIFIED_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 471,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000490",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 722,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001673",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 651,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001459",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 648,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001049",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 542,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000545",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 820,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001037",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 822,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000598",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 305,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001040",
+      "condition": "M0_OPEN_LOOP_MEMORY",
+      "finish_reason": "stop",
+      "output_tokens": 772,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000838",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 649,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0001633",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 587,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    },
+    {
+      "call_id": "CALL51-0000394",
+      "condition": "B0_LLM_ALONE",
+      "finish_reason": "stop",
+      "output_tokens": 557,
+      "from": "COMPLETED_OUTPUT_TRUNCATED",
+      "to": "COMPLETED_VALID"
+    }
+  ],
+  "check_1_only_truncated_to_scorable": true,
+  "illegal_transitions": [],
+  "check_2_no_genuine_truncation_rescued": true,
+  "wrongly_rescued": [],
+  "truncation_by_condition_before": {
+    "B1_VERIFIED_MEMORY": [
+      413,
+      22
+    ],
+    "B0_LLM_ALONE": [
+      422,
+      32
+    ],
+    "M0_OPEN_LOOP_MEMORY": [
+      425,
+      31
+    ]
+  },
+  "truncation_by_condition_after": {
+    "B1_VERIFIED_MEMORY": [
+      413,
+      14
+    ],
+    "B0_LLM_ALONE": [
+      422,
+      16
+    ],
+    "M0_OPEN_LOOP_MEMORY": [
+      425,
+      23
+    ]
+  },
+  "between_arm_spread_after": 0.020219,
+  "condition_accuracy_computed": false,
+  "status": "PASS"
+}

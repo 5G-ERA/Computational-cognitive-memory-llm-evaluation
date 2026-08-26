@@ -1,0 +1,56 @@
+{
+  "label": "reserved_terra",
+  "inspection_authorisation": "SIG-reserved-terra-inspection-2026-08-19-001",
+  "protocol_section": 15,
+  "reading": "SCOPED",
+  "audit_level": "L1_IO",
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "cells": {
+        "correct_conformant": 462,
+        "correct_nonconformant": 2,
+        "incorrect_conformant": 16
+      },
+      "accuracy_given_conformant": 96.65271966527196,
+      "accuracy_given_nonconformant": 100.0,
+      "n_nonconformant": 2,
+      "difference_conformant_minus_nonconformant": {
+        "point": -7.14285714285714,
+        "lo": -14.28571428571429,
+        "hi": 0.0,
+        "clusters": 2,
+        "resamples": 10000
+      },
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "cells": {
+        "correct_conformant": 453,
+        "correct_nonconformant": 4,
+        "incorrect_conformant": 21
+      },
+      "accuracy_given_conformant": 95.56962025316456,
+      "accuracy_given_nonconformant": 100.0,
+      "n_nonconformant": 4,
+      "difference_conformant_minus_nonconformant": {
+        "point": -1.7857142857142905,
+        "lo": -5.35714285714286,
+        "hi": 0.0,
+        "clusters": 4,
+        "resamples": 10000
+      },
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    },
+    "B1_VERIFIED_MEMORY": {
+      "cells": {
+        "correct_conformant": 469,
+        "incorrect_conformant": 10
+      },
+      "accuracy_given_conformant": 97.91231732776617,
+      "accuracy_given_nonconformant": null,
+      "n_nonconformant": 0,
+      "difference_conformant_minus_nonconformant": null,
+      "note": "The nonconformant cell is small by construction; the difference is descriptive and its interval is computed only over memories with both kinds of case."
+    }
+  }
+}

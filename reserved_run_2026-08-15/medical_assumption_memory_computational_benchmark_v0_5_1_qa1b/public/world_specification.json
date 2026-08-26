@@ -1,0 +1,10 @@
+{
+  "world_id": "MSW-0.4.2",
+  "purpose": "Recover oracle-defined reactions in a disclosed synthetic medicines-support world.",
+  "claim_boundary": "Computational correctness only; not medical correctness.",
+  "conditions": {
+    "B0_LLM_ALONE": "Raw longitudinal evidence.",
+    "M0_OPEN_LOOP_MEMORY": "B0 plus prospective assumption and expected consequence.",
+    "B1_VERIFIED_MEMORY": "M0 plus verified relational memory."
+  }
+}

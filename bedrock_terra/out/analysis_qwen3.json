@@ -1,0 +1,64 @@
+{
+  "primary": {
+    "contrast": "B1_VERIFIED_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Cognitive-memory benefit",
+    "estimate_pp": 18.3333,
+    "ci95_pp": [
+      10.8333,
+      26.6667
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.508333,
+    "accuracy_b": 0.325
+  },
+  "key_secondary": {
+    "contrast": "B1_VERIFIED_MEMORY - M0_OPEN_LOOP_MEMORY",
+    "reported_as": "Consequence-resolution benefit",
+    "estimate_pp": 25.0,
+    "ci95_pp": [
+      16.6667,
+      33.3333
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.508333,
+    "accuracy_b": 0.258333
+  },
+  "key_secondary_tested": true,
+  "exploratory": {
+    "contrast": "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Pre-specified-mapping effect",
+    "estimate_pp": -6.6667,
+    "ci95_pp": [
+      -10.8333,
+      -3.3333
+    ],
+    "lower_bound_above_zero": false,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.258333,
+    "accuracy_b": 0.325
+  },
+  "confirmatory_result": "POSITIVE",
+  "arm": "qwen3",
+  "split": "development",
+  "denominator": "intention-to-evaluate",
+  "estimator_source": "/home/ros/Downloads/deliverable 2/analysis/analysis_section6.py",
+  "calls": 360,
+  "contexts": 120,
+  "memories": 8,
+  "accuracy": {
+    "B0_LLM_ALONE": 0.325,
+    "B1_VERIFIED_MEMORY": 0.508333,
+    "M0_OPEN_LOOP_MEMORY": 0.258333
+  },
+  "meta_decision_rule_accuracy": {
+    "B0_LLM_ALONE": 0.308333,
+    "B1_VERIFIED_MEMORY": 0.458333,
+    "M0_OPEN_LOOP_MEMORY": 0.25
+  },
+  "status_distribution": {
+    "COMPLETED_VALID": 359,
+    "COMPLETED_INVALID_SCHEMA": 1
+  }
+}

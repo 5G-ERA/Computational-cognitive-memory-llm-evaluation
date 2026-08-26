@@ -1,0 +1,99 @@
+{
+  "suite": "release_checks_qa1b",
+  "authority": "Official Release and Assessment Decision v0.5.1-qa1b, section 11 items 4-7",
+  "reserved_matrix": {
+    "memories": 32,
+    "canonical_contexts": 160,
+    "calls": 1440
+  },
+  "checks": [
+    {
+      "check": "32 reserved memories",
+      "pass": true,
+      "detail": "32"
+    },
+    {
+      "check": "5 canonical contexts per memory",
+      "pass": true,
+      "detail": "[5]"
+    },
+    {
+      "check": "160 canonical contexts",
+      "pass": true,
+      "detail": "160"
+    },
+    {
+      "check": "3 rendering families, evenly used",
+      "pass": true,
+      "detail": "{\"STRUCTURED\": 480, \"CHRONOLOGICAL\": 480, \"CONCISE\": 480}"
+    },
+    {
+      "check": "3 conditions per rendered context",
+      "pass": true,
+      "detail": "[3]"
+    },
+    {
+      "check": "32 x 5 x 3 x 3 = 1,440 reserved calls",
+      "pass": true,
+      "detail": "1440"
+    },
+    {
+      "check": "no duplicate call ids",
+      "pass": true,
+      "detail": "0 duplicates"
+    },
+    {
+      "check": "no omissions: every reserved context has all three conditions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no development memory appears in the reserved set",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "development and reserved partition the 40 memories",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no reserved call id appears in the development set",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "no reserved call_id in any results file",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no reserved call_id in the live evidence captures",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no __pycache__ directories",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no .pyc files",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no credential-shaped literals",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "check": "no absolute local paths embedded",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "passed": 17,
+  "total": 17,
+  "status": "PASS"
+}

@@ -1,0 +1,40 @@
+{
+  "record_id": "SIG-reserved-qwen3-repeat-2026-08-20-001",
+  "record_type": "delegated_signature",
+  "is_owner_countersignature": false,
+  "authorises": "INSPECTION of a TECHNICAL REPEAT of the Qwen3 reserved split, for the sole purpose of estimating run-to-run variance.",
+  "covers_run": "out/reserved_qwen3_repeat",
+
+  "governed_by_prereg": {
+    "file": "exp/PREREG_reserved_repeat_2026-08-20.md",
+    "sha256": "3cff2f80a0d74e098e882e0d65e69b7bb17eaa551a4344e0dcb49ad49802e023",
+    "written_before_the_run": true
+  },
+
+  "binding_limits": [
+    "The original run out/reserved_qwen3 remains the sole basis of every published estimate. This repeat does not supersede, replace, average with, or pool with it.",
+    "This repeat may not be used to revise, improve or restate any published number, in either direction.",
+    "Its only sanctioned use is estimating run-to-run variance and reporting it as a declared limitation.",
+    "Having two runs must not become a choice between two runs."
+  ],
+
+  "authority_chain": [
+    "Delegated inspection authorisation for the Qwen3 reserved split, 19 August 2026 (SIG-reserved-qwen3-inspection-2026-08-19-001) - those outcomes are already open, so this repeat exposes nothing that was sealed",
+    "Pre-registration of 20 August 2026, written and hashed before the run was launched",
+    "Instruction of 20 August 2026 by the run operator: launch the repeat with the pre-registration"
+  ],
+
+  "signature": {
+    "signed_by": "Adrian",
+    "capacity": "run operator, signing on the delegated instruction of the project decision owner",
+    "on_behalf_of": "Renxi Qiu, project decision owner",
+    "date": "2026-08-20",
+    "statement": "I authorise inspection of this technical repeat for variance estimation only, under the binding limits of the pre-registration."
+  },
+
+  "what_this_record_is_not": [
+    "It is not the project decision owner's own signature.",
+    "It is not a second confirmatory run and creates no claim.",
+    "It does not alter any analysis parameter."
+  ]
+}

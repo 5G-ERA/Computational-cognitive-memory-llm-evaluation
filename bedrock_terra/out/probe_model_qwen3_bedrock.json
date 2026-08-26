@@ -1,0 +1,165 @@
+{
+  "config_file": "config/model_qwen3_bedrock.json",
+  "model_requested": "qwen.qwen3-next-80b-a3b",
+  "release": "/home/ros/dca_v051/release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c",
+  "probes": {
+    "P0": {
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "url": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1/models"
+    },
+    "P4": {
+      "per_field": {
+        "max_completion_tokens": {
+          "accepted": true,
+          "http": 200,
+          "finish_reason": "length",
+          "completion_tokens": 16,
+          "body": null
+        },
+        "max_tokens": {
+          "accepted": true,
+          "http": 200,
+          "finish_reason": "length",
+          "completion_tokens": 16,
+          "body": null
+        }
+      },
+      "effective_fields": [
+        "max_completion_tokens",
+        "max_tokens"
+      ],
+      "recommended": "max_completion_tokens"
+    },
+    "P1": {
+      "verdict": "PASS_SYSTEM_RESPECTED",
+      "with_system": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 1082,
+        "served_model": "qwen.qwen3-next-80b-a3b",
+        "finish_reason": "length",
+        "prompt_tokens": 2013,
+        "completion_tokens": 16,
+        "reasoning_tokens": null,
+        "content": "{\n  \"reaction\": \"WITHHOLD_ASSUMPTION\",\n  \"rule",
+        "reasoning_field": null
+      },
+      "without_system": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 891,
+        "served_model": "qwen.qwen3-next-80b-a3b",
+        "finish_reason": "length",
+        "prompt_tokens": 1739,
+        "completion_tokens": 16,
+        "reasoning_tokens": null,
+        "content": "{\n  \"reaction\": \"WITHHOLD_ASSUMPTION\",\n  \"rule",
+        "reasoning_field": null
+      }
+    },
+    "P2": {
+      "verdict": "ACCEPTED_BUT_NOT_JSON_probably_ignored",
+      "call": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 1082,
+        "served_model": "qwen.qwen3-next-80b-a3b",
+        "finish_reason": "length",
+        "prompt_tokens": 1760,
+        "completion_tokens": 64,
+        "reasoning_tokens": null,
+        "content": "{\n  \"reaction\": \"WITHHOLD_ASSUMPTION\",\n  \"rule_id\": \"R03_DIFFERENT_FUNCTION\",\n  \"decisive_event_ids\": [\"EVT-0000062\"],\n  \"reason\": \"The current comparison marker relation-gamma, as recorded in EVT",
+        "reasoning_field": null
+      }
+    },
+    "P3": {
+      "per_param": {
+        "temperature=0": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        },
+        "top_p=1": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        },
+        "seed=13082642": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        },
+        "all three": {
+          "accepted": true,
+          "http": 200,
+          "body": null
+        }
+      },
+      "verdict": "DETERMINISM_AVAILABLE",
+      "accepted_params": [
+        "temperature=0",
+        "top_p=1",
+        "seed=13082642"
+      ]
+    },
+    "P5_P8": {
+      "call": {
+        "ok": true,
+        "http": 200,
+        "latency_ms": 2472,
+        "served_model": "qwen.qwen3-next-80b-a3b",
+        "finish_reason": "stop",
+        "prompt_tokens": 2000,
+        "completion_tokens": 152,
+        "reasoning_tokens": null,
+        "reasoning_field": null
+      },
+      "content_chars": 558,
+      "content_head": "{\n  \"reaction\": \"ESCALATE_REVIEW\",\n  \"rule_id\": \"R01_REVIEW_BOUNDARY\",\n  \"decisive_event_ids\": [\"EVT-0000366\", \"EVT-0000007\"],\n  \"reason\": \"The current comparison marker 'relation-gamma' (EVT-0000366) indicates a comparable relation with an active secondary barrier, while the historical record EVT-0000007 explicitly states that the current report matches the authorised-review boundary and no compl",
+      "frozen_end_markers_found": [],
+      "frozen_start_markers_found": [],
+      "reasoning_in_separate_field": null,
+      "unlisted_marker_candidates": [],
+      "marker_verdict": "NO_MARKERS_IN_CONTENT_frozen_policy_parses_whole_message",
+      "frozen_parser_status": "COMPLETED_VALID",
+      "frozen_parser_errors": [],
+      "schema_errors": []
+    },
+    "P6": {
+      "verdict": "PASS_STATELESS",
+      "turn2_content": "NONE"
+    },
+    "P7": {
+      "per_level": {
+        "low": {
+          "accepted": true,
+          "http": 200,
+          "completion_tokens": 134,
+          "reasoning_tokens": null,
+          "finish_reason": "stop",
+          "body": null
+        },
+        "medium": {
+          "accepted": true,
+          "http": 200,
+          "completion_tokens": 139,
+          "reasoning_tokens": null,
+          "finish_reason": "stop",
+          "body": null
+        },
+        "high": {
+          "accepted": false,
+          "http": null,
+          "completion_tokens": null,
+          "reasoning_tokens": null,
+          "finish_reason": null,
+          "body": "timeout: The read operation timed out"
+        }
+      },
+      "supported": [
+        "low",
+        "medium"
+      ]
+    }
+  }
+}

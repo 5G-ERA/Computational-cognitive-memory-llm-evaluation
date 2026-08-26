@@ -1,0 +1,160 @@
+\documentclass[10.5pt]{article}
+\usepackage[margin=.82in]{geometry}\usepackage[T1]{fontenc}\usepackage{lmodern,microtype,booktabs,longtable,amsmath,xcolor,hyperref,fancyhdr,array}
+\definecolor{navy}{HTML}{173B57}\definecolor{teal}{HTML}{167D86}\definecolor{pale}{HTML}{EAF3F6}\definecolor{warn}{HTML}{FFF0E6}\definecolor{good}{HTML}{EAF7EE}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=teal,pdftitle={Medical Assumption Memory Benchmark v0.5 Complete Protocol}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Medical Assumption Memory Benchmark}\fancyhead[R]{\small Complete Protocol v0.5}\fancyfoot[C]{\thepage}\setlength{\headheight}{14pt}
+\title{\vspace{-1.2cm}\textcolor{navy}{\Huge Medical Assumption Memory Benchmark v0.5}\\[.25cm]\Large Complete data, algorithm, API, KPI, and release-gate protocol}
+\author{Protocol version 1.1}\date{13 August 2026}
+\begin{document}\sloppy\emergencystretch=3em
+\maketitle
+\noindent\colorbox{pale}{\parbox{.96\linewidth}{\textbf{Purpose.} Test whether verified relational cognitive memory improves an LLM's recovery of reactions defined by a disclosed deterministic synthetic medicines-support world. Correctness is computational, not medical.}}
+\vspace{.4em}
+\noindent\colorbox{warn}{\parbox{.96\linewidth}{\textbf{Current release status.} Structural validation passes, but the development current-only baseline exceeds the challenge gate. Reserved external API execution is blocked until the visible current observations are regenerated and the challenge audit passes.}}
+\tableofcontents\newpage
+
+\section{Research question and estimands}
+The primary question is whether B1 verified memory outperforms B0 raw longitudinal evidence on a balanced five-class reserved set. M0 isolates the value of consequence verification beyond a prospective assumption.
+\[
+\Delta_{memory}=MacroF1_5(B1)-MacroF1_5(B0)
+\]
+\[
+\Delta_{verification}=MacroF1_5(B1)-MacroF1_5(M0)
+\]
+Secondary estimands are rule-accuracy gain, grounded-accuracy gain, paraphrase consistency, rendering-family robustness, and selective non-use accuracy.
+
+\section{Public world specification}
+All conditions receive the same public assumption catalogue, expected-consequence definitions, verification semantics, observation-source dictionary, reaction vocabulary, rule IDs, rule precedence, response schema, and computational claim boundary. The public rules are not hidden because the benchmark tests episode interpretation, not discovery of an undocumented ontology.
+
+The seven assumptions are understanding, routine integration, practical administration, access or supply, concern or preference, authorised review, and unresolved evidence. They are complementary dimensions. The five reactions are CONTINUE\_SUPPORT, TAILOR\_SUPPORT, ESCALATE\_REVIEW, WITHHOLD\_ASSUMPTION, and WAIT\_FOR\_EVIDENCE.
+
+\section{Latent state and oracle}
+A canonical state is
+\[
+Z=\langle V,F,S,E,R,U\rangle
+\]
+where $V$ is historical verification, $F$ current functional relation, $S$ secondary-barrier state, $E$ evidence completeness, $R$ review boundary, and $U$ successor state. The public oracle applies the first matching rule. The stored reference contains both reaction and rule ID.
+
+The generator samples $Z$ before language rendering. The oracle cannot inspect the rendered text, and the language renderer cannot access the final reaction. All 576 combinations of the underlying state dimensions must produce exactly one reachable rule and reaction.
+
+\section{Cognitive-memory construction}
+The prospective record is
+\[
+A_e=\langle H_e,K_e,\Gamma_e,W_e,Alt_e,L_e\rangle.
+\]
+$H_e$ is the assumption, $K_e$ the expected consequence, $\Gamma_e$ formation evidence, $W_e$ the verification window, $Alt_e$ alternatives, and $L_e$ limitations. Follow-up observations form $R_e^{raw}$. The resolution operation returns a relation $V_e$ and provenance $P_e$.
+
+The closed memory is
+\[
+M_e=\langle A_e,R_e^{raw},V_e,P_e,S_e,L_e,h_e\rangle,
+\]
+where $S_e$ is an optional relational successor object and $h_e$ is a canonical hash. Visible B1 memory uses relational sentences and evidence IDs rather than internal labels such as VERIFIED. The final reaction is never stored in the visible memory.
+
+Construction order:
+\begin{enumerate}
+\item sample the hidden state and assumption profile;
+\item render formation observations;
+\item freeze the prospective assumption;
+\item render support-action and follow-up observations;
+\item resolve the historical relation using the frozen policy;
+\item build and hash the relational memory;
+\item sample the current latent state and run the reaction oracle;
+\item render current observations in multiple language families;
+\item emit B0, M0, and B1 from identical raw events.
+\end{enumerate}
+
+\section{Data structure}
+\begin{longtable}{p{.31\textwidth}p{.61\textwidth}}
+\toprule\textbf{Resource}&\textbf{Purpose}\\\midrule
+\texttt{data\_v0\_5/canonical\_contexts.csv} & 200 hidden-context identifiers, assumption, oracle reaction, oracle rule, and memory ID.\\
+\texttt{hidden/latent\_states\_v0\_5.jsonl} & Full hidden computational state; never sent to the model.\\
+\texttt{data/canonical\_events\_v0\_5.jsonl} & Semantic event identity shared across all renderings.\\
+\texttt{data/rendering\_map\_v0\_5.csv} & Maps each rendered context to canonical context and rendering family.\\
+\texttt{data/contexts\_v0\_5.csv} & 600 rendered contexts with family and reaction reference link.\\
+\texttt{hidden/oracle\_references\_v0\_5.jsonl} & Reaction, rule ID, condition-aware acceptable evidence groups, and hash.\\
+\texttt{prompts/model\_calls\_v0\_5.jsonl} & 1,800 main-condition calls for B0, M0, and B1.\\
+\texttt{controls/development\_controls\_v0\_5.jsonl} & Outcome-only, sham-memory, and token-matched open-loop controls.\\
+\texttt{data/split\_manifest\_v0\_5.csv} & Canonical-level 40/160 development/reserved split.\\
+\texttt{validation/*.json} & Structural validation, challenge baselines, rendering equivalence, and release decision.\\
+\bottomrule
+\end{longtable}
+
+\section{Rendering design}
+Each canonical context has structured, chronological, and concise renderings. Renderings share event IDs, semantic facts, hidden state, oracle outcome, rule ID, evidence requirements, and split. No rendering of a canonical context may cross the development/reserved boundary.
+
+Paraphrase consistency is the fraction of canonical contexts for which all three renderings receive the correct reaction. Also report all-render agreement, correct-rule agreement, and maximum within-canonical disagreement.
+
+\section{Conditions and controls}
+\begin{longtable}{p{.25\textwidth}p{.67\textwidth}}
+\toprule\textbf{Condition}&\textbf{Information}\\\midrule
+B0 & Public rules, raw historical events, and current events.\\
+M0 & B0 plus prospective assumption, expected consequence, and alternative.\\
+B1 & M0 plus relational resolution, provenance, scope, limitations, and optional relational successor evidence.\\
+Outcome-only control & Realised observations without the prospective assumption-resolution relation.\\
+Sham-memory control & B1-like structure with no constitutive resolved relation.\\
+Token-matched M0 & Open-loop memory padded with neutral metadata to approximate B1 length.\\
+\bottomrule
+\end{longtable}
+Controls are development-only and diagnose mechanism, token, and structure effects.
+
+\section{External API response contract}
+The model must return exactly one JSON object with reaction, rule ID, decisive event IDs, and a brief reason. Local code performs JSON parsing, schema validation, reaction-rule consistency, visible-ID checking, condition-aware evidence coverage, oracle comparison, and overreach flagging. No human or second LLM interprets the result.
+
+A response is grounded-correct when reaction and rule are correct, reaction and rule are internally consistent, all citations are visible, and required historical and current evidence groups are covered.
+
+\section{External API execution}
+Use a fresh stateless request per call. Preserve model identifier, endpoint, decoding configuration, request ID, timestamps, token counts, latency, finish reason, raw response, parsed response, scoring record, and terminal status. API keys are read only from environment variables.
+
+The development run contains 360 calls and the reserved run contains 1,440 calls. Run order is randomised with a frozen seed. The run-completion validator requires every expected call to have exactly one terminal record and every completed call to have a scoring record. Reserved execution is blocked until retry, restart, timeout, rate-limit, and native structured-output quality assurance pass.
+
+\section{KPIs and statistical analysis}
+The primary KPI is five-class macro-F1 gain $B1-B0$ on reserved canonical contexts, aggregating all renderings and clustering bootstrap resampling by canonical context. The mechanism KPI is $B1-M0$. Use at least 10,000 bootstrap replicates and report percentile 95\% intervals.
+
+Secondary metrics are balanced accuracy, per-class recall, rule accuracy, grounded accuracy, citation validity, schema validity, refusal rate, unsafe-overreach rate, token efficiency, rendering-family macro-F1, paraphrase consistency, predecessor withholding, and successor application.
+
+Invalid first responses are incorrect in the intention-to-evaluate analysis. Report a valid-output sensitivity analysis separately. Development and reserved results must never be pooled.
+
+\section{Pre-API challenge audit}
+Before any reserved external calls, run grouped current-only, assumption-only, memory-only, B0, M0, B1, identifier-only, structure-only, event-count, and bag-of-words baselines on development. The frozen gates are:
+\begin{longtable}{p{.55\textwidth}p{.25\textwidth}}
+\toprule\textbf{Baseline}&\textbf{Maximum macro-F1}\\\midrule
+Current-only & 0.45\\
+Assumption-only & 0.45\\
+Memory-only & 0.45\\
+Bag-of-words full B0 & 0.55\\
+Identifier, structure, and event-count & Near 0.20 class prior\\
+\bottomrule
+\end{longtable}
+Explicit reaction phrases, hidden oracle-variable names, and answer-bearing identifiers must be absent.
+
+\section{v0.5 verification result}
+Structural checks pass: 200 canonical contexts, exact 40-per-reaction balance, 600 rendered contexts, three renderings per canonical context, 1,800 calls, stratified 40/160 split, 600 controls, condition parity, rendering-oracle equivalence, and zero episode-specific reaction-token leakage.
+
+Development grouped baselines are:
+\begin{longtable}{p{.42\textwidth}p{.20\textwidth}p{.20\textwidth}}
+\toprule\textbf{Input}&\textbf{Macro-F1}&\textbf{Accuracy}\\\midrule
+B0 full input & 0.848 & 0.850\\
+M0 full input & 0.873 & 0.875\\
+B1 full input & 0.811 & 0.817\\
+Current-only & 0.878 & 0.875\\
+Assumption-only & 0.214 & 0.200\\
+Memory-only & 0.134 & 0.150\\
+\bottomrule
+\end{longtable}
+The low assumption-only and memory-only results are desirable. The current-only result substantially exceeds the 0.45 gate, showing that current rendering templates reveal the oracle reaction too directly. Therefore the challenge criterion fails and reserved external execution is blocked.
+
+\section{Required remediation}
+Before release candidate freeze:
+\begin{enumerate}
+\item regenerate current observations so they describe facts rather than reaction-rule signatures;
+\item create matched current contexts whose lexical surface overlaps across reactions;
+\item ensure each reaction can occur under more than one current template family;
+\item rerun all challenge baselines and require the frozen thresholds;
+\item add identifier, structure, and event-count baseline scripts;
+\item verify rendering fidelity and paraphrase equivalence;
+\item complete external API retry, restart, and structured-output QA;
+\item regenerate checksums without changing reserved oracle states after the release freeze.
+\end{enumerate}
+
+\section{Go/no-go decision}
+\noindent\colorbox{warn}{\parbox{.96\linewidth}{\textbf{NO-GO for reserved external API evaluation.} v0.5 is structurally valid and suitable for generator development, control testing, and API pipeline QA. It is not yet a valid test of cognitive-memory benefit because current-only lexical information recovers the reaction above the predefined challenge threshold.}}
+\end{document}

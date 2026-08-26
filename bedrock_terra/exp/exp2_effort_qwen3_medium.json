@@ -1,0 +1,62 @@
+{
+ "dev_qwen3": {
+  "B0_LLM_ALONE": {
+   "n": 120,
+   "acc": 0.325,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.8417,
+   "invalid": 0,
+   "out_tokens": 121.7,
+   "reasoning_tokens": 0.0
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+   "n": 120,
+   "acc": 0.2583,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.9167,
+   "invalid": 0,
+   "out_tokens": 116.3,
+   "reasoning_tokens": 0.0
+  },
+  "B1_VERIFIED_MEMORY": {
+   "n": 120,
+   "acc": 0.5083,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.6583,
+   "invalid": 1,
+   "out_tokens": 129.8,
+   "reasoning_tokens": 0.0
+  },
+  "B1_minus_B0_pp": 18.33
+ },
+ "dev_qwen3_effort_medium": {
+  "B0_LLM_ALONE": {
+   "n": 120,
+   "acc": 0.325,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.875,
+   "invalid": 1,
+   "out_tokens": 120.2,
+   "reasoning_tokens": 0.0
+  },
+  "M0_OPEN_LOOP_MEMORY": {
+   "n": 120,
+   "acc": 0.2417,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.9333,
+   "invalid": 1,
+   "out_tokens": 116.0,
+   "reasoning_tokens": 0.0
+  },
+  "B1_VERIFIED_MEMORY": {
+   "n": 120,
+   "acc": 0.5667,
+   "top_answer": "ESCALATE_REVIEW",
+   "top_share": 0.6,
+   "invalid": 0,
+   "out_tokens": 134.2,
+   "reasoning_tokens": 0.0
+  },
+  "B1_minus_B0_pp": 24.17
+ }
+}

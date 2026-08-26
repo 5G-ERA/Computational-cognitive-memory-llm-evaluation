@@ -1,0 +1,56 @@
+{
+  "primary": {
+    "contrast": "B1_VERIFIED_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Cognitive-memory benefit",
+    "estimate_pp": 9.7917,
+    "ci95_pp": [
+      5.0,
+      14.7917
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.839583,
+    "accuracy_b": 0.741667
+  },
+  "key_secondary": {
+    "contrast": "B1_VERIFIED_MEMORY - M0_OPEN_LOOP_MEMORY",
+    "reported_as": "Consequence-resolution benefit",
+    "estimate_pp": 13.5417,
+    "ci95_pp": [
+      9.375,
+      17.7083
+    ],
+    "lower_bound_above_zero": true,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.839583,
+    "accuracy_b": 0.704167
+  },
+  "key_secondary_tested": true,
+  "exploratory": {
+    "contrast": "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Pre-specified-mapping effect",
+    "estimate_pp": -3.75,
+    "ci95_pp": [
+      -8.5417,
+      1.4583
+    ],
+    "lower_bound_above_zero": false,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.704167,
+    "accuracy_b": 0.741667
+  },
+  "confirmatory_result": "POSITIVE",
+  "denominator": "intention-to-evaluate",
+  "calls": 1440,
+  "contexts": 480,
+  "memories": 32,
+  "status_distribution": {
+    "COMPLETED_VALID": 1382,
+    "COMPLETED_OUTPUT_TRUNCATED": 58
+  },
+  "meta_decision_rule_accuracy": {
+    "B0_LLM_ALONE": 0.739583,
+    "B1_VERIFIED_MEMORY": 0.839583,
+    "M0_OPEN_LOOP_MEMORY": 0.7
+  }
+}

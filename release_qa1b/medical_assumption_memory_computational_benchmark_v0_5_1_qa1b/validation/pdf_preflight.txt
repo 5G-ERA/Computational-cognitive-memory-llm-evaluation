@@ -1,0 +1,6 @@
+PDF: evaluation_protocol_v0_4_2.pdf
+Pages: 3
+Encrypted: False
+Openable (PyMuPDF): True
+Likely scanned: False
+XFA present: False

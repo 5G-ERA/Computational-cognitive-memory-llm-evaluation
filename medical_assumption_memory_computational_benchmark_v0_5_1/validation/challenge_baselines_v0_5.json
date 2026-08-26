@@ -1,0 +1,38 @@
+{
+  "B0_LLM_ALONE_full": {
+    "macro_f1": 0.8477777777777777,
+    "accuracy": 0.85
+  },
+  "M0_OPEN_LOOP_MEMORY_full": {
+    "macro_f1": 0.8729411764705881,
+    "accuracy": 0.875
+  },
+  "B1_VERIFIED_MEMORY_full": {
+    "macro_f1": 0.8114700407624701,
+    "accuracy": 0.8166666666666667
+  },
+  "current_only": {
+    "macro_f1": 0.8780952380952382,
+    "accuracy": 0.875
+  },
+  "assumption_only": {
+    "macro_f1": 0.21353383458646613,
+    "accuracy": 0.2
+  },
+  "memory_only": {
+    "macro_f1": 0.13421052631578947,
+    "accuracy": 0.15
+  },
+  "reaction_balance": {
+    "CONTINUE_SUPPORT": 24,
+    "TAILOR_SUPPORT": 24,
+    "ESCALATE_REVIEW": 24,
+    "WITHHOLD_ASSUMPTION": 24,
+    "WAIT_FOR_EVIDENCE": 24
+  },
+  "render_families": {
+    "STRUCTURED": 40,
+    "CHRONOLOGICAL": 40,
+    "CONCISE": 40
+  }
+}

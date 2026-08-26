@@ -1,0 +1,308 @@
+<title>Terra Saturation Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#f7f5f1; --card:#fffefc; --well:#eceae4; --band:#e6e2da;
+  --ink:#171a1c; --ink2:#4f565c; --ink3:#868c92;
+  --rule:#d5d0c6; --rule2:#e5e1d9;
+  --seal:#7a3b34; --seal-bg:#f3e6e3;
+  --mark:#2c4a63; --mark-bg:#e2e9ef;
+  --ok:#2f6b47;
+  --fill:#3f5468; --fill2:#b9c3cc; --gap:#c48a3f; --gap-bg:#f6ecdc;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1012; --card:#171a1d; --well:#0b0d0e; --band:#1c2023;
+    --ink:#eaecee; --ink2:#a0a7ad; --ink3:#6c7379;
+    --rule:#292e32; --rule2:#1e2225;
+    --seal:#d9948a; --seal-bg:#2a1714;
+    --mark:#8fb4d0; --mark-bg:#122130;
+    --ok:#7fc09a;
+    --fill:#7d9bb5; --fill2:#333d46; --gap:#dfa860; --gap-bg:#2a2013;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1012; --card:#171a1d; --well:#0b0d0e; --band:#1c2023;
+  --ink:#eaecee; --ink2:#a0a7ad; --ink3:#6c7379;
+  --rule:#292e32; --rule2:#1e2225;
+  --seal:#d9948a; --seal-bg:#2a1714;
+  --mark:#8fb4d0; --mark-bg:#122130;
+  --ok:#7fc09a;
+  --fill:#7d9bb5; --fill2:#333d46; --gap:#dfa860; --gap-bg:#2a2013;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Public Sans",-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.doc{max-width:58rem;margin:0 auto;padding:clamp(1.5rem,4vw,3.25rem) clamp(1rem,3.5vw,2.25rem) 5rem;
+  display:flex;flex-direction:column;gap:2.1rem}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(1.85rem,4.8vw,2.7rem);
+  line-height:1.08;letter-spacing:-.02em;margin:.35rem 0 0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.22rem;letter-spacing:-.01em;
+  margin:0 0 .2rem;text-wrap:balance}
+h3{font-weight:700;font-size:.83rem;margin:0 0 .25rem;letter-spacing:.05em;text-transform:uppercase}
+p{margin:0 0 .75rem;max-width:66ch}p:last-child{margin-bottom:0}
+section{display:flex;flex-direction:column;gap:.8rem}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.eb{font-size:.69rem;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--ink3)}
+.meta{display:flex;flex-wrap:wrap;gap:.3rem 1.5rem;margin-top:.8rem;font-size:.82rem;color:var(--ink2)}
+.lede{font-size:1.06rem;color:var(--ink2)}
+
+.verdictbox{border:1px solid var(--rule);background:var(--card);padding:1.4rem 1.5rem;
+  display:flex;flex-direction:column;gap:.45rem}
+.verdictbox .lab{font-size:.7rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--seal)}
+.verdictbox .big{font-family:Fraunces,Georgia,serif;font-weight:700;
+  font-size:clamp(2.3rem,8vw,3.8rem);line-height:.98;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums}
+.verdictbox .ci{font-size:1rem;color:var(--ink2);font-variant-numeric:tabular-nums}
+.verdictbox .tag{display:inline-block;align-self:flex-start;background:var(--seal-bg);color:var(--seal);
+  font-size:.71rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:.2rem .55rem;border-radius:2px}
+
+.bars{display:flex;flex-direction:column;gap:.65rem;background:var(--card);border:1px solid var(--rule);
+  padding:1.1rem 1.25rem}
+.bar{display:grid;grid-template-columns:minmax(6.5rem,10rem) 1fr auto;gap:.7rem;align-items:center;font-size:.86rem}
+.bar .name{color:var(--ink2)}
+.track{position:relative;height:1.35rem;background:var(--fill2);overflow:hidden}
+.track i{position:absolute;inset:0 auto 0 0;background:var(--fill);display:block}
+.track u{position:absolute;top:0;bottom:0;background:transparent;
+  border-left:2px dashed var(--gap);text-decoration:none}
+.bar .val{font-variant-numeric:tabular-nums;font-weight:600;min-width:4.2rem;text-align:right}
+.barkey{font-size:.79rem;color:var(--ink3);display:flex;flex-wrap:wrap;gap:.3rem 1.1rem}
+.barkey span{display:inline-flex;align-items:center;gap:.35rem}
+.swatch{width:.8rem;height:.8rem;display:inline-block;background:var(--fill)}
+.swatch.gapc{background:transparent;border-left:2px dashed var(--gap);width:.5rem}
+
+.scroll{overflow-x:auto;border:1px solid var(--rule);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th,td{padding:.52rem .8rem;text-align:left;border-bottom:1px solid var(--rule2);vertical-align:top}
+th{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;
+  background:var(--band);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.note{border:1px solid var(--rule);border-left:3px solid var(--mark);background:var(--card);
+  padding:.9rem 1.05rem;font-size:.94rem}
+.note h3{color:var(--mark)}
+.note.care{border-left-color:var(--seal);background:var(--seal-bg)}
+.note.care h3{color:var(--seal)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--well);
+  padding:.05rem .3rem;border-radius:2px;word-break:break-word}
+footer{font-size:.79rem;color:var(--ink3);line-height:1.55;border-top:1px solid var(--rule);padding-top:1rem}
+:focus-visible{outline:2px solid var(--mark);outline-offset:2px}
+</style>
+
+<div class="doc">
+
+<header>
+  <div class="eb">Cognitive Memory Benchmark v0.5.1-qa1c &middot; Reserved evaluation</div>
+  <h1>Terra returns a null primary, and it could not have returned anything else</h1>
+  <p class="meta"><span>19 August 2026</span><span>GPT-5.6 Terra &middot; reserved split &middot; 1,440 calls</span><span>For: Renxi Qiu, project decision owner</span></p>
+</header>
+
+<div class="verdictbox">
+  <span class="lab">Primary contrast &middot; B1 &minus; B0 &middot; saturation control arm</span>
+  <span class="big">+1.04 pp</span>
+  <span class="ci">95% memory-clustered interval [&minus;0.63 &middot; +2.92]</span>
+  <span class="tag">Not established &mdash; by construction</span>
+</div>
+
+<section>
+  <p class="lede">Terra was designated the saturation control before any reserved data existed, and its ceiling
+  was measured, declared and published before this split was opened. The null below is a property of the
+  instrument on this model. It carries no evidence for or against the cognitive-memory effect, which rests
+  on Qwen3.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>1. Why the contrast had nowhere to go</h2>
+  <div class="bars">
+    <div class="bar"><span class="name">B0 &mdash; evidence only</span>
+      <span class="track"><i style="width:96.67%"></i><u style="left:95%;right:0"></u></span>
+      <span class="val">96.67%</span></div>
+    <div class="bar"><span class="name">M0 &mdash; open-loop memory</span>
+      <span class="track"><i style="width:95.21%"></i><u style="left:95%;right:0"></u></span>
+      <span class="val">95.21%</span></div>
+    <div class="bar"><span class="name">B1 &mdash; cognitive memory</span>
+      <span class="track"><i style="width:97.71%"></i><u style="left:95%;right:0"></u></span>
+      <span class="val">97.71%</span></div>
+    <div class="barkey">
+      <span><i class="swatch"></i>accuracy, 480 contexts per condition</span>
+      <span><i class="swatch gapc"></i>saturation threshold: 5.00 pp of headroom, i.e. 95% accuracy</span>
+    </div>
+  </div>
+  <p>The baseline occupies 96.67 of the available 100 points, leaving <strong>3.33 pp of headroom</strong>
+  against a frozen saturation threshold of 5.00 pp. Every arm sits inside the band. An effect the size of
+  the one Qwen3 returned, +25 pp, is not merely unlikely here &mdash; there is no room on the scale to
+  express it.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th class="n">Estimate</th><th class="n">95% interval</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>B1&minus;B0 — primary</strong></td><td class="n">+1.04 pp</td><td class="n">[&minus;0.63 · +2.92]</td><td>Not established</td></tr>
+      <tr><td>B1&minus;M0 — key secondary</td><td class="n">not tested</td><td class="n">—</td><td>Hierarchy stops at a failed primary</td></tr>
+      <tr><td>M0&minus;B0 — exploratory</td><td class="n">&minus;1.46 pp</td><td class="n">[&minus;2.92 · &minus;0.21]</td><td>See section 4</td></tr>
+    </tbody>
+  </table></div>
+  <p>Denominator intention-to-evaluate. Memory-clustered bootstrap, 10,000 replicates, percentile interval,
+  seed 13082654 &mdash; the estimator imported unaltered from the signed analysis that produced the KIMI2
+  result. Saturation is now confirmed on reserved data rather than development data alone: 3.33 pp here
+  against 1.67 pp on development, the same classification either way, which is the insensitivity that makes
+  the threshold defensible.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>2. All of Terra's error lives in one template family</h2>
+  <p>The ceiling is not uniform. Terra is essentially perfect on four of the five template families and
+  spends its entire error budget on the fifth.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Template family</th><th class="n">B0 errors</th><th class="n">M0 errors</th><th class="n">B1 errors</th></tr></thead>
+    <tbody>
+      <tr><td>ADDITIONAL_OBSERVATION</td><td class="n">0 / 96</td><td class="n">1 / 96</td><td class="n">0 / 96</td></tr>
+      <tr><td>NEW_EXPERIENCE</td><td class="n">0 / 96</td><td class="n">1 / 96</td><td class="n">0 / 96</td></tr>
+      <tr><td>RECURRENCE</td><td class="n">0 / 96</td><td class="n">0 / 96</td><td class="n">2 / 96</td></tr>
+      <tr><td>SOURCE_CHANGE</td><td class="n">1 / 96</td><td class="n">0 / 96</td><td class="n">1 / 96</td></tr>
+      <tr><td><strong>TEMPORAL_GAP</strong></td><td class="n"><strong>15 / 96</strong></td><td class="n"><strong>21 / 96</strong></td><td class="n"><strong>8 / 96</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>Within TEMPORAL_GAP accuracy runs 84.38% for B0, 78.12% for M0 and 91.67% for B1; across the other
+  four families it is 99.74%, 99.48% and 99.22%. The same concentration appears on the development split,
+  where <strong>all ten</strong> errors were TEMPORAL_GAP, so it is a stable property of this model on this
+  benchmark and not a feature of one draw.</p>
+  <div class="note care">
+    <h3>This is description, and it must not become a claim</h3>
+    <p>You ruled on 19 August that arms may not be chosen by measured headroom, and that the same objection
+    applies at subgroup level &mdash; conditioning inclusion on a statistic related to the outcome. That
+    ruling kills the TEMPORAL_GAP subgroup contrast as an endpoint, including as an exploratory one, and it
+    kills it here too: the family was identified <em>after</em> reading the outcomes. It is reported to
+    explain <em>why</em> the arm saturates, which is what a control is for. Nothing in this section is a
+    test.</p>
+    <p>The honest reading of the small B1 penalty on the other four families &mdash; 3 errors against B0's 1,
+    on 384 contexts &mdash; is that it is noise. It is recorded rather than interpreted.</p>
+  </div>
+</section>
+
+<hr>
+
+<section>
+  <h2>3. Every error is the same error</h2>
+  <p>Terra's mistakes are not scattered across the outcome space. Almost all of them are a single confusion,
+  in a single direction:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Confusion</th><th class="n">B0</th><th class="n">M0</th><th class="n">B1</th></tr></thead>
+    <tbody>
+      <tr><td>CONTINUE_SUPPORT scored as WAIT_FOR_EVIDENCE</td><td class="n">14</td><td class="n">17</td><td class="n">10</td></tr>
+      <tr><td>TAILOR_SUPPORT scored as WAIT_FOR_EVIDENCE</td><td class="n">1</td><td class="n">4</td><td class="n">0</td></tr>
+      <tr><td>Other</td><td class="n">1</td><td class="n">2</td><td class="n">1</td></tr>
+      <tr><td><strong>Total errors</strong></td><td class="n"><strong>16</strong></td><td class="n"><strong>23</strong></td><td class="n"><strong>11</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p>The model asks for more evidence where the record already justified continuing. Three of the five
+  outcomes &mdash; ESCALATE_REVIEW, WAIT_FOR_EVIDENCE, WITHHOLD_ASSUMPTION &mdash; are answered without a
+  single error in any condition.</p>
+  <div class="note">
+    <h3>The same conservative reflex shows up in both model families</h3>
+    <p>Terra over-predicts WAIT_FOR_EVIDENCE, 111 times against a true 96, and under-predicts
+    CONTINUE_SUPPORT, 81 against 96. Qwen3 does the same thing far more violently, answering
+    ESCALATE_REVIEW for 89% of B0 items against a true 20%. In both models the failure mode is retreat to
+    the cautious answer, and in both, verified memory pulls them back toward the true distribution
+    &mdash; Terra to 106 and 86, Qwen3 from 89% to 60%. Two model families, two magnitudes, one direction.</p>
+  </div>
+  <p>Of the 16 contexts B0 gets wrong, B1 fixes 11 and breaks 6 that B0 had right; 5 defeat all three
+  conditions. On an arm with 16 errors to work with, that net of five is the whole +1.04 pp.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>4. Why M0&minus;B0 must be reported as a direction, not an interval</h2>
+  <p>Under intention-to-evaluate the exploratory contrast is &minus;1.46 pp with an interval of
+  [&minus;2.92 &middot; &minus;0.21] that excludes zero. <strong>It does not survive the pre-specified
+  valid-only sensitivity.</strong></p>
+  <div class="scroll"><table>
+    <thead><tr><th>Contrast</th><th class="n">Intention-to-evaluate (480)</th><th class="n">Valid-only (477)</th></tr></thead>
+    <tbody>
+      <tr><td>B1&minus;B0</td><td class="n">+1.04 [&minus;0.63 · +2.92]</td><td class="n">+1.26 [&minus;0.42 · +3.13]</td></tr>
+      <tr><td>M0&minus;B0</td><td class="n">&minus;1.46 [&minus;2.92 · &minus;0.21]</td><td class="n">&minus;1.05 [&minus;2.51 · <strong>+0.21</strong>]</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note care">
+    <h3>Three rejected replies decide it, and all three were substantively right</h3>
+    <p>The scorer rejected 3 of the 1,440 responses for a repeated identifier in
+    <code>decisive_event_ids</code>, where the schema requires <code>uniqueItems</code>. All three chose the
+    <em>correct</em> reaction, TAILOR_SUPPORT under R09_SECONDARY_BARRIER; the duplicate is always the first
+    identifier, listed twice. <strong>Two of the three are M0.</strong> Under intention-to-evaluate they
+    count as failures, which is exactly what pushes M0 down far enough for the interval to clear zero.</p>
+    <p>So the finding rests on a schema technicality applied to answers that were correct. Terra should be
+    reported as <strong>replicating the direction</strong> of the open-loop penalty &mdash; the sixth
+    negative measurement across three model families &mdash; and not as a second interval excluding zero.
+    Qwen3's reserved result is unaffected: its valid-only sensitivity moves every estimate by less than half
+    a point.</p>
+  </div>
+  <p>The defect itself is the familiar one in a new guise: the runner recorded all 1,440 calls as
+  <code>COMPLETED_VALID</code> because its terminal state does not incorporate the scorer's schema check.
+  The validity figures here are the scorer's.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>5. Supporting measures and execution</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Measure</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>Provenance-reference validity</td><td>1.0000 in all three conditions &mdash; no fabricated identifiers</td></tr>
+      <tr><td>Unsafe overreach</td><td>0</td></tr>
+      <tr><td>Historical provenance hit</td><td>0.0000 in all three conditions, as in KIMI2 and Qwen3</td></tr>
+      <tr><td>Rule accuracy</td><td>Identical to outcome accuracy in every condition &mdash; no answer reached a correct outcome through an inconsistent rule</td></tr>
+      <tr><td>Completion</td><td>1,440 / 1,440 terminal on the first pass, 0 truncation, 3 schema rejections</td></tr>
+      <tr><td>Transport</td><td>2 retryable errors, 0 provider errors, 0 lost calls</td></tr>
+      <tr><td>Run</td><td>59 minutes, 6.42 USD against a 25.00 USD client-side cap</td></tr>
+    </tbody>
+  </table></div>
+  <p>That historical provenance is zero here as well now makes it unanimous across all three model
+  families: models reason from the memory without ever citing it. This continues to vindicate keeping
+  dual-source provenance descriptive rather than confirmatory &mdash; as an endpoint it would have measured
+  the response contract in every arm.</p>
+</section>
+
+<hr>
+
+<section>
+  <h2>What this arm establishes</h2>
+  <p><strong>Establishes.</strong> That the benchmark saturates on a frontier model, with the classification
+  confirmed on reserved rather than development data. That the saturation is localised: four template
+  families are solved outright and TEMPORAL_GAP carries the entire error budget. That the open-loop memory
+  penalty appears again in the same direction, for the sixth time across three model families. And that
+  the instrument's calibration range is now legible &mdash; 96.67% here, 74.17% for KIMI2 where the
+  benchmark was calibrated, 29.38% for Qwen3.</p>
+  <p><strong>Does not establish.</strong> Anything about the cognitive-memory effect. The primary contrast
+  on this arm is uninformative by construction, and was declared so before the split was opened. No
+  subgroup contrast is claimed. The confirmatory claim of the amendment rests on Qwen3 alone and is
+  untouched by this document.</p>
+  <div class="note care">
+    <h3>The authorisation to open this split is delegated, not yours</h3>
+    <p>Recorded in <code>SIGNED_delegated_terra_reserved_inspection.json</code>: signed by the run operator
+    on your instruction, on your behalf, never under your name. The seal was released by adding that record
+    to <code>RESERVED_RELEASE</code>, not by deleting the run from the sealed set, so every analyser run
+    prints who opened it and for whom. Verified immediately before release: the seal still refused the run
+    with exit 3, and the analyser reproduced the Terra development result identically.</p>
+  </div>
+</section>
+
+<footer>
+  Executed and scored through the release&rsquo;s own <code>api_runner_qa1.py</code> and scorer, unmodified,
+  with the Bedrock adapter injected; estimator imported unaltered from the signed
+  <code>analysis_section6.py</code>. Model <code>global.openai.gpt-5.6-terra</code>,
+  <code>reasoning_effort: low</code>, ceiling 4,096, serial, call-order seed 13082652. No dated version pin
+  exists for this model, so the run window of 19 August 2026, 20:20&ndash;21:19 BST is the only bound on the
+  served version. The endpoint honours neither <code>temperature</code> nor <code>seed</code>, so the
+  estimand is stochastic under the global determinism amendment. Evidence:
+  <code>out/reserved_terra/</code> and <code>out/analysis_reserved_terra.json</code>; execution and
+  integrity record published separately.
+</footer>
+
+</div>

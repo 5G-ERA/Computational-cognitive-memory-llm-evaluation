@@ -1,0 +1,21 @@
+{
+  "version": "0.5",
+  "seed": 13082650,
+  "canonical_contexts": 200,
+  "render_families": [
+    "STRUCTURED",
+    "CHRONOLOGICAL",
+    "CONCISE"
+  ],
+  "rendered_contexts": 600,
+  "main_conditions": [
+    "B0_LLM_ALONE",
+    "M0_OPEN_LOOP_MEMORY",
+    "B1_VERIFIED_MEMORY"
+  ],
+  "main_calls": 1800,
+  "reaction_balance": 40,
+  "development_per_reaction": 8,
+  "reserved_per_reaction": 32,
+  "controls": "development-only"
+}

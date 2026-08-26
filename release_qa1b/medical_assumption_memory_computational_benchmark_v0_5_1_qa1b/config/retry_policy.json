@@ -1,0 +1,10 @@
+{
+  "max_attempts": 3,
+  "retry_http_status": [429, 500, 502, 503, 504],
+  "non_retryable_http_status": [400, 401, 403, 404, 405, 413, 422],
+  "retry_exceptions": ["TimeoutError", "ConnectionError", "URLError"],
+  "backoff_seconds": [0, 2, 8],
+  "jitter_seed": 13082653,
+  "retry_model_output": false,
+  "failed_retryable_calls_are_restartable": true
+}

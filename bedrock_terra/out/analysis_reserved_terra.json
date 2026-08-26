@@ -1,0 +1,52 @@
+{
+  "primary": {
+    "contrast": "B1_VERIFIED_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Cognitive-memory benefit",
+    "estimate_pp": 1.0417,
+    "ci95_pp": [
+      -0.625,
+      2.9167
+    ],
+    "lower_bound_above_zero": false,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.977083,
+    "accuracy_b": 0.966667
+  },
+  "key_secondary_tested": false,
+  "key_secondary_note": "Not tested. The hierarchy tests the key secondary contrast only if the primary succeeds.",
+  "exploratory": {
+    "contrast": "M0_OPEN_LOOP_MEMORY - B0_LLM_ALONE",
+    "reported_as": "Pre-specified-mapping effect",
+    "estimate_pp": -1.4583,
+    "ci95_pp": [
+      -2.9167,
+      -0.2083
+    ],
+    "lower_bound_above_zero": false,
+    "bootstrap_replicates": 10000,
+    "accuracy_a": 0.952083,
+    "accuracy_b": 0.966667
+  },
+  "confirmatory_result": "NOT ESTABLISHED",
+  "arm": "terra",
+  "split": "reserved",
+  "denominator": "intention-to-evaluate",
+  "estimator_source": "/home/ros/Downloads/deliverable 2/analysis/analysis_section6.py",
+  "calls": 1440,
+  "contexts": 480,
+  "memories": 32,
+  "accuracy": {
+    "B0_LLM_ALONE": 0.966667,
+    "B1_VERIFIED_MEMORY": 0.977083,
+    "M0_OPEN_LOOP_MEMORY": 0.952083
+  },
+  "meta_decision_rule_accuracy": {
+    "B0_LLM_ALONE": 0.966667,
+    "B1_VERIFIED_MEMORY": 0.977083,
+    "M0_OPEN_LOOP_MEMORY": 0.952083
+  },
+  "status_distribution": {
+    "COMPLETED_VALID": 1437,
+    "COMPLETED_INVALID_SCHEMA": 3
+  }
+}

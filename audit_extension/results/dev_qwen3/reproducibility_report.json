@@ -1,0 +1,106 @@
+{
+  "split": "development",
+  "representation_stability": {
+    "memories": 8,
+    "prospective_invariant": true,
+    "resolved_invariant": true,
+    "unstable_prospective_memories": [],
+    "unstable_resolved_memories": [],
+    "note": "The prospective hash is compared across conditions as well as contexts and renderings, so this also certifies M0/B1 prospective equality per memory."
+  },
+  "cross_rendering_response_consistency": {
+    "B0_LLM_ALONE": {
+      "canonical_contexts": 40,
+      "reaction_exact_agreement": 0.8,
+      "rule_exact_agreement": 0.8,
+      "citation_set_exact_agreement": 0.5,
+      "citation_jaccard_mean": 0.7458333333333333
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "canonical_contexts": 40,
+      "reaction_exact_agreement": 0.825,
+      "rule_exact_agreement": 0.825,
+      "citation_set_exact_agreement": 0.675,
+      "citation_jaccard_mean": 0.8161111111111111
+    },
+    "B1_VERIFIED_MEMORY": {
+      "canonical_contexts": 40,
+      "reaction_exact_agreement": 0.725,
+      "rule_exact_agreement": 0.675,
+      "citation_set_exact_agreement": 0.175,
+      "citation_jaccard_mean": 0.5922222222222223
+    }
+  },
+  "cross_rendering_contrast": {
+    "unparseable_responses": {},
+    "contrasts": {
+      "citation_set_exact": {
+        "B0": 50.0,
+        "M0": 67.5,
+        "B1": 17.5,
+        "B1_minus_B0": {
+          "point": -32.5,
+          "lo": -47.5,
+          "hi": -17.5,
+          "clusters": 8,
+          "resamples": 10000
+        },
+        "permutation": {
+          "p": 0.031796820317968204,
+          "observed": 32.5,
+          "clusters": 8
+        },
+        "memories_where_B1_is_worse": 6,
+        "memories_compared": 8,
+        "permutation_p_holm": 0.0953904609539046,
+        "excludes_zero": true
+      },
+      "reaction_exact": {
+        "B0": 80.0,
+        "M0": 82.5,
+        "B1": 72.5,
+        "B1_minus_B0": {
+          "point": -7.500000000000007,
+          "lo": -25.0,
+          "hi": 9.999999999999998,
+          "clusters": 8,
+          "resamples": 10000
+        },
+        "permutation": {
+          "p": 0.625037496250375,
+          "observed": 7.500000000000007,
+          "clusters": 8
+        },
+        "memories_where_B1_is_worse": 3,
+        "memories_compared": 8,
+        "permutation_p_holm": 0.6331366863313669,
+        "excludes_zero": false
+      },
+      "rule_exact": {
+        "B0": 80.0,
+        "M0": 82.5,
+        "B1": 67.5,
+        "B1_minus_B0": {
+          "point": -12.5,
+          "lo": -27.500000000000004,
+          "hi": 5.000000000000004,
+          "clusters": 8,
+          "resamples": 10000
+        },
+        "permutation": {
+          "p": 0.31656834316568344,
+          "observed": 12.5,
+          "clusters": 8
+        },
+        "memories_where_B1_is_worse": 5,
+        "memories_compared": 8,
+        "permutation_p_holm": 0.6331366863313669,
+        "excludes_zero": false
+      }
+    },
+    "analysis_status": "EXPLORATORY",
+    "analysis_note": "Protocol section 14 declares cross-rendering consistency a descriptive check. Quantifying it as a memory-clustered condition contrast is an addition, not a pre-specified endpoint, and is reported as exploratory with Holm adjustment across the three measures within each model.",
+    "incomplete_groups_dropped": {}
+  },
+  "scope_note": "Repeated identical-call trace reproducibility is out of scope here and requires the separate prospectively frozen extension of protocol section 21."
+}

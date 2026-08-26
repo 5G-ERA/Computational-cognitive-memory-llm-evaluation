@@ -1,0 +1,67 @@
+{
+  "label": "reserved_terra",
+  "equation": "V4.7 (37)",
+  "split": "reserved",
+  "dropped_boundaries_missing_rendering": {},
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "T_eval": 160,
+      "Q_audit": 0.9532555408605583,
+      "mean_q_DCA": 0.9432404540763655,
+      "mean_q_DCC": 0.9708333333333334,
+      "Q_audit_on_erroneous_boundaries": 0.6514657740262532,
+      "Q_audit_on_correct_boundaries": 0.9712430104069737,
+      "n_erroneous": 9,
+      "n_correct": 151
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "T_eval": 160,
+      "Q_audit": 0.950402827395034,
+      "mean_q_DCA": 0.9427244582043326,
+      "mean_q_DCC": 0.9666666666666666,
+      "Q_audit_on_erroneous_boundaries": 0.672607903961248,
+      "Q_audit_on_correct_boundaries": 0.9709111774471925,
+      "n_erroneous": 11,
+      "n_correct": 149
+    },
+    "B1_VERIFIED_MEMORY": {
+      "T_eval": 160,
+      "Q_audit": 0.9533283242970401,
+      "mean_q_DCA": 0.9434282192409109,
+      "mean_q_DCC": 0.9708333333333332,
+      "Q_audit_on_erroneous_boundaries": 0.5611686089291695,
+      "Q_audit_on_correct_boundaries": 0.9712702720589685,
+      "n_erroneous": 7,
+      "n_correct": 153
+    }
+  },
+  "contrast_B1_minus_B0": {
+    "Q_audit_points_x100": {
+      "point": 0.007278343648153829,
+      "lo": -1.5222146295815948,
+      "hi": 1.54392062555761,
+      "clusters": 32,
+      "resamples": 10000
+    },
+    "permutation": {
+      "p": 0.8235176482351765,
+      "observed": 0.007278343648153829,
+      "clusters": 32
+    },
+    "note": "paired memory-clustered bootstrap, 10,000 resamples; in percentage points of Q_audit"
+  },
+  "contrast_B1_minus_B0_on_erroneous_boundaries": {
+    "point": -16.271883730595395,
+    "lo": -32.753331595458825,
+    "hi": 0.19730112666324073,
+    "clusters": 5,
+    "resamples": 10000
+  },
+  "contrast_B1_minus_B0_on_correct_boundaries": {
+    "point": 0.0027261651994736624,
+    "lo": -0.01535334880208322,
+    "hi": 0.020483839478958044,
+    "clusters": 32,
+    "resamples": 10000
+  }
+}

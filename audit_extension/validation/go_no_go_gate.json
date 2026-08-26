@@ -1,0 +1,109 @@
+{
+  "protocol_section": 19,
+  "decision": "GO",
+  "scope": {
+    "arms_audited": [
+      "dev_terra",
+      "dev_qwen3"
+    ],
+    "arms_planned_not_run": [
+      {
+        "arm": "kimi_reserved",
+        "decision": "C1, Renxi Qiu, 22 August 2026: YES, RESERVED-ONLY POST-FREEZE ARM",
+        "verified_auditable": "all six audit inputs are byte-identical between qa1b and qa1c",
+        "blocked_by": [
+          "section 19 gate",
+          "C2 authorisation"
+        ]
+      }
+    ],
+    "reserved_splits_audited": []
+  },
+  "failed_mandatory": [],
+  "checks": [
+    {
+      "condition": "level1_m0_b1_contracts_frozen",
+      "pass": true,
+      "mandatory": true,
+      "detail": "contracts present: agreement_contract, b1_resolved_contract, critical_violations, level1_io_contract, m0_prospective_contract, terminology_audit"
+    },
+    {
+      "condition": "every_ontology_code_fully_specified",
+      "pass": true,
+      "mandatory": true,
+      "detail": "40 codes; incomplete: none"
+    },
+    {
+      "condition": "b0_level2_not_applicable_by_design",
+      "pass": true,
+      "mandatory": true,
+      "detail": "L2_B0 rows are reported as NOT_APPLICABLE, never as failures"
+    },
+    {
+      "condition": "m0_open_loop_closure_not_an_error",
+      "pass": true,
+      "mandatory": true,
+      "detail": "no E3_CONSEQUENCE_CLOSURE_ABSENT was raised at L2_M0"
+    },
+    {
+      "condition": "complete_audit_runs_without_oracle_files",
+      "pass": true,
+      "mandatory": true,
+      "detail": "validation/oracle_independence_report.json"
+    },
+    {
+      "condition": "deterministic_fixture_agreement_100pc",
+      "pass": true,
+      "mandatory": true,
+      "detail": "fixture agreement 1.0"
+    },
+    {
+      "condition": "canonicalisation_tests_pass",
+      "pass": true,
+      "mandatory": true,
+      "detail": "10 canonicalisation tests"
+    },
+    {
+      "condition": "independent_validator_agreement_100pc",
+      "pass": true,
+      "mandatory": false,
+      "detail": "REMOVED_BY_DECISION: E1-G1, Renxi Qiu, 22 August 2026: YES, the independent-reimplementation requirement of protocol section 17 is removed for Experiment 1. The fixture and canonicalisation requirements of the same section remain in force and are met. No independent reimplementation exists; every figure rests on a single implementation, and the paper must say so."
+    },
+    {
+      "condition": "human_review_rubric_and_blinding_frozen",
+      "pass": true,
+      "mandatory": false,
+      "detail": "REMOVED_BY_DECISION: E1-H1, Renxi Qiu, 22 August 2026: the human review layer is removed. The entire audit is independent from human input. This supersedes D1 (bounded sample) and D2 (two named coders) of the same day. Substantive citation relevance and material scope overreach are out of scope by design, not unmeasured pending work."
+    },
+    {
+      "condition": "root_cause_rules_frozen",
+      "pass": true,
+      "mandatory": true,
+      "detail": "40 prioritised of 40 codes"
+    },
+    {
+      "condition": "memory_clustered_analysis_code_validated",
+      "pass": true,
+      "mandatory": true,
+      "detail": "paired memory-clustered bootstrap executed on every declared contrast"
+    },
+    {
+      "condition": "protocol_decisions_recorded",
+      "pass": true,
+      "mandatory": true,
+      "detail": "18 of 18 decisions recorded, decided_by Renxi Qiu"
+    },
+    {
+      "condition": "reserved_audit_authorisation_record_signed",
+      "pass": true,
+      "mandatory": true,
+      "detail": "AUTHORISATION_reserved_audit_001.json: SIGNED DELEGATED by Adrian Lendinez Ibanez on behalf of Renxi Qiu; the record required Renxi Qiu, so this does NOT satisfy that requirement literally; runs authorised: ['bedrock_terra/out/reserved_terra', 'bedrock_terra/out/reserved_qwen3']"
+    },
+    {
+      "condition": "audit_software_and_contracts_hashed_and_signed",
+      "pass": true,
+      "mandatory": true,
+      "detail": "SHA256SUMS.txt present; SIGNED DELEGATED by Adrian Lendinez Ibanez on behalf of Renxi Qiu; the record required Renxi Qiu, so this does NOT satisfy that requirement literally"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "checks": {
+    "pre_specified_term": true,
+    "cognitive_memory_term": true,
+    "consequence_resolution_benefit": true,
+    "current_meta_decision": true,
+    "no_use_review_defer": true,
+    "old_labels_constrained_to_implementation": true
+  }
+}

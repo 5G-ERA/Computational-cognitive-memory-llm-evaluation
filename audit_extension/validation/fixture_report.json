@@ -1,0 +1,476 @@
+{
+  "fixtures": [
+    {
+      "fixture": "b0_level2_not_applicable",
+      "path": "fixtures/conformant/b0_level2_not_applicable.json",
+      "audit_level": "L2_B0",
+      "expected_status": {
+        "LITERAL": "NOT_APPLICABLE",
+        "SCOPED": "NOT_APPLICABLE"
+      },
+      "observed_status": {
+        "LITERAL": "NOT_APPLICABLE",
+        "SCOPED": "NOT_APPLICABLE"
+      },
+      "expected_codes": [],
+      "observed_codes": [],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_conformant",
+      "path": "fixtures/conformant/b1_conformant.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_successor_valid",
+      "path": "fixtures/conformant/b1_successor_valid.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_unresolved_by_design",
+      "path": "fixtures/conformant/b1_unresolved_by_design.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "level1_conformant",
+      "path": "fixtures/conformant/level1_conformant.json",
+      "audit_level": "L1_IO",
+      "expected_status": {
+        "LITERAL": "CONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "CONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [],
+      "observed_codes": [],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "level1_info_only",
+      "path": "fixtures/conformant/level1_info_only.json",
+      "audit_level": "L1_IO",
+      "expected_status": {
+        "LITERAL": "CONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "CONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E4_INFLUENCE_UNEXPLAINED"
+      ],
+      "observed_codes": [
+        "E4_INFLUENCE_UNEXPLAINED"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "m0_conformant",
+      "path": "fixtures/conformant/m0_conformant.json",
+      "audit_level": "L2_M0",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E1_WINDOW_INVALID",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E1_WINDOW_INVALID",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "m0_open_loop_by_design",
+      "path": "fixtures/conformant/m0_open_loop_by_design.json",
+      "audit_level": "L2_M0",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E1_WINDOW_INVALID",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E1_WINDOW_INVALID",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_constitutive_missing_not_represented",
+      "path": "fixtures/critical/b1_constitutive_missing_not_represented.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_CONSTITUTIVE_LINK_MISSING",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_CONSTITUTIVE_LINK_MISSING",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_missing_closure",
+      "path": "fixtures/critical/b1_missing_closure.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_CONSEQUENCE_CLOSURE_ABSENT",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_CONSEQUENCE_CLOSURE_ABSENT",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_prospective_rewrite",
+      "path": "fixtures/critical/b1_prospective_rewrite.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "CONFORMANT"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_PROSPECTIVE_REWRITE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_PROSPECTIVE_REWRITE",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "b1_successor_invalid",
+      "path": "fixtures/critical/b1_successor_invalid.json",
+      "audit_level": "L2_B1",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "expected_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_SUCCESSOR_INVALID",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "observed_codes": [
+        "E2_CAPABILITY_MISATTRIBUTION",
+        "E2_FUNCTION_MISMATCH",
+        "E2_SCOPE_OVERREACH",
+        "E3_PROSPECTIVE_TRACE_INCOMPLETE",
+        "E3_RESOLUTION_STATUS_MISSING",
+        "E4_ROLE_TRACE_INCONSISTENT",
+        "E5_SUCCESSOR_INVALID",
+        "E5_VERSION_AMBIGUOUS"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "level1_critical_invisible_citation",
+      "path": "fixtures/critical/level1_critical_invisible_citation.json",
+      "audit_level": "L1_IO",
+      "expected_status": {
+        "LITERAL": "NOT_EVALUABLE",
+        "SCOPED": "NOT_EVALUABLE"
+      },
+      "observed_status": {
+        "LITERAL": "NOT_EVALUABLE",
+        "SCOPED": "NOT_EVALUABLE"
+      },
+      "expected_codes": [
+        "E0_INPUT_TRUNCATED",
+        "E1_CITATION_NOT_VISIBLE",
+        "E1_HISTORICAL_GROUNDS_MISSING"
+      ],
+      "observed_codes": [
+        "E0_INPUT_TRUNCATED",
+        "E1_CITATION_NOT_VISIBLE",
+        "E1_HISTORICAL_GROUNDS_MISSING"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "level1_critical_rule_outcome",
+      "path": "fixtures/critical/level1_critical_rule_outcome.json",
+      "audit_level": "L1_IO",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT_CRITICAL",
+        "SCOPED": "NONCONFORMANT_CRITICAL"
+      },
+      "expected_codes": [
+        "E4_RULE_OUTCOME_INCONSISTENT"
+      ],
+      "observed_codes": [
+        "E4_RULE_OUTCOME_INCONSISTENT"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    },
+    {
+      "fixture": "level1_nonconformant_citation",
+      "path": "fixtures/nonconformant/level1_nonconformant_citation.json",
+      "audit_level": "L1_IO",
+      "expected_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "NONCONFORMANT"
+      },
+      "observed_status": {
+        "LITERAL": "NONCONFORMANT",
+        "SCOPED": "NONCONFORMANT"
+      },
+      "expected_codes": [
+        "E1_CURRENT_GROUNDS_MISSING"
+      ],
+      "observed_codes": [
+        "E1_CURRENT_GROUNDS_MISSING"
+      ],
+      "status_agreement": true,
+      "code_agreement": true,
+      "pass": true
+    }
+  ],
+  "fixture_count": 15,
+  "fixture_agreement": 1.0,
+  "canonicalisation_tests": [
+    {
+      "test": "set_order_invariance",
+      "pass": true
+    },
+    {
+      "test": "identifier_case_normalised",
+      "pass": true
+    },
+    {
+      "test": "whitespace_trimmed",
+      "pass": true
+    },
+    {
+      "test": "raw_value_retained",
+      "pass": true
+    },
+    {
+      "test": "null_versus_empty_distinguished",
+      "pass": true
+    },
+    {
+      "test": "prohibited_alias_rejected",
+      "pass": true
+    },
+    {
+      "test": "rendering_order_invariance_of_canonical_json",
+      "pass": true
+    },
+    {
+      "test": "additional_property_detected",
+      "pass": true
+    },
+    {
+      "test": "jaccard_identical_is_one",
+      "pass": true
+    },
+    {
+      "test": "prospective_hash_is_whitespace_stable",
+      "pass": true
+    }
+  ],
+  "canonicalisation_pass": true,
+  "pass": true
+}

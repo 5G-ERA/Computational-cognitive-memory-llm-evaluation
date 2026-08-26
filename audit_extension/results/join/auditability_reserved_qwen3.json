@@ -1,0 +1,82 @@
+{
+  "label": "reserved_qwen3",
+  "inspection_authorisation": "SIG-reserved-qwen3-inspection-2026-08-19-001",
+  "analysis_status": "EXPLORATORY_POST_HOC",
+  "detector": "rule disagreement across the three renderings of one canonical context; oracle-free; precision 100 percent by construction",
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "contexts": 158,
+      "flagged": 38,
+      "flagged_containing_error": 38,
+      "precision": 100.0,
+      "contexts_with_error": 125,
+      "recall": 30.4,
+      "consistently_wrong_invisible": 87,
+      "citation_stability_among_all_correct": 32.35294117647059,
+      "citation_stability_among_with_error": 59.67741935483871,
+      "n_all_correct": 34,
+      "n_with_error": 124
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "contexts": 160,
+      "flagged": 20,
+      "flagged_containing_error": 20,
+      "precision": 100.0,
+      "contexts_with_error": 127,
+      "recall": 15.748031496062993,
+      "consistently_wrong_invisible": 107,
+      "citation_stability_among_all_correct": 44.11764705882353,
+      "citation_stability_among_with_error": 73.01587301587301,
+      "n_all_correct": 34,
+      "n_with_error": 126
+    },
+    "B1_VERIFIED_MEMORY": {
+      "contexts": 154,
+      "flagged": 56,
+      "flagged_containing_error": 56,
+      "precision": 100.0,
+      "contexts_with_error": 93,
+      "recall": 60.215053763440864,
+      "consistently_wrong_invisible": 37,
+      "citation_stability_among_all_correct": 49.27536231884058,
+      "citation_stability_among_with_error": 21.176470588235293,
+      "n_all_correct": 69,
+      "n_with_error": 85
+    }
+  },
+  "identical_replay": {
+    "repeat_run": "/home/ros/dca_v051/bedrock_terra/out/reserved_qwen3_repeat",
+    "by_condition": {
+      "B0_LLM_ALONE": {
+        "calls": 474,
+        "same_rule": 87.55274261603375,
+        "same_citations": 74.0506329113924,
+        "flagged": 59,
+        "flagged_containing_error": 59,
+        "precision": 100.0,
+        "calls_with_error": 367,
+        "recall": 16.076294277929154
+      },
+      "M0_OPEN_LOOP_MEMORY": {
+        "calls": 478,
+        "same_rule": 92.46861924686192,
+        "same_citations": 79.2887029288703,
+        "flagged": 36,
+        "flagged_containing_error": 36,
+        "precision": 100.0,
+        "calls_with_error": 374,
+        "recall": 9.62566844919786
+      },
+      "B1_VERIFIED_MEMORY": {
+        "calls": 471,
+        "same_rule": 79.19320594479831,
+        "same_citations": 55.62632696390658,
+        "flagged": 98,
+        "flagged_containing_error": 98,
+        "precision": 100.0,
+        "calls_with_error": 265,
+        "recall": 36.9811320754717
+      }
+    }
+  }
+}

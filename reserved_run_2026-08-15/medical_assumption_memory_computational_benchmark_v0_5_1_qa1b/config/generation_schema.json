@@ -1,0 +1,18 @@
+{
+  "version": "0.4.2",
+  "seed": 13082642,
+  "episodes": 28,
+  "contexts": 140,
+  "calls": 420,
+  "conditions": [
+    "B0_LLM_ALONE",
+    "M0_OPEN_LOOP_MEMORY",
+    "B1_VERIFIED_MEMORY"
+  ],
+  "primary_transforms": [
+    "BASE",
+    "SECONDARY"
+  ],
+  "primary_contrast": "B1-B0",
+  "mechanism_contrast": "B1-M0"
+}
