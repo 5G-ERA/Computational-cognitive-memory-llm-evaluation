@@ -103,9 +103,11 @@ Machine-readable version: [`results_table_v5_8.json`](results_table_v5_8.json).
 | Analysis scripts | `bedrock_terra/analysis_dev_arm.py`, `bedrock_terra/exp/`, `analysis/` |
 | Bootstrap seed and population hashes | run manifests and analysis outputs (`analysis_reserved_*.json`); prereg SHA-256 files in `bedrock_terra/exp/` |
 | Machine-readable results table | `results_table_v5_8.json` |
+| One-command verification | `reproduce/verify_experiment1.py` (offline re-derivation of all three arms, incl. bootstrap intervals) |
 
 Rescoring uses preserved captures only; no additional model calls are
-required or permitted.
+required or permitted. See `REPRODUCIBILITY.md` for the pipeline map,
+seeds, seals and the scoring rule.
 
 ## Open items before submission
 
