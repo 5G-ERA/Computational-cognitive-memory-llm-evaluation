@@ -1,0 +1,61 @@
+{
+  "paper": "A Computational Theory of Cognitive Memory (draft V5.8, 2026-08)",
+  "table": "Supplementary Note 7, Table 3 — multi-model outcomes",
+  "split": "reserved",
+  "denominator": "intention-to-evaluate",
+  "calls_per_condition": 480,
+  "memory_groups": 32,
+  "bootstrap": {"replicates": 10000, "cluster_unit": "memory_group", "note": "with 32 clusters the percentile bootstrap undercovers (~92.5% vs nominal 95%), disclosed at freeze"},
+  "conditions": {
+    "Raw": "B0_LLM_ALONE",
+    "Map": "M0_OPEN_LOOP_MEMORY",
+    "CM": "B1_VERIFIED_MEMORY"
+  },
+  "models": [
+    {
+      "paper_label": "GPT-4.6 Terra",
+      "executed_model": "global.openai.gpt-5.6-terra",
+      "provider": "Amazon Bedrock (us-east-1, global CRIS)",
+      "accuracy": {"Raw": 0.966667, "Map": 0.952083, "CM": 0.977083},
+      "contrasts_pp": {
+        "CM_minus_Raw": {"estimate": 1.0417, "ci95": [-0.625, 2.9167], "status": "primary"},
+        "CM_minus_Map": {"estimate": null, "ci95": null, "status": "not tested (gated on primary)"},
+        "Map_minus_Raw": {"estimate": -1.4583, "ci95": [-2.9167, -0.2083], "status": "exploratory"}
+      },
+      "temporal_gap_CM_minus_Raw_pp": 7.29,
+      "confirmatory_result": "NOT ESTABLISHED (ceiling effect: Raw accuracy 96.7%)",
+      "source_files": ["bedrock_terra/out/analysis_reserved_terra.json", "bedrock_terra/exp/exp1_family_pattern.json", "bedrock_terra/EDCA_instrument_studies_2026-08-20.html"]
+    },
+    {
+      "paper_label": "KIMI2",
+      "executed_model": "kimi-dev-72b",
+      "executed_snapshot": "moonshotai_Kimi-Dev-72B-Q4_0.gguf",
+      "label_reconciliation_required": true,
+      "provider": "private OpenAI-compatible endpoint (redacted)",
+      "accuracy": {"Raw": 0.741667, "Map": 0.704167, "CM": 0.839583},
+      "contrasts_pp": {
+        "CM_minus_Raw": {"estimate": 9.7917, "ci95": [5.0, 14.79], "status": "primary, sealed confirmatory, signed"},
+        "CM_minus_Map": {"estimate": 13.5417, "ci95": null, "status": "key secondary (CI in signed confirmatory report)"},
+        "Map_minus_Raw": {"estimate": -3.75, "ci95": null, "status": "includes zero (signed confirmatory report)"}
+      },
+      "temporal_gap_CM_minus_Raw_pp": 28.125,
+      "confirmatory_result": "POSITIVE",
+      "source_files": ["audit_extension/results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl", "reserved_run_2026-08-15/medical_assumption_memory_computational_benchmark_v0_5_1_qa1b/results/reserved_2026-08-15/run_manifest.json"]
+    },
+    {
+      "paper_label": "Qwen3",
+      "executed_model": "qwen.qwen3-next-80b-a3b",
+      "provider": "Amazon Bedrock (us-east-1, global CRIS)",
+      "accuracy": {"Raw": 0.29375, "Map": 0.254167, "CM": 0.545833},
+      "contrasts_pp": {
+        "CM_minus_Raw": {"estimate": 25.2083, "ci95": [21.6667, 28.5417], "status": "primary"},
+        "CM_minus_Map": {"estimate": 29.1667, "ci95": [25.4167, 32.9167], "status": "key secondary"},
+        "Map_minus_Raw": {"estimate": -3.9583, "ci95": [-7.0833, -0.8333], "status": "exploratory"}
+      },
+      "temporal_gap_CM_minus_Raw_pp": 29.1667,
+      "confirmatory_result": "POSITIVE",
+      "caveat": "under B0 the model collapses to ESCALATE_REVIEW (~89%); benefit concentrates in non-escalate items",
+      "source_files": ["bedrock_terra/out/analysis_reserved_qwen3.json", "bedrock_terra/exp/exp1_family_pattern.json"]
+    }
+  ]
+}
