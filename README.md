@@ -1,132 +1,163 @@
-# Computational Cognitive Memory — LLM Evaluation
+<h1 align="center">Computational Cognitive Memory<br/>LLM Evaluation</h1>
 
-Results and reproducibility package for **Experiment 1 (LLM Multi-Model
-Evaluation)** of *A Computational Theory of Cognitive Memory* (Qiu,
-Pham, Lendinez Ibanez, Li — University of Bedfordshire / University of
-Birmingham, draft V5.8, 2026-08). The paper introduces **Computational
-Cognitive Memory (CCM)**: a DCA-scoped cognitive interface plus
-governed cognitive dynamics realised through Distributed Cognitive
-Continuity (DCC). Experiment 1 tests whether an evidence-resolved
-cognitive-memory representation improves an LLM's meta-decision over
-raw longitudinal evidence and over a pre-specified consequence map
-built from the same source material. (Experiment 2, the robotic
-evaluation, is not in this repository.)
+<p align="center">
+  <a href="https://github.com/5G-ERA/Computational-cognitive-memory-llm-evaluation/actions/workflows/verify.yml"><img alt="verify" src="https://github.com/5G-ERA/Computational-cognitive-memory-llm-evaluation/actions/workflows/verify.yml/badge.svg"></a>
+  <img alt="Reproduction: offline" src="https://img.shields.io/badge/reproduction-offline%2C%20no%20model%20calls-2ea44f">
+  <img alt="Python" src="https://img.shields.io/badge/python-%E2%89%A5%203.8%20%2B%20numpy-blue">
+  <img alt="Models" src="https://img.shields.io/badge/arms-Kimi%20%C2%B7%20Qwen3%20%C2%B7%20GPT--Terra-8a2be2">
+</p>
+
+<p align="center">
+  <em>Results and reproducibility package for Experiment 1 of<br/>
+  <strong>A Computational Theory of Cognitive Memory</strong><br/>
+  Qiu · Pham · Lendinez Ibanez · Li — University of Bedfordshire · University of Birmingham (draft V5.8, 2026-08)</em>
+</p>
+
+---
+
+The paper introduces **Computational Cognitive Memory (CCM)**: a
+DCA-scoped cognitive interface plus governed cognitive dynamics
+realised through Distributed Cognitive Continuity (DCC). **Experiment 1**
+asks whether an evidence-resolved cognitive-memory representation
+improves an LLM's meta-decision over raw longitudinal evidence and over
+a pre-specified consequence map built from the same source material.
+This repository holds the frozen benchmark releases, execution records,
+analyses and QA reports of that experiment, and reproduces every
+reported number offline. (Experiment 2, the robotic evaluation, is not
+in this repository.)
 
 ## Results
 
-Reserved (confirmatory) split: 32 memory groups, 480 matched contexts,
-1440 calls per model, intention-to-evaluate, percentile bootstrap with
-10,000 replicates clustered at the memory-group level. Conditions:
-**Raw** = `B0_LLM_ALONE`, **Map** = `M0_OPEN_LOOP_MEMORY`,
+Reserved (confirmatory) split — 32 memory groups, 480 matched contexts,
+1440 calls per model, intention-to-evaluate denominator, percentile
+bootstrap with 10,000 replicates clustered at the memory-group level.
+
+Conditions: **Raw** = `B0_LLM_ALONE` · **Map** = `M0_OPEN_LOOP_MEMORY` ·
 **CM** = `B1_VERIFIED_MEMORY`. Primary contrast **Δ = CM − Raw**.
 
-| Arm (paper label) | Executed model | Raw | Map | CM | Δ CM−Raw (pp) | 95% CI | Status |
-|---|---|---|---|---|---|---|---|
-| KIMI2 † | `kimi-dev-72b` (Q4_0) | 74.17% | 70.42% | 83.96% | **+9.79** | [+5.00, +14.79] | POSITIVE — sealed run, signed |
-| Qwen3 | `qwen.qwen3-next-80b-a3b` | 29.38% | 25.42% | 54.58% | **+25.21** | [+21.67, +28.54] | POSITIVE — pre-registered replication |
-| GPT-4.6 Terra | `global.openai.gpt-5.6-terra` | 96.67% | 95.21% | 97.71% | +1.04 | [−0.63, +2.92] | NOT ESTABLISHED — instrument ceiling |
+| Arm (paper label) | Executed model | Raw | Map | CM | **Δ CM−Raw** | 95% CI | Status |
+|---|---|--:|--:|--:|--:|:-:|---|
+| KIMI2 [^1] | `kimi-dev-72b` (Q4_0) | 74.17% | 70.42% | 83.96% | **+9.79 pp** | [+5.00, +14.79] | ✅ POSITIVE — sealed run, signed |
+| Qwen3 | `qwen.qwen3-next-80b-a3b` | 29.38% | 25.42% | 54.58% | **+25.21 pp** | [+21.67, +28.54] | ✅ POSITIVE — pre-registered replication |
+| GPT-4.6 Terra | `global.openai.gpt-5.6-terra` | 96.67% | 95.21% | 97.71% | +1.04 pp | [−0.63, +2.92] | ⬜ NOT ESTABLISHED — instrument ceiling |
 
-Key secondary (CM − Map, gated on the primary): +13.54 pp (Kimi arm),
-+29.17 pp [+25.42, +32.92] (Qwen3) — the benefit requires resolving
-what the evidence supported, not merely exposing the expected
-consequence relation, whose effect is null or negative (Map − Raw:
-−3.96 pp [−7.08, −0.83] in Qwen3, exploratory).
+**Key secondary** (CM − Map, gated on the primary): +13.54 pp (Kimi
+arm), +29.17 pp [+25.42, +32.92] (Qwen3). The benefit requires
+*resolving what the evidence supported*, not merely exposing the
+expected consequence relation, whose own effect is null or negative
+(Map − Raw: −3.96 pp [−7.08, −0.83] in Qwen3, exploratory).
 
-Pre-registered family analysis (secondary): the largest effect
-concentrates in the **TEMPORAL_GAP** family — +28.12 pp (Kimi arm),
-+29.17 pp (Qwen3), and **+7.29 pp for Terra**, whose only margin below
-ceiling is exactly there
-(`bedrock_terra/exp/exp1_family_pattern.json`).
+**Pre-registered family analysis** (secondary): the effect concentrates
+in the **TEMPORAL_GAP** family — +28.12 pp (Kimi arm), +29.17 pp
+(Qwen3) and **+7.29 pp for Terra**, whose only margin below ceiling is
+exactly there (`bedrock_terra/exp/exp1_family_pattern.json`).
 
-Machine-readable: [`results_table_v5_8.json`](results_table_v5_8.json).
-Paper mapping (Supplementary Note 7 manifest and results tables):
-[`EXPERIMENT1_RELEASE.md`](EXPERIMENT1_RELEASE.md).
+Machine-readable outcomes: [`results_table_v5_8.json`](results_table_v5_8.json) ·
+Paper mapping (Supp. Note 7 tables): [`EXPERIMENT1_RELEASE.md`](EXPERIMENT1_RELEASE.md)
 
-† The paper label and the executed checkpoint differ; see the
-reconciliation note in `EXPERIMENT1_RELEASE.md`.
+> **Declared caveats.** Qwen3 under Raw collapses to `ESCALATE_REVIEW`
+> (~89%), so its benefit concentrates in non-escalate items. Terra's
+> null is a ceiling of the instrument, not evidence against the
+> mechanism. With 32 clusters the bootstrap undercovers (~92.5% vs
+> nominal 95%), disclosed at freeze. The audit-extension findings
+> (`audit_extension/`) are exploratory; a pre-registered replay-recall
+> test on the untouched Kimi arm has **not been executed**.
 
-**Declared caveats.** Qwen3 under Raw collapses to `ESCALATE_REVIEW`
-(~89%), so its benefit concentrates in non-escalate items. Terra's
-null is a ceiling of the instrument, not evidence against the
-mechanism. With 32 clusters the bootstrap undercovers (~92.5% vs
-nominal 95%), disclosed at freeze. The audit-extension findings
-(`audit_extension/`) are exploratory; a pre-registered replay-recall
-test on the untouched Kimi arm has **not been executed**.
+[^1]: The paper label and the executed checkpoint differ; see the
+    reconciliation note in `EXPERIMENT1_RELEASE.md`.
 
 ## Reproduce the results
 
-Offline, from the frozen records in this repository — no model calls.
-Requires Python ≥ 3.8 and numpy.
+Offline, from the frozen records in this repository — no model calls,
+no network. Requires Python ≥ 3.8 and numpy. The
+[`verify` workflow](.github/workflows/verify.yml) runs this same check
+on every push.
 
 ```bash
 python3 reproduce/verify_experiment1.py
 ```
 
-This re-derives the Terra and Qwen3 reserved results from the raw
-terminal captures through the frozen pipeline (parse → scoring →
-frozen clustered bootstrap, deterministic seed) and checks accuracies,
-contrasts **and intervals** against the frozen outputs; the Kimi arm is
-recomputed from the qa1c-scored records of its sealed confirmatory run.
-Expected final line: `All three arms reproduce the frozen results…`.
+```
+== terra: re-derived from raw captures. CM-Raw +1.0417 pp, CI95 [-0.6250, 2.9167] OK
+== qwen3: re-derived from raw captures. CM-Raw +25.2083 pp, CI95 [21.6667, 28.5417] OK
+== kimi arm (kimi-dev-72b): recomputed from qa1c-scored records. CM-Raw +9.7917 pp OK
 
-See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the pipeline map,
-seeds, seals and authorisation records, the scoring rule (and a trap to
-avoid), integrity hashes, and exactly what cannot be reproduced from
-here.
+All three arms reproduce the frozen results, including the
+bootstrap intervals of the Bedrock arms (deterministic seed).
+```
+
+The verifier re-derives the Terra and Qwen3 reserved results from the
+**raw terminal captures** through the frozen pipeline (parse → scoring →
+frozen clustered bootstrap, deterministic seed) and checks accuracies,
+contrasts *and intervals* against the frozen outputs; the Kimi arm is
+recomputed from the qa1c-scored records of its sealed confirmatory run.
+
+➡ [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) — pipeline map, seeds,
+seals and authorisation records, the scoring rule (and a trap to
+avoid), integrity hashes, and what cannot be reproduced from here.
 
 ## Repository layout
 
-Ordered by function; internal paths in the frozen reports refer to this
+Ordered by function. Internal paths in the frozen reports refer to this
 same layout, so directories are not renamed.
 
-**Results and analysis**
+#### Results and analysis
 
 | Path | Content |
 |---|---|
-| `results_table_v5_8.json` | Machine-readable multi-model outcomes |
+| [`results_table_v5_8.json`](results_table_v5_8.json) | Machine-readable multi-model outcomes |
 | `bedrock_terra/out/analysis_reserved_*.json` | Frozen confirmatory analyses (Terra, Qwen3) |
 | `audit_extension/results/kimi_confirmatory/` | qa1c-scored records of the sealed Kimi-arm run |
 | `bedrock_terra/exp/` | Pre-registered family/repeat analyses + SHA-256 preregs |
 | `analysis/` | Signed frozen estimator (`analysis_section6.py`) and section-6 outputs |
 | `bedrock_terra/EDCA_*.html` | Execution, eligibility, results and instrument reports |
 
-**Reproduction**
+#### Reproduction
 
 | Path | Content |
 |---|---|
-| `reproduce/verify_experiment1.py` | One-command offline verification of all three arms |
-| `reproduce/run_frozen_analysis.py` | Runs the frozen pipeline on a preserved run directory |
+| [`reproduce/verify_experiment1.py`](reproduce/verify_experiment1.py) | One-command offline verification of all three arms |
+| [`reproduce/run_frozen_analysis.py`](reproduce/run_frozen_analysis.py) | Runs the frozen pipeline on a preserved run directory |
 | `bedrock_terra/analysis_dev_arm.py` | Frozen analysis entry point (seal-enforcing) |
 | `bedrock_terra/signature/` | Signed authorisation/inspection records that release the seals |
 
-**Frozen benchmark and execution records**
+#### Frozen benchmark and execution records
 
 | Path | Content |
 |---|---|
 | `release_qa1c/` | Frozen benchmark release qa1c (prompts, oracle, freeze records, pins) |
 | `reserved_run_2026-08-15/` | Kimi-arm reserved run: 1440/1440 raw captures, manifests, defect logs |
 | `bedrock_terra/out/reserved_*/` | Terra and Qwen3 reserved runs: raw captures, manifests, completion reports |
-| `bedrock_terra/config/`, `bedrock_terra/adapters/` | Frozen model configs and transport adapters |
+| `bedrock_terra/config/` · `bedrock_terra/adapters/` | Frozen model configs and transport adapters |
 
-**History and QA (how the release got here)**
+#### History and QA (how the release got here)
 
 | Path | Content |
 |---|---|
 | `medical_assumption_memory_computational_benchmark_v0_5_1/` | Benchmark v0.5.1 as received |
-| `medical_assumption_memory_v0_5_1_qa1_patch/`, `pkg_qa1b/`, `release_qa1b/` | qa1 review and qa1b release-candidate work |
+| `medical_assumption_memory_v0_5_1_qa1_patch/` · `pkg_qa1b/` · `release_qa1b/` | qa1 review and qa1b release-candidate work |
 | `patch_qa1c/` | Parser fix for DEFECT_001 (35 valid answers mis-scored) |
 | `audit_extension/` | Experiment-1 audit extension: contracts, validators, exploratory results |
 
 ## Provenance and integrity
 
-- Reserved splits were executed sealed; scoring and analysis opened
+- Reserved splits were executed **sealed**; scoring and analysis opened
   only under the signed authorisation records in
   `bedrock_terra/signature/` — the analysis tooling refuses to run
   without them, by code.
 - Run manifests, SHA-256 freeze records, prereg hashes and dependency
   pins are included. 28 files had private infrastructure identifiers
-  redacted *after* freeze for publication (`SANITIZATION.md`), so the
-  bytes of those specific files no longer match the recorded hashes.
+  redacted *after* freeze for publication ([`SANITIZATION.md`](SANITIZATION.md)),
+  so the bytes of those specific files no longer match the recorded
+  hashes.
 - Defects found along the way are reported as found (`DEFECT_001`,
   `FINDING_002` addendum, `FINDING_003`), including the ones that were
   our own artefacts.
+
+## Citation
+
+See [`CITATION.cff`](CITATION.cff). Please cite the paper:
+
+> R. Qiu, D. Pham, A. Lendinez Ibanez, D. Li. *A Computational Theory
+> of Cognitive Memory.* Draft V5.8, August 2026. Manuscript in
+> preparation.

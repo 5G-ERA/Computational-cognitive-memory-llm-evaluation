@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: >-
+  If you use the records, analyses or results in this repository,
+  please cite the paper below.
+title: "Computational Cognitive Memory — LLM Evaluation (Experiment 1 release)"
+type: dataset
+repository-code: "https://github.com/5G-ERA/Computational-cognitive-memory-llm-evaluation"
+authors:
+  - family-names: Qiu
+    given-names: Renxi
+    affiliation: University of Bedfordshire
+  - family-names: Pham
+    given-names: Duc
+    affiliation: University of Birmingham
+  - family-names: Lendinez Ibanez
+    given-names: Adrian
+    affiliation: University of Bedfordshire
+  - family-names: Li
+    given-names: Dayou
+    affiliation: University of Bedfordshire
+preferred-citation:
+  type: unpublished
+  title: "A Computational Theory of Cognitive Memory"
+  year: 2026
+  notes: "Draft V5.8, August 2026. Manuscript in preparation."
+  authors:
+    - family-names: Qiu
+      given-names: Renxi
+      affiliation: University of Bedfordshire
+    - family-names: Pham
+      given-names: Duc
+      affiliation: University of Birmingham
+    - family-names: Lendinez Ibanez
+      given-names: Adrian
+      affiliation: University of Bedfordshire
+    - family-names: Li
+      given-names: Dayou
+      affiliation: University of Bedfordshire

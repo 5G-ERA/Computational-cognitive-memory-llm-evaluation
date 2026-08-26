@@ -31,24 +31,21 @@ result (+9.79 pp, CI95 [+5.00, +14.79]).
 
 ## The frozen pipeline
 
+```mermaid
+flowchart TD
+    A["<b>Frozen benchmark package</b><br/>prompts, schema, oracle references<br/><code>release_qa1c/…_qa1c/</code>"]
+    B["<b>Run manifests</b><br/>endpoint, params, budgets, retry policy, seeds<br/><code>…/reserved_*/run_manifest.json</code>"]
+    C["<b>Raw terminal captures</b><br/>one terminal record per expected call, 1440/arm<br/><code>…/reserved_*/responses_raw.jsonl</code> (+ attempts, call registry)"]
+    D["<b>Parse · schema check · scoring</b><br/>qa_core / core, parser qa1c"]
+    E["<b>Frozen estimator</b> — <code>analysis/analysis_section6.py</code><br/>memory-clustered percentile bootstrap, 10,000 replicates, seed 13082654,<br/>intention-to-evaluate; B1−B0 primary · B1−M0 gated · M0−B0 exploratory"]
+    F["<b>Frozen outputs</b><br/><code>bedrock_terra/out/analysis_reserved_*.json</code>"]
+    A --> C
+    B --> C
+    C --> D --> E --> F
 ```
-benchmark package (frozen prompts, schema, oracle references)
-  release_qa1c/medical_assumption_memory_computational_benchmark_v0_5_1_qa1c/
-        │
-run manifests (endpoint, params, budgets, retry policy, seeds)
-  …/reserved_*/run_manifest.json
-        │
-raw terminal captures — one terminal record per expected call, 1440/arm
-  …/reserved_*/responses_raw.jsonl  (+ attempts.jsonl, call_registry.jsonl)
-        │
-parse + schema check + scoring   (qa_core / core, parser qa1c)
-        │
-frozen estimator                 analysis/analysis_section6.py
-  memory-clustered percentile bootstrap, 10,000 replicates, seed 13082654,
-  intention-to-evaluate; hierarchy: B1−B0 primary, B1−M0 gated, M0−B0 exploratory
-        │
-frozen outputs                   bedrock_terra/out/analysis_reserved_*.json
-```
+
+Everything below the captures re-runs offline; the reproduction
+scripts drive exactly this path.
 
 The frozen entry point `bedrock_terra/analysis_dev_arm.py` references
 the signed estimator through an absolute path from the original
