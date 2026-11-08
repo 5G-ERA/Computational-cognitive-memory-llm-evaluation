@@ -9,12 +9,26 @@ artefacts form a complete, coherent, reproducible and challengeable record of th
 visible evidence to output. A trace can be conformant while the decision is wrong, and the
 reverse.
 
-## Status, 22 August 2026
+## Status
 
 - Development splits audited for two models (Terra, Qwen3), 360 calls each.
-- **Reserved splits NOT audited.** The protocol section 19 gate is **NO-GO** on one remaining
-  condition: the reserved-audit execution authorisation is unsigned. See
-  `validation/go_no_go_gate.json`.
+- **Reserved splits audited for Terra and Qwen3**, 1440 calls each, under
+  `validation/AUTHORISATION_reserved_audit_001.json` (signed, delegated, 22 August 2026).
+  Reports in `results/reserved_terra/` and `results/reserved_qwen3/`; joins with decision
+  accuracy, the replay recall and Eq. (37) in `results/join/`. The protocol section 19 gate
+  reads **GO** (`validation/go_no_go_gate.json`, which lists the arms audited when it was
+  evaluated: development only).
+- **Kimi reserved arm**, 8 November 2026. `validation/PREREG_replay_recall_kimi_2026-08-22.json`
+  and `validation/AUTHORISATION_reserved_audit_002.json` were signed DELEGATED, by Adrian Lendinez
+  Ibanez on behalf of Renxi Qiu. Both records ask for a direct signature, and both say they do
+  not satisfy it literally. The confirmatory replay test then ran once:
+  `results/kimi_confirmatory/CONFIRMATORY_RESULT.json`, invariant-replay recall B1−B0
+  +29.63 pp [+8.81, +51.28], success criterion met. After it, and only after it, the oracle-free
+  audit ran (`results/reserved_kimi/`) together with Eq. (37) (`results/join/eq37_reserved_kimi.json`).
+  These are exploratory. The join with decision accuracy has not been computed for this arm.
+- `validation/SHA256SUMS.txt` is the manifest of the 22 August freeze and is **not rebuilt**.
+  Files changed after that freeze (this README, the two signed records and the new results)
+  therefore no longer match it, by design.
 - **Protocol section 16, and the independent-reimplementation requirement of section 17,
   are REMOVED for Experiment 1** by decisions E1-H1 and E1-G1. The rest of section 17 stands:
   the deterministic fixtures and canonicalisation tests still run and still pass. Both removals

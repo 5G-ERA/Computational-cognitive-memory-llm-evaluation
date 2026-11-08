@@ -1,0 +1,18 @@
+{
+  "split": "reserved",
+  "expected_calls": 1440,
+  "unique_call_ids": 1440,
+  "frozen_call_registry_count": 1440,
+  "counts_agree": true,
+  "conditions": {
+    "B0_LLM_ALONE": 480,
+    "B1_VERIFIED_MEMORY": 480,
+    "M0_OPEN_LOOP_MEMORY": 480
+  },
+  "renderings": {
+    "CHRONOLOGICAL": 480,
+    "CONCISE": 480,
+    "STRUCTURED": 480
+  },
+  "memories": 32
+}

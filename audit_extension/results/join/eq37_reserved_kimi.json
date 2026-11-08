@@ -1,0 +1,57 @@
+{
+  "label": "reserved_kimi",
+  "equation": "V4.7 (37)",
+  "split": "reserved",
+  "dropped_boundaries_missing_rendering": {
+    "M0_OPEN_LOOP_MEMORY": 30,
+    "B0_LLM_ALONE": 32,
+    "B1_VERIFIED_MEMORY": 23
+  },
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "T_eval": 128,
+      "Q_audit": 0.8791944808137482,
+      "mean_q_DCA": 0.9555141683866522,
+      "mean_q_DCC": 0.8489583333333331,
+      "Q_audit_on_erroneous_boundaries": null,
+      "Q_audit_on_correct_boundaries": null,
+      "n_erroneous": null,
+      "n_correct": null
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "T_eval": 130,
+      "Q_audit": 0.8160886851092145,
+      "mean_q_DCA": 0.9585787621391334,
+      "mean_q_DCC": 0.7666666666666663,
+      "Q_audit_on_erroneous_boundaries": null,
+      "Q_audit_on_correct_boundaries": null,
+      "n_erroneous": null,
+      "n_correct": null
+    },
+    "B1_VERIFIED_MEMORY": {
+      "T_eval": 137,
+      "Q_audit": 0.8769843543144792,
+      "mean_q_DCA": 0.948183635942103,
+      "mean_q_DCC": 0.8588807785888077,
+      "Q_audit_on_erroneous_boundaries": null,
+      "Q_audit_on_correct_boundaries": null,
+      "n_erroneous": null,
+      "n_correct": null
+    }
+  },
+  "contrast_B1_minus_B0": {
+    "Q_audit_points_x100": {
+      "point": -0.2210126499269105,
+      "lo": -4.34714272134102,
+      "hi": 4.017908841448435,
+      "clusters": 32,
+      "resamples": 10000
+    },
+    "permutation": {
+      "p": 0.9228077192280771,
+      "observed": 0.2210126499269105,
+      "clusters": 32
+    },
+    "note": "paired memory-clustered bootstrap, 10,000 resamples; in percentage points of Q_audit"
+  }
+}

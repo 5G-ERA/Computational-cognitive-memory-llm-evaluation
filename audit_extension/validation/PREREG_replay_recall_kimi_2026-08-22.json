@@ -50,7 +50,7 @@
   "multiplicity": "one primary endpoint; secondaries descriptive; no adjustment required",
   "what_would_disconfirm": "an interval including zero, or a negative point estimate",
   "limits": "no identical-replay axis for Kimi (no repeat run); single arm; 32 memory clusters, coverage near 92.5% against nominal 95%",
-  "signature_status": "NOT_SIGNED",
+  "signature_status": "SIGNED",
   "signature_required_from": "Renxi Qiu",
   "signature_mode_required": "DIRECT",
   "created_at": "2026-08-22T17:29:11+01:00",
@@ -71,5 +71,12 @@
       "no prior confirmatory result file exists"
     ],
     "dry_run": "--dry-run-on reserved_qwen3 reproduces the exploratory +29.82 without touching Kimi"
-  }
+  },
+  "signature_mode": "DELEGATED",
+  "signed_by": "Adrian Lendinez Ibanez",
+  "signed_at": "2026-11-08T21:49:01+01:00",
+  "on_behalf_of": "Renxi Qiu",
+  "delegating_instruction": "Renxi Qiu agreed on 8 November 2026 to sign this record and compute the test, relayed by Adrian Lendinez Ibanez in the session chat ('renxi dice q si, q lo firma y lo computamos'); Adrian then instructed that the delegate sign ('lo hacemos nosotros, yo autorizo'). Standing delegation: AUTHORISATION_reserved_audit_001, Renxi Qiu authorises Adrian at his own level of authority (22 August 2026). Paraphrase relayed by the delegate, not verbatim words from Renxi. Command run by Claude Code (claude-uni session e4489200) on Adrian's instruction.",
+  "satisfies_signature_requirement_literally": false,
+  "signature_caveat": "The record requires the signature of Renxi Qiu. This is a DELEGATED signature by Adrian Lendinez Ibanez on their instruction, not a signature by Renxi Qiu. Anyone relying on this record should know which of the two it is."
 }

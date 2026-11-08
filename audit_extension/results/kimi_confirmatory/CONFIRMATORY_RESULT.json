@@ -1,0 +1,74 @@
+{
+  "by_condition": {
+    "B0_LLM_ALONE": {
+      "boundaries": 143,
+      "recall": 65.9090909090909,
+      "erroneous_boundaries": 44,
+      "rule_consistency": 79.72027972027972,
+      "citation_stability_all_correct": 20.2020202020202,
+      "citation_stability_with_error": 29.545454545454547
+    },
+    "M0_OPEN_LOOP_MEMORY": {
+      "boundaries": 138,
+      "recall": 83.01886792452831,
+      "erroneous_boundaries": 53,
+      "rule_consistency": 68.1159420289855,
+      "citation_stability_all_correct": 19.54022988505747,
+      "citation_stability_with_error": 3.9215686274509802
+    },
+    "B1_VERIFIED_MEMORY": {
+      "boundaries": 147,
+      "recall": 96.42857142857143,
+      "erroneous_boundaries": 28,
+      "rule_consistency": 81.63265306122449,
+      "citation_stability_all_correct": 15.126050420168067,
+      "citation_stability_with_error": 7.142857142857143
+    }
+  },
+  "dropped_incomplete": {
+    "B0_LLM_ALONE": 17,
+    "M0_OPEN_LOOP_MEMORY": 22,
+    "B1_VERIFIED_MEMORY": 13
+  },
+  "PRIMARY_recall_B1_minus_B0": {
+    "difference": {
+      "point": 29.629629629629626,
+      "lo": 8.809505934505927,
+      "hi": 51.28205128205128,
+      "clusters": 24,
+      "resamples": 10000
+    },
+    "permutation": {
+      "p": 0.0212978702129787,
+      "observed": 29.629629629629626,
+      "clusters": 24
+    }
+  },
+  "secondary_rule_consistency_B1_minus_B0": {
+    "difference": {
+      "point": 1.912373340944773,
+      "lo": -5.402379843881146,
+      "hi": 9.594899830726092,
+      "clusters": 32,
+      "resamples": 10000
+    },
+    "permutation": {
+      "p": 0.6352364763523648,
+      "observed": 1.912373340944773,
+      "clusters": 32
+    }
+  },
+  "secondary_stability_flip": {
+    "B0_correct_minus_error": -9.343434343434346,
+    "B1_correct_minus_error": 7.9831932773109235
+  },
+  "success_criterion_met": true,
+  "mode": "CONFIRMATORY",
+  "arm": "Kimi-Dev-72B reserved split",
+  "prereg_sha256_at_run": "ffe8b0ae7e843fd52c7f184e732969a888971c0720bdc7d5d276349044b5c3e1",
+  "authorisation_sha256_at_run": "d630a2ddf4f26e8638433d85ae76986f5fb5b6bc5805a1807b2e8b84400b5eec",
+  "input_sha256": "6b7e07313547162746306551108df889220c82657a834b5c3b1e129ba171ab62",
+  "interval_code_sha256": "3ed736319ae75dab69def65120c831fc4e919d99d0b544b814f87c2ed9cc0122",
+  "pinned_interval_code_sha256": "3ed736319ae75dab69def65120c831fc4e919d99d0b544b814f87c2ed9cc0122",
+  "code_hash_matches_prereg": true
+}
