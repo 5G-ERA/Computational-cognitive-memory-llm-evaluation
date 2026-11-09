@@ -59,10 +59,15 @@ Paper mapping (Supp. Note 7 tables): [`EXPERIMENT1_RELEASE.md`](EXPERIMENT1_RELE
 > (~89%), so its benefit concentrates in non-escalate items. Terra's
 > null is a ceiling of the instrument, not evidence against the
 > mechanism. With 32 clusters the bootstrap undercovers (~92.5% vs
-> nominal 95%), disclosed at freeze. The audit-extension findings
-> (`audit_extension/`) are exploratory, except the pre-registered
-> replay-recall test on the Kimi arm, run once on 8 November 2026 (see
-> [Reconstruction and replay](#reconstruction-and-replay)).
+> nominal 95%), disclosed at freeze.
+>
+> **Audit extension.** The pre-registered invariant-replay recall
+> analysis was executed on the untouched Kimi reserved arm under the
+> frozen protocol, once, on 8 November 2026. It is complete: B1−B0
+> +29.63 pp [+8.81, +51.28], success criterion met. The result, interval,
+> execution authorisation and verification artefacts are listed in
+> [Reconstruction and replay](#reconstruction-and-replay). The other
+> audit-extension endpoints are exploratory.
 
 [^1]: The paper label and the executed checkpoint differ; see the
     reconciliation note in `EXPERIMENT1_RELEASE.md`.
@@ -121,15 +126,27 @@ How to read it:
   fall concentrates on erroneous boundaries (−16.17 [−22.05, −10.30])
   against −1.23 [−2.68, −0.36] on correct ones: CM errors become
   inconsistent across renderings instead of consistently wrong.
-- **The KIMI2 replay test is confirmatory.** The hypothesis was formed on
-  Qwen3 and Terra, then pre-registered on 22 August 2026, before any audit
-  or replay quantity was computed on KIMI2
-  (`audit_extension/validation/PREREG_replay_recall_kimi_2026-08-22.json`:
-  endpoint, detector, input hash, interval-code hash, seed and success
-  criterion). It was run once, on 8 November 2026, by
-  `audit_extension/scripts/run_confirmatory_replay.py`. The input and code
-  hashes matched the pinned values. The success criterion (a 95% interval
-  excluding zero with a positive estimate) is met. The paired contrast
+- **The KIMI2 replay test is confirmatory and complete.** The hypothesis
+  was formed on Qwen3 and Terra, then pre-registered on 22 August 2026,
+  before any audit or replay quantity was computed on KIMI2. It was run
+  once, on 8 November 2026, under that frozen protocol. The input and
+  interval-code hashes matched the pinned values, and the success
+  criterion (a 95% interval excluding zero with a positive estimate) is
+  met. The artefacts:
+
+  | Artefact | Path |
+  |---|---|
+  | Pre-registration (endpoint, detector, seed, pinned input and code hashes, criterion) | `audit_extension/validation/PREREG_replay_recall_kimi_2026-08-22.json` |
+  | Execution authorisation | `audit_extension/validation/AUTHORISATION_reserved_audit_002.json` |
+  | Scoring input (qa1c parse of the 1440 sealed captures) | `audit_extension/results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl` |
+  | Runner | `audit_extension/scripts/run_confirmatory_replay.py` |
+  | Final result, with the hashes of the prereg, authorisation, input and code it ran under | `audit_extension/results/kimi_confirmatory/CONFIRMATORY_RESULT.json` |
+
+  The four hashes recorded in the result match the published files. The
+  result re-derives offline:
+  `python3 audit_extension/scripts/run_confirmatory_replay.py --dry-run-on audit_extension/results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl`
+  reproduces every endpoint field. The runner refuses a second
+  confirmatory run. The paired contrast
   uses the 24 memories with at least one erroneous context under both
   conditions. Contexts with fewer than three valid renderings were dropped
   as pre-specified: 17 / 22 / 13. Secondary endpoints, descriptive: rule

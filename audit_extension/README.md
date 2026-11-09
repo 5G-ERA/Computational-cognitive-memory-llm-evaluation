@@ -18,14 +18,22 @@ reverse.
   accuracy, the replay recall and Eq. (37) in `results/join/`. The protocol section 19 gate
   reads **GO** (`validation/go_no_go_gate.json`, which lists the arms audited when it was
   evaluated: development only).
-- **Kimi reserved arm**, 8 November 2026. `validation/PREREG_replay_recall_kimi_2026-08-22.json`
-  and `validation/AUTHORISATION_reserved_audit_002.json` were signed DELEGATED, by Adrian Lendinez
-  Ibanez on behalf of Renxi Qiu. Both records ask for a direct signature, and both say they do
-  not satisfy it literally. The confirmatory replay test then ran once:
-  `results/kimi_confirmatory/CONFIRMATORY_RESULT.json`, invariant-replay recall B1−B0
-  +29.63 pp [+8.81, +51.28], success criterion met. After it, and only after it, the oracle-free
-  audit ran (`results/reserved_kimi/`) together with Eq. (37) (`results/join/eq37_reserved_kimi.json`).
-  These are exploratory. The join with decision accuracy has not been computed for this arm.
+- **Kimi reserved arm: the designated reserved invariant-replay analysis is complete.** It ran
+  under the frozen protocol on 8 November 2026, once, and gave invariant-replay recall B1−B0
+  +29.63 pp [+8.81, +51.28], with the success criterion met. Artefacts:
+  - execution authorisation: `validation/AUTHORISATION_reserved_audit_002.json`;
+  - pre-registration, with the pinned input and interval-code hashes:
+    `validation/PREREG_replay_recall_kimi_2026-08-22.json`;
+  - scoring input: `results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl`;
+  - final analysis, recording the hashes it ran under:
+    `results/kimi_confirmatory/CONFIRMATORY_RESULT.json`.
+
+  Both records ask for a direct signature. They were signed DELEGATED, by Adrian Lendinez Ibanez
+  on behalf of Renxi Qiu, and both say they do not satisfy the requirement literally.
+- **Every other audit-extension endpoint is exploratory.** For the Kimi arm, the oracle-free
+  Level 1–2 audit (`results/reserved_kimi/`) and Eq. (37) (`results/join/eq37_reserved_kimi.json`)
+  ran after the confirmatory analysis. The join with decision accuracy has not been computed
+  for this arm.
 - `validation/SHA256SUMS.txt` is the manifest of the 22 August freeze and is **not rebuilt**.
   Files changed after that freeze (this README, the two signed records and the new results)
   therefore no longer match it, by design.

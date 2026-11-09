@@ -112,11 +112,17 @@ seeds, seals and the scoring rule.
 ## Open items before submission
 
 1. **KIMI2 vs `kimi-dev-72b`** label reconciliation (above).
-2. A pre-registered replay-recall confirmatory test on the untouched
-   Kimi arm exists (`audit_extension/validation/PREREG_replay_recall_kimi_2026-08-22.json`)
-   and **has not been executed**; it must not be reported as a result.
+2. **Closed, 8 November 2026.** The pre-registered invariant-replay
+   recall test on the untouched Kimi reserved arm was executed once, under
+   the frozen protocol: B1−B0 +29.63 pp [+8.81, +51.28], permutation
+   p = 0.021, success criterion met
+   (`audit_extension/results/kimi_confirmatory/CONFIRMATORY_RESULT.json`;
+   authorisation `audit_extension/validation/AUTHORISATION_reserved_audit_002.json`).
+   Both records were signed DELEGATED on Renxi Qiu's behalf. See the
+   README, "Reconstruction and replay".
 3. Private infrastructure identifiers were redacted after freeze in 28
    files (`SANITIZATION.md`); byte-level hashes of those specific files
    no longer match the freeze records. All scientific content is intact.
-4. The audit-extension findings (`audit_extension/`) are exploratory as
-   declared in their reports and are not part of the Note 7 endpoints.
+4. Apart from the Kimi replay test in item 2, the audit-extension
+   findings (`audit_extension/`) are exploratory, as declared in their
+   reports, and are not part of the Note 7 endpoints.

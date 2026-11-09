@@ -112,6 +112,11 @@ here are included, so the reproduction scripts run as-is.
 - Pre-registration hashes (family analysis, repeat run, Kimi replay):
   `bedrock_terra/exp/PREREG_*_SHA256.txt`,
   `audit_extension/validation/PREREG_replay_recall_kimi_2026-08-22.json`.
+- Kimi replay test, executed 8 November 2026:
+  `audit_extension/results/kimi_confirmatory/CONFIRMATORY_RESULT.json`
+  records the SHA-256 of the signed prereg, the authorisation, the input
+  and the interval code it ran under, and all four match the published
+  files.
 - Redaction after freeze: 28 files had private infrastructure
   identifiers redacted for publication (`SANITIZATION.md`); the bytes
   of those specific files no longer match the recorded hashes. All
@@ -122,6 +127,8 @@ here are included, so the reproduction scripts run as-is.
 - New model calls: the Kimi-arm endpoint is private (redacted) and the
   Bedrock arms require an AWS account; neither is needed for any
   reported number.
-- The pre-registered replay-recall test on the untouched Kimi arm has
-  **not been executed**; nothing about its outcome can be derived from
-  this repository.
+- The Kimi replay test as a *confirmatory* run: it was a one-shot test,
+  executed on 8 November 2026, and the runner refuses a second run. Its
+  numbers do re-derive offline:
+  `python3 audit_extension/scripts/run_confirmatory_replay.py --dry-run-on audit_extension/results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl`
+  reproduces every endpoint field of `CONFIRMATORY_RESULT.json`.
