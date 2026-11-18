@@ -23,8 +23,14 @@ improves an LLM's meta-decision over raw longitudinal evidence and over
 a pre-specified consequence map built from the same source material.
 This repository holds the frozen benchmark releases, execution records,
 analyses and QA reports of that experiment, and reproduces every
-reported number offline. (Experiment 2, the robotic evaluation, is not
-in this repository.)
+reported number offline.
+
+**Experiment 2**, the robotic evaluation (embodiment transfer across
+Summit XL simulation, physical Summit XL and Unitree G1), is in
+progress. Its full scope, the three conditions (C2, C2.5, C3) and the
+current state of the evidence are in
+[`EXPERIMENT2_SCOPE.md`](EXPERIMENT2_SCOPE.md). No Experiment 2 result is
+claimed yet, and its records are not in this repository.
 
 ## Results
 
