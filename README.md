@@ -45,7 +45,7 @@ Conditions: **Raw** = `B0_LLM_ALONE` · **Map** = `M0_OPEN_LOOP_MEMORY` ·
 |---|---|--:|--:|--:|--:|:-:|---|
 | KIMI2 [^1] | `kimi-dev-72b` (Q4_0) | 74.17% | 70.42% | 83.96% | **+9.79 pp** | [+5.00, +14.79] | ✅ POSITIVE — sealed run, signed |
 | Qwen3 | `qwen.qwen3-next-80b-a3b` | 29.38% | 25.42% | 54.58% | **+25.21 pp** | [+21.67, +28.54] | ✅ POSITIVE — pre-registered replication |
-| GPT-4.6 Terra | `global.openai.gpt-5.6-terra` | 96.67% | 95.21% | 97.71% | +1.04 pp | [−0.63, +2.92] | ⬜ NOT ESTABLISHED — instrument ceiling |
+| GPT-5.6 Terra | `global.openai.gpt-5.6-terra` | 96.67% | 95.21% | 97.71% | +1.04 pp | [−0.63, +2.92] | ⬜ NOT ESTABLISHED — instrument ceiling |
 
 **Key secondary** (CM − Map, gated on the primary): +13.54 pp (Kimi
 arm), +29.17 pp [+25.42, +32.92] (Qwen3). The benefit requires
@@ -97,17 +97,17 @@ unless stated.
 |---|---|--:|--:|--:|--|
 | Input-output trace reconstructibility (Level 1) | KIMI2 | 74.58% | 79.38% | 78.33% | CM−Raw +3.75 pp [−1.46, +8.75] |
 | | Qwen3 | 97.92% | 98.54% | 96.25% | CM−Raw −1.67 pp [−3.75, +0.21] |
-| | GPT-4.6 Terra | 99.58% | 98.75% | 99.79% | CM−Raw +0.21 pp [0.00, +0.62] |
+| | GPT-5.6 Terra | 99.58% | 98.75% | 99.79% | CM−Raw +0.21 pp [0.00, +0.62] |
 | Cognitive-trace coherence (Level 2) | KIMI2 | n/a by design | 100.00% | 84.79% | CM−Map −15.21 pp [−18.33, −12.08] |
 | | Qwen3 | n/a by design | 100.00% | 98.75% | CM−Map −1.25 pp [−2.29, −0.42] |
-| | GPT-4.6 Terra | n/a by design | 100.00% | 100.00% | CM−Map 0.00 pp |
+| | GPT-5.6 Terra | n/a by design | 100.00% | 100.00% | CM−Map 0.00 pp |
 | Invariant-replay recall: errors made visible by rule disagreement across the three renderings of a context | **KIMI2, confirmatory** | 65.9% | 83.0% | 96.4% | **CM−Raw +29.63 pp [+8.81, +51.28]**, permutation p = 0.021, 24 clusters |
 | | Qwen3 | 30.4% | 15.7% | 60.2% | CM−Raw +29.82 pp [+17.14, +42.23] |
-| | GPT-4.6 Terra | 77.8% | 72.7% | 100.0% | not estimated: 9 / 11 / 7 contexts with an error |
+| | GPT-5.6 Terra | 77.8% | 72.7% | 100.0% | not estimated: 9 / 11 / 7 contexts with an error |
 | Identical-replay recall: the same call repeated | Qwen3 | 16.1% | 9.6% | 37.0% | not estimated (no repeat run for KIMI2 or Terra) |
 | Q_audit, Eq. (37) of draft V4.7, ×100 | KIMI2 | 87.92 | 81.61 | 87.70 | CM−Raw −0.22 [−4.35, +4.02] |
 | | Qwen3 | 89.03 | 93.46 | 81.10 | CM−Raw −7.93 [−12.37, −3.59] |
-| | GPT-4.6 Terra | 95.33 | 95.04 | 95.33 | CM−Raw +0.01 [−1.52, +1.54] |
+| | GPT-5.6 Terra | 95.33 | 95.04 | 95.33 | CM−Raw +0.01 [−1.52, +1.54] |
 
 How to read it:
 

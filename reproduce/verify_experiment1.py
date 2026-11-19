@@ -96,7 +96,7 @@ def main():
     with tempfile.TemporaryDirectory() as tmpdir:
         failures += verify_bedrock_arm("out/reserved_terra", "terra",
                                        "bedrock_terra/out/analysis_reserved_terra.json",
-                                       exp["GPT-4.6 Terra"], tmpdir)
+                                       exp["GPT-5.6 Terra"], tmpdir)
         failures += verify_bedrock_arm("out/reserved_qwen3", "qwen3",
                                        "bedrock_terra/out/analysis_reserved_qwen3.json",
                                        exp["Qwen3"], tmpdir)

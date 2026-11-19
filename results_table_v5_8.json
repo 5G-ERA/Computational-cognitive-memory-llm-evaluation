@@ -13,7 +13,8 @@
   },
   "models": [
     {
-      "paper_label": "GPT-4.6 Terra",
+      "paper_label": "GPT-5.6 Terra",
+      "paper_label_note": "Draft V5.8 printed this label as 'GPT-4.6 Terra' (typing mistake, corrected 2026-11-19); the executed model was always global.openai.gpt-5.6-terra.",
       "executed_model": "global.openai.gpt-5.6-terra",
       "provider": "Amazon Bedrock (us-east-1, global CRIS)",
       "accuracy": {"Raw": 0.966667, "Map": 0.952083, "CM": 0.977083},

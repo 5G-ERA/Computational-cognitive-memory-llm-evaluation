@@ -38,7 +38,7 @@ intention-to-evaluate denominator.
 
 Read from `…/reserved_*/run_manifest.json` of each arm.
 
-| Field | paper "GPT-4.6 Terra" | paper "KIMI2" | Qwen3 |
+| Field | paper "GPT-5.6 Terra" | paper "KIMI2" | Qwen3 |
 |---|---|---|---|
 | Provider/endpoint | Amazon Bedrock, OpenAI-compatible runtime, us-east-1, global CRIS routing | Private OpenAI-compatible endpoint (hostname redacted, see `SANITIZATION.md`) | Amazon Bedrock, OpenAI-compatible runtime, us-east-1, global CRIS routing |
 | Endpoint verified | 2026-08-19 | 2026-08-14 | 2026-08-19 |
@@ -58,6 +58,16 @@ Read from `…/reserved_*/run_manifest.json` of each arm.
 > the Kimi family. Either the paper label or the manifest citation must
 > be corrected; the executed checkpoint is authoritative for what was run.
 
+> **Label correction (19 November 2026).** Earlier versions of this
+> repository, following paper draft V5.8, labelled the first arm
+> "GPT-4.6 Terra". That was a typing mistake in the label: the arm is
+> **GPT-5.6 Terra**, and the executed endpoint
+> (`global.openai.gpt-5.6-terra`) was recorded correctly throughout. No
+> run, score or interval changes. Two frozen records keep the old label
+> and are not edited, because they are signed or hash-pinned:
+> `audit_extension/validation/AUTHORISATION_reserved_audit_001.json`
+> and `audit_extension/V4_7_TERMINOLOGY_PATCH.md`.
+
 ## §7.7 — Table 3: multi-model outcomes (reserved split)
 
 Accuracies are intention-to-evaluate over 480 calls per condition.
@@ -69,7 +79,7 @@ which reproduces the signed confirmatory result exactly.
 
 | Model (paper label) | Raw (B0) | Map (M0) | CM (B1) | Δ_CM−Raw pp [95% CI] | Δ_CM−Map pp [95% CI] | Δ_Map−Raw pp [95% CI] | Confirmatory status |
 |---|---|---|---|---|---|---|---|
-| GPT-4.6 Terra | 96.67% | 95.21% | 97.71% | +1.04 [−0.63, +2.92] | not tested (gated on primary) | −1.46 [−2.92, −0.21] (exploratory) | NOT ESTABLISHED — ceiling effect |
+| GPT-5.6 Terra | 96.67% | 95.21% | 97.71% | +1.04 [−0.63, +2.92] | not tested (gated on primary) | −1.46 [−2.92, −0.21] (exploratory) | NOT ESTABLISHED — ceiling effect |
 | KIMI2 (`kimi-dev-72b`) | 74.17% | 70.42% | 83.96% | **+9.79 [+5.00, +14.79]** | +13.54 | includes zero | **POSITIVE** (sealed run, signed) |
 | Qwen3 | 29.38% | 25.42% | 54.58% | **+25.21 [+21.67, +28.54]** | +29.17 [+25.42, +32.92] | −3.96 [−7.08, −0.83] | **POSITIVE** (pre-registered replication) |
 
@@ -77,8 +87,8 @@ Family-level (secondary, pre-registered:
 `bedrock_terra/exp/PREREG_family_pattern_2026-08-20.md`, SHA-256
 `f657099571…`): Δ_CM−Raw in the TEMPORAL_GAP family is **+7.29 pp
 (Terra)**, +28.12 pp (Kimi arm), +29.17 pp (Qwen3) — the source of the
-main paper's "GPT-4.6 improved by 7.29 points in the temporal-gap
-family". Full per-family table: `bedrock_terra/exp/exp1_family_pattern.json`
+main paper's statement that this arm improved by 7.29 points in the
+temporal-gap family. Full per-family table: `bedrock_terra/exp/exp1_family_pattern.json`
 and `bedrock_terra/EDCA_instrument_studies_2026-08-20.html`.
 
 Declared caveats: with 32 clusters the bootstrap undercovers (~92.5% vs
