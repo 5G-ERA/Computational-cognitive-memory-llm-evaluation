@@ -43,14 +43,14 @@ bootstrap with 10,000 replicates clustered at the memory-group level.
 Conditions, with the paper's names and the benchmark identifiers:
 **Raw Evidence (B0)** = `B0_LLM_ALONE` · **Consequence Map (M0)** =
 `M0_OPEN_LOOP_MEMORY` · **Evidence-Resolved CCM (B1)** =
-`B1_VERIFIED_MEMORY`. The pre-specified primary contrast is **B1 − B0**;
+`B1_VERIFIED_MEMORY`. For response accuracy, the pre-specified primary contrast is **B1 − B0**;
 **B1 − M0** evaluates improvement beyond consequence preservation.
 
 ### Response accuracy (paper Table 3)
 
 | Model arm | Executed model | B0 | M0 | B1 | **B1 − B0** | B1 − M0 |
 |---|---|--:|--:|--:|---|---|
-| KIMI2 [^1] | `kimi-dev-72b` (Q4_0) | 74.17% | 70.42% | 83.96% | **+9.79 pp**, 95% CI [+5.00, +14.79] | +13.54 pp, secondary contrast |
+| KIMI2 [^1] | `kimi-dev-72b` (Q4_0) | 74.17% | 70.42% | 83.96% | **+9.79 pp**, 95% CI [+5.00, +14.79] | +13.54 pp, 95% CI [+9.38, +17.71] (key secondary, tested after the primary succeeded) |
 | Qwen3 | `qwen.qwen3-next-80b-a3b` | 29.38% | 25.42% | 54.58% | **+25.21 pp**, 95% CI [+21.67, +28.54] | +29.17 pp, 95% CI [+25.42, +32.92] |
 | GPT-5.6 Terra | `global.openai.gpt-5.6-terra` | 96.67% | 95.21% | 97.71% | +1.04 pp, 95% CI [−0.63, +2.92]; not established: ceiling | +2.50 pp, descriptive contrast |
 
@@ -61,8 +61,9 @@ B1 − M0 difference is descriptive only (it was gated on the primary).
 
 The benefit requires *resolving what the evidence supported*, not
 merely exposing the expected consequence relation, whose own effect is
-null or negative (M0 − B0: −3.96 pp [−7.08, −0.83] in Qwen3,
-exploratory).
+null or negative (M0 − B0: −3.75 pp [−8.54, +1.46] in KIMI2 and
+−3.96 pp [−7.08, −0.83] in Qwen3, exploratory). The KIMI2 intervals for
+B1 − M0 and M0 − B0 are in `analysis/section6_results.json`.
 
 **Pre-registered family analysis** (secondary): the effect concentrates
 in the **TEMPORAL_GAP** family — +28.12 pp (KIMI2), +29.17 pp
@@ -129,7 +130,12 @@ a discovery–confirmation design, and the confirmation succeeded.
   input and interval-code hashes matching the pinned values. Result:
   B1 − B0 = +29.63 pp, 95% CI [+8.81, +51.28], permutation p = 0.021.
   **The success criterion is met**, and the effect on an independent
-  model has almost the same size as on the discovery arm.
+  model has almost the same size as on the discovery arm. The two
+  pre-registered secondary endpoints were descriptive: rule consistency
+  B1 − B0 was predicted negative and came out +1.91 pp [−5.40, +9.59],
+  not as predicted; citation stability among all-correct minus
+  with-error contexts was predicted to flip from negative to positive,
+  and did (−9.34 under B0, +7.98 under B1).
 - **B1 − M0 (beyond consequence preservation).** This secondary contrast
   was added on 23 November 2026, with the same estimator, so that this
   table reports the same two contrasts as the response-accuracy table.
