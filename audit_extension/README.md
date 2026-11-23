@@ -34,6 +34,18 @@ reverse.
   Level 1–2 audit (`results/reserved_kimi/`) and Eq. (37) (`results/join/eq37_reserved_kimi.json`)
   ran after the confirmatory analysis. The join with decision accuracy has not been computed
   for this arm.
+- **Documents dated 22 August describe the state before the test.** The three reports
+  `EDCA_audit_index_eq37_2026-08-22.html`, `EDCA_reconstruction_and_replay_2026-08-22.html` and
+  `EDCA_auditability_without_oracle_2026-08-22.html`, and the history entries of
+  `validation/FREEZE_audit_extension_2026-08-22.json` (for example "PREREG unsigned; Kimi
+  untouched"), were written when the pre-registered Kimi test had not yet been run. They are kept
+  as the record of that day. Each report now opens with a status note, added on 23 November 2026,
+  saying that the test was executed on 8 November 2026 and giving its result. The freeze record
+  is not edited.
+- **Evidence status of invariant-replay recall, in one place.** Confirmatory and
+  pre-registered: the Kimi (paper label KIMI2) B1−B0 contrast only. Exploratory: the Qwen3 and
+  GPT-5.6 Terra replay figures, on which the hypothesis was formed, and every B1−M0 replay
+  contrast (`results/join/replay_recall_contrasts.json`, added 23 November 2026).
 - `validation/SHA256SUMS.txt` is the manifest of the 22 August freeze and is **not rebuilt**.
   Files changed after that freeze (this README, the two signed records and the new results)
   therefore no longer match it, by design.
