@@ -42,10 +42,13 @@ reverse.
   as the record of that day. Each report now opens with a status note, added on 23 November 2026,
   saying that the test was executed on 8 November 2026 and giving its result. The freeze record
   is not edited.
-- **Evidence status of invariant-replay recall, in one place.** Confirmatory and
-  pre-registered: the Kimi (paper label KIMI2) B1−B0 contrast only. Exploratory: the Qwen3 and
-  GPT-5.6 Terra replay figures, on which the hypothesis was formed, and every B1−M0 replay
-  contrast (`results/join/replay_recall_contrasts.json`, added 23 November 2026).
+- **Invariant-replay recall follows a discovery–confirmation design.** Discovery: the effect
+  was first observed on Qwen3 (B1−B0 +29.82 pp [+17.14, +42.23]); GPT-5.6 Terra made too few
+  errors to estimate it. Confirmation: the hypothesis was pre-registered for the untouched Kimi
+  arm (paper label KIMI2) and tested once under the frozen protocol: B1−B0 +29.63 pp
+  [+8.81, +51.28], success criterion met. The B1−M0 replay contrasts
+  (`results/join/replay_recall_contrasts.json`) were added on 23 November 2026 with the same
+  estimator and were not part of the pre-registration.
 - `validation/SHA256SUMS.txt` is the manifest of the 22 August freeze and is **not rebuilt**.
   Files changed after that freeze (this README, the two signed records and the new results)
   therefore no longer match it, by design.

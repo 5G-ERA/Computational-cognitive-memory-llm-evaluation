@@ -113,24 +113,31 @@ difference; the interval is the bootstrap over the same groups. This is
 the pre-registered estimator
 (`audit_extension/scripts/calculate_clustered_intervals.py`).
 
-**Status of each number.**
+**Discovery and pre-registered confirmation.** The replay result follows
+a discovery–confirmation design, and the confirmation succeeded.
 
-- **KIMI2, B1 − B0, is the pre-registered confirmatory test.** The
-  hypothesis was formed on Qwen3 and GPT-5.6 Terra, then pre-registered
-  on 22 August 2026, before any replay quantity was computed on KIMI2.
-  It was run once, on 8 November 2026, under that frozen protocol. The
-  input and interval-code hashes matched the pinned values, and the
+- **Discovery (Qwen3).** The effect was first observed on Qwen3:
+  B1 − B0 = +29.82 pp, 95% CI [+17.14, +42.23]. GPT-5.6 Terra made too
+  few errors to estimate it (five memory groups with an error under both
+  conditions).
+- **Confirmation (KIMI2).** The hypothesis was then pre-registered on
+  22 August 2026 for the KIMI2 reserved arm, before any replay quantity
+  had been computed on it: endpoint, detector, estimator, seed and
   success criterion (a 95% interval excluding zero with a positive
-  estimate) is met.
-- **Qwen3, B1 − B0, is the arm on which the hypothesis was formed.** It
-  is exploratory, not an independent confirmation.
-- **B1 − M0 was not pre-registered for any arm.** It was added on
-  23 November 2026 so that this table reports the same two contrasts as
-  the response-accuracy table, with the same estimator. It is
-  exploratory. For KIMI2 the interval excludes zero only narrowly and
-  the permutation test does not reach 0.05.
-- **GPT-5.6 Terra has too few errors** for a paired contrast (five
-  memory groups with an error under both conditions).
+  estimate; the permutation test as a robustness check). The test was
+  run once, on 8 November 2026, under that frozen protocol, with the
+  input and interval-code hashes matching the pinned values. Result:
+  B1 − B0 = +29.63 pp, 95% CI [+8.81, +51.28], permutation p = 0.021.
+  **The success criterion is met**, and the effect on an independent
+  model has almost the same size as on the discovery arm.
+- **B1 − M0 (beyond consequence preservation).** This secondary contrast
+  was added on 23 November 2026, with the same estimator, so that this
+  table reports the same two contrasts as the response-accuracy table.
+  It was not part of the pre-registration. Under the same criterion, the
+  interval excludes zero with a positive estimate in both arms: KIMI2
+  +14.07 pp [+0.17, +27.27] and Qwen3 +44.47 pp [+34.02, +54.86]. The
+  permutation robustness check gives p = 0.078 for KIMI2 and p < 0.001
+  for Qwen3.
 
 All four estimated contrasts, and the counts in the table, re-derive
 offline from the frozen scoring records:
