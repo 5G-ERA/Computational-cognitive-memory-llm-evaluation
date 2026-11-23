@@ -10,7 +10,7 @@
 <p align="center">
   <em>Results and reproducibility package for Experiment 1 of<br/>
   <strong>A Computational Theory of Cognitive Memory</strong><br/>
-  Qiu · Pham · Lendinez Ibanez · Li — University of Bedfordshire · University of Birmingham (draft V8.55, November 2026)</em>
+  Qiu · Pham · Lendinez Ibanez · Li — University of Bedfordshire · University of Birmingham (draft V8.58, November 2026)</em>
 </p>
 
 ---
@@ -34,7 +34,7 @@ claimed yet, and its records are not in this repository.
 
 ## Results
 
-The two tables below are Tables 3 and 4 of the paper (draft V8.55).
+The two tables below are Tables 3 and 4 of the paper (draft V8.58).
 
 Reserved (confirmatory) split — 32 memory groups, 480 matched contexts,
 1440 calls per model, intention-to-evaluate denominator, percentile
@@ -282,5 +282,5 @@ same layout, so directories are not renamed.
 See [`CITATION.cff`](CITATION.cff). Please cite the paper:
 
 > R. Qiu, D. Pham, A. Lendinez Ibanez, D. Li. *A Computational Theory
-> of Cognitive Memory.* Draft V8.55, November 2026. Manuscript in
+> of Cognitive Memory.* Draft V8.58, November 2026. Manuscript in
 > preparation.
