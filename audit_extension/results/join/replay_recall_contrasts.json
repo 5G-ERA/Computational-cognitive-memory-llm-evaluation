@@ -1,0 +1,119 @@
+{
+  "endpoint": "invariant-replay recall, reserved split",
+  "status": {
+    "KIMI2 B1-B0": "pre-registered confirmatory; re-derived here, sealed result in results/kimi_confirmatory/CONFIRMATORY_RESULT.json",
+    "everything else": "exploratory, post hoc; B1-M0 added 2026-11-23 and not pre-registered for any arm"
+  },
+  "min_clusters_for_a_paired_contrast": 10,
+  "arms": {
+    "KIMI2": {
+      "input": "audit_extension/results/kimi_confirmatory/kimi_reserved_scored_qa1c.jsonl",
+      "input_sha256": "6b7e07313547162746306551108df889220c82657a834b5c3b1e129ba171ab62",
+      "by_condition": {
+        "B0_LLM_ALONE": {
+          "erroneous_contexts": 44,
+          "made_visible": 29,
+          "recall_pct": 65.9090909090909
+        },
+        "M0_OPEN_LOOP_MEMORY": {
+          "erroneous_contexts": 53,
+          "made_visible": 44,
+          "recall_pct": 83.01886792452831
+        },
+        "B1_VERIFIED_MEMORY": {
+          "erroneous_contexts": 28,
+          "made_visible": 27,
+          "recall_pct": 96.42857142857143
+        }
+      },
+      "B1_minus_B0": {
+        "estimated": true,
+        "point": 29.629629629629626,
+        "lo": 8.809505934505927,
+        "hi": 51.28205128205128,
+        "clusters": 24,
+        "resamples": 10000,
+        "permutation_p": 0.0212978702129787
+      },
+      "B1_minus_M0": {
+        "estimated": true,
+        "point": 14.074074074074073,
+        "lo": 0.17421602787456303,
+        "hi": 27.27272727272727,
+        "clusters": 24,
+        "resamples": 10000,
+        "permutation_p": 0.07749225077492251
+      }
+    },
+    "Qwen3": {
+      "input": "bedrock_terra/out/reserved_qwen3/scoring_records.jsonl",
+      "input_sha256": "ff497e107ed700112239c70523726fa1b1cefe59e1aa7ba7ac8291f4f01d0b7f",
+      "by_condition": {
+        "B0_LLM_ALONE": {
+          "erroneous_contexts": 125,
+          "made_visible": 38,
+          "recall_pct": 30.4
+        },
+        "M0_OPEN_LOOP_MEMORY": {
+          "erroneous_contexts": 127,
+          "made_visible": 20,
+          "recall_pct": 15.748031496062993
+        },
+        "B1_VERIFIED_MEMORY": {
+          "erroneous_contexts": 93,
+          "made_visible": 56,
+          "recall_pct": 60.215053763440864
+        }
+      },
+      "B1_minus_B0": {
+        "estimated": true,
+        "point": 29.81505376344086,
+        "lo": 17.142425249169435,
+        "hi": 42.23117963760206,
+        "clusters": 32,
+        "resamples": 10000,
+        "permutation_p": 0.00019998000199980003
+      },
+      "B1_minus_M0": {
+        "estimated": true,
+        "point": 44.46702226737787,
+        "lo": 34.01982478839535,
+        "hi": 54.85564304461942,
+        "clusters": 32,
+        "resamples": 10000,
+        "permutation_p": 9.999000099990002e-05
+      }
+    },
+    "GPT-5.6 Terra": {
+      "input": "bedrock_terra/out/reserved_terra/scoring_records.jsonl",
+      "input_sha256": "4f80094302d2ba3f6f411cbf169f5ef1d325286e8a638906720354797443f085",
+      "by_condition": {
+        "B0_LLM_ALONE": {
+          "erroneous_contexts": 9,
+          "made_visible": 7,
+          "recall_pct": 77.77777777777777
+        },
+        "M0_OPEN_LOOP_MEMORY": {
+          "erroneous_contexts": 11,
+          "made_visible": 8,
+          "recall_pct": 72.72727272727273
+        },
+        "B1_VERIFIED_MEMORY": {
+          "erroneous_contexts": 7,
+          "made_visible": 7,
+          "recall_pct": 100.0
+        }
+      },
+      "B1_minus_B0": {
+        "estimated": false,
+        "clusters": 5,
+        "reason": "fewer than 10 memory groups with an erroneous context under both conditions"
+      },
+      "B1_minus_M0": {
+        "estimated": false,
+        "clusters": 5,
+        "reason": "fewer than 10 memory groups with an erroneous context under both conditions"
+      }
+    }
+  }
+}

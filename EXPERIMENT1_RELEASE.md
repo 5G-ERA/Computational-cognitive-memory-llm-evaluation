@@ -136,3 +136,12 @@ seeds, seals and the scoring rule.
 4. Apart from the Kimi replay test in item 2, the audit-extension
    findings (`audit_extension/`) are exploratory, as declared in their
    reports, and are not part of the Note 7 endpoints.
+5. **Added 23 November 2026.** The current draft (V8.55) reports
+   invariant-replay reconstruction as its Table 4. The B1−M0 contrast of
+   that endpoint, absent until now, is computed with the same estimator
+   for the three arms by `audit_extension/scripts/replay_recall_contrasts.py`
+   (output `audit_extension/results/join/replay_recall_contrasts.json`):
+   KIMI2 +14.07 pp [+0.17, +27.27], permutation p = 0.078; Qwen3
+   +44.47 pp [+34.02, +54.86]; GPT-5.6 Terra not estimated. It was not
+   pre-registered and is exploratory. This mapping document still follows
+   the Supplementary Note numbering of draft V5.8.
